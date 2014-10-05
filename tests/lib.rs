@@ -1,80 +1,9 @@
 #![feature(macro_rules)]
-#![feature(unsafe_destructor)]
 
 extern crate lapack;
+extern crate matrix;
 
-extern crate alloc;
-extern crate core;
-
-use alloc::heap;
-use core::raw;
-use std::mem;
-
-#[unsafe_no_drop_flag]
-pub struct Vec<T> {
-    len: uint,
-    ptr: *mut T,
-}
-
-impl<T> Vec<T> {
-    #[inline]
-    pub fn new(len: uint) -> Vec<T> {
-        let ptr = unsafe {
-            heap::allocate(len * mem::size_of::<T>(), mem::min_align_of::<T>())
-        };
-        Vec { len: len, ptr: ptr as *mut T }
-    }
-
-    #[inline]
-    pub fn as_ptr(&self) -> *const T {
-        self.ptr as *const T
-    }
-
-    #[inline]
-    pub fn as_mut_ptr(&mut self) -> *mut T {
-        self.ptr
-    }
-
-    #[inline]
-    pub fn as_mut_slice<'a>(&'a mut self) -> &'a mut [T] {
-        unsafe {
-            mem::transmute(raw::Slice {
-                data: self.as_mut_ptr() as *const T,
-                len: self.len,
-            })
-        }
-    }
-}
-
-#[unsafe_destructor]
-impl<T> Drop for Vec<T> {
-    #[inline]
-    fn drop(&mut self) {
-        unsafe {
-            heap::deallocate(self.ptr as *mut u8,
-                self.len * mem::size_of::<T>(), mem::min_align_of::<T>())
-        }
-    }
-}
-
-impl<T> Index<uint, T> for Vec<T> {
-    #[inline]
-    fn index<'a>(&'a self, index: &uint) -> &'a T {
-        &self.as_slice()[*index]
-    }
-}
-
-impl<T> Slice<T> for Vec<T> {
-    #[inline]
-    fn as_slice<'a>(&'a self) -> &'a [T] {
-        unsafe {
-            mem::transmute(raw::Slice {
-                data: self.as_ptr(),
-                len: self.len,
-            })
-        }
-    }
-}
+use matrix::Matrix;
 
 macro_rules! assert_equal(
     ($given:expr , $expected:expr) => ({
@@ -161,14 +90,14 @@ fn dsyev() {
     ];
 
     let mut w = box [0.0, ..(n as uint)];
-    let mut work = Vec::new(1);
+    let mut work = Matrix::new(1);
     let mut lwork = -1 as i32;
     let mut info = 0 as i32;
 
     lapack::dsyev('V' as i8, 'U' as i8, n, a, n, &mut *w, work.as_mut_slice(), lwork, &mut info);
 
     lwork = work[0] as i32;
-    work = Vec::new(lwork as uint);
+    work = Matrix::new(lwork as uint);
 
     lapack::dsyev('V' as i8, 'U' as i8, n, a, n, &mut *w, work.as_mut_slice(), lwork, &mut info);
 

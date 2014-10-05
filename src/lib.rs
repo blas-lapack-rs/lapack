@@ -23,10 +23,6 @@ pub fn dsyev(jobz: i8, uplo: i8, n: i32, a: &[f64], lda: i32, w: &mut[f64],
 
 #[cfg(test)]
 mod tests {
-    extern crate matrix;
-
-    use self::matrix::Matrix;
-
     macro_rules! assert_almost_equal(
         ($given:expr , $expected:expr) => ({
             assert_eq!($given.len(), $expected.len());
@@ -70,7 +66,7 @@ mod tests {
         ];
 
         let mut w = box [0.0, ..(n as uint)];
-        let mut work = Matrix::new(1);
+        let mut work = vec![0.0];
         let mut lwork = -1 as i32;
         let mut info = 0 as i32;
 
@@ -78,7 +74,8 @@ mod tests {
             work.as_mut_slice(), lwork, &mut info);
 
         lwork = work[0] as i32;
-        work = Matrix::new(lwork as uint);
+        work = Vec::with_capacity(lwork as uint);
+        unsafe { work.set_len(lwork as uint); }
 
         super::dsyev('V' as i8, 'U' as i8, n, a, n, &mut *w,
             work.as_mut_slice(), lwork, &mut info);

@@ -4,10 +4,6 @@ version = "0.0.1"
 authors = ["Ivan Ukhov <ivan.ukhov@gmail.com>"]
 build = "make -f Makefile.cargo"
 
-[lib]
-name = "lapack"
-doctest = false
-
 [dev_dependencies.matrix]
 name = "matrix"
 git = "https://github.com/steel-math/matrix"

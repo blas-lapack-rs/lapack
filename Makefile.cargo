@@ -1,0 +1,26 @@
+out := $(OUT_DIR)
+src := $(out)/src
+
+archive := lapack-3.5.0.tgz
+url := http://www.netlib.org/lapack/$(archive)
+lib := $(out)/liblapack.a
+archive := $(out)/$(archive)
+
+$(lib): $(src)/librefblas.a $(src)/liblapack.a
+	cd $(out) && $(AR) x $(src)/librefblas.a
+	cd $(out) && $(AR) x $(src)/liblapack.a
+	$(AR) crus $@ $(out)/*.o
+
+$(src)/librefblas.a: $(src)/make.inc
+	$(MAKE) -C $(src) blaslib
+
+$(src)/liblapack.a: $(src)/make.inc
+	$(MAKE) -C $(src) lapacklib
+
+$(src)/make.inc: $(archive)
+	mkdir -p $(src)
+	tar -xzf $(archive) --strip=1 -C $(src)
+	cp $@.example $@
+
+$(archive):
+	curl $(url) -o $@

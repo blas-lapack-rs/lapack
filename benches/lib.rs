@@ -1,5 +1,3 @@
-#![crate_name = "lapack"]
-
 extern crate lapack;
 extern crate test;
 
@@ -7,7 +5,7 @@ use lapack::dgemv;
 use test::Bencher;
 
 #[bench]
-fn bench_dgemv_few_large(b: &mut Bencher) {
+fn dgemv_few_large(b: &mut Bencher) {
     #[allow(non_uppercase_statics)]
     static m: uint = 1000;
 
@@ -22,7 +20,7 @@ fn bench_dgemv_few_large(b: &mut Bencher) {
 }
 
 #[bench]
-fn bench_dgemv_many_small(b: &mut Bencher) {
+fn dgemv_many_small(b: &mut Bencher) {
     #[allow(non_uppercase_statics)]
     static m: uint = 20;
 

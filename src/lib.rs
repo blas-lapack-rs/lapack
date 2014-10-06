@@ -12,19 +12,25 @@ extern {
         work: *mut c_double, lwork: *const c_int, info: *mut c_int);
 }
 
-pub fn dsyev(jobz: i8, uplo: i8, n: i32, a: &[f64], lda: i32, w: &mut[f64],
-    work: &mut[f64], lwork: i32, info: &mut i32) {
+pub static EIG_VALS: i8 = 'N' as i8;
+pub static EIG_VALS_VECS: i8 = 'V' as i8;
+
+pub static UPPER: i8 = 'U' as i8;
+pub static LOWER: i8 = 'L' as i8;
+
+#[inline]
+pub fn dsyev(jobz: i8, uplo: i8, n: i32, a: *const f64, lda: i32, w: *mut f64,
+    work: *mut f64, lwork: i32, info: *mut i32) {
 
     unsafe {
-        dsyev_(&jobz, &uplo, &n, a.as_ptr(), &lda, w.as_mut_ptr(),
-            work.as_mut_ptr(), &lwork, info);
+        dsyev_(&jobz, &uplo, &n, a, &lda, w, work, &lwork, info);
     }
 }
 
 #[cfg(test)]
 mod tests {
     macro_rules! assert_almost_equal(
-        ($given:expr , $expected:expr) => ({
+        ($given:expr, $expected:expr) => ({
             assert_eq!($given.len(), $expected.len());
             for i in range(0u, $given.len()) {
                 assert!(::std::num::abs($given[i] - $expected[i]) < 1e-8);
@@ -34,8 +40,7 @@ mod tests {
 
     #[test]
     fn dsyev() {
-        #[allow(non_uppercase_statics)]
-        static n: i32 = 5;
+        let n = 5;
 
         let a = [
             0.162182308193243,
@@ -65,20 +70,19 @@ mod tests {
             0.817303220653433,
         ];
 
-        let mut w = box [0.0, ..(n as uint)];
+        let mut w = Vec::from_elem(n as uint, 0.0);
         let mut work = vec![0.0];
-        let mut lwork = -1 as i32;
-        let mut info = 0 as i32;
+        let mut lwork = -1;
+        let mut info = 0;
 
-        super::dsyev('V' as i8, 'U' as i8, n, a, n, &mut *w,
-            work.as_mut_slice(), lwork, &mut info);
+        super::dsyev(super::EIG_VALS_VECS, super::UPPER, n, a.as_ptr(), n,
+            w.as_mut_ptr(), work.as_mut_ptr(), lwork, &mut info);
 
         lwork = work[0] as i32;
-        work = Vec::with_capacity(lwork as uint);
-        unsafe { work.set_len(lwork as uint); }
+        work = Vec::from_elem(lwork as uint, 0.0);
 
-        super::dsyev('V' as i8, 'U' as i8, n, a, n, &mut *w,
-            work.as_mut_slice(), lwork, &mut info);
+        super::dsyev(super::EIG_VALS_VECS, super::UPPER, n, a.as_ptr(), n,
+            w.as_mut_ptr(), work.as_mut_ptr(), lwork, &mut info);
 
         assert_eq!(info, 0);
 

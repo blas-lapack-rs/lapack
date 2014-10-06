@@ -21,6 +21,7 @@ $(src)/make.inc: $(archive)
 	mkdir -p $(src)
 	tar -xzf $(archive) --strip=1 -C $(src)
 	cp $@.example $@
+	echo 'OPTS := $$(OPTS) -fPIC' >> $@
 
 $(archive):
 	curl $(url) -o $@

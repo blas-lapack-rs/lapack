@@ -19,7 +19,7 @@ extern {
 /// http://www.netlib.org/lapack/explore-html/dd/d4c/dsyev_8f.html
 #[inline]
 pub fn dsyev(jobz: u8, uplo: u8, n: uint, a: *mut f64, lda: uint, w: *mut f64,
-             work: *mut f64, lwork: uint, info: *mut uint) {
+             work: *mut f64, lwork: uint, info: *mut int) {
 
     unsafe {
         dsyev_(&(jobz as i8), &(uplo as i8), &(n as i32), a, &(lda as i32), w,

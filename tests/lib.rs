@@ -49,13 +49,13 @@ fn dsyev() {
     let mut info = 0;
 
     lapack::dsyev('V' as i8, 'U' as i8, n, a.as_mut_ptr(), n, w.as_mut_ptr(),
-        work.as_mut_ptr(), lwork, &mut info);
+                  work.as_mut_ptr(), lwork, &mut info);
 
     lwork = work[0] as i32;
     work = Vec::from_elem(lwork as uint, 0.0);
 
     lapack::dsyev('V' as i8, 'U' as i8, n, a.as_mut_ptr(), n, w.as_mut_ptr(),
-        work.as_mut_ptr(), lwork, &mut info);
+                  work.as_mut_ptr(), lwork, &mut info);
 
     assert_eq!(info, 0);
 

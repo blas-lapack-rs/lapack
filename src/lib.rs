@@ -1,3 +1,6 @@
+//! The library provides an interface to the [Linear Algebra PACKage](
+//! http://www.netlib.org/lapack/).
+
 extern crate libc;
 
 use libc::{c_char, c_double, c_int};

@@ -43,18 +43,18 @@ fn dsyev() {
         0.817303220653433,
     ];
 
-    let mut w = Vec::from_elem(n as uint, 0.0);
+    let mut w = Vec::from_elem(n, 0.0);
     let mut work = vec![0.0];
     let mut lwork = -1;
     let mut info = 0;
 
-    lapack::dsyev('V' as i8, 'U' as i8, n, a.as_mut_ptr(), n, w.as_mut_ptr(),
+    lapack::dsyev(b'V', b'U', n, a.as_mut_ptr(), n, w.as_mut_ptr(),
                   work.as_mut_ptr(), lwork, &mut info);
 
-    lwork = work[0] as i32;
-    work = Vec::from_elem(lwork as uint, 0.0);
+    lwork = work[0] as uint;
+    work = Vec::from_elem(lwork, 0.0);
 
-    lapack::dsyev('V' as i8, 'U' as i8, n, a.as_mut_ptr(), n, w.as_mut_ptr(),
+    lapack::dsyev(b'V', b'U', n, a.as_mut_ptr(), n, w.as_mut_ptr(),
                   work.as_mut_ptr(), lwork, &mut info);
 
     assert_eq!(info, 0);

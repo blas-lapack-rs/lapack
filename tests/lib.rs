@@ -15,7 +15,7 @@ macro_rules! assert_almost_equal(
 fn dsyev() {
     let n = 5;
 
-    let a = vec![
+    let mut a = vec![
         0.162182308193243,
         0.601981941401637,
         0.450541598502498,
@@ -48,13 +48,13 @@ fn dsyev() {
     let mut lwork = -1;
     let mut info = 0;
 
-    lapack::dsyev('V' as i8, 'U' as i8, n, a.as_ptr(), n, w.as_mut_ptr(),
+    lapack::dsyev('V' as i8, 'U' as i8, n, a.as_mut_ptr(), n, w.as_mut_ptr(),
         work.as_mut_ptr(), lwork, &mut info);
 
     lwork = work[0] as i32;
     work = Vec::from_elem(lwork as uint, 0.0);
 
-    lapack::dsyev('V' as i8, 'U' as i8, n, a.as_ptr(), n, w.as_mut_ptr(),
+    lapack::dsyev('V' as i8, 'U' as i8, n, a.as_mut_ptr(), n, w.as_mut_ptr(),
         work.as_mut_ptr(), lwork, &mut info);
 
     assert_eq!(info, 0);

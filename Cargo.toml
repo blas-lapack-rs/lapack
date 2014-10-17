@@ -3,3 +3,7 @@ name = "lapack"
 version = "0.0.1"
 authors = ["Ivan Ukhov <ivan.ukhov@gmail.com>"]
 build = "make -f Makefile.cargo"
+
+[lib]
+name = "lapack"
+doctest = false

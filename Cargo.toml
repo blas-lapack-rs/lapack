@@ -7,3 +7,6 @@ build = "make -f Makefile.cargo"
 [lib]
 name = "lapack"
 doctest = false
+
+[dev-dependencies.assert]
+git = "https://github.com/rs-math/assert"

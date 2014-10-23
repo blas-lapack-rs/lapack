@@ -2,7 +2,7 @@
 //!
 //! [1]: http://www.netlib.org/lapack/
 
-#![feature(macro_rules)]
+#![feature(phase)]
 
 extern crate libc;
 
@@ -32,14 +32,7 @@ pub fn dsyev(jobz: u8, uplo: u8, n: uint, a: *mut f64, lda: uint, w: *mut f64,
 
 #[cfg(test)]
 mod test {
-    macro_rules! assert_almost_equal(
-        ($given:expr, $expected:expr) => ({
-            assert_eq!($given.len(), $expected.len());
-            for i in range(0u, $given.len()) {
-                assert!(::std::num::abs($given[i] - $expected[i]) < 1e-8);
-            }
-        });
-    )
+    #[phase(plugin)] extern crate assert;
 
     #[test]
     fn dsyev() {
@@ -85,7 +78,7 @@ mod test {
                               -0.050275996742486, 0.892450858666551,
                                2.529798046292787];
 
-        assert_almost_equal!(a, expected_a)
-        assert_almost_equal!(w, expected_w)
+        assert_close!(a, expected_a)
+        assert_close!(w, expected_w)
     }
 }

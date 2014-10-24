@@ -21,12 +21,12 @@ extern {
 ///
 /// http://www.netlib.org/lapack/explore-html/dd/d4c/dsyev_8f.html
 #[inline]
-pub fn dsyev(jobz: u8, uplo: u8, n: uint, a: *mut f64, lda: uint, w: *mut f64,
-             work: *mut f64, lwork: uint, info: *mut int) {
+pub fn dsyev(jobz: u8, uplo: u8, n: uint, a: &mut [f64], lda: uint, w: &mut [f64],
+             work: &mut [f64], lwork: uint, info: *mut int) {
 
     unsafe {
-        dsyev_(&(jobz as i8), &(uplo as i8), &(n as i32), a, &(lda as i32), w,
-               work, &(lwork as i32), info as *mut i32);
+        dsyev_(&(jobz as i8), &(uplo as i8), &(n as i32), a.as_mut_ptr(), &(lda as i32),
+               w.as_mut_ptr(), work.as_mut_ptr(), &(lwork as i32), info as *mut i32);
     }
 }
 
@@ -55,14 +55,14 @@ mod test {
         let mut lwork = -1;
         let mut info = 0;
 
-        super::dsyev(b'V', b'U', n, a.as_mut_ptr(), n, w.as_mut_ptr(),
-                     work.as_mut_ptr(), lwork, &mut info);
+        super::dsyev(b'V', b'U', n, a.as_mut_slice(), n, w.as_mut_slice(),
+                     work.as_mut_slice(), lwork, &mut info);
 
         lwork = work[0] as uint;
         work = Vec::from_elem(lwork, 0.0);
 
-        super::dsyev(b'V', b'U', n, a.as_mut_ptr(), n, w.as_mut_ptr(),
-                     work.as_mut_ptr(), lwork, &mut info);
+        super::dsyev(b'V', b'U', n, a.as_mut_slice(), n, w.as_mut_slice(),
+                     work.as_mut_slice(), lwork, &mut info);
 
         assert_eq!(info, 0);
 

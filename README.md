@@ -16,5 +16,5 @@ The list can be extended upon request.
 
 [1]: http://www.netlib.org/lapack/
 
-[travis-svg]: https://travis-ci.org/rs-math/lapack.svg?branch=master
-[travis-url]: https://travis-ci.org/rs-math/lapack
+[travis-svg]: https://travis-ci.org/stainless-steel/lapack.svg?branch=master
+[travis-url]: https://travis-ci.org/stainless-steel/lapack

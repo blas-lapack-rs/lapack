@@ -4,7 +4,3 @@ version = "0.0.1"
 authors = ["Ivan Ukhov <ivan.ukhov@gmail.com>"]
 links = "libblas liblapack"
 build = "build.rs"
-
-[lib]
-name = "liblapack-sys"
-path = "lib.rs"

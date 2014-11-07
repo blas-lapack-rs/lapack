@@ -2,11 +2,13 @@
 name = "lapack"
 version = "0.0.1"
 authors = ["Ivan Ukhov <ivan.ukhov@gmail.com>"]
-build = "make -f Makefile.cargo"
 
 [lib]
 name = "lapack"
 doctest = false
+
+[dependencies.liblapack-sys]
+path = "liblapack-sys"
 
 [dev-dependencies.assert]
 git = "https://github.com/stainless-steel/assert"

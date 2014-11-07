@@ -1,4 +1,5 @@
 language: rust
 
 before_install:
+  - sudo apt-get install cmake
   - sudo apt-get install gfortran

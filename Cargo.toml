@@ -3,10 +3,6 @@ name = "lapack"
 version = "0.0.1"
 authors = ["Ivan Ukhov <ivan.ukhov@gmail.com>"]
 
-[lib]
-name = "lapack"
-doctest = false
-
 [dependencies.liblapack-sys]
 git = "https://github.com/stainless-steel/liblapack-sys"
 

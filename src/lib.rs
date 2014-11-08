@@ -6,9 +6,6 @@
 
 extern crate "liblapack-sys" as raw;
 
-/// Compute the eigenvalues and, optionally, the left and/or right eigenvectors
-/// for symmetric matrices.
-///
 /// http://www.netlib.org/lapack/explore-html/dd/d4c/dsyev_8f.html
 #[inline]
 pub fn dsyev(jobz: u8, uplo: u8, n: uint, a: &mut [f64], lda: uint, w: &mut [f64],

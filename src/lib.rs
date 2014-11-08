@@ -3,18 +3,19 @@
 //! [1]: http://www.netlib.org/lapack/
 
 #![feature(phase)]
+#![allow(non_snake_case)]
 
 extern crate "liblapack-sys" as raw;
 
 /// http://www.netlib.org/lapack/explore-html/dd/d4c/dsyev_8f.html
 #[inline]
-pub fn dsyev(jobz: u8, uplo: u8, n: uint, a: &mut [f64], lda: uint, w: &mut [f64],
-             work: &mut [f64], lwork: uint, info: *mut int) {
+pub fn dsyev(JOBZ: u8, UPLO: u8, N: uint, A: &mut [f64], LDA: uint, W: &mut [f64],
+             WORK: &mut [f64], LWORK: uint, INFO: *mut int) {
 
     unsafe {
-        raw::dsyev(&(jobz as i8), &(uplo as i8), &(n as i32), a.as_mut_ptr(),
-                   &(lda as i32), w.as_mut_ptr(), work.as_mut_ptr(),
-                   &(lwork as i32), info as *mut i32);
+        raw::dsyev(&(JOBZ as i8), &(UPLO as i8), &(N as i32), A.as_mut_ptr(),
+                   &(LDA as i32), W.as_mut_ptr(), WORK.as_mut_ptr(),
+                   &(LWORK as i32), INFO as *mut i32);
     }
 }
 
@@ -24,9 +25,9 @@ mod test {
 
     #[test]
     fn dsyev() {
-        let n = 5;
+        let N = 5;
 
-        let mut a = vec![
+        let mut A = vec![
             0.162182308193243, 0.601981941401637, 0.450541598502498,
             0.825816977489547, 0.106652770180584, 0.601981941401637,
             0.262971284540144, 0.083821377996933, 0.538342435260057,
@@ -38,23 +39,23 @@ mod test {
             0.817303220653433,
         ];
 
-        let mut w = Vec::from_elem(n, 0.0);
-        let mut work = vec![0.0];
-        let mut lwork = -1;
-        let mut info = 0;
+        let mut W = Vec::from_elem(N, 0.0);
+        let mut WORK = vec![0.0];
+        let mut LWORK = -1;
+        let mut INFO = 0;
 
-        ::dsyev(b'V', b'U', n, a.as_mut_slice(), n, w.as_mut_slice(),
-                work.as_mut_slice(), lwork, &mut info);
+        ::dsyev(b'V', b'U', N, A.as_mut_slice(), N, W.as_mut_slice(),
+                WORK.as_mut_slice(), LWORK, &mut INFO);
 
-        lwork = work[0] as uint;
-        work = Vec::from_elem(lwork, 0.0);
+        LWORK = WORK[0] as uint;
+        WORK = Vec::from_elem(LWORK, 0.0);
 
-        ::dsyev(b'V', b'U', n, a.as_mut_slice(), n, w.as_mut_slice(),
-                work.as_mut_slice(), lwork, &mut info);
+        ::dsyev(b'V', b'U', N, A.as_mut_slice(), N, W.as_mut_slice(),
+                WORK.as_mut_slice(), LWORK, &mut INFO);
 
-        assert_eq!(info, 0);
+        assert_eq!(INFO, 0);
 
-        let expected_a = vec![
+        let expected_A = vec![
             -0.350512137830478,  0.116468084895727, -0.435005782872646,
              0.750503447417042, -0.333303121372602,  0.462361750400701,
             -0.693041256027589, -0.409079614137348,  0.219801690292016,
@@ -65,12 +66,12 @@ mod test {
              0.457628341015560,  0.319089342511548,  0.522946873930437,
              0.518388356797788,
         ];
-        let expected_w = vec![
+        let expected_W = vec![
             -1.145487871954612, -0.676875725405419, -0.050275996742486,
              0.892450858666551,  2.529798046292787,
         ];
 
-        assert_close!(a, expected_a)
-        assert_close!(w, expected_w)
+        assert_close!(A, expected_A)
+        assert_close!(W, expected_W)
     }
 }

@@ -8,7 +8,7 @@ name = "lapack"
 doctest = false
 
 [dependencies.liblapack-sys]
-path = "liblapack-sys"
+git = "https://github.com/stainless-steel/liblapack-sys"
 
 [dev-dependencies.assert]
 git = "https://github.com/stainless-steel/assert"

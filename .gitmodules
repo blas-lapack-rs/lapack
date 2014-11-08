@@ -1,3 +1,0 @@
-[submodule "liblapack-sys/liblapack"]
-	path = liblapack-sys/liblapack
-	url = https://github.com/stainless-steel/liblapack.git

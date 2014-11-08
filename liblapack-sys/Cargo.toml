@@ -1,6 +1,0 @@
-[package]
-name = "liblapack-sys"
-version = "0.0.1"
-authors = ["Ivan Ukhov <ivan.ukhov@gmail.com>"]
-links = "libblas liblapack"
-build = "build.rs"

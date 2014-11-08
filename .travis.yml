@@ -5,3 +5,10 @@ before_install:
   - sudo apt-get update -qq
   - sudo apt-get install cmake
   - sudo apt-get install gfortran
+
+after_success:
+  - curl https://stainless-steel.github.io/travis/after_success.sh | bash
+
+env:
+  global:
+    secure: G+NlrdcrHRHRLlrhw5HAKi1CGijTwzl3jFX0bCk/Z/iyMFRywQa4D/JiWeM2aWJPQ4KaT8Cufi+vmgelocqF7jCPGpNf1x9rNpm2g3PV6VUr0AWXwXyVJ18JHH1Hhl7s1ihWTL7/NTGZz2dH+4NFOYeTMAodFSOOMHj1rnhFK/Y=

@@ -1,4 +1,4 @@
-//! The library provides an interface to the [Linear Algebra PACKage][1].
+//! An interface to the [Linear Algebra PACKage][1].
 //!
 //! [1]: http://www.netlib.org/lapack/
 

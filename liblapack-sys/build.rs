@@ -24,8 +24,12 @@ fn main() {
     let from = Path::new(get!("CARGO_MANIFEST_DIR")).join("liblapack");
     let into = Path::new(get!("OUT_DIR"));
 
-    run!(cmd!("cmake").cwd(&into).arg(&from).arg("-DCMAKE_Fortran_FLAGS=-fPIC"));
-    run!(cmd!("make").cwd(&into).arg(fmt!("-j{}", get!("NUM_JOBS"))));
+    run!(cmd!("cmake").cwd(&into).arg(&from)
+                                 .arg("-DCMAKE_Fortran_FLAGS='-O2 -frecursive -fPIC'"));
+
+    run!(cmd!("cmake").cwd(&into).arg("--build").arg(".")
+                                 .arg("--")
+                                 .arg(fmt!("-j{}", get!("NUM_JOBS"))));
 
     println!("cargo:rustc-flags=-L {}", into.join("lib").display());
     println!("cargo:rustc-flags=-l blas:static");

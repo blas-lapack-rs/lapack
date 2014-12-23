@@ -71,7 +71,7 @@ mod test {
              0.892450858666551,  2.529798046292787,
         ];
 
-        assert_close!(A, expected_A)
-        assert_close!(W, expected_W)
+        assert_close!(A, expected_A);
+        assert_close!(W, expected_W);
     }
 }

@@ -25,6 +25,8 @@ mod test {
 
     #[test]
     fn dsyev() {
+        use std::iter::repeat;
+
         let N = 5;
 
         let mut A = vec![
@@ -39,7 +41,7 @@ mod test {
             0.817303220653433,
         ];
 
-        let mut W = Vec::from_elem(N, 0.0);
+        let mut W = repeat(0.0).take(N).collect::<Vec<_>>();
         let mut WORK = vec![0.0];
         let mut LWORK = -1;
         let mut INFO = 0;
@@ -48,7 +50,7 @@ mod test {
                 WORK.as_mut_slice(), LWORK, &mut INFO);
 
         LWORK = WORK[0] as uint;
-        WORK = Vec::from_elem(LWORK, 0.0);
+        WORK = repeat(0.0).take(LWORK).collect::<Vec<_>>();
 
         ::dsyev(b'V', b'U', N, A.as_mut_slice(), N, W.as_mut_slice(),
                 WORK.as_mut_slice(), LWORK, &mut INFO);

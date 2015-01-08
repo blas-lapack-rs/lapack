@@ -5,6 +5,10 @@
 #![feature(phase)]
 #![allow(non_snake_case)]
 
+#[cfg(test)]
+#[macro_use]
+extern crate assert;
+
 extern crate "liblapack-sys" as raw;
 
 /// http://www.netlib.org/lapack/explore-html/dd/d4c/dsyev_8f.html
@@ -21,8 +25,6 @@ pub fn dsyev(JOBZ: u8, UPLO: u8, N: uint, A: &mut [f64], LDA: uint, W: &mut [f64
 
 #[cfg(test)]
 mod test {
-    #[phase(plugin)] extern crate assert;
-
     #[test]
     fn dsyev() {
         use std::iter::repeat;

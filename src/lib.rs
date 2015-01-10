@@ -2,8 +2,7 @@
 //!
 //! [1]: http://www.netlib.org/lapack/
 
-#![feature(phase)]
-#![allow(non_snake_case)]
+#![allow(non_snake_case, unstable)]
 
 #[cfg(test)]
 #[macro_use]
@@ -13,8 +12,8 @@ extern crate "liblapack-sys" as raw;
 
 /// http://www.netlib.org/lapack/explore-html/dd/d4c/dsyev_8f.html
 #[inline]
-pub fn dsyev(JOBZ: u8, UPLO: u8, N: uint, A: &mut [f64], LDA: uint, W: &mut [f64],
-             WORK: &mut [f64], LWORK: uint, INFO: *mut int) {
+pub fn dsyev(JOBZ: u8, UPLO: u8, N: usize, A: &mut [f64], LDA: usize, W: &mut [f64],
+             WORK: &mut [f64], LWORK: usize, INFO: *mut isize) {
 
     unsafe {
         raw::dsyev(&(JOBZ as i8), &(UPLO as i8), &(N as i32), A.as_mut_ptr(),
@@ -51,7 +50,7 @@ mod test {
         ::dsyev(b'V', b'U', N, A.as_mut_slice(), N, W.as_mut_slice(),
                 WORK.as_mut_slice(), LWORK, &mut INFO);
 
-        LWORK = WORK[0] as uint;
+        LWORK = WORK[0] as usize;
         WORK = repeat(0.0).take(LWORK).collect::<Vec<_>>();
 
         ::dsyev(b'V', b'U', N, A.as_mut_slice(), N, W.as_mut_slice(),

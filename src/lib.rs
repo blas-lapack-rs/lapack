@@ -47,14 +47,12 @@ mod test {
         let mut LWORK = -1;
         let mut INFO = 0;
 
-        ::dsyev(b'V', b'U', N, A.as_mut_slice(), N, W.as_mut_slice(),
-                WORK.as_mut_slice(), LWORK, &mut INFO);
+        ::dsyev(b'V', b'U', N, &mut A[], N, &mut W[], &mut WORK[], LWORK, &mut INFO);
 
         LWORK = WORK[0] as usize;
         WORK = repeat(0.0).take(LWORK).collect::<Vec<_>>();
 
-        ::dsyev(b'V', b'U', N, A.as_mut_slice(), N, W.as_mut_slice(),
-                WORK.as_mut_slice(), LWORK, &mut INFO);
+        ::dsyev(b'V', b'U', N, &mut A[], N, &mut W[], &mut WORK[], LWORK, &mut INFO);
 
         assert_eq!(INFO, 0);
 

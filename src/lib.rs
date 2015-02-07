@@ -2,6 +2,8 @@
 //!
 //! [1]: http://www.netlib.org/lapack/
 
+#![cfg_attr(test, feature(core))]
+
 #![allow(non_snake_case)]
 
 #[cfg(test)]
@@ -23,7 +25,7 @@ pub fn dsyev(JOBZ: u8, UPLO: u8, N: usize, A: &mut [f64], LDA: usize, W: &mut [f
 }
 
 #[cfg(test)]
-mod test {
+mod tests {
     #[test]
     fn dsyev() {
         use std::iter::repeat;

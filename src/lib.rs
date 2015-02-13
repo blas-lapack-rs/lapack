@@ -2,8 +2,6 @@
 //!
 //! [1]: http://www.netlib.org/lapack/
 
-#![cfg_attr(test, feature(core))]
-
 #![allow(non_snake_case)]
 
 #[cfg(test)]

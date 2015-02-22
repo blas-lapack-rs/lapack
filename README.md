@@ -1,6 +1,6 @@
 # LAPACK [![Build Status][travis-svg]][travis-url]
 
-The library provides an interface to the [Linear Algebra PACKage][1].
+The package provides an interface to the [Linear Algebra PACKage][1].
 
 The list of available routines currently includes
 

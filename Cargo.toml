@@ -1,6 +1,6 @@
 [package]
 name = "lapack"
-version = "0.0.13"
+version = "0.0.14"
 authors = ["Ivan Ukhov <ivan.ukhov@gmail.com>"]
 license = "MIT"
 repository = "https://github.com/stainless-steel/lapack"
@@ -9,7 +9,7 @@ documentation = "https://stainless-steel.github.io/lapack"
 description = "The package provides an interface to the Linear Algebra PACKage."
 
 [dependencies]
-liblapack-sys = "0.0.13"
+liblapack-sys = "0.0.14"
 
 [dev-dependencies]
 assert = "0.1"

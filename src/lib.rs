@@ -10,6 +10,11 @@ extern crate assert;
 
 extern crate "liblapack-sys" as raw;
 
+pub enum Job {
+    None = b'N' as isize,
+    Vectors = b'V' as isize,
+}
+
 pub enum Layout {
     RowMajor = raw::LAPACK_ROW_MAJOR as isize,
     ColumnMajor = raw::LAPACK_COL_MAJOR as isize,
@@ -18,11 +23,6 @@ pub enum Layout {
 pub enum Triangular {
     Upper = b'U' as isize,
     Lower = b'L' as isize,
-}
-
-pub enum Job {
-    None = b'N' as isize,
-    Vectors = b'V' as isize,
 }
 
 #[inline]

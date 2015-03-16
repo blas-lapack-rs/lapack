@@ -1,6 +1,6 @@
 //! An interface to the [Linear Algebra PACKage][1].
 //!
-//! [1]: http://www.netlib.org/lapack/
+//! [1]: http://en.wikipedia.org/wiki/LAPACK
 
 #![allow(non_snake_case)]
 

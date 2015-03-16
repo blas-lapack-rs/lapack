@@ -16,7 +16,7 @@ The list is extended upon request.
 2. Implement your idea.
 3. Create a pull request.
 
-[1]: http://www.netlib.org/lapack/
+[1]: http://en.wikipedia.org/wiki/LAPACK
 
 [travis-svg]: https://travis-ci.org/stainless-steel/lapack.svg?branch=master
 [travis-url]: https://travis-ci.org/stainless-steel/lapack

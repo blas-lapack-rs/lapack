@@ -2,7 +2,7 @@
 //!
 //! [1]: http://en.wikipedia.org/wiki/LAPACK
 
-#![allow(non_snake_case)]
+#![cfg_attr(test, feature(std_misc))]
 
 #[cfg(test)]
 #[macro_use]
@@ -10,15 +10,29 @@ extern crate assert;
 
 extern crate "liblapack-sys" as raw;
 
-/// http://www.netlib.org/lapack/explore-html/dd/d4c/dsyev_8f.html
+pub enum Layout {
+    RowMajor = raw::LAPACK_ROW_MAJOR as isize,
+    ColumnMajor = raw::LAPACK_COL_MAJOR as isize,
+}
+
+pub enum Triangular {
+    Upper = b'U' as isize,
+    Lower = b'L' as isize,
+}
+
+pub enum Decomposition {
+    None = b'N' as isize,
+    Vector = b'V' as isize,
+}
+
 #[inline]
-pub fn dsyev(JOBZ: u8, UPLO: u8, N: usize, A: &mut [f64], LDA: usize, W: &mut [f64],
-             WORK: &mut [f64], LWORK: usize, INFO: *mut isize) {
+pub fn dsyev(layout: Layout, jobz: Decomposition, uplo: Triangular, n: usize, a: &mut [f64],
+             lda: usize, w: &mut [f64], work: &mut [f64], lwork: usize) -> i32 {
 
     unsafe {
-        raw::dsyev(&(JOBZ as i8), &(UPLO as i8), &(N as i32), A.as_mut_ptr(),
-                   &(LDA as i32), W.as_mut_ptr(), WORK.as_mut_ptr(),
-                   &(LWORK as i32), INFO as *mut i32);
+        raw::LAPACKE_dsyev_work(layout as i32, jobz as i8, uplo as i8, n as i32,
+                                a.as_mut_ptr(), lda as i32, w.as_mut_ptr(),
+                                work.as_mut_ptr(), lwork as i32)
     }
 }
 
@@ -28,9 +42,9 @@ mod tests {
     fn dsyev() {
         use std::iter::repeat;
 
-        let N = 5;
+        let n = 5;
 
-        let mut A = vec![
+        let mut a = vec![
             0.162182308193243, 0.601981941401637, 0.450541598502498,
             0.825816977489547, 0.106652770180584, 0.601981941401637,
             0.262971284540144, 0.083821377996933, 0.538342435260057,
@@ -42,21 +56,20 @@ mod tests {
             0.817303220653433,
         ];
 
-        let mut W = repeat(0.0).take(N).collect::<Vec<_>>();
-        let mut WORK = vec![0.0];
-        let mut LWORK = -1;
-        let mut INFO = 0;
+        let mut w = repeat(0.0).take(n).collect::<Vec<_>>();
+        let mut work = vec![0.0];
+        let mut lwork = -1;
 
-        ::dsyev(b'V', b'U', N, &mut A, N, &mut W, &mut WORK, LWORK, &mut INFO);
+        ::dsyev(::Layout::ColumnMajor, ::Decomposition::Vector, ::Triangular::Upper,
+                n, &mut a, n, &mut w, &mut work, lwork);
 
-        LWORK = WORK[0] as usize;
-        WORK = repeat(0.0).take(LWORK).collect::<Vec<_>>();
+        lwork = work[0] as usize;
+        work = repeat(0.0).take(lwork).collect::<Vec<_>>();
 
-        ::dsyev(b'V', b'U', N, &mut A, N, &mut W, &mut WORK, LWORK, &mut INFO);
+        ::dsyev(::Layout::ColumnMajor, ::Decomposition::Vector, ::Triangular::Upper,
+                n, &mut a, n, &mut w, &mut work, lwork);
 
-        assert_eq!(INFO, 0);
-
-        let expected_A = vec![
+        let expected_a = vec![
             -0.350512137830478,  0.116468084895727, -0.435005782872646,
              0.750503447417042, -0.333303121372602,  0.462361750400701,
             -0.693041256027589, -0.409079614137348,  0.219801690292016,
@@ -67,12 +80,12 @@ mod tests {
              0.457628341015560,  0.319089342511548,  0.522946873930437,
              0.518388356797788,
         ];
-        let expected_W = vec![
+        let expected_w = vec![
             -1.145487871954612, -0.676875725405419, -0.050275996742486,
              0.892450858666551,  2.529798046292787,
         ];
 
-        assert_close!(A, expected_A);
-        assert_close!(W, expected_W);
+        assert_close!(a, expected_a);
+        assert_close!(w, expected_w);
     }
 }

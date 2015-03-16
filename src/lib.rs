@@ -20,13 +20,13 @@ pub enum Triangular {
     Lower = b'L' as isize,
 }
 
-pub enum Decomposition {
+pub enum Job {
     None = b'N' as isize,
-    Vector = b'V' as isize,
+    Vectors = b'V' as isize,
 }
 
 #[inline]
-pub fn dsyev(layout: Layout, jobz: Decomposition, uplo: Triangular, n: usize, a: &mut [f64],
+pub fn dsyev(layout: Layout, jobz: Job, uplo: Triangular, n: usize, a: &mut [f64],
              lda: usize, w: &mut [f64], work: &mut [f64], lwork: usize) -> i32 {
 
     unsafe {
@@ -60,13 +60,13 @@ mod tests {
         let mut work = vec![0.0];
         let mut lwork = -1;
 
-        ::dsyev(::Layout::ColumnMajor, ::Decomposition::Vector, ::Triangular::Upper,
+        ::dsyev(::Layout::ColumnMajor, ::Job::Vectors, ::Triangular::Upper,
                 n, &mut a, n, &mut w, &mut work, lwork);
 
         lwork = work[0] as usize;
         work = repeat(0.0).take(lwork).collect::<Vec<_>>();
 
-        ::dsyev(::Layout::ColumnMajor, ::Decomposition::Vector, ::Triangular::Upper,
+        ::dsyev(::Layout::ColumnMajor, ::Job::Vectors, ::Triangular::Upper,
                 n, &mut a, n, &mut w, &mut work, lwork);
 
         let expected_a = vec![

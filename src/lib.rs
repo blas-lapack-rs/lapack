@@ -8,7 +8,7 @@
 #[macro_use]
 extern crate assert;
 
-extern crate "liblapack-sys" as raw;
+extern crate liblapack_sys as raw;
 
 pub enum Job {
     None = b'N' as isize,

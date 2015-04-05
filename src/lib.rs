@@ -2,10 +2,7 @@
 //!
 //! [1]: http://en.wikipedia.org/wiki/LAPACK
 
-#![cfg_attr(test, feature(std_misc))]
-
 #[cfg(test)]
-#[macro_use]
 extern crate assert;
 
 extern crate liblapack_sys as raw;
@@ -38,6 +35,8 @@ pub fn dsyev(layout: Layout, jobz: Job, uplo: Triangular, n: usize, a: &mut [f64
 
 #[cfg(test)]
 mod tests {
+    use assert;
+
     #[test]
     fn dsyev() {
         use std::iter::repeat;
@@ -85,7 +84,7 @@ mod tests {
              0.892450858666551,  2.529798046292787,
         ];
 
-        assert_close!(a, expected_a);
-        assert_close!(w, expected_w);
+        assert::within(&a, &expected_a, 1e-14);
+        assert::within(&w, &expected_w, 1e-14);
     }
 }

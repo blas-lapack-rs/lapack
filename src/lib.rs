@@ -5,31 +5,37 @@
 #[cfg(test)]
 extern crate assert;
 
+extern crate libc;
 extern crate liblapack_sys as raw;
 
-pub enum Job {
-    None = b'N' as isize,
-    Vectors = b'V' as isize,
+use libc::{c_char, c_int};
+
+pub enum Jobz {
+    Values = b'N' as isize,
+    ValuesVectors = b'V' as isize,
 }
 
-pub enum Layout {
-    RowMajor = raw::LAPACK_ROW_MAJOR as isize,
-    ColumnMajor = raw::LAPACK_COL_MAJOR as isize,
-}
-
-pub enum Triangular {
+pub enum Uplo {
     Upper = b'U' as isize,
     Lower = b'L' as isize,
 }
 
 #[inline]
-pub fn dsyev(layout: Layout, jobz: Job, uplo: Triangular, n: usize, a: &mut [f64],
-             lda: usize, w: &mut [f64], work: &mut [f64], lwork: usize) -> i32 {
+pub fn dsyev(jobz: Jobz, uplo: Uplo, n: usize, a: &mut [f64], lda: usize, w: &mut [f64],
+             work: &mut [f64], lwork: usize) -> isize {
 
     unsafe {
-        raw::LAPACKE_dsyev_work(layout as i32, jobz as i8, uplo as i8, n as i32,
-                                a.as_mut_ptr(), lda as i32, w.as_mut_ptr(),
-                                work.as_mut_ptr(), lwork as i32)
+        let mut info = 0;
+        raw::dsyev_(&(jobz as c_char) as *const _ as *mut _,
+                    &(uplo as c_char) as *const _ as *mut _,
+                    &(n as c_int) as *const _ as *mut _,
+                    a.as_mut_ptr(),
+                    &(lda as c_int) as *const _ as *mut _,
+                    w.as_mut_ptr(),
+                    work.as_mut_ptr(),
+                    &(lwork as c_int) as *const _ as *mut _,
+                    &mut info as *mut _ as *mut _);
+        return info;
     }
 }
 
@@ -59,14 +65,12 @@ mod tests {
         let mut work = vec![0.0];
         let mut lwork = -1;
 
-        ::dsyev(::Layout::ColumnMajor, ::Job::Vectors, ::Triangular::Upper,
-                n, &mut a, n, &mut w, &mut work, lwork);
+        ::dsyev(::Jobz::ValuesVectors, ::Uplo::Upper, n, &mut a, n, &mut w, &mut work, lwork);
 
         lwork = work[0] as usize;
         work = repeat(0.0).take(lwork).collect::<Vec<_>>();
 
-        ::dsyev(::Layout::ColumnMajor, ::Job::Vectors, ::Triangular::Upper,
-                n, &mut a, n, &mut w, &mut work, lwork);
+        ::dsyev(::Jobz::ValuesVectors, ::Uplo::Upper, n, &mut a, n, &mut w, &mut work, lwork);
 
         let expected_a = vec![
             -0.350512137830478,  0.116468084895727, -0.435005782872646,

@@ -2,6 +2,8 @@ extern crate assert;
 
 extern crate lapack;
 
+use lapack::metal;
+
 #[test]
 fn dsyev() {
     use std::iter::repeat;
@@ -25,14 +27,14 @@ fn dsyev() {
     let mut lwork = -1;
     let mut info = 0;
 
-    lapack::dsyev(lapack::Jobz::V, lapack::Uplo::U, n, &mut a, n, &mut w, &mut work, lwork,
-                  &mut info);
+    metal::dsyev(metal::Jobz::V, metal::Uplo::U, n, &mut a, n, &mut w, &mut work, lwork,
+                 &mut info);
 
     lwork = work[0] as usize;
     work = repeat(0.0).take(lwork).collect::<Vec<_>>();
 
-    lapack::dsyev(lapack::Jobz::V, lapack::Uplo::U, n, &mut a, n, &mut w, &mut work, lwork,
-                  &mut info);
+    metal::dsyev(metal::Jobz::V, metal::Uplo::U, n, &mut a, n, &mut w, &mut work, lwork,
+                 &mut info);
 
     let expected_a = vec![
         -0.350512137830478,  0.116468084895727, -0.435005782872646,

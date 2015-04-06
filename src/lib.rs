@@ -11,21 +11,24 @@ extern crate liblapack_sys as raw;
 use libc::{c_char, c_int};
 
 pub enum Jobz {
-    Values = b'N' as isize,
-    ValuesVectors = b'V' as isize,
+    /// Compute eigenvalues only.
+    N = b'N' as isize,
+    /// Compute eigenvalues and eigenvectors.
+    V = b'V' as isize,
 }
 
 pub enum Uplo {
-    Upper = b'U' as isize,
-    Lower = b'L' as isize,
+    /// Upper triangles are stored.
+    U = b'U' as isize,
+    /// Lower triangles are stored.
+    L = b'L' as isize,
 }
 
 #[inline]
 pub fn dsyev(jobz: Jobz, uplo: Uplo, n: usize, a: &mut [f64], lda: usize, w: &mut [f64],
-             work: &mut [f64], lwork: usize) -> isize {
+             work: &mut [f64], lwork: usize, info: &mut isize) {
 
     unsafe {
-        let mut info = 0;
         raw::dsyev_(&(jobz as c_char) as *const _ as *mut _,
                     &(uplo as c_char) as *const _ as *mut _,
                     &(n as c_int) as *const _ as *mut _,
@@ -34,8 +37,7 @@ pub fn dsyev(jobz: Jobz, uplo: Uplo, n: usize, a: &mut [f64], lda: usize, w: &mu
                     w.as_mut_ptr(),
                     work.as_mut_ptr(),
                     &(lwork as c_int) as *const _ as *mut _,
-                    &mut info as *mut _ as *mut _);
-        return info;
+                    info as *mut _ as *mut _);
     }
 }
 
@@ -64,13 +66,14 @@ mod tests {
         let mut w = repeat(0.0).take(n).collect::<Vec<_>>();
         let mut work = vec![0.0];
         let mut lwork = -1;
+        let mut info = 0;
 
-        ::dsyev(::Jobz::ValuesVectors, ::Uplo::Upper, n, &mut a, n, &mut w, &mut work, lwork);
+        ::dsyev(::Jobz::V, ::Uplo::U, n, &mut a, n, &mut w, &mut work, lwork, &mut info);
 
         lwork = work[0] as usize;
         work = repeat(0.0).take(lwork).collect::<Vec<_>>();
 
-        ::dsyev(::Jobz::ValuesVectors, ::Uplo::Upper, n, &mut a, n, &mut w, &mut work, lwork);
+        ::dsyev(::Jobz::V, ::Uplo::U, n, &mut a, n, &mut w, &mut work, lwork, &mut info);
 
         let expected_a = vec![
             -0.350512137830478,  0.116468084895727, -0.435005782872646,

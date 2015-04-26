@@ -18,16 +18,24 @@ pub enum Uplo {
 }
 
 pub enum Jobu {
+    /// All m columns of u are returned in array u.
     A = b'A' as isize,
+    /// The first columns of u (the left singular vectors) are returned in array u.
     S = b'S' as isize,
+    /// The first columns of u (the left singular vectors) are overwritten to array a.
     O = b'O' as isize,
+    /// No columns of u (the left singular vectors) are computed.
     N = b'N' as isize,
 }
 
 pub enum Jobvt {
+    /// All n rows of vt are returned in array vt.
     A = b'A' as isize,
+    /// The first rows of vt (the right singular vectors) are returned in array vt.
     S = b'S' as isize,
+    /// The first rows of vt (the right singular vectors) are overwritten to array a.
     O = b'O' as isize,
+    /// No rows of vt (the right singular vectors) are computed.
     N = b'N' as isize,
 }
 

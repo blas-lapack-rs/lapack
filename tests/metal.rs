@@ -88,12 +88,20 @@ fn dgesvd() {
                   &mut s, &mut u, ldu, &mut vt, ldvt, &mut work, lwork,
                   &mut info);
 
+    if info < 0 {
+        panic!("illegal argument to dgesvd.");
+    }
+
     lwork = work[0] as usize;
     work = repeat(0.0).take(lwork).collect::<Vec<_>>();
 
     metal::dgesvd(metal::Jobu::A, metal::Jobvt::A, m, n, &mut a, lda,
                   &mut s, &mut u, ldu, &mut vt, ldvt, &mut work, lwork,
                   &mut info);
+
+    if info < 0 {
+        panic!("illegal argument to dgesvd.");
+    }
 
     if info > 0 {
         panic!("SVD failed to converge.");

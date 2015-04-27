@@ -3,20 +3,6 @@
 use libc::{c_char, c_int};
 use raw;
 
-pub enum Jobz {
-    /// Compute eigenvalues only.
-    N = b'N' as isize,
-    /// Compute eigenvalues and eigenvectors.
-    V = b'V' as isize,
-}
-
-pub enum Uplo {
-    /// Upper triangles are stored.
-    U = b'U' as isize,
-    /// Lower triangles are stored.
-    L = b'L' as isize,
-}
-
 pub enum Jobu {
     /// All m columns of u are returned in array u.
     A = b'A' as isize,
@@ -37,6 +23,20 @@ pub enum Jobvt {
     O = b'O' as isize,
     /// No rows of vt (the right singular vectors) are computed.
     N = b'N' as isize,
+}
+
+pub enum Jobz {
+    /// Compute eigenvalues only.
+    N = b'N' as isize,
+    /// Compute eigenvalues and eigenvectors.
+    V = b'V' as isize,
+}
+
+pub enum Uplo {
+    /// Upper triangles are stored.
+    U = b'U' as isize,
+    /// Lower triangles are stored.
+    L = b'L' as isize,
 }
 
 #[inline]

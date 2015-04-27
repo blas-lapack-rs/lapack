@@ -55,3 +55,77 @@ fn dsyev() {
     assert::within(&a, &expected_a, 1e-14);
     assert::within(&w, &expected_w, 1e-14);
 }
+
+#[test]
+fn dgesvd() {
+    use std::iter::repeat;
+
+    // Example from
+    // http://en.wikipedia.org/wiki/Singular_value_decomposition#Example
+    let m = 4;
+    let n = 5;
+    let mut a = vec![ // column major order
+        1.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 4.0,
+        0.0, 3.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 0.0,
+        2.0, 0.0, 0.0, 0.0,
+    ];
+
+    let lda = m;
+    let ldu = m;
+    let ldvt = n;
+
+
+    let mut s = repeat(0.0).take(n).collect::<Vec<_>>();
+    let mut u = repeat(0.0).take(ldu*m).collect::<Vec<_>>();
+    let mut vt = repeat(0.0).take(ldvt*n).collect::<Vec<_>>();
+    let mut work = vec![0.0];
+    let mut lwork = -1;
+    let mut info = 0;
+
+    metal::dgesvd(metal::Jobu::A, metal::Jobvt::A, m, n, &mut a, lda,
+                  &mut s, &mut u, ldu, &mut vt, ldvt, &mut work, lwork,
+                  &mut info);
+
+    if info < 0 {
+        panic!("illegal argument to dgesvd.");
+    }
+
+    lwork = work[0] as usize;
+    work = repeat(0.0).take(lwork).collect::<Vec<_>>();
+
+    metal::dgesvd(metal::Jobu::A, metal::Jobvt::A, m, n, &mut a, lda,
+                  &mut s, &mut u, ldu, &mut vt, ldvt, &mut work, lwork,
+                  &mut info);
+
+    if info < 0 {
+        panic!("illegal argument to dgesvd.");
+    }
+
+    if info > 0 {
+        panic!("SVD failed to converge.");
+    }
+
+    let expected_u = vec![ // column major order
+        0.0, 0.0, 0.0, 1.0,
+        0.0, 1.0, 0.0, 0.0,
+        1.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, -1.0, 0.0,
+    ];
+    let expected_s = vec![
+        4.0, 3.0, 5.0_f64.sqrt(), 0.0, 0.0,
+    ];
+
+    let expected_vt = vec![ // column major order
+        0.0, 0.0, 0.2_f64.sqrt(), 0.0, -(0.8_f64).sqrt(),
+        1.0, 0.0, 0.0, 0.0, 0.0,
+        0.0, 1.0, 0.0, 0.0, 0.0,
+        0.0, 0.0, 0.0, 1.0, 0.0,
+        0.0, 0.0, 0.8_f64.sqrt(), 0.0, 0.2_f64.sqrt(),
+    ];
+
+    assert::within(&u, &expected_u, 1e-14);
+    assert::within(&s, &expected_s, 1e-14);
+    assert::within(&vt, &expected_vt, 1e-14);
+}

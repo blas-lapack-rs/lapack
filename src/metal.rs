@@ -58,23 +58,23 @@ pub fn dsyev(jobz: Jobz, uplo: Uplo, n: usize, a: &mut [f64], lda: usize, w: &mu
 
 #[inline]
 pub fn dgesvd(jobu: Jobu, jobvt: Jobvt, m: usize, n: usize, a: &mut [f64], lda: usize,
-             s: &mut [f64], u: &mut [f64], ldu: usize, vt: &mut [f64], ldvt: usize,
-             work: &mut [f64], lwork: usize, info: &mut isize) {
+              s: &mut [f64], u: &mut [f64], ldu: usize, vt: &mut [f64], ldvt: usize,
+              work: &mut [f64], lwork: usize, info: &mut isize) {
 
     unsafe {
         raw::dgesvd_(&(jobu as c_char) as *const _ as *mut _,
-                    &(jobvt as c_char) as *const _ as *mut _,
-                    &(m as c_int) as *const _ as *mut _,
-                    &(n as c_int) as *const _ as *mut _,
-                    a.as_mut_ptr(),
-                    &(lda as c_int) as *const _ as *mut _,
-                    s.as_mut_ptr(),
-                    u.as_mut_ptr(),
-                    &(ldu as c_int) as *const _ as *mut _,
-                    vt.as_mut_ptr(),
-                    &(ldvt as c_int) as *const _ as *mut _,
-                    work.as_mut_ptr(),
-                    &(lwork as c_int) as *const _ as *mut _,
-                    info as *mut _ as *mut _);
+                     &(jobvt as c_char) as *const _ as *mut _,
+                     &(m as c_int) as *const _ as *mut _,
+                     &(n as c_int) as *const _ as *mut _,
+                     a.as_mut_ptr(),
+                     &(lda as c_int) as *const _ as *mut _,
+                     s.as_mut_ptr(),
+                     u.as_mut_ptr(),
+                     &(ldu as c_int) as *const _ as *mut _,
+                     vt.as_mut_ptr(),
+                     &(ldvt as c_int) as *const _ as *mut _,
+                     work.as_mut_ptr(),
+                     &(lwork as c_int) as *const _ as *mut _,
+                     info as *mut _ as *mut _);
     }
 }

@@ -1,4 +1,4 @@
-# LAPACK [![Build Status][travis-svg]][travis-url]
+# LAPACK [![Build Status][status-svg]][status-url]
 
 The package provides an interface to the [Linear Algebra PACKage][1].
 
@@ -19,6 +19,6 @@ The list is extended upon request.
 
 [1]: http://en.wikipedia.org/wiki/LAPACK
 
-[travis-svg]: https://travis-ci.org/stainless-steel/lapack.svg?branch=master
-[travis-url]: https://travis-ci.org/stainless-steel/lapack
+[status-svg]: https://travis-ci.org/stainless-steel/lapack.svg?branch=master
+[status-url]: https://travis-ci.org/stainless-steel/lapack
 [docs]: https://stainless-steel.github.io/lapack

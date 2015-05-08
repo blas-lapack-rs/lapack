@@ -79,6 +79,54 @@ fn dgesvd() {
 }
 
 #[test]
+fn dgetrf_and_dgetri() {
+
+    // Compute the inverse of a square matrix.
+
+    use std::iter::repeat;
+
+    let m = 2;
+    let n = 2;
+    let mut a = vec![ // column major order
+        1.0, 3.0,
+        2.0, 4.0,
+    ];
+    let lda = m;
+
+    let mut ipiv = vec![0];
+    let mut info = 0;
+
+    metal::dgetrf(m, n, &mut a, lda,
+                  &mut ipiv, &mut info);
+
+    if info < 0 {
+        panic!("illegal argument to dgetrf.");
+    }
+    if info > 0 {
+        panic!("singular matrix.");
+    }
+
+    let lwork = n*n;
+    let mut work = repeat(0.0).take(lwork).collect::<Vec<_>>();
+
+    metal::dgetri(n, &mut a, lda,
+                  &mut ipiv, &mut work, lwork, &mut info);
+
+    if info < 0 {
+        panic!("illegal argument to dgetri.");
+    }
+    if info > 0 {
+        panic!("singular matrix.");
+    }
+
+    let expected_a = vec![ // column major order
+        -2.0, 1.5,
+        1.0, -0.5,
+    ];
+    assert::within(&a, &expected_a, 1e-14);
+}
+
+#[test]
 fn dsyev() {
     use std::iter::repeat;
 

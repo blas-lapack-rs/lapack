@@ -36,24 +36,12 @@ fn dgesvd() {
                   &mut s, &mut u, ldu, &mut vt, ldvt, &mut work, lwork,
                   &mut info);
 
-    if info < 0 {
-        panic!("illegal argument to dgesvd.");
-    }
-
     lwork = work[0] as usize;
     work = repeat(0.0).take(lwork).collect::<Vec<_>>();
 
     metal::dgesvd(metal::Jobu::A, metal::Jobvt::A, m, n, &mut a, lda,
                   &mut s, &mut u, ldu, &mut vt, ldvt, &mut work, lwork,
                   &mut info);
-
-    if info < 0 {
-        panic!("illegal argument to dgesvd.");
-    }
-
-    if info > 0 {
-        panic!("SVD failed to converge.");
-    }
 
     let expected_u = vec![ // column major order
         0.0, 0.0, 0.0, 1.0,
@@ -99,25 +87,11 @@ fn dgetrf_and_dgetri() {
     metal::dgetrf(m, n, &mut a, lda,
                   &mut ipiv, &mut info);
 
-    if info < 0 {
-        panic!("illegal argument to dgetrf.");
-    }
-    if info > 0 {
-        panic!("singular matrix.");
-    }
-
     let lwork = n*n;
     let mut work = repeat(0.0).take(lwork).collect::<Vec<_>>();
 
     metal::dgetri(n, &mut a, lda,
                   &mut ipiv, &mut work, lwork, &mut info);
-
-    if info < 0 {
-        panic!("illegal argument to dgetri.");
-    }
-    if info > 0 {
-        panic!("singular matrix.");
-    }
 
     let expected_a = vec![ // column major order
         -2.0, 1.5,

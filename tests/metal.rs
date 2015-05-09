@@ -8,8 +8,6 @@ use lapack::metal;
 fn dgesvd() {
     use std::iter::repeat;
 
-    // Example from
-    // http://en.wikipedia.org/wiki/Singular_value_decomposition#Example
     let m = 4;
     let n = 5;
     let mut a = vec![ // column major order
@@ -23,7 +21,6 @@ fn dgesvd() {
     let lda = m;
     let ldu = m;
     let ldvt = n;
-
 
     let mut s = repeat(0.0).take(n).collect::<Vec<_>>();
     let mut u = repeat(0.0).take(ldu*m).collect::<Vec<_>>();
@@ -66,9 +63,6 @@ fn dgesvd() {
 
 #[test]
 fn dgetrf_and_dgetri() {
-
-    // Compute the inverse of a square matrix.
-
     use std::iter::repeat;
 
     let m = 2;

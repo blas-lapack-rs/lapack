@@ -80,9 +80,7 @@ pub fn dgesvd(jobu: Jobu, jobvt: Jobvt, m: usize, n: usize, a: &mut [f64], lda: 
 }
 
 #[inline]
-pub fn dgetrf(m: usize, n: usize, a: &mut [f64], lda: usize,
-              ipiv: &mut [i32], info: &mut isize) {
-
+pub fn dgetrf(m: usize, n: usize, a: &mut [f64], lda: usize, ipiv: &mut [i32], info: &mut isize) {
     unsafe {
         raw::dgetrf_(&(m as c_int) as *const _ as *mut _,
                      &(n as c_int) as *const _ as *mut _,
@@ -94,8 +92,8 @@ pub fn dgetrf(m: usize, n: usize, a: &mut [f64], lda: usize,
 }
 
 #[inline]
-pub fn dgetri(n: usize, a: &mut [f64], lda: usize,
-              ipiv: &mut [i32], work: &mut [f64], lwork: usize, info: &mut isize) {
+pub fn dgetri(n: usize, a: &mut [f64], lda: usize, ipiv: &mut [i32], work: &mut [f64],
+              lwork: usize, info: &mut isize) {
 
     unsafe {
         raw::dgetri_(&(n as c_int) as *const _ as *mut _,

@@ -17,7 +17,7 @@ The list is extended upon request.
 
 1. Fork the project.
 2. Implement your idea.
-3. Create a pull request.
+3. Open a pull request.
 
 [1]: http://en.wikipedia.org/wiki/LAPACK
 

@@ -9,41 +9,29 @@ use libc::{c_char, c_int};
 
 #[derive(Clone, Copy)]
 pub enum Jobu {
-    /// All m columns of u are returned in array u.
     A = b'A' as isize,
-    /// The first columns of u (the left singular vectors) are returned in array u.
     S = b'S' as isize,
-    /// The first columns of u (the left singular vectors) are overwritten to array a.
     O = b'O' as isize,
-    /// No columns of u (the left singular vectors) are computed.
     N = b'N' as isize,
 }
 
 #[derive(Clone, Copy)]
 pub enum Jobvt {
-    /// All n rows of vt are returned in array vt.
     A = b'A' as isize,
-    /// The first rows of vt (the right singular vectors) are returned in array vt.
     S = b'S' as isize,
-    /// The first rows of vt (the right singular vectors) are overwritten to array a.
     O = b'O' as isize,
-    /// No rows of vt (the right singular vectors) are computed.
     N = b'N' as isize,
 }
 
 #[derive(Clone, Copy)]
 pub enum Jobz {
-    /// Compute eigenvalues only.
     N = b'N' as isize,
-    /// Compute eigenvalues and eigenvectors.
     V = b'V' as isize,
 }
 
 #[derive(Clone, Copy)]
 pub enum Uplo {
-    /// Upper triangles are stored.
     U = b'U' as isize,
-    /// Lower triangles are stored.
     L = b'L' as isize,
 }
 

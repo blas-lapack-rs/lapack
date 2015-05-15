@@ -7,6 +7,7 @@ extern crate liblapack_sys as raw;
 
 use libc::{c_char, c_int};
 
+#[derive(Clone, Copy)]
 pub enum Jobu {
     /// All m columns of u are returned in array u.
     A = b'A' as isize,
@@ -18,6 +19,7 @@ pub enum Jobu {
     N = b'N' as isize,
 }
 
+#[derive(Clone, Copy)]
 pub enum Jobvt {
     /// All n rows of vt are returned in array vt.
     A = b'A' as isize,
@@ -29,6 +31,7 @@ pub enum Jobvt {
     N = b'N' as isize,
 }
 
+#[derive(Clone, Copy)]
 pub enum Jobz {
     /// Compute eigenvalues only.
     N = b'N' as isize,
@@ -36,6 +39,7 @@ pub enum Jobz {
     V = b'V' as isize,
 }
 
+#[derive(Clone, Copy)]
 pub enum Uplo {
     /// Upper triangles are stored.
     U = b'U' as isize,

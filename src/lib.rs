@@ -1,9 +1,9 @@
-//! An interface to the [Linear Algebra PACKage][1].
+//! Interface to the [Linear Algebra PACKage][1].
 //!
 //! [1]: http://en.wikipedia.org/wiki/LAPACK
 
+extern crate lapack_sys as raw;
 extern crate libc;
-extern crate liblapack_sys as raw;
 
 use libc::{c_char, c_int};
 

@@ -1,4 +1,5 @@
 language: rust
+sudo: required
 
 before_install:
   - sudo add-apt-repository --yes ppa:kalakris/cmake

@@ -3,8 +3,6 @@ extern crate lapack;
 
 #[test]
 fn dgesvd() {
-    use std::iter::repeat;
-
     let jobu = lapack::Jobu::A;
     let jobvt = lapack::Jobvt::A;
     let m = 4;
@@ -17,11 +15,11 @@ fn dgesvd() {
         2.0, 0.0, 0.0, 0.0,
     ];
     let lda = m;
-    let mut s = repeat(0.0).take(n).collect::<Vec<_>>();
+    let mut s = vec![0.0; n];
     let ldu = m;
-    let mut u = repeat(0.0).take(ldu * m).collect::<Vec<_>>();
+    let mut u = vec![0.0; ldu * m];
     let ldvt = n;
-    let mut vt = repeat(0.0).take(ldvt * n).collect::<Vec<_>>();
+    let mut vt = vec![0.0; ldvt * n];
     let mut work = vec![0.0];
     let mut lwork = -1;
     let mut info = 0;
@@ -30,7 +28,7 @@ fn dgesvd() {
                    lwork, &mut info);
 
     lwork = work[0] as usize;
-    work = repeat(0.0).take(lwork).collect::<Vec<_>>();
+    work = vec![0.0; lwork];
 
     lapack::dgesvd(jobu, jobvt, m, n, &mut a, lda, &mut s, &mut u, ldu, &mut vt, ldvt, &mut work,
                    lwork, &mut info);
@@ -57,8 +55,6 @@ fn dgesvd() {
 
 #[test]
 fn dgetrf_and_dgetri() {
-    use std::iter::repeat;
-
     let m = 2;
     let n = 2;
     let mut a = vec![1.0, 3.0, 2.0, 4.0];
@@ -69,7 +65,7 @@ fn dgetrf_and_dgetri() {
     lapack::dgetrf(m, n, &mut a, lda, &mut ipiv, &mut info);
 
     let lwork = n * n;
-    let mut work = repeat(0.0).take(lwork).collect::<Vec<_>>();
+    let mut work = vec![0.0; lwork];
 
     lapack::dgetri(n, &mut a, lda, &mut ipiv, &mut work, lwork, &mut info);
 
@@ -80,8 +76,6 @@ fn dgetrf_and_dgetri() {
 
 #[test]
 fn dsyev() {
-    use std::iter::repeat;
-
     let jobz = lapack::Jobz::V;
     let uplo = lapack::Uplo::U;
     let n = 5;
@@ -95,7 +89,7 @@ fn dsyev() {
         0.817303220653433,
 
     ];
-    let mut w = repeat(0.0).take(n).collect::<Vec<_>>();
+    let mut w = vec![0.0; n];
     let mut work = vec![0.0];
     let mut lwork = -1;
     let mut info = 0;
@@ -103,7 +97,7 @@ fn dsyev() {
     lapack::dsyev(jobz, uplo, n, &mut a, n, &mut w, &mut work, lwork, &mut info);
 
     lwork = work[0] as usize;
-    work = repeat(0.0).take(lwork).collect::<Vec<_>>();
+    work = vec![0.0; lwork];
 
     lapack::dsyev(jobz, uplo, n, &mut a, n, &mut w, &mut work, lwork, &mut info);
 

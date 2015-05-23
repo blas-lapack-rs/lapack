@@ -33,24 +33,22 @@ fn dgesvd() {
     lapack::dgesvd(jobu, jobvt, m, n, &mut a, lda, &mut s, &mut u, ldu, &mut vt, ldvt, &mut work,
                    lwork, &mut info);
 
-    let expected_u = vec![
+    assert::equal(&u, &vec![
         0.0, 0.0, 0.0, 1.0,
         0.0, 1.0, 0.0, 0.0,
         1.0, 0.0, 0.0, 0.0,
         0.0, 0.0, -1.0, 0.0,
-    ];
-    let expected_s = vec![4.0, 3.0, 5.0_f64.sqrt(), 0.0, 0.0];
-    let expected_vt = vec![
+    ]);
+
+    assert::equal(&s, &vec![4.0, 3.0, 5.0_f64.sqrt(), 0.0, 0.0]);
+
+    assert::within(&vt, &vec![
         0.0, 0.0, 0.2_f64.sqrt(), 0.0, -(0.8_f64).sqrt(),
         1.0, 0.0, 0.0, 0.0, 0.0,
         0.0, 1.0, 0.0, 0.0, 0.0,
         0.0, 0.0, 0.0, 1.0, 0.0,
         0.0, 0.0, 0.8_f64.sqrt(), 0.0, 0.2_f64.sqrt(),
-    ];
-
-    assert::within(&u, &expected_u, 1e-14);
-    assert::within(&s, &expected_s, 1e-14);
-    assert::within(&vt, &expected_vt, 1e-14);
+    ], 1e-15);
 }
 
 #[test]
@@ -69,9 +67,7 @@ fn dgetrf_and_dgetri() {
 
     lapack::dgetri(n, &mut a, lda, &mut ipiv, &mut work, lwork, &mut info);
 
-    let expected_a = vec![-2.0, 1.5, 1.0, -0.5];
-
-    assert::within(&a, &expected_a, 1e-14);
+    assert::within(&a, &vec![-2.0, 1.5, 1.0, -0.5], 1e-15);
 }
 
 #[test]
@@ -87,7 +83,6 @@ fn dsyev() {
         0.538342435260057, 0.996134716626885, 0.078175528753184, 0.774910464711502,
         0.106652770180584, 0.961898080855054, 0.004634224134067, 0.774910464711502,
         0.817303220653433,
-
     ];
     let mut w = vec![0.0; n];
     let mut work = vec![0.0];
@@ -101,7 +96,7 @@ fn dsyev() {
 
     lapack::dsyev(jobz, uplo, n, &mut a, n, &mut w, &mut work, lwork, &mut info);
 
-    let expected_a = vec![
+    assert::within(&a, &vec![
         -0.350512137830478,  0.116468084895727, -0.435005782872646,  0.750503447417042,
         -0.333303121372602,  0.462361750400701, -0.693041256027589, -0.409079614137348,
          0.219801690292016,  0.300427221556423, -0.638529696902280, -0.450088584675982,
@@ -110,12 +105,10 @@ fn dsyev() {
          0.382829428829298,  0.457628341015560,  0.319089342511548,  0.522946873930437,
          0.518388356797788,
 
-    ];
-    let expected_w = vec![
+    ], 1e-14);
+
+    assert::within(&w, &vec![
         -1.145487871954612, -0.676875725405419, -0.050275996742486, 0.892450858666551,
          2.529798046292787,
-    ];
-
-    assert::within(&a, &expected_a, 1e-14);
-    assert::within(&w, &expected_w, 1e-14);
+    ], 1e-14);
 }

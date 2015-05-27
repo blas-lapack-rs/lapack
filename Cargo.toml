@@ -1,7 +1,10 @@
 [package]
 name = "lapack"
 version = "0.3.2"
-authors = ["Ivan Ukhov <ivan.ukhov@gmail.com>"]
+authors = [
+  "Andrew Straw <strawman@astraw.com>",
+  "Ivan Ukhov <ivan.ukhov@gmail.com>",
+]
 license = "MIT"
 repository = "https://github.com/stainless-steel/lapack"
 homepage = "https://github.com/stainless-steel/lapack"

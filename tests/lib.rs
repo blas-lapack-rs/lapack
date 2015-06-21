@@ -33,16 +33,16 @@ fn dgesvd() {
     lapack::dgesvd(jobu, jobvt, m, n, &mut a, lda, &mut s, &mut u, ldu, &mut vt, ldvt, &mut work,
                    lwork, &mut info);
 
-    assert::equal(&u, &vec![
+    assert_eq!(&u, &vec![
         0.0, 0.0, 0.0, 1.0,
         0.0, 1.0, 0.0, 0.0,
         1.0, 0.0, 0.0, 0.0,
         0.0, 0.0, -1.0, 0.0,
     ]);
 
-    assert::equal(&s, &vec![4.0, 3.0, 5.0_f64.sqrt(), 0.0, 0.0]);
+    assert_eq!(&s, &vec![4.0, 3.0, 5.0_f64.sqrt(), 0.0, 0.0]);
 
-    assert::within(&vt, &vec![
+    assert::close(&vt, &vec![
         0.0, 0.0, 0.2_f64.sqrt(), 0.0, -(0.8_f64).sqrt(),
         1.0, 0.0, 0.0, 0.0, 0.0,
         0.0, 1.0, 0.0, 0.0, 0.0,
@@ -67,7 +67,7 @@ fn dgetrf_and_dgetri() {
 
     lapack::dgetri(n, &mut a, lda, &mut ipiv, &mut work, lwork, &mut info);
 
-    assert::within(&a, &vec![-2.0, 1.5, 1.0, -0.5], 1e-15);
+    assert::close(&a, &vec![-2.0, 1.5, 1.0, -0.5], 1e-15);
 }
 
 #[test]
@@ -96,7 +96,7 @@ fn dsyev() {
 
     lapack::dsyev(jobz, uplo, n, &mut a, n, &mut w, &mut work, lwork, &mut info);
 
-    assert::within(&a, &vec![
+    assert::close(&a, &vec![
         -0.350512137830478,  0.116468084895727, -0.435005782872646,  0.750503447417042,
         -0.333303121372602,  0.462361750400701, -0.693041256027589, -0.409079614137348,
          0.219801690292016,  0.300427221556423, -0.638529696902280, -0.450088584675982,
@@ -107,7 +107,7 @@ fn dsyev() {
 
     ], 1e-14);
 
-    assert::within(&w, &vec![
+    assert::close(&w, &vec![
         -1.145487871954612, -0.676875725405419, -0.050275996742486, 0.892450858666551,
          2.529798046292787,
     ], 1e-14);

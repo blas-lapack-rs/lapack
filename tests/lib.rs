@@ -15,7 +15,8 @@ fn dgesvd() {
         2.0, 0.0, 0.0, 0.0,
     ];
     let lda = m;
-    let mut s = vec![0.0; n];
+    let len_s = if m <= n { m } else {n};
+    let mut s = vec![0.0; len_s];
     let ldu = m;
     let mut u = vec![0.0; ldu * m];
     let ldvt = n;
@@ -40,7 +41,8 @@ fn dgesvd() {
         0.0, 0.0, -1.0, 0.0,
     ]);
 
-    assert_eq!(&s, &vec![4.0, 3.0, 5.0_f64.sqrt(), 0.0, 0.0]);
+    assert_eq!(s.len(), 4);
+    assert_eq!(&s, &vec![4.0, 3.0, 5.0_f64.sqrt(), 0.0]);
 
     assert::close(&vt, &vec![
         0.0, 0.0, 0.2_f64.sqrt(), 0.0, -(0.8_f64).sqrt(),

@@ -2,7 +2,7 @@
 //!
 //! [1]: http://en.wikipedia.org/wiki/LAPACK
 
-extern crate lapack_sys as raw;
+extern crate lapack_sys as ffi;
 extern crate libc;
 
 use libc::{c_char, c_int};
@@ -40,7 +40,7 @@ pub fn dsyev(jobz: Jobz, uplo: Uplo, n: usize, a: &mut [f64], lda: usize, w: &mu
              work: &mut [f64], lwork: usize, info: &mut isize) {
 
     unsafe {
-        raw::dsyev_(&(jobz as c_char) as *const _ as *mut _,
+        ffi::dsyev_(&(jobz as c_char) as *const _ as *mut _,
                     &(uplo as c_char) as *const _ as *mut _,
                     &(n as c_int) as *const _ as *mut _,
                     a.as_mut_ptr(),
@@ -58,7 +58,7 @@ pub fn dgesvd(jobu: Jobu, jobvt: Jobvt, m: usize, n: usize, a: &mut [f64], lda: 
               work: &mut [f64], lwork: usize, info: &mut isize) {
 
     unsafe {
-        raw::dgesvd_(&(jobu as c_char) as *const _ as *mut _,
+        ffi::dgesvd_(&(jobu as c_char) as *const _ as *mut _,
                      &(jobvt as c_char) as *const _ as *mut _,
                      &(m as c_int) as *const _ as *mut _,
                      &(n as c_int) as *const _ as *mut _,
@@ -78,7 +78,7 @@ pub fn dgesvd(jobu: Jobu, jobvt: Jobvt, m: usize, n: usize, a: &mut [f64], lda: 
 #[inline]
 pub fn dgetrf(m: usize, n: usize, a: &mut [f64], lda: usize, ipiv: &mut [i32], info: &mut isize) {
     unsafe {
-        raw::dgetrf_(&(m as c_int) as *const _ as *mut _,
+        ffi::dgetrf_(&(m as c_int) as *const _ as *mut _,
                      &(n as c_int) as *const _ as *mut _,
                      a.as_mut_ptr(),
                      &(lda as c_int) as *const _ as *mut _,
@@ -92,7 +92,7 @@ pub fn dgetri(n: usize, a: &mut [f64], lda: usize, ipiv: &mut [i32], work: &mut 
               lwork: usize, info: &mut isize) {
 
     unsafe {
-        raw::dgetri_(&(n as c_int) as *const _ as *mut _,
+        ffi::dgetri_(&(n as c_int) as *const _ as *mut _,
                      a.as_mut_ptr(),
                      &(lda as c_int) as *const _ as *mut _,
                      ipiv.as_mut_ptr(),

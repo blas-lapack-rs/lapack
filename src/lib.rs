@@ -7,7 +7,7 @@ extern crate libc;
 
 use libc::{c_char, c_int};
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum Jobu {
     A = b'A' as isize,
     S = b'S' as isize,
@@ -15,7 +15,7 @@ pub enum Jobu {
     N = b'N' as isize,
 }
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum Jobvt {
     A = b'A' as isize,
     S = b'S' as isize,
@@ -23,13 +23,13 @@ pub enum Jobvt {
     N = b'N' as isize,
 }
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum Jobz {
     N = b'N' as isize,
     V = b'V' as isize,
 }
 
-#[derive(Clone, Copy)]
+#[derive(Clone, Copy, Debug, Eq, PartialEq)]
 pub enum Uplo {
     U = b'U' as isize,
     L = b'L' as isize,

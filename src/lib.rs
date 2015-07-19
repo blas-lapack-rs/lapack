@@ -40,14 +40,8 @@ pub fn dsyev(jobz: Jobz, uplo: Uplo, n: usize, a: &mut [f64], lda: usize, w: &mu
              work: &mut [f64], lwork: usize, info: &mut isize) {
 
     unsafe {
-        ffi::dsyev_(&(jobz as c_char) as *const _ as *mut _,
-                    &(uplo as c_char) as *const _ as *mut _,
-                    &(n as c_int) as *const _ as *mut _,
-                    a.as_mut_ptr(),
-                    &(lda as c_int) as *const _ as *mut _,
-                    w.as_mut_ptr(),
-                    work.as_mut_ptr(),
-                    &(lwork as c_int) as *const _ as *mut _,
+        ffi::dsyev_(&(jobz as c_char), &(uplo as c_char), &(n as c_int), a.as_mut_ptr(),
+                    &(lda as c_int), w.as_mut_ptr(), work.as_mut_ptr(), &(lwork as c_int),
                     info as *mut _ as *mut _);
     }
 }
@@ -58,32 +52,18 @@ pub fn dgesvd(jobu: Jobu, jobvt: Jobvt, m: usize, n: usize, a: &mut [f64], lda: 
               work: &mut [f64], lwork: usize, info: &mut isize) {
 
     unsafe {
-        ffi::dgesvd_(&(jobu as c_char) as *const _ as *mut _,
-                     &(jobvt as c_char) as *const _ as *mut _,
-                     &(m as c_int) as *const _ as *mut _,
-                     &(n as c_int) as *const _ as *mut _,
-                     a.as_mut_ptr(),
-                     &(lda as c_int) as *const _ as *mut _,
-                     s.as_mut_ptr(),
-                     u.as_mut_ptr(),
-                     &(ldu as c_int) as *const _ as *mut _,
-                     vt.as_mut_ptr(),
-                     &(ldvt as c_int) as *const _ as *mut _,
-                     work.as_mut_ptr(),
-                     &(lwork as c_int) as *const _ as *mut _,
-                     info as *mut _ as *mut _);
+        ffi::dgesvd_(&(jobu as c_char), &(jobvt as c_char), &(m as c_int), &(n as c_int),
+                     a.as_mut_ptr(), &(lda as c_int), s.as_mut_ptr(), u.as_mut_ptr(),
+                     &(ldu as c_int), vt.as_mut_ptr(), &(ldvt as c_int), work.as_mut_ptr(),
+                     &(lwork as c_int), info as *mut _ as *mut _);
     }
 }
 
 #[inline]
 pub fn dgetrf(m: usize, n: usize, a: &mut [f64], lda: usize, ipiv: &mut [i32], info: &mut isize) {
     unsafe {
-        ffi::dgetrf_(&(m as c_int) as *const _ as *mut _,
-                     &(n as c_int) as *const _ as *mut _,
-                     a.as_mut_ptr(),
-                     &(lda as c_int) as *const _ as *mut _,
-                     ipiv.as_mut_ptr(),
-                     info as *mut _ as *mut _);
+        ffi::dgetrf_(&(m as c_int), &(n as c_int), a.as_mut_ptr(), &(lda as c_int),
+                     ipiv.as_mut_ptr(), info as *mut _ as *mut _);
     }
 }
 
@@ -92,12 +72,7 @@ pub fn dgetri(n: usize, a: &mut [f64], lda: usize, ipiv: &mut [i32], work: &mut 
               lwork: usize, info: &mut isize) {
 
     unsafe {
-        ffi::dgetri_(&(n as c_int) as *const _ as *mut _,
-                     a.as_mut_ptr(),
-                     &(lda as c_int) as *const _ as *mut _,
-                     ipiv.as_mut_ptr(),
-                     work.as_mut_ptr(),
-                     &(lwork as c_int) as *const _ as *mut _,
-                     info as *mut _ as *mut _);
+        ffi::dgetri_(&(n as c_int), a.as_mut_ptr(), &(lda as c_int), ipiv.as_mut_ptr(),
+                     work.as_mut_ptr(), &(lwork as c_int), info as *mut _ as *mut _);
     }
 }

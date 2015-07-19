@@ -15,7 +15,7 @@ description = "The package provides an interface to the Linear Algebra PACKage."
 libc = "*"
 
 [dependencies.lapack-sys]
-version = "*"
+version = "0.3"
 
 [dev-dependencies]
 assert = "*"

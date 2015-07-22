@@ -1,6 +1,6 @@
 [package]
 name = "lapack"
-version = "0.3.4"
+version = "0.4.0"
 authors = [
   "Andrew Straw <strawman@astraw.com>",
   "Ivan Ukhov <ivan.ukhov@gmail.com>",
@@ -15,6 +15,3 @@ description = "The package provides an interface to the Linear Algebra PACKage."
 complex = "0.7"
 lapack-sys = "0.3"
 libc = "*"
-
-[dev-dependencies]
-assert = "*"

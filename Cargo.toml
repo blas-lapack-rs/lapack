@@ -12,10 +12,9 @@ documentation = "https://stainless-steel.github.io/lapack"
 description = "The package provides an interface to the Linear Algebra PACKage."
 
 [dependencies]
+complex = "0.7"
+lapack-sys = "0.3"
 libc = "*"
-
-[dependencies.lapack-sys]
-version = "0.3"
 
 [dev-dependencies]
 assert = "*"

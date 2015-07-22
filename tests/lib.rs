@@ -3,8 +3,8 @@ extern crate lapack;
 
 #[test]
 fn dsyev() {
-    let jobz = lapack::Jobz::V;
-    let uplo = lapack::Uplo::U;
+    let jobz = b'V';
+    let uplo = b'U';
     let n = 5;
     let mut a = vec![
         0.162182308193243, 0.601981941401637, 0.450541598502498, 0.825816977489547,

@@ -4326,7 +4326,7 @@ def translate_argument(name, cty, f):
         if is_const(name, cty):
             return "usize"
         elif is_mut(name, cty):
-            return "&mut usize"
+            return "&mut u32"
     elif is_letter(name, cty):
         if is_const(name, cty):
             return "u8"
@@ -4381,7 +4381,7 @@ def translate_body_argument(name, rty):
 
     elif rty == "usize":
         return "&({} as c_int)".format(name)
-    elif rty == "&mut usize":
+    elif rty == "&mut u32":
         return "{} as *mut _ as *mut _".format(name)
 
     elif rty == "i32":

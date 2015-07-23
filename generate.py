@@ -4308,7 +4308,7 @@ def is_letter(name, cty):
 
 def is_natural(name, cty):
     return "c_int" in cty and (
-        name in ["m", "n", "lwork", "nrhs", "mm"] or
+        name in ["m", "n", "lwork", "nrhs", "mm", "rank"] or
         name.startswith("k") or
         name.startswith("ld") or
         name.startswith("inc") or

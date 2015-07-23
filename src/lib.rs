@@ -184,42 +184,46 @@ pub fn zpotrf(uplo: u8, n: usize, a: &mut [c64], lda: usize, info: &mut i32) {
 }
 
 #[inline]
-pub fn spstrf(uplo: u8, n: usize, a: &mut [f32], lda: usize, piv: &mut [i32], rank: &mut [i32],
+pub fn spstrf(uplo: u8, n: usize, a: &mut [f32], lda: usize, piv: &mut [i32], rank: &mut u32,
               tol: &[f32], work: &mut [f32], info: &mut i32) {
 
     unsafe {
         ffi::spstrf_(&(uplo as c_char), &(n as c_int), a.as_mut_ptr(), &(lda as c_int),
-                     piv.as_mut_ptr(), rank.as_mut_ptr(), tol.as_ptr(), work.as_mut_ptr(), info)
+                     piv.as_mut_ptr(), rank as *mut _ as *mut _, tol.as_ptr(), work.as_mut_ptr(),
+                     info)
     }
 }
 
 #[inline]
-pub fn dpstrf(uplo: u8, n: usize, a: &mut [f64], lda: usize, piv: &mut [i32], rank: &mut [i32],
+pub fn dpstrf(uplo: u8, n: usize, a: &mut [f64], lda: usize, piv: &mut [i32], rank: &mut u32,
               tol: &[f64], work: &mut [f64], info: &mut i32) {
 
     unsafe {
         ffi::dpstrf_(&(uplo as c_char), &(n as c_int), a.as_mut_ptr(), &(lda as c_int),
-                     piv.as_mut_ptr(), rank.as_mut_ptr(), tol.as_ptr(), work.as_mut_ptr(), info)
+                     piv.as_mut_ptr(), rank as *mut _ as *mut _, tol.as_ptr(), work.as_mut_ptr(),
+                     info)
     }
 }
 
 #[inline]
-pub fn cpstrf(uplo: u8, n: usize, a: &mut [c32], lda: usize, piv: &mut [i32], rank: &mut [i32],
+pub fn cpstrf(uplo: u8, n: usize, a: &mut [c32], lda: usize, piv: &mut [i32], rank: &mut u32,
               tol: &[f32], work: &mut [f32], info: &mut i32) {
 
     unsafe {
         ffi::cpstrf_(&(uplo as c_char), &(n as c_int), a.as_mut_ptr() as *mut _, &(lda as c_int),
-                     piv.as_mut_ptr(), rank.as_mut_ptr(), tol.as_ptr(), work.as_mut_ptr(), info)
+                     piv.as_mut_ptr(), rank as *mut _ as *mut _, tol.as_ptr(), work.as_mut_ptr(),
+                     info)
     }
 }
 
 #[inline]
-pub fn zpstrf(uplo: u8, n: usize, a: &mut [c64], lda: usize, piv: &mut [i32], rank: &mut [i32],
+pub fn zpstrf(uplo: u8, n: usize, a: &mut [c64], lda: usize, piv: &mut [i32], rank: &mut u32,
               tol: &[f64], work: &mut [f64], info: &mut i32) {
 
     unsafe {
         ffi::zpstrf_(&(uplo as c_char), &(n as c_int), a.as_mut_ptr() as *mut _, &(lda as c_int),
-                     piv.as_mut_ptr(), rank.as_mut_ptr(), tol.as_ptr(), work.as_mut_ptr(), info)
+                     piv.as_mut_ptr(), rank as *mut _ as *mut _, tol.as_ptr(), work.as_mut_ptr(),
+                     info)
     }
 }
 
@@ -8022,152 +8026,156 @@ pub fn zgels(trans: u8, m: usize, n: usize, nrhs: usize, a: &mut [c64], lda: usi
 
 #[inline]
 pub fn sgelsy(m: usize, n: usize, nrhs: usize, a: &mut [f32], lda: usize, b: &mut [f32],
-              ldb: usize, jpvt: &mut [i32], rcond: &[f32], rank: &mut [i32], work: &mut [f32],
+              ldb: usize, jpvt: &mut [i32], rcond: &[f32], rank: &mut u32, work: &mut [f32],
               lwork: usize, info: &mut i32) {
 
     unsafe {
         ffi::sgelsy_(&(m as c_int), &(n as c_int), &(nrhs as c_int), a.as_mut_ptr(),
                      &(lda as c_int), b.as_mut_ptr(), &(ldb as c_int), jpvt.as_mut_ptr(),
-                     rcond.as_ptr(), rank.as_mut_ptr(), work.as_mut_ptr(), &(lwork as c_int), info)
+                     rcond.as_ptr(), rank as *mut _ as *mut _, work.as_mut_ptr(),
+                     &(lwork as c_int), info)
     }
 }
 
 #[inline]
 pub fn dgelsy(m: usize, n: usize, nrhs: usize, a: &mut [f64], lda: usize, b: &mut [f64],
-              ldb: usize, jpvt: &mut [i32], rcond: &[f64], rank: &mut [i32], work: &mut [f64],
+              ldb: usize, jpvt: &mut [i32], rcond: &[f64], rank: &mut u32, work: &mut [f64],
               lwork: usize, info: &mut i32) {
 
     unsafe {
         ffi::dgelsy_(&(m as c_int), &(n as c_int), &(nrhs as c_int), a.as_mut_ptr(),
                      &(lda as c_int), b.as_mut_ptr(), &(ldb as c_int), jpvt.as_mut_ptr(),
-                     rcond.as_ptr(), rank.as_mut_ptr(), work.as_mut_ptr(), &(lwork as c_int), info)
+                     rcond.as_ptr(), rank as *mut _ as *mut _, work.as_mut_ptr(),
+                     &(lwork as c_int), info)
     }
 }
 
 #[inline]
 pub fn cgelsy(m: usize, n: usize, nrhs: usize, a: &mut [c32], lda: usize, b: &mut [c32],
-              ldb: usize, jpvt: &mut [i32], rcond: &[f32], rank: &mut [i32], work: &mut [c32],
+              ldb: usize, jpvt: &mut [i32], rcond: &[f32], rank: &mut u32, work: &mut [c32],
               lwork: usize, rwork: &mut [f32], info: &mut i32) {
 
     unsafe {
         ffi::cgelsy_(&(m as c_int), &(n as c_int), &(nrhs as c_int), a.as_mut_ptr() as *mut _,
                      &(lda as c_int), b.as_mut_ptr() as *mut _, &(ldb as c_int), jpvt.as_mut_ptr(),
-                     rcond.as_ptr(), rank.as_mut_ptr(), work.as_mut_ptr() as *mut _,
+                     rcond.as_ptr(), rank as *mut _ as *mut _, work.as_mut_ptr() as *mut _,
                      &(lwork as c_int), rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn zgelsy(m: usize, n: usize, nrhs: usize, a: &mut [c64], lda: usize, b: &mut [c64],
-              ldb: usize, jpvt: &mut [i32], rcond: &[f64], rank: &mut [i32], work: &mut [c64],
+              ldb: usize, jpvt: &mut [i32], rcond: &[f64], rank: &mut u32, work: &mut [c64],
               lwork: usize, rwork: &mut [f64], info: &mut i32) {
 
     unsafe {
         ffi::zgelsy_(&(m as c_int), &(n as c_int), &(nrhs as c_int), a.as_mut_ptr() as *mut _,
                      &(lda as c_int), b.as_mut_ptr() as *mut _, &(ldb as c_int), jpvt.as_mut_ptr(),
-                     rcond.as_ptr(), rank.as_mut_ptr(), work.as_mut_ptr() as *mut _,
+                     rcond.as_ptr(), rank as *mut _ as *mut _, work.as_mut_ptr() as *mut _,
                      &(lwork as c_int), rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn sgelss(m: usize, n: usize, nrhs: usize, a: &mut [f32], lda: usize, b: &mut [f32],
-              ldb: usize, s: &mut [f32], rcond: &[f32], rank: &mut [i32], work: &mut [f32],
+              ldb: usize, s: &mut [f32], rcond: &[f32], rank: &mut u32, work: &mut [f32],
               lwork: usize, info: &mut i32) {
 
     unsafe {
         ffi::sgelss_(&(m as c_int), &(n as c_int), &(nrhs as c_int), a.as_mut_ptr(),
                      &(lda as c_int), b.as_mut_ptr(), &(ldb as c_int), s.as_mut_ptr(),
-                     rcond.as_ptr(), rank.as_mut_ptr(), work.as_mut_ptr(), &(lwork as c_int), info)
+                     rcond.as_ptr(), rank as *mut _ as *mut _, work.as_mut_ptr(),
+                     &(lwork as c_int), info)
     }
 }
 
 #[inline]
 pub fn dgelss(m: usize, n: usize, nrhs: usize, a: &mut [f64], lda: usize, b: &mut [f64],
-              ldb: usize, s: &mut [f64], rcond: &[f64], rank: &mut [i32], work: &mut [f64],
+              ldb: usize, s: &mut [f64], rcond: &[f64], rank: &mut u32, work: &mut [f64],
               lwork: usize, info: &mut i32) {
 
     unsafe {
         ffi::dgelss_(&(m as c_int), &(n as c_int), &(nrhs as c_int), a.as_mut_ptr(),
                      &(lda as c_int), b.as_mut_ptr(), &(ldb as c_int), s.as_mut_ptr(),
-                     rcond.as_ptr(), rank.as_mut_ptr(), work.as_mut_ptr(), &(lwork as c_int), info)
+                     rcond.as_ptr(), rank as *mut _ as *mut _, work.as_mut_ptr(),
+                     &(lwork as c_int), info)
     }
 }
 
 #[inline]
 pub fn cgelss(m: usize, n: usize, nrhs: usize, a: &mut [c32], lda: usize, b: &mut [c32],
-              ldb: usize, s: &mut [f32], rcond: &[f32], rank: &mut [i32], work: &mut [c32],
+              ldb: usize, s: &mut [f32], rcond: &[f32], rank: &mut u32, work: &mut [c32],
               lwork: usize, rwork: &mut [f32], info: &mut i32) {
 
     unsafe {
         ffi::cgelss_(&(m as c_int), &(n as c_int), &(nrhs as c_int), a.as_mut_ptr() as *mut _,
                      &(lda as c_int), b.as_mut_ptr() as *mut _, &(ldb as c_int), s.as_mut_ptr(),
-                     rcond.as_ptr(), rank.as_mut_ptr(), work.as_mut_ptr() as *mut _,
+                     rcond.as_ptr(), rank as *mut _ as *mut _, work.as_mut_ptr() as *mut _,
                      &(lwork as c_int), rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn zgelss(m: usize, n: usize, nrhs: usize, a: &mut [c64], lda: usize, b: &mut [c64],
-              ldb: usize, s: &mut [f64], rcond: &[f64], rank: &mut [i32], work: &mut [c64],
+              ldb: usize, s: &mut [f64], rcond: &[f64], rank: &mut u32, work: &mut [c64],
               lwork: usize, rwork: &mut [f64], info: &mut i32) {
 
     unsafe {
         ffi::zgelss_(&(m as c_int), &(n as c_int), &(nrhs as c_int), a.as_mut_ptr() as *mut _,
                      &(lda as c_int), b.as_mut_ptr() as *mut _, &(ldb as c_int), s.as_mut_ptr(),
-                     rcond.as_ptr(), rank.as_mut_ptr(), work.as_mut_ptr() as *mut _,
+                     rcond.as_ptr(), rank as *mut _ as *mut _, work.as_mut_ptr() as *mut _,
                      &(lwork as c_int), rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn sgelsd(m: usize, n: usize, nrhs: usize, a: &[f32], lda: usize, b: &mut [f32], ldb: usize,
-              s: &mut [f32], rcond: &[f32], rank: &mut [i32], work: &mut [f32], lwork: usize,
+              s: &mut [f32], rcond: &[f32], rank: &mut u32, work: &mut [f32], lwork: usize,
               iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::sgelsd_(&(m as c_int), &(n as c_int), &(nrhs as c_int), a.as_ptr(), &(lda as c_int),
                      b.as_mut_ptr(), &(ldb as c_int), s.as_mut_ptr(), rcond.as_ptr(),
-                     rank.as_mut_ptr(), work.as_mut_ptr(), &(lwork as c_int), iwork.as_mut_ptr(),
-                     info)
+                     rank as *mut _ as *mut _, work.as_mut_ptr(), &(lwork as c_int),
+                     iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn dgelsd(m: usize, n: usize, nrhs: usize, a: &[f64], lda: usize, b: &mut [f64], ldb: usize,
-              s: &mut [f64], rcond: &[f64], rank: &mut [i32], work: &mut [f64], lwork: usize,
+              s: &mut [f64], rcond: &[f64], rank: &mut u32, work: &mut [f64], lwork: usize,
               iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::dgelsd_(&(m as c_int), &(n as c_int), &(nrhs as c_int), a.as_ptr(), &(lda as c_int),
                      b.as_mut_ptr(), &(ldb as c_int), s.as_mut_ptr(), rcond.as_ptr(),
-                     rank.as_mut_ptr(), work.as_mut_ptr(), &(lwork as c_int), iwork.as_mut_ptr(),
-                     info)
+                     rank as *mut _ as *mut _, work.as_mut_ptr(), &(lwork as c_int),
+                     iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn cgelsd(m: usize, n: usize, nrhs: usize, a: &mut [c32], lda: usize, b: &mut [c32],
-              ldb: usize, s: &mut [f32], rcond: &[f32], rank: &mut [i32], work: &mut [c32],
+              ldb: usize, s: &mut [f32], rcond: &[f32], rank: &mut u32, work: &mut [c32],
               lwork: usize, rwork: &mut [f32], iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::cgelsd_(&(m as c_int), &(n as c_int), &(nrhs as c_int), a.as_mut_ptr() as *mut _,
                      &(lda as c_int), b.as_mut_ptr() as *mut _, &(ldb as c_int), s.as_mut_ptr(),
-                     rcond.as_ptr(), rank.as_mut_ptr(), work.as_mut_ptr() as *mut _,
+                     rcond.as_ptr(), rank as *mut _ as *mut _, work.as_mut_ptr() as *mut _,
                      &(lwork as c_int), rwork.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn zgelsd(m: usize, n: usize, nrhs: usize, a: &[c64], lda: usize, b: &mut [c64], ldb: usize,
-              s: &mut [f64], rcond: &[f64], rank: &mut [i32], work: &mut [c64], lwork: usize,
+              s: &mut [f64], rcond: &[f64], rank: &mut u32, work: &mut [c64], lwork: usize,
               rwork: &mut [f64], iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::zgelsd_(&(m as c_int), &(n as c_int), &(nrhs as c_int), a.as_ptr() as *const _,
                      &(lda as c_int), b.as_mut_ptr() as *mut _, &(ldb as c_int), s.as_mut_ptr(),
-                     rcond.as_ptr(), rank.as_mut_ptr(), work.as_mut_ptr() as *mut _,
+                     rcond.as_ptr(), rank as *mut _ as *mut _, work.as_mut_ptr() as *mut _,
                      &(lwork as c_int), rwork.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
 }

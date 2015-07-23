@@ -11496,7 +11496,7 @@ pub fn dlartgs(x: &[f64], y: &[f64], sigma: &[f64], cs: &mut [f64], sn: &mut [f6
 
 #[inline]
 pub fn sbbcsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, m: usize, p: usize,
-              q: &[i32], theta: &mut [f32], phi: &mut [f32], u1: &mut [f32], ldu1: usize,
+              q: usize, theta: &mut [f32], phi: &mut [f32], u1: &mut [f32], ldu1: usize,
               u2: &mut [f32], ldu2: usize, v1t: &mut [f32], ldv1t: usize, v2t: &mut [f32],
               ldv2t: usize, b11d: &mut [f32], b11e: &mut [f32], b12d: &mut [f32], b12e: &mut [f32],
               b21d: &mut [f32], b21e: &mut [f32], b22d: &mut [f32], b22e: &mut [f32],
@@ -11505,7 +11505,7 @@ pub fn sbbcsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, m: usize,
     unsafe {
         ffi::sbbcsd_(&(jobu1 as c_char), &(jobu2 as c_char), &(jobv1t as c_char),
                      &(jobv2t as c_char), &(trans as c_char), &(m as c_int), &(p as c_int),
-                     q.as_ptr(), theta.as_mut_ptr(), phi.as_mut_ptr(), u1.as_mut_ptr(),
+                     &(q as c_int), theta.as_mut_ptr(), phi.as_mut_ptr(), u1.as_mut_ptr(),
                      &(ldu1 as c_int), u2.as_mut_ptr(), &(ldu2 as c_int), v1t.as_mut_ptr(),
                      &(ldv1t as c_int), v2t.as_mut_ptr(), &(ldv2t as c_int), b11d.as_mut_ptr(),
                      b11e.as_mut_ptr(), b12d.as_mut_ptr(), b12e.as_mut_ptr(), b21d.as_mut_ptr(),
@@ -11516,7 +11516,7 @@ pub fn sbbcsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, m: usize,
 
 #[inline]
 pub fn dbbcsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, m: usize, p: usize,
-              q: &[i32], theta: &mut [f64], phi: &mut [f64], u1: &mut [f64], ldu1: usize,
+              q: usize, theta: &mut [f64], phi: &mut [f64], u1: &mut [f64], ldu1: usize,
               u2: &mut [f64], ldu2: usize, v1t: &mut [f64], ldv1t: usize, v2t: &mut [f64],
               ldv2t: usize, b11d: &mut [f64], b11e: &mut [f64], b12d: &mut [f64], b12e: &mut [f64],
               b21d: &mut [f64], b21e: &mut [f64], b22d: &mut [f64], b22e: &mut [f64],
@@ -11525,7 +11525,7 @@ pub fn dbbcsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, m: usize,
     unsafe {
         ffi::dbbcsd_(&(jobu1 as c_char), &(jobu2 as c_char), &(jobv1t as c_char),
                      &(jobv2t as c_char), &(trans as c_char), &(m as c_int), &(p as c_int),
-                     q.as_ptr(), theta.as_mut_ptr(), phi.as_mut_ptr(), u1.as_mut_ptr(),
+                     &(q as c_int), theta.as_mut_ptr(), phi.as_mut_ptr(), u1.as_mut_ptr(),
                      &(ldu1 as c_int), u2.as_mut_ptr(), &(ldu2 as c_int), v1t.as_mut_ptr(),
                      &(ldv1t as c_int), v2t.as_mut_ptr(), &(ldv2t as c_int), b11d.as_mut_ptr(),
                      b11e.as_mut_ptr(), b12d.as_mut_ptr(), b12e.as_mut_ptr(), b21d.as_mut_ptr(),
@@ -11536,7 +11536,7 @@ pub fn dbbcsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, m: usize,
 
 #[inline]
 pub fn cbbcsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, m: usize, p: usize,
-              q: &[i32], theta: &mut [f32], phi: &mut [f32], u1: &mut [c32], ldu1: usize,
+              q: usize, theta: &mut [f32], phi: &mut [f32], u1: &mut [c32], ldu1: usize,
               u2: &mut [c32], ldu2: usize, v1t: &mut [c32], ldv1t: usize, v2t: &mut [c32],
               ldv2t: usize, b11d: &mut [f32], b11e: &mut [f32], b12d: &mut [f32], b12e: &mut [f32],
               b21d: &mut [f32], b21e: &mut [f32], b22d: &mut [f32], b22e: &mut [f32],
@@ -11545,18 +11545,19 @@ pub fn cbbcsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, m: usize,
     unsafe {
         ffi::cbbcsd_(&(jobu1 as c_char), &(jobu2 as c_char), &(jobv1t as c_char),
                      &(jobv2t as c_char), &(trans as c_char), &(m as c_int), &(p as c_int),
-                     q.as_ptr(), theta.as_mut_ptr(), phi.as_mut_ptr(), u1.as_mut_ptr() as *mut _,
-                     &(ldu1 as c_int), u2.as_mut_ptr() as *mut _, &(ldu2 as c_int),
-                     v1t.as_mut_ptr() as *mut _, &(ldv1t as c_int), v2t.as_mut_ptr() as *mut _,
-                     &(ldv2t as c_int), b11d.as_mut_ptr(), b11e.as_mut_ptr(), b12d.as_mut_ptr(),
-                     b12e.as_mut_ptr(), b21d.as_mut_ptr(), b21e.as_mut_ptr(), b22d.as_mut_ptr(),
-                     b22e.as_mut_ptr(), rwork.as_mut_ptr(), lrwork.as_ptr(), info)
+                     &(q as c_int), theta.as_mut_ptr(), phi.as_mut_ptr(),
+                     u1.as_mut_ptr() as *mut _, &(ldu1 as c_int), u2.as_mut_ptr() as *mut _,
+                     &(ldu2 as c_int), v1t.as_mut_ptr() as *mut _, &(ldv1t as c_int),
+                     v2t.as_mut_ptr() as *mut _, &(ldv2t as c_int), b11d.as_mut_ptr(),
+                     b11e.as_mut_ptr(), b12d.as_mut_ptr(), b12e.as_mut_ptr(), b21d.as_mut_ptr(),
+                     b21e.as_mut_ptr(), b22d.as_mut_ptr(), b22e.as_mut_ptr(), rwork.as_mut_ptr(),
+                     lrwork.as_ptr(), info)
     }
 }
 
 #[inline]
 pub fn zbbcsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, m: usize, p: usize,
-              q: &[i32], theta: &mut [f64], phi: &mut [f64], u1: &mut [c64], ldu1: usize,
+              q: usize, theta: &mut [f64], phi: &mut [f64], u1: &mut [c64], ldu1: usize,
               u2: &mut [c64], ldu2: usize, v1t: &mut [c64], ldv1t: usize, v2t: &mut [c64],
               ldv2t: usize, b11d: &mut [f64], b11e: &mut [f64], b12d: &mut [f64], b12e: &mut [f64],
               b21d: &mut [f64], b21e: &mut [f64], b22d: &mut [f64], b22e: &mut [f64],
@@ -11565,12 +11566,13 @@ pub fn zbbcsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, m: usize,
     unsafe {
         ffi::zbbcsd_(&(jobu1 as c_char), &(jobu2 as c_char), &(jobv1t as c_char),
                      &(jobv2t as c_char), &(trans as c_char), &(m as c_int), &(p as c_int),
-                     q.as_ptr(), theta.as_mut_ptr(), phi.as_mut_ptr(), u1.as_mut_ptr() as *mut _,
-                     &(ldu1 as c_int), u2.as_mut_ptr() as *mut _, &(ldu2 as c_int),
-                     v1t.as_mut_ptr() as *mut _, &(ldv1t as c_int), v2t.as_mut_ptr() as *mut _,
-                     &(ldv2t as c_int), b11d.as_mut_ptr(), b11e.as_mut_ptr(), b12d.as_mut_ptr(),
-                     b12e.as_mut_ptr(), b21d.as_mut_ptr(), b21e.as_mut_ptr(), b22d.as_mut_ptr(),
-                     b22e.as_mut_ptr(), rwork.as_mut_ptr(), lrwork.as_ptr(), info)
+                     &(q as c_int), theta.as_mut_ptr(), phi.as_mut_ptr(),
+                     u1.as_mut_ptr() as *mut _, &(ldu1 as c_int), u2.as_mut_ptr() as *mut _,
+                     &(ldu2 as c_int), v1t.as_mut_ptr() as *mut _, &(ldv1t as c_int),
+                     v2t.as_mut_ptr() as *mut _, &(ldv2t as c_int), b11d.as_mut_ptr(),
+                     b11e.as_mut_ptr(), b12d.as_mut_ptr(), b12e.as_mut_ptr(), b21d.as_mut_ptr(),
+                     b21e.as_mut_ptr(), b22d.as_mut_ptr(), b22e.as_mut_ptr(), rwork.as_mut_ptr(),
+                     lrwork.as_ptr(), info)
     }
 }
 
@@ -11847,7 +11849,7 @@ pub fn zsytrs2(uplo: u8, n: usize, nrhs: usize, a: &[c64], lda: usize, ipiv: &[i
 }
 
 #[inline]
-pub fn cunbdb(trans: u8, signs: u8, m: usize, p: usize, q: &[i32], x11: &mut [c32], ldx11: usize,
+pub fn cunbdb(trans: u8, signs: u8, m: usize, p: usize, q: usize, x11: &mut [c32], ldx11: usize,
               x12: &mut [c32], ldx12: usize, x21: &mut [c32], ldx21: usize, x22: &mut [c32],
               ldx22: usize, theta: &mut [f32], phi: &mut [f32], taup1: &mut [c32],
               taup2: &mut [c32], tauq1: &mut [c32], tauq2: &mut [c32], work: &mut [c32],
@@ -11855,7 +11857,7 @@ pub fn cunbdb(trans: u8, signs: u8, m: usize, p: usize, q: &[i32], x11: &mut [c3
 
     unsafe {
         ffi::cunbdb_(&(trans as c_char), &(signs as c_char), &(m as c_int), &(p as c_int),
-                     q.as_ptr(), x11.as_mut_ptr() as *mut _, &(ldx11 as c_int),
+                     &(q as c_int), x11.as_mut_ptr() as *mut _, &(ldx11 as c_int),
                      x12.as_mut_ptr() as *mut _, &(ldx12 as c_int), x21.as_mut_ptr() as *mut _,
                      &(ldx21 as c_int), x22.as_mut_ptr() as *mut _, &(ldx22 as c_int),
                      theta.as_mut_ptr(), phi.as_mut_ptr(), taup1.as_mut_ptr() as *mut _,
@@ -11866,7 +11868,7 @@ pub fn cunbdb(trans: u8, signs: u8, m: usize, p: usize, q: &[i32], x11: &mut [c3
 }
 
 #[inline]
-pub fn zunbdb(trans: u8, signs: u8, m: usize, p: usize, q: &[i32], x11: &mut [c64], ldx11: usize,
+pub fn zunbdb(trans: u8, signs: u8, m: usize, p: usize, q: usize, x11: &mut [c64], ldx11: usize,
               x12: &mut [c64], ldx12: usize, x21: &mut [c64], ldx21: usize, x22: &mut [c64],
               ldx22: usize, theta: &mut [f64], phi: &mut [f64], taup1: &mut [c64],
               taup2: &mut [c64], tauq1: &mut [c64], tauq2: &mut [c64], work: &mut [c64],
@@ -11874,7 +11876,7 @@ pub fn zunbdb(trans: u8, signs: u8, m: usize, p: usize, q: &[i32], x11: &mut [c6
 
     unsafe {
         ffi::zunbdb_(&(trans as c_char), &(signs as c_char), &(m as c_int), &(p as c_int),
-                     q.as_ptr(), x11.as_mut_ptr() as *mut _, &(ldx11 as c_int),
+                     &(q as c_int), x11.as_mut_ptr() as *mut _, &(ldx11 as c_int),
                      x12.as_mut_ptr() as *mut _, &(ldx12 as c_int), x21.as_mut_ptr() as *mut _,
                      &(ldx21 as c_int), x22.as_mut_ptr() as *mut _, &(ldx22 as c_int),
                      theta.as_mut_ptr(), phi.as_mut_ptr(), taup1.as_mut_ptr() as *mut _,
@@ -11886,7 +11888,7 @@ pub fn zunbdb(trans: u8, signs: u8, m: usize, p: usize, q: &[i32], x11: &mut [c6
 
 #[inline]
 pub fn cuncsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, signs: u8, m: usize,
-              p: usize, q: &[i32], x11: &mut [c32], ldx11: &mut u32, x12: &mut [c32],
+              p: usize, q: usize, x11: &mut [c32], ldx11: &mut u32, x12: &mut [c32],
               ldx12: &mut u32, x21: &mut [c32], ldx21: &mut u32, x22: &mut [c32], ldx22: &mut u32,
               theta: &mut [f32], u1: &mut [c32], ldu1: usize, u2: &mut [c32], ldu2: usize,
               v1t: &mut [c32], ldv1t: usize, v2t: &mut [c32], ldv2t: usize, work: &mut [c32],
@@ -11895,7 +11897,7 @@ pub fn cuncsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, signs: u8
     unsafe {
         ffi::cuncsd_(&(jobu1 as c_char), &(jobu2 as c_char), &(jobv1t as c_char),
                      &(jobv2t as c_char), &(trans as c_char), &(signs as c_char), &(m as c_int),
-                     &(p as c_int), q.as_ptr(), x11.as_mut_ptr() as *mut _,
+                     &(p as c_int), &(q as c_int), x11.as_mut_ptr() as *mut _,
                      ldx11 as *mut _ as *mut _, x12.as_mut_ptr() as *mut _,
                      ldx12 as *mut _ as *mut _, x21.as_mut_ptr() as *mut _,
                      ldx21 as *mut _ as *mut _, x22.as_mut_ptr() as *mut _,
@@ -11909,7 +11911,7 @@ pub fn cuncsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, signs: u8
 
 #[inline]
 pub fn zuncsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, signs: u8, m: usize,
-              p: usize, q: &[i32], x11: &mut [c64], ldx11: &mut u32, x12: &mut [c64],
+              p: usize, q: usize, x11: &mut [c64], ldx11: &mut u32, x12: &mut [c64],
               ldx12: &mut u32, x21: &mut [c64], ldx21: &mut u32, x22: &mut [c64], ldx22: &mut u32,
               theta: &mut [f64], u1: &mut [c64], ldu1: usize, u2: &mut [c64], ldu2: usize,
               v1t: &mut [c64], ldv1t: usize, v2t: &mut [c64], ldv2t: usize, work: &mut [c64],
@@ -11918,7 +11920,7 @@ pub fn zuncsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, signs: u8
     unsafe {
         ffi::zuncsd_(&(jobu1 as c_char), &(jobu2 as c_char), &(jobv1t as c_char),
                      &(jobv2t as c_char), &(trans as c_char), &(signs as c_char), &(m as c_int),
-                     &(p as c_int), q.as_ptr(), x11.as_mut_ptr() as *mut _,
+                     &(p as c_int), &(q as c_int), x11.as_mut_ptr() as *mut _,
                      ldx11 as *mut _ as *mut _, x12.as_mut_ptr() as *mut _,
                      ldx12 as *mut _ as *mut _, x21.as_mut_ptr() as *mut _,
                      ldx21 as *mut _ as *mut _, x22.as_mut_ptr() as *mut _,
@@ -11931,7 +11933,7 @@ pub fn zuncsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, signs: u8
 }
 
 #[inline]
-pub fn sorbdb(trans: u8, signs: u8, m: usize, p: usize, q: &[i32], x11: &mut [f32], ldx11: usize,
+pub fn sorbdb(trans: u8, signs: u8, m: usize, p: usize, q: usize, x11: &mut [f32], ldx11: usize,
               x12: &mut [f32], ldx12: usize, x21: &mut [f32], ldx21: usize, x22: &mut [f32],
               ldx22: usize, theta: &mut [f32], phi: &mut [f32], taup1: &mut [f32],
               taup2: &mut [f32], tauq1: &mut [f32], tauq2: &mut [f32], work: &mut [f32],
@@ -11939,7 +11941,7 @@ pub fn sorbdb(trans: u8, signs: u8, m: usize, p: usize, q: &[i32], x11: &mut [f3
 
     unsafe {
         ffi::sorbdb_(&(trans as c_char), &(signs as c_char), &(m as c_int), &(p as c_int),
-                     q.as_ptr(), x11.as_mut_ptr(), &(ldx11 as c_int), x12.as_mut_ptr(),
+                     &(q as c_int), x11.as_mut_ptr(), &(ldx11 as c_int), x12.as_mut_ptr(),
                      &(ldx12 as c_int), x21.as_mut_ptr(), &(ldx21 as c_int), x22.as_mut_ptr(),
                      &(ldx22 as c_int), theta.as_mut_ptr(), phi.as_mut_ptr(), taup1.as_mut_ptr(),
                      taup2.as_mut_ptr(), tauq1.as_mut_ptr(), tauq2.as_mut_ptr(), work.as_mut_ptr(),
@@ -11948,7 +11950,7 @@ pub fn sorbdb(trans: u8, signs: u8, m: usize, p: usize, q: &[i32], x11: &mut [f3
 }
 
 #[inline]
-pub fn dorbdb(trans: u8, signs: u8, m: usize, p: usize, q: &[i32], x11: &mut [f64], ldx11: usize,
+pub fn dorbdb(trans: u8, signs: u8, m: usize, p: usize, q: usize, x11: &mut [f64], ldx11: usize,
               x12: &mut [f64], ldx12: usize, x21: &mut [f64], ldx21: usize, x22: &mut [f64],
               ldx22: usize, theta: &mut [f64], phi: &mut [f64], taup1: &mut [f64],
               taup2: &mut [f64], tauq1: &mut [f64], tauq2: &mut [f64], work: &mut [f64],
@@ -11956,7 +11958,7 @@ pub fn dorbdb(trans: u8, signs: u8, m: usize, p: usize, q: &[i32], x11: &mut [f6
 
     unsafe {
         ffi::dorbdb_(&(trans as c_char), &(signs as c_char), &(m as c_int), &(p as c_int),
-                     q.as_ptr(), x11.as_mut_ptr(), &(ldx11 as c_int), x12.as_mut_ptr(),
+                     &(q as c_int), x11.as_mut_ptr(), &(ldx11 as c_int), x12.as_mut_ptr(),
                      &(ldx12 as c_int), x21.as_mut_ptr(), &(ldx21 as c_int), x22.as_mut_ptr(),
                      &(ldx22 as c_int), theta.as_mut_ptr(), phi.as_mut_ptr(), taup1.as_mut_ptr(),
                      taup2.as_mut_ptr(), tauq1.as_mut_ptr(), tauq2.as_mut_ptr(), work.as_mut_ptr(),
@@ -11966,7 +11968,7 @@ pub fn dorbdb(trans: u8, signs: u8, m: usize, p: usize, q: &[i32], x11: &mut [f6
 
 #[inline]
 pub fn sorcsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, signs: u8, m: usize,
-              p: usize, q: &[i32], x11: &mut [f32], ldx11: usize, x12: &mut [f32], ldx12: usize,
+              p: usize, q: usize, x11: &mut [f32], ldx11: usize, x12: &mut [f32], ldx12: usize,
               x21: &mut [f32], ldx21: usize, x22: &mut [f32], ldx22: usize, theta: &mut [f32],
               u1: &mut [f32], ldu1: usize, u2: &mut [f32], ldu2: usize, v1t: &mut [f32],
               ldv1t: usize, v2t: &mut [f32], ldv2t: usize, work: &mut [f32], lwork: usize,
@@ -11975,7 +11977,7 @@ pub fn sorcsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, signs: u8
     unsafe {
         ffi::sorcsd_(&(jobu1 as c_char), &(jobu2 as c_char), &(jobv1t as c_char),
                      &(jobv2t as c_char), &(trans as c_char), &(signs as c_char), &(m as c_int),
-                     &(p as c_int), q.as_ptr(), x11.as_mut_ptr(), &(ldx11 as c_int),
+                     &(p as c_int), &(q as c_int), x11.as_mut_ptr(), &(ldx11 as c_int),
                      x12.as_mut_ptr(), &(ldx12 as c_int), x21.as_mut_ptr(), &(ldx21 as c_int),
                      x22.as_mut_ptr(), &(ldx22 as c_int), theta.as_mut_ptr(), u1.as_mut_ptr(),
                      &(ldu1 as c_int), u2.as_mut_ptr(), &(ldu2 as c_int), v1t.as_mut_ptr(),
@@ -11986,7 +11988,7 @@ pub fn sorcsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, signs: u8
 
 #[inline]
 pub fn dorcsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, signs: u8, m: usize,
-              p: usize, q: &[i32], x11: &mut [f64], ldx11: usize, x12: &mut [f64], ldx12: usize,
+              p: usize, q: usize, x11: &mut [f64], ldx11: usize, x12: &mut [f64], ldx12: usize,
               x21: &mut [f64], ldx21: usize, x22: &mut [f64], ldx22: usize, theta: &mut [f64],
               u1: &mut [f64], ldu1: usize, u2: &mut [f64], ldu2: usize, v1t: &mut [f64],
               ldv1t: usize, v2t: &mut [f64], ldv2t: usize, work: &mut [f64], lwork: usize,
@@ -11995,7 +11997,7 @@ pub fn dorcsd(jobu1: u8, jobu2: u8, jobv1t: u8, jobv2t: u8, trans: u8, signs: u8
     unsafe {
         ffi::dorcsd_(&(jobu1 as c_char), &(jobu2 as c_char), &(jobv1t as c_char),
                      &(jobv2t as c_char), &(trans as c_char), &(signs as c_char), &(m as c_int),
-                     &(p as c_int), q.as_ptr(), x11.as_mut_ptr(), &(ldx11 as c_int),
+                     &(p as c_int), &(q as c_int), x11.as_mut_ptr(), &(ldx11 as c_int),
                      x12.as_mut_ptr(), &(ldx12 as c_int), x21.as_mut_ptr(), &(ldx21 as c_int),
                      x22.as_mut_ptr(), &(ldx22 as c_int), theta.as_mut_ptr(), u1.as_mut_ptr(),
                      &(ldu1 as c_int), u2.as_mut_ptr(), &(ldu2 as c_int), v1t.as_mut_ptr(),

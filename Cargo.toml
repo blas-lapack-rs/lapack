@@ -1,6 +1,6 @@
 [package]
 name = "lapack"
-version = "0.4.0"
+version = "0.4.1"
 authors = [
   "Andrew Straw <strawman@astraw.com>",
   "Ivan Ukhov <ivan.ukhov@gmail.com>",

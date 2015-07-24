@@ -11,7 +11,15 @@ homepage = "https://github.com/stainless-steel/lapack"
 documentation = "https://stainless-steel.github.io/lapack"
 description = "The package provides an interface to the Linear Algebra PACKage."
 
+[features]
+default = ["openblas"]
+openblas = ["lapack-sys/openblas"]
+netlib = ["lapack-sys/netlib"]
+
 [dependencies]
 complex = "0.7"
-lapack-sys = "0.3"
 libc = "*"
+
+[dependencies.lapack-sys]
+version = "0.3"
+default-features = false

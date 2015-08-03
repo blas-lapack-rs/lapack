@@ -4316,7 +4316,7 @@ def is_natural(name, cty):
     )
 
 def is_natural_with_minus_one(name, cty):
-    return "c_int" in cty and name in ["lwork"]
+    return "c_int" in cty and name in ["lwork", "liwork", "lrwork"]
 
 def is_mut(name, cty):
     return "*mut" in cty

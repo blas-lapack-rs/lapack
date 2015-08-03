@@ -4308,12 +4308,15 @@ def is_letter(name, cty):
 
 def is_natural(name, cty):
     return "c_int" in cty and (
-        name in ["l", "lwork", "m", "mm", "n", "nb", "nrhs", "p", "q", "rank"] or
+        name in ["l", "m", "mm", "n", "nb", "nrhs", "p", "q", "rank"] or
         name.startswith("k") or
         name.startswith("ld") or
         name.startswith("inc") or
         name.startswith("vers_")
     )
+
+def is_natural_with_minus_one(name, cty):
+    return "c_int" in cty and name in ["lwork"]
 
 def is_mut(name, cty):
     return "*mut" in cty
@@ -4327,6 +4330,9 @@ def translate_argument(name, cty, f):
             return "usize"
         elif is_mut(name, cty):
             return "&mut u32"
+    elif is_natural_with_minus_one(name, cty):
+        assert(is_const(name, cty))
+        return "isize"
     elif is_letter(name, cty):
         if is_const(name, cty):
             return "u8"
@@ -4383,6 +4389,9 @@ def translate_body_argument(name, rty):
         return "&({} as c_int)".format(name)
     elif rty == "&mut u32":
         return "{} as *mut _ as *mut _".format(name)
+
+    elif rty == "isize":
+        return "&({} as c_int)".format(name)
 
     elif rty == "i32":
         return "&{}".format(name)

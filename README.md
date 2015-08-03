@@ -12,9 +12,10 @@ let n = 3;
 let mut a = vec![3.0, 1.0, 1.0, 1.0, 3.0, 1.0, 1.0, 1.0, 3.0];
 let mut w = vec![0.0; n];
 let mut work = vec![0.0; 4 * n];
+let mut lwork = 4 * n as isize;
 let mut info = 0;
 
-lapack::dsyev(b'V', b'U', n, &mut a, n, &mut w, &mut work, 4 * n as isize, &mut info);
+lapack::dsyev(b'V', b'U', n, &mut a, n, &mut w, &mut work, lwork, &mut info);
 
 for (one, another) in w.iter().zip(&[2.0, 2.0, 5.0]) {
     assert!((one - another).abs() < 1e-14);

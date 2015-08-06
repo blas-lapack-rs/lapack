@@ -1039,420 +1039,410 @@ pub fn ztbtrs(uplo: u8, trans: u8, diag: u8, n: usize, kd: usize, nrhs: usize, a
 }
 
 #[inline]
-pub fn sgecon(norm: u8, n: usize, a: &[f32], lda: usize, anorm: &[f32], rcond: &mut f32,
+pub fn sgecon(norm: u8, n: usize, a: &[f32], lda: usize, anorm: f32, rcond: &mut f32,
               work: &mut [f32], iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
-        ffi::sgecon_(&(norm as c_char), &(n as c_int), a.as_ptr(), &(lda as c_int), anorm.as_ptr(),
-                     rcond, work.as_mut_ptr(), iwork.as_mut_ptr(), info)
+        ffi::sgecon_(&(norm as c_char), &(n as c_int), a.as_ptr(), &(lda as c_int), &anorm, rcond,
+                     work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
-pub fn dgecon(norm: u8, n: usize, a: &[f64], lda: usize, anorm: &[f64], rcond: &mut f64,
+pub fn dgecon(norm: u8, n: usize, a: &[f64], lda: usize, anorm: f64, rcond: &mut f64,
               work: &mut [f64], iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
-        ffi::dgecon_(&(norm as c_char), &(n as c_int), a.as_ptr(), &(lda as c_int), anorm.as_ptr(),
-                     rcond, work.as_mut_ptr(), iwork.as_mut_ptr(), info)
+        ffi::dgecon_(&(norm as c_char), &(n as c_int), a.as_ptr(), &(lda as c_int), &anorm, rcond,
+                     work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
-pub fn cgecon(norm: u8, n: usize, a: &[c32], lda: usize, anorm: &[f32], rcond: &mut f32,
+pub fn cgecon(norm: u8, n: usize, a: &[c32], lda: usize, anorm: f32, rcond: &mut f32,
               work: &mut [c32], rwork: &mut [f32], info: &mut i32) {
 
     unsafe {
         ffi::cgecon_(&(norm as c_char), &(n as c_int), a.as_ptr() as *const _, &(lda as c_int),
-                     anorm.as_ptr(), rcond, work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
+                     &anorm, rcond, work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
-pub fn zgecon(norm: u8, n: usize, a: &[c64], lda: usize, anorm: &[f64], rcond: &mut f64,
+pub fn zgecon(norm: u8, n: usize, a: &[c64], lda: usize, anorm: f64, rcond: &mut f64,
               work: &mut [c64], rwork: &mut [f64], info: &mut i32) {
 
     unsafe {
         ffi::zgecon_(&(norm as c_char), &(n as c_int), a.as_ptr() as *const _, &(lda as c_int),
-                     anorm.as_ptr(), rcond, work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
+                     &anorm, rcond, work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn sgbcon(norm: u8, n: usize, kl: usize, ku: usize, ab: &[f32], ldab: usize, ipiv: &[i32],
-              anorm: &[f32], rcond: &mut f32, work: &mut [f32], iwork: &mut [i32],
-              info: &mut i32) {
+              anorm: f32, rcond: &mut f32, work: &mut [f32], iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::sgbcon_(&(norm as c_char), &(n as c_int), &(kl as c_int), &(ku as c_int), ab.as_ptr(),
-                     &(ldab as c_int), ipiv.as_ptr(), anorm.as_ptr(), rcond, work.as_mut_ptr(),
+                     &(ldab as c_int), ipiv.as_ptr(), &anorm, rcond, work.as_mut_ptr(),
                      iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn dgbcon(norm: u8, n: usize, kl: usize, ku: usize, ab: &[f64], ldab: usize, ipiv: &[i32],
-              anorm: &[f64], rcond: &mut f64, work: &mut [f64], iwork: &mut [i32],
-              info: &mut i32) {
+              anorm: f64, rcond: &mut f64, work: &mut [f64], iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::dgbcon_(&(norm as c_char), &(n as c_int), &(kl as c_int), &(ku as c_int), ab.as_ptr(),
-                     &(ldab as c_int), ipiv.as_ptr(), anorm.as_ptr(), rcond, work.as_mut_ptr(),
+                     &(ldab as c_int), ipiv.as_ptr(), &anorm, rcond, work.as_mut_ptr(),
                      iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn cgbcon(norm: u8, n: usize, kl: usize, ku: usize, ab: &[c32], ldab: usize, ipiv: &[i32],
-              anorm: &[f32], rcond: &mut f32, work: &mut [c32], rwork: &mut [f32],
-              info: &mut i32) {
+              anorm: f32, rcond: &mut f32, work: &mut [c32], rwork: &mut [f32], info: &mut i32) {
 
     unsafe {
         ffi::cgbcon_(&(norm as c_char), &(n as c_int), &(kl as c_int), &(ku as c_int),
-                     ab.as_ptr() as *const _, &(ldab as c_int), ipiv.as_ptr(), anorm.as_ptr(),
-                     rcond, work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
+                     ab.as_ptr() as *const _, &(ldab as c_int), ipiv.as_ptr(), &anorm, rcond,
+                     work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn zgbcon(norm: u8, n: usize, kl: usize, ku: usize, ab: &[c64], ldab: usize, ipiv: &[i32],
-              anorm: &[f64], rcond: &mut f64, work: &mut [c64], rwork: &mut [f64],
-              info: &mut i32) {
+              anorm: f64, rcond: &mut f64, work: &mut [c64], rwork: &mut [f64], info: &mut i32) {
 
     unsafe {
         ffi::zgbcon_(&(norm as c_char), &(n as c_int), &(kl as c_int), &(ku as c_int),
-                     ab.as_ptr() as *const _, &(ldab as c_int), ipiv.as_ptr(), anorm.as_ptr(),
-                     rcond, work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
+                     ab.as_ptr() as *const _, &(ldab as c_int), ipiv.as_ptr(), &anorm, rcond,
+                     work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn sgtcon(norm: u8, n: usize, dl: &[f32], d: &[f32], du: &[f32], du2: &[f32], ipiv: &[i32],
-              anorm: &[f32], rcond: &mut f32, work: &mut [f32], iwork: &mut [i32],
-              info: &mut i32) {
+              anorm: f32, rcond: &mut f32, work: &mut [f32], iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::sgtcon_(&(norm as c_char), &(n as c_int), dl.as_ptr(), d.as_ptr(), du.as_ptr(),
-                     du2.as_ptr(), ipiv.as_ptr(), anorm.as_ptr(), rcond, work.as_mut_ptr(),
+                     du2.as_ptr(), ipiv.as_ptr(), &anorm, rcond, work.as_mut_ptr(),
                      iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn dgtcon(norm: u8, n: usize, dl: &[f64], d: &[f64], du: &[f64], du2: &[f64], ipiv: &[i32],
-              anorm: &[f64], rcond: &mut f64, work: &mut [f64], iwork: &mut [i32],
-              info: &mut i32) {
+              anorm: f64, rcond: &mut f64, work: &mut [f64], iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::dgtcon_(&(norm as c_char), &(n as c_int), dl.as_ptr(), d.as_ptr(), du.as_ptr(),
-                     du2.as_ptr(), ipiv.as_ptr(), anorm.as_ptr(), rcond, work.as_mut_ptr(),
+                     du2.as_ptr(), ipiv.as_ptr(), &anorm, rcond, work.as_mut_ptr(),
                      iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn cgtcon(norm: u8, n: usize, dl: &[c32], d: &[c32], du: &[c32], du2: &[c32], ipiv: &[i32],
-              anorm: &[f32], rcond: &mut f32, work: &mut [c32], info: &mut i32) {
+              anorm: f32, rcond: &mut f32, work: &mut [c32], info: &mut i32) {
 
     unsafe {
         ffi::cgtcon_(&(norm as c_char), &(n as c_int), dl.as_ptr() as *const _,
                      d.as_ptr() as *const _, du.as_ptr() as *const _, du2.as_ptr() as *const _,
-                     ipiv.as_ptr(), anorm.as_ptr(), rcond, work.as_mut_ptr() as *mut _, info)
+                     ipiv.as_ptr(), &anorm, rcond, work.as_mut_ptr() as *mut _, info)
     }
 }
 
 #[inline]
 pub fn zgtcon(norm: u8, n: usize, dl: &[c64], d: &[c64], du: &[c64], du2: &[c64], ipiv: &[i32],
-              anorm: &[f64], rcond: &mut f64, work: &mut [c64], info: &mut i32) {
+              anorm: f64, rcond: &mut f64, work: &mut [c64], info: &mut i32) {
 
     unsafe {
         ffi::zgtcon_(&(norm as c_char), &(n as c_int), dl.as_ptr() as *const _,
                      d.as_ptr() as *const _, du.as_ptr() as *const _, du2.as_ptr() as *const _,
-                     ipiv.as_ptr(), anorm.as_ptr(), rcond, work.as_mut_ptr() as *mut _, info)
+                     ipiv.as_ptr(), &anorm, rcond, work.as_mut_ptr() as *mut _, info)
     }
 }
 
 #[inline]
-pub fn spocon(uplo: u8, n: usize, a: &[f32], lda: usize, anorm: &[f32], rcond: &mut f32,
+pub fn spocon(uplo: u8, n: usize, a: &[f32], lda: usize, anorm: f32, rcond: &mut f32,
               work: &mut [f32], iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
-        ffi::spocon_(&(uplo as c_char), &(n as c_int), a.as_ptr(), &(lda as c_int), anorm.as_ptr(),
-                     rcond, work.as_mut_ptr(), iwork.as_mut_ptr(), info)
+        ffi::spocon_(&(uplo as c_char), &(n as c_int), a.as_ptr(), &(lda as c_int), &anorm, rcond,
+                     work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
-pub fn dpocon(uplo: u8, n: usize, a: &[f64], lda: usize, anorm: &[f64], rcond: &mut f64,
+pub fn dpocon(uplo: u8, n: usize, a: &[f64], lda: usize, anorm: f64, rcond: &mut f64,
               work: &mut [f64], iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
-        ffi::dpocon_(&(uplo as c_char), &(n as c_int), a.as_ptr(), &(lda as c_int), anorm.as_ptr(),
-                     rcond, work.as_mut_ptr(), iwork.as_mut_ptr(), info)
+        ffi::dpocon_(&(uplo as c_char), &(n as c_int), a.as_ptr(), &(lda as c_int), &anorm, rcond,
+                     work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
-pub fn cpocon(uplo: u8, n: usize, a: &[c32], lda: usize, anorm: &[f32], rcond: &mut f32,
+pub fn cpocon(uplo: u8, n: usize, a: &[c32], lda: usize, anorm: f32, rcond: &mut f32,
               work: &mut [c32], rwork: &mut [f32], info: &mut i32) {
 
     unsafe {
         ffi::cpocon_(&(uplo as c_char), &(n as c_int), a.as_ptr() as *const _, &(lda as c_int),
-                     anorm.as_ptr(), rcond, work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
+                     &anorm, rcond, work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
-pub fn zpocon(uplo: u8, n: usize, a: &[c64], lda: usize, anorm: &[f64], rcond: &mut f64,
+pub fn zpocon(uplo: u8, n: usize, a: &[c64], lda: usize, anorm: f64, rcond: &mut f64,
               work: &mut [c64], rwork: &mut [f64], info: &mut i32) {
 
     unsafe {
         ffi::zpocon_(&(uplo as c_char), &(n as c_int), a.as_ptr() as *const _, &(lda as c_int),
-                     anorm.as_ptr(), rcond, work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
+                     &anorm, rcond, work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
-pub fn sppcon(uplo: u8, n: usize, ap: &[f32], anorm: &[f32], rcond: &mut f32, work: &mut [f32],
+pub fn sppcon(uplo: u8, n: usize, ap: &[f32], anorm: f32, rcond: &mut f32, work: &mut [f32],
               iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
-        ffi::sppcon_(&(uplo as c_char), &(n as c_int), ap.as_ptr(), anorm.as_ptr(), rcond,
+        ffi::sppcon_(&(uplo as c_char), &(n as c_int), ap.as_ptr(), &anorm, rcond,
                      work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
-pub fn dppcon(uplo: u8, n: usize, ap: &[f64], anorm: &[f64], rcond: &mut f64, work: &mut [f64],
+pub fn dppcon(uplo: u8, n: usize, ap: &[f64], anorm: f64, rcond: &mut f64, work: &mut [f64],
               iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
-        ffi::dppcon_(&(uplo as c_char), &(n as c_int), ap.as_ptr(), anorm.as_ptr(), rcond,
+        ffi::dppcon_(&(uplo as c_char), &(n as c_int), ap.as_ptr(), &anorm, rcond,
                      work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
-pub fn cppcon(uplo: u8, n: usize, ap: &[c32], anorm: &[f32], rcond: &mut f32, work: &mut [c32],
+pub fn cppcon(uplo: u8, n: usize, ap: &[c32], anorm: f32, rcond: &mut f32, work: &mut [c32],
               rwork: &mut [f32], info: &mut i32) {
 
     unsafe {
-        ffi::cppcon_(&(uplo as c_char), &(n as c_int), ap.as_ptr() as *const _, anorm.as_ptr(),
-                     rcond, work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
+        ffi::cppcon_(&(uplo as c_char), &(n as c_int), ap.as_ptr() as *const _, &anorm, rcond,
+                     work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
-pub fn zppcon(uplo: u8, n: usize, ap: &[c64], anorm: &[f64], rcond: &mut f64, work: &mut [c64],
+pub fn zppcon(uplo: u8, n: usize, ap: &[c64], anorm: f64, rcond: &mut f64, work: &mut [c64],
               rwork: &mut [f64], info: &mut i32) {
 
     unsafe {
-        ffi::zppcon_(&(uplo as c_char), &(n as c_int), ap.as_ptr() as *const _, anorm.as_ptr(),
-                     rcond, work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
+        ffi::zppcon_(&(uplo as c_char), &(n as c_int), ap.as_ptr() as *const _, &anorm, rcond,
+                     work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
-pub fn spbcon(uplo: u8, n: usize, kd: usize, ab: &[f32], ldab: usize, anorm: &[f32],
-              rcond: &mut f32, work: &mut [f32], iwork: &mut [i32], info: &mut i32) {
-
-    unsafe {
-        ffi::spbcon_(&(uplo as c_char), &(n as c_int), &(kd as c_int), ab.as_ptr(),
-                     &(ldab as c_int), anorm.as_ptr(), rcond, work.as_mut_ptr(),
-                     iwork.as_mut_ptr(), info)
-    }
-}
-
-#[inline]
-pub fn dpbcon(uplo: u8, n: usize, kd: usize, ab: &[f64], ldab: usize, anorm: &[f64],
-              rcond: &mut f64, work: &mut [f64], iwork: &mut [i32], info: &mut i32) {
-
-    unsafe {
-        ffi::dpbcon_(&(uplo as c_char), &(n as c_int), &(kd as c_int), ab.as_ptr(),
-                     &(ldab as c_int), anorm.as_ptr(), rcond, work.as_mut_ptr(),
-                     iwork.as_mut_ptr(), info)
-    }
-}
-
-#[inline]
-pub fn cpbcon(uplo: u8, n: usize, kd: usize, ab: &[c32], ldab: usize, anorm: &[f32],
-              rcond: &mut f32, work: &mut [c32], rwork: &mut [f32], info: &mut i32) {
-
-    unsafe {
-        ffi::cpbcon_(&(uplo as c_char), &(n as c_int), &(kd as c_int), ab.as_ptr() as *const _,
-                     &(ldab as c_int), anorm.as_ptr(), rcond, work.as_mut_ptr() as *mut _,
-                     rwork.as_mut_ptr(), info)
-    }
-}
-
-#[inline]
-pub fn zpbcon(uplo: u8, n: usize, kd: usize, ab: &[c64], ldab: usize, anorm: &[f64],
-              rcond: &mut f64, work: &mut [c64], rwork: &mut [f64], info: &mut i32) {
-
-    unsafe {
-        ffi::zpbcon_(&(uplo as c_char), &(n as c_int), &(kd as c_int), ab.as_ptr() as *const _,
-                     &(ldab as c_int), anorm.as_ptr(), rcond, work.as_mut_ptr() as *mut _,
-                     rwork.as_mut_ptr(), info)
-    }
-}
-
-#[inline]
-pub fn sptcon(n: usize, d: &[f32], e: &[f32], anorm: &[f32], rcond: &mut f32, work: &mut [f32],
-              info: &mut i32) {
-
-    unsafe {
-        ffi::sptcon_(&(n as c_int), d.as_ptr(), e.as_ptr(), anorm.as_ptr(), rcond,
-                     work.as_mut_ptr(), info)
-    }
-}
-
-#[inline]
-pub fn dptcon(n: usize, d: &[f64], e: &[f64], anorm: &[f64], rcond: &mut f64, work: &mut [f64],
-              info: &mut i32) {
-
-    unsafe {
-        ffi::dptcon_(&(n as c_int), d.as_ptr(), e.as_ptr(), anorm.as_ptr(), rcond,
-                     work.as_mut_ptr(), info)
-    }
-}
-
-#[inline]
-pub fn cptcon(n: usize, d: &[f32], e: &[c32], anorm: &[f32], rcond: &mut f32, rwork: &mut [f32],
-              info: &mut i32) {
-
-    unsafe {
-        ffi::cptcon_(&(n as c_int), d.as_ptr(), e.as_ptr() as *const _, anorm.as_ptr(), rcond,
-                     rwork.as_mut_ptr(), info)
-    }
-}
-
-#[inline]
-pub fn zptcon(n: usize, d: &[f64], e: &[c64], anorm: &[f64], rcond: &mut f64, rwork: &mut [f64],
-              info: &mut i32) {
-
-    unsafe {
-        ffi::zptcon_(&(n as c_int), d.as_ptr(), e.as_ptr() as *const _, anorm.as_ptr(), rcond,
-                     rwork.as_mut_ptr(), info)
-    }
-}
-
-#[inline]
-pub fn ssycon(uplo: u8, n: usize, a: &[f32], lda: usize, ipiv: &[i32], anorm: &[f32],
-              rcond: &mut f32, work: &mut [f32], iwork: &mut [i32], info: &mut i32) {
-
-    unsafe {
-        ffi::ssycon_(&(uplo as c_char), &(n as c_int), a.as_ptr(), &(lda as c_int), ipiv.as_ptr(),
-                     anorm.as_ptr(), rcond, work.as_mut_ptr(), iwork.as_mut_ptr(), info)
-    }
-}
-
-#[inline]
-pub fn dsycon(uplo: u8, n: usize, a: &[f64], lda: usize, ipiv: &[i32], anorm: &[f64],
-              rcond: &mut f64, work: &mut [f64], iwork: &mut [i32], info: &mut i32) {
-
-    unsafe {
-        ffi::dsycon_(&(uplo as c_char), &(n as c_int), a.as_ptr(), &(lda as c_int), ipiv.as_ptr(),
-                     anorm.as_ptr(), rcond, work.as_mut_ptr(), iwork.as_mut_ptr(), info)
-    }
-}
-
-#[inline]
-pub fn csycon(uplo: u8, n: usize, a: &[c32], lda: usize, ipiv: &[i32], anorm: &[f32],
-              rcond: &mut f32, work: &mut [c32], info: &mut i32) {
-
-    unsafe {
-        ffi::csycon_(&(uplo as c_char), &(n as c_int), a.as_ptr() as *const _, &(lda as c_int),
-                     ipiv.as_ptr(), anorm.as_ptr(), rcond, work.as_mut_ptr() as *mut _, info)
-    }
-}
-
-#[inline]
-pub fn zsycon(uplo: u8, n: usize, a: &[c64], lda: usize, ipiv: &[i32], anorm: &[f64],
-              rcond: &mut f64, work: &mut [c64], info: &mut i32) {
-
-    unsafe {
-        ffi::zsycon_(&(uplo as c_char), &(n as c_int), a.as_ptr() as *const _, &(lda as c_int),
-                     ipiv.as_ptr(), anorm.as_ptr(), rcond, work.as_mut_ptr() as *mut _, info)
-    }
-}
-
-#[inline]
-pub fn checon(uplo: u8, n: usize, a: &[c32], lda: usize, ipiv: &[i32], anorm: &[f32],
-              rcond: &mut f32, work: &mut [c32], info: &mut i32) {
-
-    unsafe {
-        ffi::checon_(&(uplo as c_char), &(n as c_int), a.as_ptr() as *const _, &(lda as c_int),
-                     ipiv.as_ptr(), anorm.as_ptr(), rcond, work.as_mut_ptr() as *mut _, info)
-    }
-}
-
-#[inline]
-pub fn zhecon(uplo: u8, n: usize, a: &[c64], lda: usize, ipiv: &[i32], anorm: &[f64],
-              rcond: &mut f64, work: &mut [c64], info: &mut i32) {
-
-    unsafe {
-        ffi::zhecon_(&(uplo as c_char), &(n as c_int), a.as_ptr() as *const _, &(lda as c_int),
-                     ipiv.as_ptr(), anorm.as_ptr(), rcond, work.as_mut_ptr() as *mut _, info)
-    }
-}
-
-#[inline]
-pub fn sspcon(uplo: u8, n: usize, ap: &[f32], ipiv: &[i32], anorm: &[f32], rcond: &mut f32,
+pub fn spbcon(uplo: u8, n: usize, kd: usize, ab: &[f32], ldab: usize, anorm: f32, rcond: &mut f32,
               work: &mut [f32], iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
-        ffi::sspcon_(&(uplo as c_char), &(n as c_int), ap.as_ptr(), ipiv.as_ptr(), anorm.as_ptr(),
-                     rcond, work.as_mut_ptr(), iwork.as_mut_ptr(), info)
+        ffi::spbcon_(&(uplo as c_char), &(n as c_int), &(kd as c_int), ab.as_ptr(),
+                     &(ldab as c_int), &anorm, rcond, work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
-pub fn dspcon(uplo: u8, n: usize, ap: &[f64], ipiv: &[i32], anorm: &[f64], rcond: &mut f64,
+pub fn dpbcon(uplo: u8, n: usize, kd: usize, ab: &[f64], ldab: usize, anorm: f64, rcond: &mut f64,
               work: &mut [f64], iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
-        ffi::dspcon_(&(uplo as c_char), &(n as c_int), ap.as_ptr(), ipiv.as_ptr(), anorm.as_ptr(),
-                     rcond, work.as_mut_ptr(), iwork.as_mut_ptr(), info)
+        ffi::dpbcon_(&(uplo as c_char), &(n as c_int), &(kd as c_int), ab.as_ptr(),
+                     &(ldab as c_int), &anorm, rcond, work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
-pub fn cspcon(uplo: u8, n: usize, ap: &[c32], ipiv: &[i32], anorm: &[f32], rcond: &mut f32,
+pub fn cpbcon(uplo: u8, n: usize, kd: usize, ab: &[c32], ldab: usize, anorm: f32, rcond: &mut f32,
+              work: &mut [c32], rwork: &mut [f32], info: &mut i32) {
+
+    unsafe {
+        ffi::cpbcon_(&(uplo as c_char), &(n as c_int), &(kd as c_int), ab.as_ptr() as *const _,
+                     &(ldab as c_int), &anorm, rcond, work.as_mut_ptr() as *mut _,
+                     rwork.as_mut_ptr(), info)
+    }
+}
+
+#[inline]
+pub fn zpbcon(uplo: u8, n: usize, kd: usize, ab: &[c64], ldab: usize, anorm: f64, rcond: &mut f64,
+              work: &mut [c64], rwork: &mut [f64], info: &mut i32) {
+
+    unsafe {
+        ffi::zpbcon_(&(uplo as c_char), &(n as c_int), &(kd as c_int), ab.as_ptr() as *const _,
+                     &(ldab as c_int), &anorm, rcond, work.as_mut_ptr() as *mut _,
+                     rwork.as_mut_ptr(), info)
+    }
+}
+
+#[inline]
+pub fn sptcon(n: usize, d: &[f32], e: &[f32], anorm: f32, rcond: &mut f32, work: &mut [f32],
+              info: &mut i32) {
+
+    unsafe {
+        ffi::sptcon_(&(n as c_int), d.as_ptr(), e.as_ptr(), &anorm, rcond, work.as_mut_ptr(), info)
+    }
+}
+
+#[inline]
+pub fn dptcon(n: usize, d: &[f64], e: &[f64], anorm: f64, rcond: &mut f64, work: &mut [f64],
+              info: &mut i32) {
+
+    unsafe {
+        ffi::dptcon_(&(n as c_int), d.as_ptr(), e.as_ptr(), &anorm, rcond, work.as_mut_ptr(), info)
+    }
+}
+
+#[inline]
+pub fn cptcon(n: usize, d: &[f32], e: &[c32], anorm: f32, rcond: &mut f32, rwork: &mut [f32],
+              info: &mut i32) {
+
+    unsafe {
+        ffi::cptcon_(&(n as c_int), d.as_ptr(), e.as_ptr() as *const _, &anorm, rcond,
+                     rwork.as_mut_ptr(), info)
+    }
+}
+
+#[inline]
+pub fn zptcon(n: usize, d: &[f64], e: &[c64], anorm: f64, rcond: &mut f64, rwork: &mut [f64],
+              info: &mut i32) {
+
+    unsafe {
+        ffi::zptcon_(&(n as c_int), d.as_ptr(), e.as_ptr() as *const _, &anorm, rcond,
+                     rwork.as_mut_ptr(), info)
+    }
+}
+
+#[inline]
+pub fn ssycon(uplo: u8, n: usize, a: &[f32], lda: usize, ipiv: &[i32], anorm: f32, rcond: &mut f32,
+              work: &mut [f32], iwork: &mut [i32], info: &mut i32) {
+
+    unsafe {
+        ffi::ssycon_(&(uplo as c_char), &(n as c_int), a.as_ptr(), &(lda as c_int), ipiv.as_ptr(),
+                     &anorm, rcond, work.as_mut_ptr(), iwork.as_mut_ptr(), info)
+    }
+}
+
+#[inline]
+pub fn dsycon(uplo: u8, n: usize, a: &[f64], lda: usize, ipiv: &[i32], anorm: f64, rcond: &mut f64,
+              work: &mut [f64], iwork: &mut [i32], info: &mut i32) {
+
+    unsafe {
+        ffi::dsycon_(&(uplo as c_char), &(n as c_int), a.as_ptr(), &(lda as c_int), ipiv.as_ptr(),
+                     &anorm, rcond, work.as_mut_ptr(), iwork.as_mut_ptr(), info)
+    }
+}
+
+#[inline]
+pub fn csycon(uplo: u8, n: usize, a: &[c32], lda: usize, ipiv: &[i32], anorm: f32, rcond: &mut f32,
+              work: &mut [c32], info: &mut i32) {
+
+    unsafe {
+        ffi::csycon_(&(uplo as c_char), &(n as c_int), a.as_ptr() as *const _, &(lda as c_int),
+                     ipiv.as_ptr(), &anorm, rcond, work.as_mut_ptr() as *mut _, info)
+    }
+}
+
+#[inline]
+pub fn zsycon(uplo: u8, n: usize, a: &[c64], lda: usize, ipiv: &[i32], anorm: f64, rcond: &mut f64,
+              work: &mut [c64], info: &mut i32) {
+
+    unsafe {
+        ffi::zsycon_(&(uplo as c_char), &(n as c_int), a.as_ptr() as *const _, &(lda as c_int),
+                     ipiv.as_ptr(), &anorm, rcond, work.as_mut_ptr() as *mut _, info)
+    }
+}
+
+#[inline]
+pub fn checon(uplo: u8, n: usize, a: &[c32], lda: usize, ipiv: &[i32], anorm: f32, rcond: &mut f32,
+              work: &mut [c32], info: &mut i32) {
+
+    unsafe {
+        ffi::checon_(&(uplo as c_char), &(n as c_int), a.as_ptr() as *const _, &(lda as c_int),
+                     ipiv.as_ptr(), &anorm, rcond, work.as_mut_ptr() as *mut _, info)
+    }
+}
+
+#[inline]
+pub fn zhecon(uplo: u8, n: usize, a: &[c64], lda: usize, ipiv: &[i32], anorm: f64, rcond: &mut f64,
+              work: &mut [c64], info: &mut i32) {
+
+    unsafe {
+        ffi::zhecon_(&(uplo as c_char), &(n as c_int), a.as_ptr() as *const _, &(lda as c_int),
+                     ipiv.as_ptr(), &anorm, rcond, work.as_mut_ptr() as *mut _, info)
+    }
+}
+
+#[inline]
+pub fn sspcon(uplo: u8, n: usize, ap: &[f32], ipiv: &[i32], anorm: f32, rcond: &mut f32,
+              work: &mut [f32], iwork: &mut [i32], info: &mut i32) {
+
+    unsafe {
+        ffi::sspcon_(&(uplo as c_char), &(n as c_int), ap.as_ptr(), ipiv.as_ptr(), &anorm, rcond,
+                     work.as_mut_ptr(), iwork.as_mut_ptr(), info)
+    }
+}
+
+#[inline]
+pub fn dspcon(uplo: u8, n: usize, ap: &[f64], ipiv: &[i32], anorm: f64, rcond: &mut f64,
+              work: &mut [f64], iwork: &mut [i32], info: &mut i32) {
+
+    unsafe {
+        ffi::dspcon_(&(uplo as c_char), &(n as c_int), ap.as_ptr(), ipiv.as_ptr(), &anorm, rcond,
+                     work.as_mut_ptr(), iwork.as_mut_ptr(), info)
+    }
+}
+
+#[inline]
+pub fn cspcon(uplo: u8, n: usize, ap: &[c32], ipiv: &[i32], anorm: f32, rcond: &mut f32,
               work: &mut [c32], info: &mut i32) {
 
     unsafe {
         ffi::cspcon_(&(uplo as c_char), &(n as c_int), ap.as_ptr() as *const _, ipiv.as_ptr(),
-                     anorm.as_ptr(), rcond, work.as_mut_ptr() as *mut _, info)
+                     &anorm, rcond, work.as_mut_ptr() as *mut _, info)
     }
 }
 
 #[inline]
-pub fn zspcon(uplo: u8, n: usize, ap: &[c64], ipiv: &[i32], anorm: &[f64], rcond: &mut f64,
+pub fn zspcon(uplo: u8, n: usize, ap: &[c64], ipiv: &[i32], anorm: f64, rcond: &mut f64,
               work: &mut [c64], info: &mut i32) {
 
     unsafe {
         ffi::zspcon_(&(uplo as c_char), &(n as c_int), ap.as_ptr() as *const _, ipiv.as_ptr(),
-                     anorm.as_ptr(), rcond, work.as_mut_ptr() as *mut _, info)
+                     &anorm, rcond, work.as_mut_ptr() as *mut _, info)
     }
 }
 
 #[inline]
-pub fn chpcon(uplo: u8, n: usize, ap: &[c32], ipiv: &[i32], anorm: &[f32], rcond: &mut f32,
+pub fn chpcon(uplo: u8, n: usize, ap: &[c32], ipiv: &[i32], anorm: f32, rcond: &mut f32,
               work: &mut [c32], info: &mut i32) {
 
     unsafe {
         ffi::chpcon_(&(uplo as c_char), &(n as c_int), ap.as_ptr() as *const _, ipiv.as_ptr(),
-                     anorm.as_ptr(), rcond, work.as_mut_ptr() as *mut _, info)
+                     &anorm, rcond, work.as_mut_ptr() as *mut _, info)
     }
 }
 
 #[inline]
-pub fn zhpcon(uplo: u8, n: usize, ap: &[c64], ipiv: &[i32], anorm: &[f64], rcond: &mut f64,
+pub fn zhpcon(uplo: u8, n: usize, ap: &[c64], ipiv: &[i32], anorm: f64, rcond: &mut f64,
               work: &mut [c64], info: &mut i32) {
 
     unsafe {
         ffi::zhpcon_(&(uplo as c_char), &(n as c_int), ap.as_ptr() as *const _, ipiv.as_ptr(),
-                     anorm.as_ptr(), rcond, work.as_mut_ptr() as *mut _, info)
+                     &anorm, rcond, work.as_mut_ptr() as *mut _, info)
     }
 }
 

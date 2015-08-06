@@ -4322,7 +4322,7 @@ def is_mut(name, cty):
     return "*mut" in cty
 
 def is_scalar(name, cty, f):
-    return name in ["info", "rcond"]
+    return name in ["anorm", "info", "rcond"]
 
 def translate_argument(name, cty, f):
     if is_natural(name, cty):

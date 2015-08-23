@@ -15,6 +15,7 @@ description = "The package provides an interface to the Linear Algebra PACKage."
 default = ["openblas"]
 openblas = ["lapack-sys/openblas"]
 netlib = ["lapack-sys/netlib"]
+accelerate = ["lapack-sys/accelerate"]
 
 [dependencies]
 complex = "0.7"

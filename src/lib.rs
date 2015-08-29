@@ -20,13 +20,18 @@
 //!
 //! [1]: http://en.wikipedia.org/wiki/LAPACK
 
-extern crate complex;
 extern crate lapack_sys as ffi;
 extern crate libc;
+extern crate num;
 
-use complex::{c32, c64};
 use libc::{c_char, c_int};
 use std::mem::transmute;
+
+#[allow(non_camel_case_types)]
+pub type c32 = num::Complex<f32>;
+
+#[allow(non_camel_case_types)]
+pub type c64 = num::Complex<f64>;
 
 pub type Select2F32 = Option<extern "C" fn(*const f32, *const f32) -> i32>;
 pub type Select3F32 = Option<extern "C" fn(*const f32, *const f32, *const f32) -> i32>;

@@ -1,6 +1,6 @@
 [package]
 name = "lapack"
-version = "0.8.0"
+version = "0.8.1"
 authors = [
   "Andrew Straw <strawman@astraw.com>",
   "Ivan Ukhov <ivan.ukhov@gmail.com>",
@@ -19,7 +19,7 @@ netlib = ["lapack-sys/netlib"]
 openblas = ["lapack-sys/openblas"]
 
 [dependencies]
-libc = "0.1"
+libc = "0.2"
 
 [dependencies.num]
 version = "0.1"

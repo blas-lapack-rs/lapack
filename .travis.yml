@@ -1,5 +1,9 @@
 language: rust
 sudo: false
+rust:
+  - stable
+  - beta
+  - nightly
 
 addons:
   apt:
@@ -11,7 +15,8 @@ after_success:
 
 env:
   global:
-    secure: EMVyll81L6XVqiD7LgCu80Xob5U3scenro7ZXpB9TziuLzPhfWMx43x1ue84isqDixLjyQZETwjO+fwFt94qv696wGYOth/xQTsVgu4MHUK8mkt6Bf3bsTORQ2f67y6f6vuvvziASiD2bWHcmsyrvzUxgRdwZ/VtodeCMDVeYrM=
+    - RUSTDOC_VERSION=stable
+    - secure: EMVyll81L6XVqiD7LgCu80Xob5U3scenro7ZXpB9TziuLzPhfWMx43x1ue84isqDixLjyQZETwjO+fwFt94qv696wGYOth/xQTsVgu4MHUK8mkt6Bf3bsTORQ2f67y6f6vuvvziASiD2bWHcmsyrvzUxgRdwZ/VtodeCMDVeYrM=
 
 notifications:
   email: false

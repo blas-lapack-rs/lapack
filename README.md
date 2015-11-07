@@ -30,7 +30,7 @@ for (one, another) in w.iter().zip(&[2.0, 2.0, 5.0]) {
 
 [1]: http://en.wikipedia.org/wiki/LAPACK
 
-[version-img]: http://stainless-steel.github.io/images/crates.svg
+[version-img]: https://img.shields.io/crates/v/lapack.svg
 [version-url]: https://crates.io/crates/lapack
 [status-img]: https://travis-ci.org/stainless-steel/lapack.svg?branch=master
 [status-url]: https://travis-ci.org/stainless-steel/lapack

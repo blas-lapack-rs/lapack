@@ -12,7 +12,7 @@ let n = 3;
 let mut a = vec![3.0, 1.0, 1.0, 1.0, 3.0, 1.0, 1.0, 1.0, 3.0];
 let mut w = vec![0.0; n];
 let mut work = vec![0.0; 4 * n];
-let mut lwork = 4 * n as isize;
+let lwork = 4 * n as isize;
 let mut info = 0;
 
 lapack::dsyev(b'V', b'U', n, &mut a, n, &mut w, &mut work, lwork, &mut info);

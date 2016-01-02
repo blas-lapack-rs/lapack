@@ -1,22 +1,47 @@
 language: rust
 sudo: false
+
+os:
+  - linux
+  - osx
+
 rust:
   - stable
   - beta
   - nightly
 
-addons:
-  apt:
-    packages:
-      - gfortran
+env:
+  matrix:
+    - FEATURE=accelerate
+    - FEATURE=netlib
+    - FEATURE=openblas
+
+  global:
+    - RUSTDOC_VERSION=nightly
+    - secure: EMVyll81L6XVqiD7LgCu80Xob5U3scenro7ZXpB9TziuLzPhfWMx43x1ue84isqDixLjyQZETwjO+fwFt94qv696wGYOth/xQTsVgu4MHUK8mkt6Bf3bsTORQ2f67y6f6vuvvziASiD2bWHcmsyrvzUxgRdwZ/VtodeCMDVeYrM=
+
+matrix:
+  exclude:
+    - os: linux
+      env: FEATURE=accelerate
+
+before_install:
+  - curl https://stainless-steel.github.io/travis/install_gfortran.sh | bash
+
+script:
+  - cargo test --no-default-features --features=$FEATURE --verbose
 
 after_success:
   - curl https://stainless-steel.github.io/travis/after_success.sh | bash
 
-env:
-  global:
-    - RUSTDOC_VERSION=stable
-    - secure: EMVyll81L6XVqiD7LgCu80Xob5U3scenro7ZXpB9TziuLzPhfWMx43x1ue84isqDixLjyQZETwjO+fwFt94qv696wGYOth/xQTsVgu4MHUK8mkt6Bf3bsTORQ2f67y6f6vuvvziASiD2bWHcmsyrvzUxgRdwZ/VtodeCMDVeYrM=
-
 notifications:
   email: false
+
+addons:
+  apt:
+    sources:
+      - kubuntu-backports
+
+    packages:
+      - cmake
+      - gfortran

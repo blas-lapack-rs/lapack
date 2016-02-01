@@ -1592,14 +1592,14 @@ pub fn zgerfs(trans: u8, n: i32, nrhs: i32, a: &[c64], lda: i32, af: &[c64], lda
 #[inline]
 pub fn dgerfsx(trans: u8, equed: u8, n: i32, nrhs: i32, a: &[f64], lda: i32, af: &[f64], ldaf: i32,
                ipiv: &[i32], r: &[f64], c: &[f64], b: &[f64], ldb: i32, x: &mut [f64], ldx: i32,
-               rcond: &mut f64, berr: &mut [f64], n_err_bnds: &[i32], err_bnds_norm: &mut [f64],
+               rcond: &mut f64, berr: &mut [f64], n_err_bnds: i32, err_bnds_norm: &mut [f64],
                err_bnds_comp: &mut [f64], nparams: &[i32], params: &mut [f64], work: &mut [f64],
                iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::dgerfsx_(&(trans as c_char), &(equed as c_char), &n, &nrhs, a.as_ptr(), &lda,
                       af.as_ptr(), &ldaf, ipiv.as_ptr(), r.as_ptr(), c.as_ptr(), b.as_ptr(), &ldb,
-                      x.as_mut_ptr(), &ldx, rcond, berr.as_mut_ptr(), n_err_bnds.as_ptr(),
+                      x.as_mut_ptr(), &ldx, rcond, berr.as_mut_ptr(), &n_err_bnds,
                       err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(), nparams.as_ptr(),
                       params.as_mut_ptr(), work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
@@ -1608,14 +1608,14 @@ pub fn dgerfsx(trans: u8, equed: u8, n: i32, nrhs: i32, a: &[f64], lda: i32, af:
 #[inline]
 pub fn sgerfsx(trans: u8, equed: u8, n: i32, nrhs: i32, a: &[f32], lda: i32, af: &[f32], ldaf: i32,
                ipiv: &[i32], r: &[f32], c: &[f32], b: &[f32], ldb: i32, x: &mut [f32], ldx: i32,
-               rcond: &mut f32, berr: &mut [f32], n_err_bnds: &[i32], err_bnds_norm: &mut [f32],
+               rcond: &mut f32, berr: &mut [f32], n_err_bnds: i32, err_bnds_norm: &mut [f32],
                err_bnds_comp: &mut [f32], nparams: &[i32], params: &mut [f32], work: &mut [f32],
                iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::sgerfsx_(&(trans as c_char), &(equed as c_char), &n, &nrhs, a.as_ptr(), &lda,
                       af.as_ptr(), &ldaf, ipiv.as_ptr(), r.as_ptr(), c.as_ptr(), b.as_ptr(), &ldb,
-                      x.as_mut_ptr(), &ldx, rcond, berr.as_mut_ptr(), n_err_bnds.as_ptr(),
+                      x.as_mut_ptr(), &ldx, rcond, berr.as_mut_ptr(), &n_err_bnds,
                       err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(), nparams.as_ptr(),
                       params.as_mut_ptr(), work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
@@ -1624,7 +1624,7 @@ pub fn sgerfsx(trans: u8, equed: u8, n: i32, nrhs: i32, a: &[f32], lda: i32, af:
 #[inline]
 pub fn zgerfsx(trans: u8, equed: u8, n: i32, nrhs: i32, a: &[c64], lda: i32, af: &[c64], ldaf: i32,
                ipiv: &[i32], r: &[f64], c: &[f64], b: &[c64], ldb: i32, x: &mut [c64], ldx: i32,
-               rcond: &mut f64, berr: &mut [f64], n_err_bnds: &[i32], err_bnds_norm: &mut [f64],
+               rcond: &mut f64, berr: &mut [f64], n_err_bnds: i32, err_bnds_norm: &mut [f64],
                err_bnds_comp: &mut [f64], nparams: &[i32], params: &mut [f64], work: &mut [c64],
                rwork: &mut [f64], info: &mut i32) {
 
@@ -1632,7 +1632,7 @@ pub fn zgerfsx(trans: u8, equed: u8, n: i32, nrhs: i32, a: &[c64], lda: i32, af:
         ffi::zgerfsx_(&(trans as c_char), &(equed as c_char), &n, &nrhs, a.as_ptr() as *const _,
                       &lda, af.as_ptr() as *const _, &ldaf, ipiv.as_ptr(), r.as_ptr(), c.as_ptr(),
                       b.as_ptr() as *const _, &ldb, x.as_mut_ptr() as *mut _, &ldx, rcond,
-                      berr.as_mut_ptr(), n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(),
+                      berr.as_mut_ptr(), &n_err_bnds, err_bnds_norm.as_mut_ptr(),
                       err_bnds_comp.as_mut_ptr(), nparams.as_ptr(), params.as_mut_ptr(),
                       work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
@@ -1641,7 +1641,7 @@ pub fn zgerfsx(trans: u8, equed: u8, n: i32, nrhs: i32, a: &[c64], lda: i32, af:
 #[inline]
 pub fn cgerfsx(trans: u8, equed: u8, n: i32, nrhs: i32, a: &[c32], lda: i32, af: &[c32], ldaf: i32,
                ipiv: &[i32], r: &[f32], c: &[f32], b: &[c32], ldb: i32, x: &mut [c32], ldx: i32,
-               rcond: &mut f32, berr: &mut [f32], n_err_bnds: &[i32], err_bnds_norm: &mut [f32],
+               rcond: &mut f32, berr: &mut [f32], n_err_bnds: i32, err_bnds_norm: &mut [f32],
                err_bnds_comp: &mut [f32], nparams: &[i32], params: &mut [f32], work: &mut [c32],
                rwork: &mut [f32], info: &mut i32) {
 
@@ -1649,7 +1649,7 @@ pub fn cgerfsx(trans: u8, equed: u8, n: i32, nrhs: i32, a: &[c32], lda: i32, af:
         ffi::cgerfsx_(&(trans as c_char), &(equed as c_char), &n, &nrhs, a.as_ptr() as *const _,
                       &lda, af.as_ptr() as *const _, &ldaf, ipiv.as_ptr(), r.as_ptr(), c.as_ptr(),
                       b.as_ptr() as *const _, &ldb, x.as_mut_ptr() as *mut _, &ldx, rcond,
-                      berr.as_mut_ptr(), n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(),
+                      berr.as_mut_ptr(), &n_err_bnds, err_bnds_norm.as_mut_ptr(),
                       err_bnds_comp.as_mut_ptr(), nparams.as_ptr(), params.as_mut_ptr(),
                       work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
@@ -1714,7 +1714,7 @@ pub fn zgbrfs(trans: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &[c64], ldab: 
 #[inline]
 pub fn dgbrfsx(trans: u8, equed: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &[f64], ldab: i32,
                afb: &[f64], ldafb: i32, ipiv: &[i32], r: &[f64], c: &[f64], b: &[f64], ldb: i32,
-               x: &mut [f64], ldx: i32, rcond: &mut f64, berr: &mut [f64], n_err_bnds: &[i32],
+               x: &mut [f64], ldx: i32, rcond: &mut f64, berr: &mut [f64], n_err_bnds: i32,
                err_bnds_norm: &mut [f64], err_bnds_comp: &mut [f64], nparams: &[i32],
                params: &mut [f64], work: &mut [f64], iwork: &mut [i32], info: &mut i32) {
 
@@ -1722,7 +1722,7 @@ pub fn dgbrfsx(trans: u8, equed: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &[
         ffi::dgbrfsx_(&(trans as c_char), &(equed as c_char), &n, &kl, &ku, &nrhs, ab.as_ptr(),
                       &ldab, afb.as_ptr(), &ldafb, ipiv.as_ptr(), r.as_ptr(), c.as_ptr(),
                       b.as_ptr(), &ldb, x.as_mut_ptr(), &ldx, rcond, berr.as_mut_ptr(),
-                      n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(),
+                      &n_err_bnds, err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(),
                       nparams.as_ptr(), params.as_mut_ptr(), work.as_mut_ptr(), iwork.as_mut_ptr(),
                       info)
     }
@@ -1731,7 +1731,7 @@ pub fn dgbrfsx(trans: u8, equed: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &[
 #[inline]
 pub fn sgbrfsx(trans: u8, equed: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &[f32], ldab: i32,
                afb: &[f32], ldafb: i32, ipiv: &[i32], r: &[f32], c: &[f32], b: &[f32], ldb: i32,
-               x: &mut [f32], ldx: i32, rcond: &mut f32, berr: &mut [f32], n_err_bnds: &[i32],
+               x: &mut [f32], ldx: i32, rcond: &mut f32, berr: &mut [f32], n_err_bnds: i32,
                err_bnds_norm: &mut [f32], err_bnds_comp: &mut [f32], nparams: &[i32],
                params: &mut [f32], work: &mut [f32], iwork: &mut [i32], info: &mut i32) {
 
@@ -1739,7 +1739,7 @@ pub fn sgbrfsx(trans: u8, equed: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &[
         ffi::sgbrfsx_(&(trans as c_char), &(equed as c_char), &n, &kl, &ku, &nrhs, ab.as_ptr(),
                       &ldab, afb.as_ptr(), &ldafb, ipiv.as_ptr(), r.as_ptr(), c.as_ptr(),
                       b.as_ptr(), &ldb, x.as_mut_ptr(), &ldx, rcond, berr.as_mut_ptr(),
-                      n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(),
+                      &n_err_bnds, err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(),
                       nparams.as_ptr(), params.as_mut_ptr(), work.as_mut_ptr(), iwork.as_mut_ptr(),
                       info)
     }
@@ -1748,7 +1748,7 @@ pub fn sgbrfsx(trans: u8, equed: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &[
 #[inline]
 pub fn zgbrfsx(trans: u8, equed: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &[c64], ldab: i32,
                afb: &[c64], ldafb: i32, ipiv: &[i32], r: &[f64], c: &[f64], b: &[c64], ldb: i32,
-               x: &mut [c64], ldx: i32, rcond: &mut f64, berr: &mut [f64], n_err_bnds: &[i32],
+               x: &mut [c64], ldx: i32, rcond: &mut f64, berr: &mut [f64], n_err_bnds: i32,
                err_bnds_norm: &mut [f64], err_bnds_comp: &mut [f64], nparams: &[i32],
                params: &mut [f64], work: &mut [c64], rwork: &mut [f64], info: &mut i32) {
 
@@ -1756,17 +1756,16 @@ pub fn zgbrfsx(trans: u8, equed: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &[
         ffi::zgbrfsx_(&(trans as c_char), &(equed as c_char), &n, &kl, &ku, &nrhs,
                       ab.as_ptr() as *const _, &ldab, afb.as_ptr() as *const _, &ldafb,
                       ipiv.as_ptr(), r.as_ptr(), c.as_ptr(), b.as_ptr() as *const _, &ldb,
-                      x.as_mut_ptr() as *mut _, &ldx, rcond, berr.as_mut_ptr(),
-                      n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(),
-                      nparams.as_ptr(), params.as_mut_ptr(), work.as_mut_ptr() as *mut _,
-                      rwork.as_mut_ptr(), info)
+                      x.as_mut_ptr() as *mut _, &ldx, rcond, berr.as_mut_ptr(), &n_err_bnds,
+                      err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(), nparams.as_ptr(),
+                      params.as_mut_ptr(), work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn cgbrfsx(trans: u8, equed: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &[c32], ldab: i32,
                afb: &[c32], ldafb: i32, ipiv: &[i32], r: &[f32], c: &[f32], b: &[c32], ldb: i32,
-               x: &mut [c32], ldx: i32, rcond: &mut f32, berr: &mut [f32], n_err_bnds: &[i32],
+               x: &mut [c32], ldx: i32, rcond: &mut f32, berr: &mut [f32], n_err_bnds: i32,
                err_bnds_norm: &mut [f32], err_bnds_comp: &mut [f32], nparams: &[i32],
                params: &mut [f32], work: &mut [c32], rwork: &mut [f32], info: &mut i32) {
 
@@ -1774,10 +1773,9 @@ pub fn cgbrfsx(trans: u8, equed: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &[
         ffi::cgbrfsx_(&(trans as c_char), &(equed as c_char), &n, &kl, &ku, &nrhs,
                       ab.as_ptr() as *const _, &ldab, afb.as_ptr() as *const _, &ldafb,
                       ipiv.as_ptr(), r.as_ptr(), c.as_ptr(), b.as_ptr() as *const _, &ldb,
-                      x.as_mut_ptr() as *mut _, &ldx, rcond, berr.as_mut_ptr(),
-                      n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(),
-                      nparams.as_ptr(), params.as_mut_ptr(), work.as_mut_ptr() as *mut _,
-                      rwork.as_mut_ptr(), info)
+                      x.as_mut_ptr() as *mut _, &ldx, rcond, berr.as_mut_ptr(), &n_err_bnds,
+                      err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(), nparams.as_ptr(),
+                      params.as_mut_ptr(), work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
 }
 
@@ -1894,14 +1892,14 @@ pub fn zporfs(uplo: u8, n: i32, nrhs: i32, a: &[c64], lda: i32, af: &[c64], ldaf
 #[inline]
 pub fn dporfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[f64], lda: i32, af: &[f64], ldaf: i32,
                s: &[f64], b: &[f64], ldb: i32, x: &mut [f64], ldx: i32, rcond: &mut f64,
-               berr: &mut [f64], n_err_bnds: &[i32], err_bnds_norm: &mut [f64],
+               berr: &mut [f64], n_err_bnds: i32, err_bnds_norm: &mut [f64],
                err_bnds_comp: &mut [f64], nparams: &[i32], params: &mut [f64], work: &mut [f64],
                iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::dporfsx_(&(uplo as c_char), &(equed as c_char), &n, &nrhs, a.as_ptr(), &lda,
                       af.as_ptr(), &ldaf, s.as_ptr(), b.as_ptr(), &ldb, x.as_mut_ptr(), &ldx,
-                      rcond, berr.as_mut_ptr(), n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(),
+                      rcond, berr.as_mut_ptr(), &n_err_bnds, err_bnds_norm.as_mut_ptr(),
                       err_bnds_comp.as_mut_ptr(), nparams.as_ptr(), params.as_mut_ptr(),
                       work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
@@ -1910,14 +1908,14 @@ pub fn dporfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[f64], lda: i32, af: 
 #[inline]
 pub fn sporfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[f32], lda: i32, af: &[f32], ldaf: i32,
                s: &[f32], b: &[f32], ldb: i32, x: &mut [f32], ldx: i32, rcond: &mut f32,
-               berr: &mut [f32], n_err_bnds: &[i32], err_bnds_norm: &mut [f32],
+               berr: &mut [f32], n_err_bnds: i32, err_bnds_norm: &mut [f32],
                err_bnds_comp: &mut [f32], nparams: &[i32], params: &mut [f32], work: &mut [f32],
                iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::sporfsx_(&(uplo as c_char), &(equed as c_char), &n, &nrhs, a.as_ptr(), &lda,
                       af.as_ptr(), &ldaf, s.as_ptr(), b.as_ptr(), &ldb, x.as_mut_ptr(), &ldx,
-                      rcond, berr.as_mut_ptr(), n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(),
+                      rcond, berr.as_mut_ptr(), &n_err_bnds, err_bnds_norm.as_mut_ptr(),
                       err_bnds_comp.as_mut_ptr(), nparams.as_ptr(), params.as_mut_ptr(),
                       work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
@@ -1926,34 +1924,32 @@ pub fn sporfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[f32], lda: i32, af: 
 #[inline]
 pub fn zporfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[c64], lda: i32, af: &[c64], ldaf: i32,
                s: &[f64], b: &[c64], ldb: i32, x: &mut [c64], ldx: i32, rcond: &mut f64,
-               berr: &mut [f64], n_err_bnds: &[i32], err_bnds_norm: &mut [f64],
+               berr: &mut [f64], n_err_bnds: i32, err_bnds_norm: &mut [f64],
                err_bnds_comp: &mut [f64], nparams: &[i32], params: &mut [f64], work: &mut [c64],
                rwork: &mut [f64], info: &mut i32) {
 
     unsafe {
         ffi::zporfsx_(&(uplo as c_char), &(equed as c_char), &n, &nrhs, a.as_ptr() as *const _,
                       &lda, af.as_ptr() as *const _, &ldaf, s.as_ptr(), b.as_ptr() as *const _,
-                      &ldb, x.as_mut_ptr() as *mut _, &ldx, rcond, berr.as_mut_ptr(),
-                      n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(),
-                      nparams.as_ptr(), params.as_mut_ptr(), work.as_mut_ptr() as *mut _,
-                      rwork.as_mut_ptr(), info)
+                      &ldb, x.as_mut_ptr() as *mut _, &ldx, rcond, berr.as_mut_ptr(), &n_err_bnds,
+                      err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(), nparams.as_ptr(),
+                      params.as_mut_ptr(), work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn cporfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[c32], lda: i32, af: &[c32], ldaf: i32,
                s: &[f32], b: &[c32], ldb: i32, x: &mut [c32], ldx: i32, rcond: &mut f32,
-               berr: &mut [f32], n_err_bnds: &[i32], err_bnds_norm: &mut [f32],
+               berr: &mut [f32], n_err_bnds: i32, err_bnds_norm: &mut [f32],
                err_bnds_comp: &mut [f32], nparams: &[i32], params: &mut [f32], work: &mut [c32],
                rwork: &mut [f32], info: &mut i32) {
 
     unsafe {
         ffi::cporfsx_(&(uplo as c_char), &(equed as c_char), &n, &nrhs, a.as_ptr() as *const _,
                       &lda, af.as_ptr() as *const _, &ldaf, s.as_ptr(), b.as_ptr() as *const _,
-                      &ldb, x.as_mut_ptr() as *mut _, &ldx, rcond, berr.as_mut_ptr(),
-                      n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(),
-                      nparams.as_ptr(), params.as_mut_ptr(), work.as_mut_ptr() as *mut _,
-                      rwork.as_mut_ptr(), info)
+                      &ldb, x.as_mut_ptr() as *mut _, &ldx, rcond, berr.as_mut_ptr(), &n_err_bnds,
+                      err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(), nparams.as_ptr(),
+                      params.as_mut_ptr(), work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
 }
 
@@ -2160,14 +2156,14 @@ pub fn zsyrfs(uplo: u8, n: i32, nrhs: i32, a: &[c64], lda: i32, af: &[c64], ldaf
 #[inline]
 pub fn dsyrfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[f64], lda: i32, af: &[f64], ldaf: i32,
                ipiv: &[i32], s: &[f64], b: &[f64], ldb: i32, x: &mut [f64], ldx: i32,
-               rcond: &mut f64, berr: &mut [f64], n_err_bnds: &[i32], err_bnds_norm: &mut [f64],
+               rcond: &mut f64, berr: &mut [f64], n_err_bnds: i32, err_bnds_norm: &mut [f64],
                err_bnds_comp: &mut [f64], nparams: &[i32], params: &mut [f64], work: &mut [f64],
                iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::dsyrfsx_(&(uplo as c_char), &(equed as c_char), &n, &nrhs, a.as_ptr(), &lda,
                       af.as_ptr(), &ldaf, ipiv.as_ptr(), s.as_ptr(), b.as_ptr(), &ldb,
-                      x.as_mut_ptr(), &ldx, rcond, berr.as_mut_ptr(), n_err_bnds.as_ptr(),
+                      x.as_mut_ptr(), &ldx, rcond, berr.as_mut_ptr(), &n_err_bnds,
                       err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(), nparams.as_ptr(),
                       params.as_mut_ptr(), work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
@@ -2176,14 +2172,14 @@ pub fn dsyrfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[f64], lda: i32, af: 
 #[inline]
 pub fn ssyrfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[f32], lda: i32, af: &[f32], ldaf: i32,
                ipiv: &[i32], s: &[f32], b: &[f32], ldb: i32, x: &mut [f32], ldx: i32,
-               rcond: &mut f32, berr: &mut [f32], n_err_bnds: &[i32], err_bnds_norm: &mut [f32],
+               rcond: &mut f32, berr: &mut [f32], n_err_bnds: i32, err_bnds_norm: &mut [f32],
                err_bnds_comp: &mut [f32], nparams: &[i32], params: &mut [f32], work: &mut [f32],
                iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::ssyrfsx_(&(uplo as c_char), &(equed as c_char), &n, &nrhs, a.as_ptr(), &lda,
                       af.as_ptr(), &ldaf, ipiv.as_ptr(), s.as_ptr(), b.as_ptr(), &ldb,
-                      x.as_mut_ptr(), &ldx, rcond, berr.as_mut_ptr(), n_err_bnds.as_ptr(),
+                      x.as_mut_ptr(), &ldx, rcond, berr.as_mut_ptr(), &n_err_bnds,
                       err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(), nparams.as_ptr(),
                       params.as_mut_ptr(), work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
@@ -2192,7 +2188,7 @@ pub fn ssyrfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[f32], lda: i32, af: 
 #[inline]
 pub fn zsyrfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[c64], lda: i32, af: &[c64], ldaf: i32,
                ipiv: &[i32], s: &[f64], b: &[c64], ldb: i32, x: &mut [c64], ldx: i32,
-               rcond: &mut f64, berr: &mut [f64], n_err_bnds: &[i32], err_bnds_norm: &mut [f64],
+               rcond: &mut f64, berr: &mut [f64], n_err_bnds: i32, err_bnds_norm: &mut [f64],
                err_bnds_comp: &mut [f64], nparams: &[i32], params: &mut [f64], work: &mut [c64],
                rwork: &mut [f64], info: &mut i32) {
 
@@ -2200,7 +2196,7 @@ pub fn zsyrfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[c64], lda: i32, af: 
         ffi::zsyrfsx_(&(uplo as c_char), &(equed as c_char), &n, &nrhs, a.as_ptr() as *const _,
                       &lda, af.as_ptr() as *const _, &ldaf, ipiv.as_ptr(), s.as_ptr(),
                       b.as_ptr() as *const _, &ldb, x.as_mut_ptr() as *mut _, &ldx, rcond,
-                      berr.as_mut_ptr(), n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(),
+                      berr.as_mut_ptr(), &n_err_bnds, err_bnds_norm.as_mut_ptr(),
                       err_bnds_comp.as_mut_ptr(), nparams.as_ptr(), params.as_mut_ptr(),
                       work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
@@ -2209,7 +2205,7 @@ pub fn zsyrfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[c64], lda: i32, af: 
 #[inline]
 pub fn csyrfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[c32], lda: i32, af: &[c32], ldaf: i32,
                ipiv: &[i32], s: &[f32], b: &[c32], ldb: i32, x: &mut [c32], ldx: i32,
-               rcond: &mut f32, berr: &mut [f32], n_err_bnds: &[i32], err_bnds_norm: &mut [f32],
+               rcond: &mut f32, berr: &mut [f32], n_err_bnds: i32, err_bnds_norm: &mut [f32],
                err_bnds_comp: &mut [f32], nparams: &[i32], params: &mut [f32], work: &mut [c32],
                rwork: &mut [f32], info: &mut i32) {
 
@@ -2217,7 +2213,7 @@ pub fn csyrfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[c32], lda: i32, af: 
         ffi::csyrfsx_(&(uplo as c_char), &(equed as c_char), &n, &nrhs, a.as_ptr() as *const _,
                       &lda, af.as_ptr() as *const _, &ldaf, ipiv.as_ptr(), s.as_ptr(),
                       b.as_ptr() as *const _, &ldb, x.as_mut_ptr() as *mut _, &ldx, rcond,
-                      berr.as_mut_ptr(), n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(),
+                      berr.as_mut_ptr(), &n_err_bnds, err_bnds_norm.as_mut_ptr(),
                       err_bnds_comp.as_mut_ptr(), nparams.as_ptr(), params.as_mut_ptr(),
                       work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
@@ -2252,7 +2248,7 @@ pub fn zherfs(uplo: u8, n: i32, nrhs: i32, a: &[c64], lda: i32, af: &[c64], ldaf
 #[inline]
 pub fn zherfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[c64], lda: i32, af: &[c64], ldaf: i32,
                ipiv: &[i32], s: &[f64], b: &[c64], ldb: i32, x: &mut [c64], ldx: i32,
-               rcond: &mut f64, berr: &mut [f64], n_err_bnds: &[i32], err_bnds_norm: &mut [f64],
+               rcond: &mut f64, berr: &mut [f64], n_err_bnds: i32, err_bnds_norm: &mut [f64],
                err_bnds_comp: &mut [f64], nparams: &[i32], params: &mut [f64], work: &mut [c64],
                rwork: &mut [f64], info: &mut i32) {
 
@@ -2260,7 +2256,7 @@ pub fn zherfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[c64], lda: i32, af: 
         ffi::zherfsx_(&(uplo as c_char), &(equed as c_char), &n, &nrhs, a.as_ptr() as *const _,
                       &lda, af.as_ptr() as *const _, &ldaf, ipiv.as_ptr(), s.as_ptr(),
                       b.as_ptr() as *const _, &ldb, x.as_mut_ptr() as *mut _, &ldx, rcond,
-                      berr.as_mut_ptr(), n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(),
+                      berr.as_mut_ptr(), &n_err_bnds, err_bnds_norm.as_mut_ptr(),
                       err_bnds_comp.as_mut_ptr(), nparams.as_ptr(), params.as_mut_ptr(),
                       work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
@@ -2269,7 +2265,7 @@ pub fn zherfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[c64], lda: i32, af: 
 #[inline]
 pub fn cherfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[c32], lda: i32, af: &[c32], ldaf: i32,
                ipiv: &[i32], s: &[f32], b: &[c32], ldb: i32, x: &mut [c32], ldx: i32,
-               rcond: &mut f32, berr: &mut [f32], n_err_bnds: &[i32], err_bnds_norm: &mut [f32],
+               rcond: &mut f32, berr: &mut [f32], n_err_bnds: i32, err_bnds_norm: &mut [f32],
                err_bnds_comp: &mut [f32], nparams: &[i32], params: &mut [f32], work: &mut [c32],
                rwork: &mut [f32], info: &mut i32) {
 
@@ -2277,7 +2273,7 @@ pub fn cherfsx(uplo: u8, equed: u8, n: i32, nrhs: i32, a: &[c32], lda: i32, af: 
         ffi::cherfsx_(&(uplo as c_char), &(equed as c_char), &n, &nrhs, a.as_ptr() as *const _,
                       &lda, af.as_ptr() as *const _, &ldaf, ipiv.as_ptr(), s.as_ptr(),
                       b.as_ptr() as *const _, &ldb, x.as_mut_ptr() as *mut _, &ldx, rcond,
-                      berr.as_mut_ptr(), n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(),
+                      berr.as_mut_ptr(), &n_err_bnds, err_bnds_norm.as_mut_ptr(),
                       err_bnds_comp.as_mut_ptr(), nparams.as_ptr(), params.as_mut_ptr(),
                       work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
@@ -3350,7 +3346,7 @@ pub fn zgesvx(fact: u8, trans: u8, n: i32, nrhs: i32, a: &mut [c64], lda: i32, a
 pub fn dgesvxx(fact: u8, trans: u8, n: i32, nrhs: i32, a: &mut [f64], lda: i32, af: &mut [f64],
                ldaf: i32, ipiv: &mut [i32], equed: &mut u8, r: &mut [f64], c: &mut [f64],
                b: &mut [f64], ldb: i32, x: &mut [f64], ldx: i32, rcond: &mut f64,
-               rpvgrw: &mut [f64], berr: &mut [f64], n_err_bnds: &[i32], err_bnds_norm: &mut [f64],
+               rpvgrw: &mut [f64], berr: &mut [f64], n_err_bnds: i32, err_bnds_norm: &mut [f64],
                err_bnds_comp: &mut [f64], nparams: &[i32], params: &mut [f64], work: &mut [f64],
                iwork: &mut [i32], info: &mut i32) {
 
@@ -3358,7 +3354,7 @@ pub fn dgesvxx(fact: u8, trans: u8, n: i32, nrhs: i32, a: &mut [f64], lda: i32, 
         ffi::dgesvxx_(&(fact as c_char), &(trans as c_char), &n, &nrhs, a.as_mut_ptr(), &lda,
                       af.as_mut_ptr(), &ldaf, ipiv.as_mut_ptr(), equed as *mut _ as *mut _,
                       r.as_mut_ptr(), c.as_mut_ptr(), b.as_mut_ptr(), &ldb, x.as_mut_ptr(), &ldx,
-                      rcond, rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), n_err_bnds.as_ptr(),
+                      rcond, rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), &n_err_bnds,
                       err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(), nparams.as_ptr(),
                       params.as_mut_ptr(), work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
@@ -3368,7 +3364,7 @@ pub fn dgesvxx(fact: u8, trans: u8, n: i32, nrhs: i32, a: &mut [f64], lda: i32, 
 pub fn sgesvxx(fact: u8, trans: u8, n: i32, nrhs: i32, a: &mut [f32], lda: i32, af: &mut [f32],
                ldaf: i32, ipiv: &mut [i32], equed: &mut u8, r: &mut [f32], c: &mut [f32],
                b: &mut [f32], ldb: i32, x: &mut [f32], ldx: i32, rcond: &mut f32,
-               rpvgrw: &mut [f32], berr: &mut [f32], n_err_bnds: &[i32], err_bnds_norm: &mut [f32],
+               rpvgrw: &mut [f32], berr: &mut [f32], n_err_bnds: i32, err_bnds_norm: &mut [f32],
                err_bnds_comp: &mut [f32], nparams: &[i32], params: &mut [f32], work: &mut [f32],
                iwork: &mut [i32], info: &mut i32) {
 
@@ -3376,7 +3372,7 @@ pub fn sgesvxx(fact: u8, trans: u8, n: i32, nrhs: i32, a: &mut [f32], lda: i32, 
         ffi::sgesvxx_(&(fact as c_char), &(trans as c_char), &n, &nrhs, a.as_mut_ptr(), &lda,
                       af.as_mut_ptr(), &ldaf, ipiv.as_mut_ptr(), equed as *mut _ as *mut _,
                       r.as_mut_ptr(), c.as_mut_ptr(), b.as_mut_ptr(), &ldb, x.as_mut_ptr(), &ldx,
-                      rcond, rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), n_err_bnds.as_ptr(),
+                      rcond, rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), &n_err_bnds,
                       err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(), nparams.as_ptr(),
                       params.as_mut_ptr(), work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
@@ -3386,7 +3382,7 @@ pub fn sgesvxx(fact: u8, trans: u8, n: i32, nrhs: i32, a: &mut [f32], lda: i32, 
 pub fn zgesvxx(fact: u8, trans: u8, n: i32, nrhs: i32, a: &mut [c64], lda: i32, af: &mut [c64],
                ldaf: i32, ipiv: &mut [i32], equed: &mut u8, r: &mut [f64], c: &mut [f64],
                b: &mut [c64], ldb: i32, x: &mut [c64], ldx: i32, rcond: &mut f64,
-               rpvgrw: &mut [f64], berr: &mut [f64], n_err_bnds: &[i32], err_bnds_norm: &mut [f64],
+               rpvgrw: &mut [f64], berr: &mut [f64], n_err_bnds: i32, err_bnds_norm: &mut [f64],
                err_bnds_comp: &mut [f64], nparams: &[i32], params: &mut [f64], work: &mut [c64],
                rwork: &mut [f64], info: &mut i32) {
 
@@ -3395,7 +3391,7 @@ pub fn zgesvxx(fact: u8, trans: u8, n: i32, nrhs: i32, a: &mut [c64], lda: i32, 
                       &lda, af.as_mut_ptr() as *mut _, &ldaf, ipiv.as_mut_ptr(),
                       equed as *mut _ as *mut _, r.as_mut_ptr(), c.as_mut_ptr(),
                       b.as_mut_ptr() as *mut _, &ldb, x.as_mut_ptr() as *mut _, &ldx, rcond,
-                      rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), n_err_bnds.as_ptr(),
+                      rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), &n_err_bnds,
                       err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(), nparams.as_ptr(),
                       params.as_mut_ptr(), work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
@@ -3405,7 +3401,7 @@ pub fn zgesvxx(fact: u8, trans: u8, n: i32, nrhs: i32, a: &mut [c64], lda: i32, 
 pub fn cgesvxx(fact: u8, trans: u8, n: i32, nrhs: i32, a: &mut [c32], lda: i32, af: &mut [c32],
                ldaf: i32, ipiv: &mut [i32], equed: &mut u8, r: &mut [f32], c: &mut [f32],
                b: &mut [c32], ldb: i32, x: &mut [c32], ldx: i32, rcond: &mut f32,
-               rpvgrw: &mut [f32], berr: &mut [f32], n_err_bnds: &[i32], err_bnds_norm: &mut [f32],
+               rpvgrw: &mut [f32], berr: &mut [f32], n_err_bnds: i32, err_bnds_norm: &mut [f32],
                err_bnds_comp: &mut [f32], nparams: &[i32], params: &mut [f32], work: &mut [c32],
                rwork: &mut [f32], info: &mut i32) {
 
@@ -3414,7 +3410,7 @@ pub fn cgesvxx(fact: u8, trans: u8, n: i32, nrhs: i32, a: &mut [c32], lda: i32, 
                       &lda, af.as_mut_ptr() as *mut _, &ldaf, ipiv.as_mut_ptr(),
                       equed as *mut _ as *mut _, r.as_mut_ptr(), c.as_mut_ptr(),
                       b.as_mut_ptr() as *mut _, &ldb, x.as_mut_ptr() as *mut _, &ldx, rcond,
-                      rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), n_err_bnds.as_ptr(),
+                      rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), &n_err_bnds,
                       err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(), nparams.as_ptr(),
                       params.as_mut_ptr(), work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
@@ -3530,7 +3526,7 @@ pub fn zgbsvx(fact: u8, trans: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &mut
 pub fn dgbsvxx(fact: u8, trans: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &mut [f64], ldab: i32,
                afb: &mut [f64], ldafb: i32, ipiv: &mut [i32], equed: &mut u8, r: &mut [f64],
                c: &mut [f64], b: &mut [f64], ldb: i32, x: &mut [f64], ldx: i32, rcond: &mut f64,
-               rpvgrw: &mut [f64], berr: &mut [f64], n_err_bnds: &[i32], err_bnds_norm: &mut [f64],
+               rpvgrw: &mut [f64], berr: &mut [f64], n_err_bnds: i32, err_bnds_norm: &mut [f64],
                err_bnds_comp: &mut [f64], nparams: &[i32], params: &mut [f64], work: &mut [f64],
                iwork: &mut [i32], info: &mut i32) {
 
@@ -3539,7 +3535,7 @@ pub fn dgbsvxx(fact: u8, trans: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &mu
                       &ldab, afb.as_mut_ptr(), &ldafb, ipiv.as_mut_ptr(),
                       equed as *mut _ as *mut _, r.as_mut_ptr(), c.as_mut_ptr(), b.as_mut_ptr(),
                       &ldb, x.as_mut_ptr(), &ldx, rcond, rpvgrw.as_mut_ptr(), berr.as_mut_ptr(),
-                      n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(),
+                      &n_err_bnds, err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(),
                       nparams.as_ptr(), params.as_mut_ptr(), work.as_mut_ptr(), iwork.as_mut_ptr(),
                       info)
     }
@@ -3549,7 +3545,7 @@ pub fn dgbsvxx(fact: u8, trans: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &mu
 pub fn sgbsvxx(fact: u8, trans: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &mut [f32], ldab: i32,
                afb: &mut [f32], ldafb: i32, ipiv: &mut [i32], equed: &mut u8, r: &mut [f32],
                c: &mut [f32], b: &mut [f32], ldb: i32, x: &mut [f32], ldx: i32, rcond: &mut f32,
-               rpvgrw: &mut [f32], berr: &mut [f32], n_err_bnds: &[i32], err_bnds_norm: &mut [f32],
+               rpvgrw: &mut [f32], berr: &mut [f32], n_err_bnds: i32, err_bnds_norm: &mut [f32],
                err_bnds_comp: &mut [f32], nparams: &[i32], params: &mut [f32], work: &mut [f32],
                iwork: &mut [i32], info: &mut i32) {
 
@@ -3558,7 +3554,7 @@ pub fn sgbsvxx(fact: u8, trans: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &mu
                       &ldab, afb.as_mut_ptr(), &ldafb, ipiv.as_mut_ptr(),
                       equed as *mut _ as *mut _, r.as_mut_ptr(), c.as_mut_ptr(), b.as_mut_ptr(),
                       &ldb, x.as_mut_ptr(), &ldx, rcond, rpvgrw.as_mut_ptr(), berr.as_mut_ptr(),
-                      n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(),
+                      &n_err_bnds, err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(),
                       nparams.as_ptr(), params.as_mut_ptr(), work.as_mut_ptr(), iwork.as_mut_ptr(),
                       info)
     }
@@ -3568,7 +3564,7 @@ pub fn sgbsvxx(fact: u8, trans: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &mu
 pub fn zgbsvxx(fact: u8, trans: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &mut [c64], ldab: i32,
                afb: &mut [c64], ldafb: i32, ipiv: &mut [i32], equed: &mut u8, r: &mut [f64],
                c: &mut [f64], b: &mut [c64], ldb: i32, x: &mut [c64], ldx: i32, rcond: &mut f64,
-               rpvgrw: &mut [f64], berr: &mut [f64], n_err_bnds: &[i32], err_bnds_norm: &mut [f64],
+               rpvgrw: &mut [f64], berr: &mut [f64], n_err_bnds: i32, err_bnds_norm: &mut [f64],
                err_bnds_comp: &mut [f64], nparams: &[i32], params: &mut [f64], work: &mut [c64],
                rwork: &mut [f64], info: &mut i32) {
 
@@ -3577,7 +3573,7 @@ pub fn zgbsvxx(fact: u8, trans: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &mu
                       ab.as_mut_ptr() as *mut _, &ldab, afb.as_mut_ptr() as *mut _, &ldafb,
                       ipiv.as_mut_ptr(), equed as *mut _ as *mut _, r.as_mut_ptr(), c.as_mut_ptr(),
                       b.as_mut_ptr() as *mut _, &ldb, x.as_mut_ptr() as *mut _, &ldx, rcond,
-                      rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), n_err_bnds.as_ptr(),
+                      rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), &n_err_bnds,
                       err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(), nparams.as_ptr(),
                       params.as_mut_ptr(), work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
@@ -3587,7 +3583,7 @@ pub fn zgbsvxx(fact: u8, trans: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &mu
 pub fn cgbsvxx(fact: u8, trans: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &mut [c32], ldab: i32,
                afb: &mut [c32], ldafb: i32, ipiv: &mut [i32], equed: &mut u8, r: &mut [f32],
                c: &mut [f32], b: &mut [c32], ldb: i32, x: &mut [c32], ldx: i32, rcond: &mut f32,
-               rpvgrw: &mut [f32], berr: &mut [f32], n_err_bnds: &[i32], err_bnds_norm: &mut [f32],
+               rpvgrw: &mut [f32], berr: &mut [f32], n_err_bnds: i32, err_bnds_norm: &mut [f32],
                err_bnds_comp: &mut [f32], nparams: &[i32], params: &mut [f32], work: &mut [c32],
                rwork: &mut [f32], info: &mut i32) {
 
@@ -3596,7 +3592,7 @@ pub fn cgbsvxx(fact: u8, trans: u8, n: i32, kl: i32, ku: i32, nrhs: i32, ab: &mu
                       ab.as_mut_ptr() as *mut _, &ldab, afb.as_mut_ptr() as *mut _, &ldafb,
                       ipiv.as_mut_ptr(), equed as *mut _ as *mut _, r.as_mut_ptr(), c.as_mut_ptr(),
                       b.as_mut_ptr() as *mut _, &ldb, x.as_mut_ptr() as *mut _, &ldx, rcond,
-                      rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), n_err_bnds.as_ptr(),
+                      rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), &n_err_bnds,
                       err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(), nparams.as_ptr(),
                       params.as_mut_ptr(), work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
@@ -3828,7 +3824,7 @@ pub fn zposvx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [c64], lda: i32, af
 #[inline]
 pub fn dposvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [f64], lda: i32, af: &mut [f64],
                ldaf: i32, equed: &mut u8, s: &mut [f64], b: &mut [f64], ldb: i32, x: &mut [f64],
-               ldx: i32, rcond: &mut f64, rpvgrw: &mut [f64], berr: &mut [f64], n_err_bnds: &[i32],
+               ldx: i32, rcond: &mut f64, rpvgrw: &mut [f64], berr: &mut [f64], n_err_bnds: i32,
                err_bnds_norm: &mut [f64], err_bnds_comp: &mut [f64], nparams: &[i32],
                params: &mut [f64], work: &mut [f64], iwork: &mut [i32], info: &mut i32) {
 
@@ -3836,7 +3832,7 @@ pub fn dposvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [f64], lda: i32, a
         ffi::dposvxx_(&(fact as c_char), &(uplo as c_char), &n, &nrhs, a.as_mut_ptr(), &lda,
                       af.as_mut_ptr(), &ldaf, equed as *mut _ as *mut _, s.as_mut_ptr(),
                       b.as_mut_ptr(), &ldb, x.as_mut_ptr(), &ldx, rcond, rpvgrw.as_mut_ptr(),
-                      berr.as_mut_ptr(), n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(),
+                      berr.as_mut_ptr(), &n_err_bnds, err_bnds_norm.as_mut_ptr(),
                       err_bnds_comp.as_mut_ptr(), nparams.as_ptr(), params.as_mut_ptr(),
                       work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
@@ -3845,7 +3841,7 @@ pub fn dposvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [f64], lda: i32, a
 #[inline]
 pub fn sposvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [f32], lda: i32, af: &mut [f32],
                ldaf: i32, equed: &mut u8, s: &mut [f32], b: &mut [f32], ldb: i32, x: &mut [f32],
-               ldx: i32, rcond: &mut f32, rpvgrw: &mut [f32], berr: &mut [f32], n_err_bnds: &[i32],
+               ldx: i32, rcond: &mut f32, rpvgrw: &mut [f32], berr: &mut [f32], n_err_bnds: i32,
                err_bnds_norm: &mut [f32], err_bnds_comp: &mut [f32], nparams: &[i32],
                params: &mut [f32], work: &mut [f32], iwork: &mut [i32], info: &mut i32) {
 
@@ -3853,7 +3849,7 @@ pub fn sposvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [f32], lda: i32, a
         ffi::sposvxx_(&(fact as c_char), &(uplo as c_char), &n, &nrhs, a.as_mut_ptr(), &lda,
                       af.as_mut_ptr(), &ldaf, equed as *mut _ as *mut _, s.as_mut_ptr(),
                       b.as_mut_ptr(), &ldb, x.as_mut_ptr(), &ldx, rcond, rpvgrw.as_mut_ptr(),
-                      berr.as_mut_ptr(), n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(),
+                      berr.as_mut_ptr(), &n_err_bnds, err_bnds_norm.as_mut_ptr(),
                       err_bnds_comp.as_mut_ptr(), nparams.as_ptr(), params.as_mut_ptr(),
                       work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
@@ -3862,7 +3858,7 @@ pub fn sposvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [f32], lda: i32, a
 #[inline]
 pub fn zposvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [c64], lda: i32, af: &mut [c64],
                ldaf: i32, equed: &mut u8, s: &mut [f64], b: &mut [c64], ldb: i32, x: &mut [c64],
-               ldx: i32, rcond: &mut f64, rpvgrw: &mut [f64], berr: &mut [f64], n_err_bnds: &[i32],
+               ldx: i32, rcond: &mut f64, rpvgrw: &mut [f64], berr: &mut [f64], n_err_bnds: i32,
                err_bnds_norm: &mut [f64], err_bnds_comp: &mut [f64], nparams: &[i32],
                params: &mut [f64], work: &mut [c64], rwork: &mut [f64], info: &mut i32) {
 
@@ -3870,7 +3866,7 @@ pub fn zposvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [c64], lda: i32, a
         ffi::zposvxx_(&(fact as c_char), &(uplo as c_char), &n, &nrhs, a.as_mut_ptr() as *mut _,
                       &lda, af.as_mut_ptr() as *mut _, &ldaf, equed as *mut _ as *mut _,
                       s.as_mut_ptr(), b.as_mut_ptr() as *mut _, &ldb, x.as_mut_ptr() as *mut _,
-                      &ldx, rcond, rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), n_err_bnds.as_ptr(),
+                      &ldx, rcond, rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), &n_err_bnds,
                       err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(), nparams.as_ptr(),
                       params.as_mut_ptr(), work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
@@ -3879,7 +3875,7 @@ pub fn zposvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [c64], lda: i32, a
 #[inline]
 pub fn cposvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [c32], lda: i32, af: &mut [c32],
                ldaf: i32, equed: &mut u8, s: &mut [f32], b: &mut [c32], ldb: i32, x: &mut [c32],
-               ldx: i32, rcond: &mut f32, rpvgrw: &mut [f32], berr: &mut [f32], n_err_bnds: &[i32],
+               ldx: i32, rcond: &mut f32, rpvgrw: &mut [f32], berr: &mut [f32], n_err_bnds: i32,
                err_bnds_norm: &mut [f32], err_bnds_comp: &mut [f32], nparams: &[i32],
                params: &mut [f32], work: &mut [c32], rwork: &mut [f32], info: &mut i32) {
 
@@ -3887,7 +3883,7 @@ pub fn cposvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [c32], lda: i32, a
         ffi::cposvxx_(&(fact as c_char), &(uplo as c_char), &n, &nrhs, a.as_mut_ptr() as *mut _,
                       &lda, af.as_mut_ptr() as *mut _, &ldaf, equed as *mut _ as *mut _,
                       s.as_mut_ptr(), b.as_mut_ptr() as *mut _, &ldb, x.as_mut_ptr() as *mut _,
-                      &ldx, rcond, rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), n_err_bnds.as_ptr(),
+                      &ldx, rcond, rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), &n_err_bnds,
                       err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(), nparams.as_ptr(),
                       params.as_mut_ptr(), work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
@@ -4279,7 +4275,7 @@ pub fn zsysvx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &[c64], lda: i32, af: &m
 pub fn dsysvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [f64], lda: i32, af: &mut [f64],
                ldaf: i32, ipiv: &mut [i32], equed: &mut u8, s: &mut [f64], b: &mut [f64], ldb: i32,
                x: &mut [f64], ldx: i32, rcond: &mut f64, rpvgrw: &mut [f64], berr: &mut [f64],
-               n_err_bnds: &[i32], err_bnds_norm: &mut [f64], err_bnds_comp: &mut [f64],
+               n_err_bnds: i32, err_bnds_norm: &mut [f64], err_bnds_comp: &mut [f64],
                nparams: &[i32], params: &mut [f64], work: &mut [f64], iwork: &mut [i32],
                info: &mut i32) {
 
@@ -4287,7 +4283,7 @@ pub fn dsysvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [f64], lda: i32, a
         ffi::dsysvxx_(&(fact as c_char), &(uplo as c_char), &n, &nrhs, a.as_mut_ptr(), &lda,
                       af.as_mut_ptr(), &ldaf, ipiv.as_mut_ptr(), equed as *mut _ as *mut _,
                       s.as_mut_ptr(), b.as_mut_ptr(), &ldb, x.as_mut_ptr(), &ldx, rcond,
-                      rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), n_err_bnds.as_ptr(),
+                      rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), &n_err_bnds,
                       err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(), nparams.as_ptr(),
                       params.as_mut_ptr(), work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
@@ -4297,7 +4293,7 @@ pub fn dsysvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [f64], lda: i32, a
 pub fn ssysvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [f32], lda: i32, af: &mut [f32],
                ldaf: i32, ipiv: &mut [i32], equed: &mut u8, s: &mut [f32], b: &mut [f32], ldb: i32,
                x: &mut [f32], ldx: i32, rcond: &mut f32, rpvgrw: &mut [f32], berr: &mut [f32],
-               n_err_bnds: &[i32], err_bnds_norm: &mut [f32], err_bnds_comp: &mut [f32],
+               n_err_bnds: i32, err_bnds_norm: &mut [f32], err_bnds_comp: &mut [f32],
                nparams: &[i32], params: &mut [f32], work: &mut [f32], iwork: &mut [i32],
                info: &mut i32) {
 
@@ -4305,7 +4301,7 @@ pub fn ssysvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [f32], lda: i32, a
         ffi::ssysvxx_(&(fact as c_char), &(uplo as c_char), &n, &nrhs, a.as_mut_ptr(), &lda,
                       af.as_mut_ptr(), &ldaf, ipiv.as_mut_ptr(), equed as *mut _ as *mut _,
                       s.as_mut_ptr(), b.as_mut_ptr(), &ldb, x.as_mut_ptr(), &ldx, rcond,
-                      rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), n_err_bnds.as_ptr(),
+                      rpvgrw.as_mut_ptr(), berr.as_mut_ptr(), &n_err_bnds,
                       err_bnds_norm.as_mut_ptr(), err_bnds_comp.as_mut_ptr(), nparams.as_ptr(),
                       params.as_mut_ptr(), work.as_mut_ptr(), iwork.as_mut_ptr(), info)
     }
@@ -4315,7 +4311,7 @@ pub fn ssysvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [f32], lda: i32, a
 pub fn zsysvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [c64], lda: i32, af: &mut [c64],
                ldaf: i32, ipiv: &mut [i32], equed: &mut u8, s: &mut [f64], b: &mut [c64], ldb: i32,
                x: &mut [c64], ldx: i32, rcond: &mut f64, rpvgrw: &mut [f64], berr: &mut [f64],
-               n_err_bnds: &[i32], err_bnds_norm: &mut [f64], err_bnds_comp: &mut [f64],
+               n_err_bnds: i32, err_bnds_norm: &mut [f64], err_bnds_comp: &mut [f64],
                nparams: &[i32], params: &mut [f64], work: &mut [c64], rwork: &mut [f64],
                info: &mut i32) {
 
@@ -4324,7 +4320,7 @@ pub fn zsysvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [c64], lda: i32, a
                       &lda, af.as_mut_ptr() as *mut _, &ldaf, ipiv.as_mut_ptr(),
                       equed as *mut _ as *mut _, s.as_mut_ptr(), b.as_mut_ptr() as *mut _, &ldb,
                       x.as_mut_ptr() as *mut _, &ldx, rcond, rpvgrw.as_mut_ptr(),
-                      berr.as_mut_ptr(), n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(),
+                      berr.as_mut_ptr(), &n_err_bnds, err_bnds_norm.as_mut_ptr(),
                       err_bnds_comp.as_mut_ptr(), nparams.as_ptr(), params.as_mut_ptr(),
                       work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
@@ -4334,7 +4330,7 @@ pub fn zsysvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [c64], lda: i32, a
 pub fn csysvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [c32], lda: i32, af: &mut [c32],
                ldaf: i32, ipiv: &mut [i32], equed: &mut u8, s: &mut [f32], b: &mut [c32], ldb: i32,
                x: &mut [c32], ldx: i32, rcond: &mut f32, rpvgrw: &mut [f32], berr: &mut [f32],
-               n_err_bnds: &[i32], err_bnds_norm: &mut [f32], err_bnds_comp: &mut [f32],
+               n_err_bnds: i32, err_bnds_norm: &mut [f32], err_bnds_comp: &mut [f32],
                nparams: &[i32], params: &mut [f32], work: &mut [c32], rwork: &mut [f32],
                info: &mut i32) {
 
@@ -4343,7 +4339,7 @@ pub fn csysvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [c32], lda: i32, a
                       &lda, af.as_mut_ptr() as *mut _, &ldaf, ipiv.as_mut_ptr(),
                       equed as *mut _ as *mut _, s.as_mut_ptr(), b.as_mut_ptr() as *mut _, &ldb,
                       x.as_mut_ptr() as *mut _, &ldx, rcond, rpvgrw.as_mut_ptr(),
-                      berr.as_mut_ptr(), n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(),
+                      berr.as_mut_ptr(), &n_err_bnds, err_bnds_norm.as_mut_ptr(),
                       err_bnds_comp.as_mut_ptr(), nparams.as_ptr(), params.as_mut_ptr(),
                       work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
@@ -4405,7 +4401,7 @@ pub fn zhesvx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &[c64], lda: i32, af: &m
 pub fn zhesvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [c64], lda: i32, af: &mut [c64],
                ldaf: i32, ipiv: &mut [i32], equed: &mut u8, s: &mut [f64], b: &mut [c64], ldb: i32,
                x: &mut [c64], ldx: i32, rcond: &mut f64, rpvgrw: &mut [f64], berr: &mut [f64],
-               n_err_bnds: &[i32], err_bnds_norm: &mut [f64], err_bnds_comp: &mut [f64],
+               n_err_bnds: i32, err_bnds_norm: &mut [f64], err_bnds_comp: &mut [f64],
                nparams: &[i32], params: &mut [f64], work: &mut [c64], rwork: &mut [f64],
                info: &mut i32) {
 
@@ -4414,7 +4410,7 @@ pub fn zhesvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [c64], lda: i32, a
                       &lda, af.as_mut_ptr() as *mut _, &ldaf, ipiv.as_mut_ptr(),
                       equed as *mut _ as *mut _, s.as_mut_ptr(), b.as_mut_ptr() as *mut _, &ldb,
                       x.as_mut_ptr() as *mut _, &ldx, rcond, rpvgrw.as_mut_ptr(),
-                      berr.as_mut_ptr(), n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(),
+                      berr.as_mut_ptr(), &n_err_bnds, err_bnds_norm.as_mut_ptr(),
                       err_bnds_comp.as_mut_ptr(), nparams.as_ptr(), params.as_mut_ptr(),
                       work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
@@ -4424,7 +4420,7 @@ pub fn zhesvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [c64], lda: i32, a
 pub fn chesvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [c32], lda: i32, af: &mut [c32],
                ldaf: i32, ipiv: &mut [i32], equed: &mut u8, s: &mut [f32], b: &mut [c32], ldb: i32,
                x: &mut [c32], ldx: i32, rcond: &mut f32, rpvgrw: &mut [f32], berr: &mut [f32],
-               n_err_bnds: &[i32], err_bnds_norm: &mut [f32], err_bnds_comp: &mut [f32],
+               n_err_bnds: i32, err_bnds_norm: &mut [f32], err_bnds_comp: &mut [f32],
                nparams: &[i32], params: &mut [f32], work: &mut [c32], rwork: &mut [f32],
                info: &mut i32) {
 
@@ -4433,7 +4429,7 @@ pub fn chesvxx(fact: u8, uplo: u8, n: i32, nrhs: i32, a: &mut [c32], lda: i32, a
                       &lda, af.as_mut_ptr() as *mut _, &ldaf, ipiv.as_mut_ptr(),
                       equed as *mut _ as *mut _, s.as_mut_ptr(), b.as_mut_ptr() as *mut _, &ldb,
                       x.as_mut_ptr() as *mut _, &ldx, rcond, rpvgrw.as_mut_ptr(),
-                      berr.as_mut_ptr(), n_err_bnds.as_ptr(), err_bnds_norm.as_mut_ptr(),
+                      berr.as_mut_ptr(), &n_err_bnds, err_bnds_norm.as_mut_ptr(),
                       err_bnds_comp.as_mut_ptr(), nparams.as_ptr(), params.as_mut_ptr(),
                       work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
@@ -6157,49 +6153,47 @@ pub fn dstebz(range: u8, order: u8, n: i32, vl: f64, vu: f64, il: i32, iu: i32, 
 
 #[inline]
 pub fn sstein(n: i32, d: &[f32], e: &[f32], m: i32, w: &[f32], iblock: &[i32], isplit: &[i32],
-              z: &mut [f32], ldz: i32, work: &mut [f32], iwork: &mut [i32], ifail: &mut [i32],
+              z: &mut [f32], ldz: i32, work: &mut [f32], iwork: &mut [i32], ifail: &mut i32,
               info: &mut i32) {
 
     unsafe {
         ffi::sstein_(&n, d.as_ptr(), e.as_ptr(), &m, w.as_ptr(), iblock.as_ptr(), isplit.as_ptr(),
-                     z.as_mut_ptr(), &ldz, work.as_mut_ptr(), iwork.as_mut_ptr(),
-                     ifail.as_mut_ptr(), info)
+                     z.as_mut_ptr(), &ldz, work.as_mut_ptr(), iwork.as_mut_ptr(), ifail, info)
     }
 }
 
 #[inline]
 pub fn dstein(n: i32, d: &[f64], e: &[f64], m: i32, w: &[f64], iblock: &[i32], isplit: &[i32],
-              z: &mut [f64], ldz: i32, work: &mut [f64], iwork: &mut [i32], ifail: &mut [i32],
+              z: &mut [f64], ldz: i32, work: &mut [f64], iwork: &mut [i32], ifail: &mut i32,
               info: &mut i32) {
 
     unsafe {
         ffi::dstein_(&n, d.as_ptr(), e.as_ptr(), &m, w.as_ptr(), iblock.as_ptr(), isplit.as_ptr(),
-                     z.as_mut_ptr(), &ldz, work.as_mut_ptr(), iwork.as_mut_ptr(),
-                     ifail.as_mut_ptr(), info)
+                     z.as_mut_ptr(), &ldz, work.as_mut_ptr(), iwork.as_mut_ptr(), ifail, info)
     }
 }
 
 #[inline]
 pub fn cstein(n: i32, d: &[f32], e: &[f32], m: i32, w: &[f32], iblock: &[i32], isplit: &[i32],
-              z: &mut [c32], ldz: i32, work: &mut [f32], iwork: &mut [i32], ifail: &mut [i32],
+              z: &mut [c32], ldz: i32, work: &mut [f32], iwork: &mut [i32], ifail: &mut i32,
               info: &mut i32) {
 
     unsafe {
         ffi::cstein_(&n, d.as_ptr(), e.as_ptr(), &m, w.as_ptr(), iblock.as_ptr(), isplit.as_ptr(),
-                     z.as_mut_ptr() as *mut _, &ldz, work.as_mut_ptr(), iwork.as_mut_ptr(),
-                     ifail.as_mut_ptr(), info)
+                     z.as_mut_ptr() as *mut _, &ldz, work.as_mut_ptr(), iwork.as_mut_ptr(), ifail,
+                     info)
     }
 }
 
 #[inline]
 pub fn zstein(n: i32, d: &[f64], e: &[f64], m: i32, w: &[f64], iblock: &[i32], isplit: &[i32],
-              z: &mut [c64], ldz: i32, work: &mut [f64], iwork: &mut [i32], ifail: &mut [i32],
+              z: &mut [c64], ldz: i32, work: &mut [f64], iwork: &mut [i32], ifail: &mut i32,
               info: &mut i32) {
 
     unsafe {
         ffi::zstein_(&n, d.as_ptr(), e.as_ptr(), &m, w.as_ptr(), iblock.as_ptr(), isplit.as_ptr(),
-                     z.as_mut_ptr() as *mut _, &ldz, work.as_mut_ptr(), iwork.as_mut_ptr(),
-                     ifail.as_mut_ptr(), info)
+                     z.as_mut_ptr() as *mut _, &ldz, work.as_mut_ptr(), iwork.as_mut_ptr(), ifail,
+                     info)
     }
 }
 
@@ -6611,156 +6605,152 @@ pub fn zhseqr(job: u8, compz: u8, n: i32, ilo: i32, ihi: i32, h: &mut [c64], ldh
 
 #[inline]
 pub fn shsein(job: u8, eigsrc: u8, initv: u8, select: &mut [i32], n: i32, h: &[f32], ldh: i32,
-              wr: &mut [f32], wi: &[f32], vl: &mut f32, ldvl: i32, vr: &mut [f32], ldvr: i32,
-              mm: i32, m: &mut i32, work: &mut [f32], ifaill: &mut [i32], ifailr: &mut [i32],
+              wr: &mut [f32], wi: &[f32], vl: &mut f32, ldvl: i32, vr: &mut f32, ldvr: i32,
+              mm: i32, m: &mut i32, work: &mut [f32], ifaill: &mut i32, ifailr: &mut i32,
               info: &mut i32) {
 
     unsafe {
         ffi::shsein_(&(job as c_char), &(eigsrc as c_char), &(initv as c_char),
                      select.as_mut_ptr(), &n, h.as_ptr(), &ldh, wr.as_mut_ptr(), wi.as_ptr(), vl,
-                     &ldvl, vr.as_mut_ptr(), &ldvr, &mm, m, work.as_mut_ptr(), ifaill.as_mut_ptr(),
-                     ifailr.as_mut_ptr(), info)
+                     &ldvl, vr, &ldvr, &mm, m, work.as_mut_ptr(), ifaill, ifailr, info)
     }
 }
 
 #[inline]
 pub fn dhsein(job: u8, eigsrc: u8, initv: u8, select: &mut [i32], n: i32, h: &[f64], ldh: i32,
-              wr: &mut [f64], wi: &[f64], vl: &mut f64, ldvl: i32, vr: &mut [f64], ldvr: i32,
-              mm: i32, m: &mut i32, work: &mut [f64], ifaill: &mut [i32], ifailr: &mut [i32],
+              wr: &mut [f64], wi: &[f64], vl: &mut f64, ldvl: i32, vr: &mut f64, ldvr: i32,
+              mm: i32, m: &mut i32, work: &mut [f64], ifaill: &mut i32, ifailr: &mut i32,
               info: &mut i32) {
 
     unsafe {
         ffi::dhsein_(&(job as c_char), &(eigsrc as c_char), &(initv as c_char),
                      select.as_mut_ptr(), &n, h.as_ptr(), &ldh, wr.as_mut_ptr(), wi.as_ptr(), vl,
-                     &ldvl, vr.as_mut_ptr(), &ldvr, &mm, m, work.as_mut_ptr(), ifaill.as_mut_ptr(),
-                     ifailr.as_mut_ptr(), info)
+                     &ldvl, vr, &ldvr, &mm, m, work.as_mut_ptr(), ifaill, ifailr, info)
     }
 }
 
 #[inline]
 pub fn chsein(job: u8, eigsrc: u8, initv: u8, select: &[i32], n: i32, h: &[c32], ldh: i32,
-              w: &mut [c32], vl: &mut c32, ldvl: i32, vr: &mut [c32], ldvr: i32, mm: i32,
-              m: &mut i32, work: &mut [c32], rwork: &mut [f32], ifaill: &mut [i32],
-              ifailr: &mut [i32], info: &mut i32) {
+              w: &mut [c32], vl: &mut c32, ldvl: i32, vr: &mut c32, ldvr: i32, mm: i32,
+              m: &mut i32, work: &mut [c32], rwork: &mut [f32], ifaill: &mut i32, ifailr: &mut i32,
+              info: &mut i32) {
 
     unsafe {
         ffi::chsein_(&(job as c_char), &(eigsrc as c_char), &(initv as c_char), select.as_ptr(),
                      &n, h.as_ptr() as *const _, &ldh, w.as_mut_ptr() as *mut _,
-                     vl as *mut _ as *mut _, &ldvl, vr.as_mut_ptr() as *mut _, &ldvr, &mm, m,
-                     work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), ifaill.as_mut_ptr(),
-                     ifailr.as_mut_ptr(), info)
+                     vl as *mut _ as *mut _, &ldvl, vr as *mut _ as *mut _, &ldvr, &mm, m,
+                     work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), ifaill, ifailr, info)
     }
 }
 
 #[inline]
 pub fn zhsein(job: u8, eigsrc: u8, initv: u8, select: &[i32], n: i32, h: &[c64], ldh: i32,
-              w: &mut [c64], vl: &mut c64, ldvl: i32, vr: &mut [c64], ldvr: i32, mm: i32,
-              m: &mut i32, work: &mut [c64], rwork: &mut [f64], ifaill: &mut [i32],
-              ifailr: &mut [i32], info: &mut i32) {
+              w: &mut [c64], vl: &mut c64, ldvl: i32, vr: &mut c64, ldvr: i32, mm: i32,
+              m: &mut i32, work: &mut [c64], rwork: &mut [f64], ifaill: &mut i32, ifailr: &mut i32,
+              info: &mut i32) {
 
     unsafe {
         ffi::zhsein_(&(job as c_char), &(eigsrc as c_char), &(initv as c_char), select.as_ptr(),
                      &n, h.as_ptr() as *const _, &ldh, w.as_mut_ptr() as *mut _,
-                     vl as *mut _ as *mut _, &ldvl, vr.as_mut_ptr() as *mut _, &ldvr, &mm, m,
-                     work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), ifaill.as_mut_ptr(),
-                     ifailr.as_mut_ptr(), info)
+                     vl as *mut _ as *mut _, &ldvl, vr as *mut _ as *mut _, &ldvr, &mm, m,
+                     work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), ifaill, ifailr, info)
     }
 }
 
 #[inline]
 pub fn strevc(side: u8, howmny: u8, select: &mut [i32], n: i32, t: &[f32], ldt: i32, vl: &mut f32,
-              ldvl: i32, vr: &mut [f32], ldvr: i32, mm: i32, m: &mut i32, work: &mut [f32],
+              ldvl: i32, vr: &mut f32, ldvr: i32, mm: i32, m: &mut i32, work: &mut [f32],
               info: &mut i32) {
 
     unsafe {
         ffi::strevc_(&(side as c_char), &(howmny as c_char), select.as_mut_ptr(), &n, t.as_ptr(),
-                     &ldt, vl, &ldvl, vr.as_mut_ptr(), &ldvr, &mm, m, work.as_mut_ptr(), info)
+                     &ldt, vl, &ldvl, vr, &ldvr, &mm, m, work.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn dtrevc(side: u8, howmny: u8, select: &mut [i32], n: i32, t: &[f64], ldt: i32, vl: &mut f64,
-              ldvl: i32, vr: &mut [f64], ldvr: i32, mm: i32, m: &mut i32, work: &mut [f64],
+              ldvl: i32, vr: &mut f64, ldvr: i32, mm: i32, m: &mut i32, work: &mut [f64],
               info: &mut i32) {
 
     unsafe {
         ffi::dtrevc_(&(side as c_char), &(howmny as c_char), select.as_mut_ptr(), &n, t.as_ptr(),
-                     &ldt, vl, &ldvl, vr.as_mut_ptr(), &ldvr, &mm, m, work.as_mut_ptr(), info)
+                     &ldt, vl, &ldvl, vr, &ldvr, &mm, m, work.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn ctrevc(side: u8, howmny: u8, select: &[i32], n: i32, t: &mut [c32], ldt: i32, vl: &mut c32,
-              ldvl: i32, vr: &mut [c32], ldvr: i32, mm: i32, m: &mut i32, work: &mut [c32],
+              ldvl: i32, vr: &mut c32, ldvr: i32, mm: i32, m: &mut i32, work: &mut [c32],
               rwork: &mut [f32], info: &mut i32) {
 
     unsafe {
         ffi::ctrevc_(&(side as c_char), &(howmny as c_char), select.as_ptr(), &n,
                      t.as_mut_ptr() as *mut _, &ldt, vl as *mut _ as *mut _, &ldvl,
-                     vr.as_mut_ptr() as *mut _, &ldvr, &mm, m, work.as_mut_ptr() as *mut _,
+                     vr as *mut _ as *mut _, &ldvr, &mm, m, work.as_mut_ptr() as *mut _,
                      rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn ztrevc(side: u8, howmny: u8, select: &[i32], n: i32, t: &mut [c64], ldt: i32, vl: &mut c64,
-              ldvl: i32, vr: &mut [c64], ldvr: i32, mm: i32, m: &mut i32, work: &mut [c64],
+              ldvl: i32, vr: &mut c64, ldvr: i32, mm: i32, m: &mut i32, work: &mut [c64],
               rwork: &mut [f64], info: &mut i32) {
 
     unsafe {
         ffi::ztrevc_(&(side as c_char), &(howmny as c_char), select.as_ptr(), &n,
                      t.as_mut_ptr() as *mut _, &ldt, vl as *mut _ as *mut _, &ldvl,
-                     vr.as_mut_ptr() as *mut _, &ldvr, &mm, m, work.as_mut_ptr() as *mut _,
+                     vr as *mut _ as *mut _, &ldvr, &mm, m, work.as_mut_ptr() as *mut _,
                      rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn strsna(job: u8, howmny: u8, select: &[i32], n: i32, t: &[f32], ldt: i32, vl: f32, ldvl: i32,
-              vr: &[f32], ldvr: i32, s: &mut [f32], sep: &mut [f32], mm: i32, m: &mut i32,
+              vr: f32, ldvr: i32, s: &mut [f32], sep: &mut [f32], mm: i32, m: &mut i32,
               work: &mut [f32], ldwork: i32, iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::strsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n, t.as_ptr(), &ldt,
-                     &vl, &ldvl, vr.as_ptr(), &ldvr, s.as_mut_ptr(), sep.as_mut_ptr(), &mm, m,
+                     &vl, &ldvl, &vr, &ldvr, s.as_mut_ptr(), sep.as_mut_ptr(), &mm, m,
                      work.as_mut_ptr(), &ldwork, iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn dtrsna(job: u8, howmny: u8, select: &[i32], n: i32, t: &[f64], ldt: i32, vl: f64, ldvl: i32,
-              vr: &[f64], ldvr: i32, s: &mut [f64], sep: &mut [f64], mm: i32, m: &mut i32,
+              vr: f64, ldvr: i32, s: &mut [f64], sep: &mut [f64], mm: i32, m: &mut i32,
               work: &mut [f64], ldwork: i32, iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::dtrsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n, t.as_ptr(), &ldt,
-                     &vl, &ldvl, vr.as_ptr(), &ldvr, s.as_mut_ptr(), sep.as_mut_ptr(), &mm, m,
+                     &vl, &ldvl, &vr, &ldvr, s.as_mut_ptr(), sep.as_mut_ptr(), &mm, m,
                      work.as_mut_ptr(), &ldwork, iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn ctrsna(job: u8, howmny: u8, select: &[i32], n: i32, t: &[c32], ldt: i32, vl: c32, ldvl: i32,
-              vr: &[c32], ldvr: i32, s: &mut [f32], sep: &mut [f32], mm: i32, m: &mut i32,
+              vr: c32, ldvr: i32, s: &mut [f32], sep: &mut [f32], mm: i32, m: &mut i32,
               work: &mut [c32], ldwork: i32, rwork: &mut [f32], info: &mut i32) {
 
     unsafe {
         ffi::ctrsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n,
                      t.as_ptr() as *const _, &ldt, &vl as *const _ as *const _, &ldvl,
-                     vr.as_ptr() as *const _, &ldvr, s.as_mut_ptr(), sep.as_mut_ptr(), &mm, m,
+                     &vr as *const _ as *const _, &ldvr, s.as_mut_ptr(), sep.as_mut_ptr(), &mm, m,
                      work.as_mut_ptr() as *mut _, &ldwork, rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn ztrsna(job: u8, howmny: u8, select: &[i32], n: i32, t: &[c64], ldt: i32, vl: c64, ldvl: i32,
-              vr: &[c64], ldvr: i32, s: &mut [f64], sep: &mut [f64], mm: i32, m: &mut i32,
+              vr: c64, ldvr: i32, s: &mut [f64], sep: &mut [f64], mm: i32, m: &mut i32,
               work: &mut [c64], ldwork: i32, rwork: &mut [f64], info: &mut i32) {
 
     unsafe {
         ffi::ztrsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n,
                      t.as_ptr() as *const _, &ldt, &vl as *const _ as *const _, &ldvl,
-                     vr.as_ptr() as *const _, &ldvr, s.as_mut_ptr(), sep.as_mut_ptr(), &mm, m,
+                     &vr as *const _ as *const _, &ldvr, s.as_mut_ptr(), sep.as_mut_ptr(), &mm, m,
                      work.as_mut_ptr() as *mut _, &ldwork, rwork.as_mut_ptr(), info)
     }
 }
@@ -7141,48 +7131,48 @@ pub fn zhgeqz(job: u8, compq: u8, compz: u8, n: i32, ilo: i32, ihi: i32, h: &mut
 
 #[inline]
 pub fn stgevc(side: u8, howmny: u8, select: &[i32], n: i32, s: &[f32], lds: i32, p: f32, ldp: i32,
-              vl: &mut f32, ldvl: i32, vr: &mut [f32], ldvr: i32, mm: i32, m: &mut i32,
+              vl: &mut f32, ldvl: i32, vr: &mut f32, ldvr: i32, mm: i32, m: &mut i32,
               work: &mut [f32], info: &mut i32) {
 
     unsafe {
         ffi::stgevc_(&(side as c_char), &(howmny as c_char), select.as_ptr(), &n, s.as_ptr(), &lds,
-                     &p, &ldp, vl, &ldvl, vr.as_mut_ptr(), &ldvr, &mm, m, work.as_mut_ptr(), info)
+                     &p, &ldp, vl, &ldvl, vr, &ldvr, &mm, m, work.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn dtgevc(side: u8, howmny: u8, select: &[i32], n: i32, s: &[f64], lds: i32, p: f64, ldp: i32,
-              vl: &mut f64, ldvl: i32, vr: &mut [f64], ldvr: i32, mm: i32, m: &mut i32,
+              vl: &mut f64, ldvl: i32, vr: &mut f64, ldvr: i32, mm: i32, m: &mut i32,
               work: &mut [f64], info: &mut i32) {
 
     unsafe {
         ffi::dtgevc_(&(side as c_char), &(howmny as c_char), select.as_ptr(), &n, s.as_ptr(), &lds,
-                     &p, &ldp, vl, &ldvl, vr.as_mut_ptr(), &ldvr, &mm, m, work.as_mut_ptr(), info)
+                     &p, &ldp, vl, &ldvl, vr, &ldvr, &mm, m, work.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn ctgevc(side: u8, howmny: u8, select: &[i32], n: i32, s: &[c32], lds: i32, p: c32, ldp: i32,
-              vl: &mut c32, ldvl: i32, vr: &mut [c32], ldvr: i32, mm: i32, m: &mut i32,
+              vl: &mut c32, ldvl: i32, vr: &mut c32, ldvr: i32, mm: i32, m: &mut i32,
               work: &mut [c32], rwork: &mut [f32], info: &mut i32) {
 
     unsafe {
         ffi::ctgevc_(&(side as c_char), &(howmny as c_char), select.as_ptr(), &n,
                      s.as_ptr() as *const _, &lds, &p as *const _ as *const _, &ldp,
-                     vl as *mut _ as *mut _, &ldvl, vr.as_mut_ptr() as *mut _, &ldvr, &mm, m,
+                     vl as *mut _ as *mut _, &ldvl, vr as *mut _ as *mut _, &ldvr, &mm, m,
                      work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn ztgevc(side: u8, howmny: u8, select: &[i32], n: i32, s: &[c64], lds: i32, p: c64, ldp: i32,
-              vl: &mut c64, ldvl: i32, vr: &mut [c64], ldvr: i32, mm: i32, m: &mut i32,
+              vl: &mut c64, ldvl: i32, vr: &mut c64, ldvr: i32, mm: i32, m: &mut i32,
               work: &mut [c64], rwork: &mut [f64], info: &mut i32) {
 
     unsafe {
         ffi::ztgevc_(&(side as c_char), &(howmny as c_char), select.as_ptr(), &n,
                      s.as_ptr() as *const _, &lds, &p as *const _ as *const _, &ldp,
-                     vl as *mut _ as *mut _, &ldvl, vr.as_mut_ptr() as *mut _, &ldvr, &mm, m,
+                     vl as *mut _ as *mut _, &ldvl, vr as *mut _ as *mut _, &ldvr, &mm, m,
                      work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
 }
@@ -7359,40 +7349,40 @@ pub fn ztgsyl(trans: u8, ijob: &[i32], m: i32, n: i32, a: &[c64], lda: i32, b: &
 
 #[inline]
 pub fn stgsna(job: u8, howmny: u8, select: &[i32], n: i32, a: &[f32], lda: i32, b: &[f32],
-              ldb: i32, vl: f32, ldvl: i32, vr: &[f32], ldvr: i32, s: &mut [f32], dif: &mut [f32],
+              ldb: i32, vl: f32, ldvl: i32, vr: f32, ldvr: i32, s: &mut [f32], dif: &mut [f32],
               mm: i32, m: &mut i32, work: &mut [f32], lwork: i32, iwork: &mut [i32],
               info: &mut i32) {
 
     unsafe {
         ffi::stgsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n, a.as_ptr(), &lda,
-                     b.as_ptr(), &ldb, &vl, &ldvl, vr.as_ptr(), &ldvr, s.as_mut_ptr(),
-                     dif.as_mut_ptr(), &mm, m, work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), info)
+                     b.as_ptr(), &ldb, &vl, &ldvl, &vr, &ldvr, s.as_mut_ptr(), dif.as_mut_ptr(),
+                     &mm, m, work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn dtgsna(job: u8, howmny: u8, select: &[i32], n: i32, a: &[f64], lda: i32, b: &[f64],
-              ldb: i32, vl: f64, ldvl: i32, vr: &[f64], ldvr: i32, s: &mut [f64], dif: &mut [f64],
+              ldb: i32, vl: f64, ldvl: i32, vr: f64, ldvr: i32, s: &mut [f64], dif: &mut [f64],
               mm: i32, m: &mut i32, work: &mut [f64], lwork: i32, iwork: &mut [i32],
               info: &mut i32) {
 
     unsafe {
         ffi::dtgsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n, a.as_ptr(), &lda,
-                     b.as_ptr(), &ldb, &vl, &ldvl, vr.as_ptr(), &ldvr, s.as_mut_ptr(),
-                     dif.as_mut_ptr(), &mm, m, work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), info)
+                     b.as_ptr(), &ldb, &vl, &ldvl, &vr, &ldvr, s.as_mut_ptr(), dif.as_mut_ptr(),
+                     &mm, m, work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn ctgsna(job: u8, howmny: u8, select: &[i32], n: i32, a: &[c32], lda: i32, b: &[c32],
-              ldb: i32, vl: c32, ldvl: i32, vr: &[c32], ldvr: i32, s: &mut [f32], dif: &mut [f32],
+              ldb: i32, vl: c32, ldvl: i32, vr: c32, ldvr: i32, s: &mut [f32], dif: &mut [f32],
               mm: i32, m: &mut i32, work: &mut [c32], lwork: i32, iwork: &mut [i32],
               info: &mut i32) {
 
     unsafe {
         ffi::ctgsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n,
                      a.as_ptr() as *const _, &lda, b.as_ptr() as *const _, &ldb,
-                     &vl as *const _ as *const _, &ldvl, vr.as_ptr() as *const _, &ldvr,
+                     &vl as *const _ as *const _, &ldvl, &vr as *const _ as *const _, &ldvr,
                      s.as_mut_ptr(), dif.as_mut_ptr(), &mm, m, work.as_mut_ptr() as *mut _, &lwork,
                      iwork.as_mut_ptr(), info)
     }
@@ -7400,14 +7390,14 @@ pub fn ctgsna(job: u8, howmny: u8, select: &[i32], n: i32, a: &[c32], lda: i32, 
 
 #[inline]
 pub fn ztgsna(job: u8, howmny: u8, select: &[i32], n: i32, a: &[c64], lda: i32, b: &[c64],
-              ldb: i32, vl: c64, ldvl: i32, vr: &[c64], ldvr: i32, s: &mut [f64], dif: &mut [f64],
+              ldb: i32, vl: c64, ldvl: i32, vr: c64, ldvr: i32, s: &mut [f64], dif: &mut [f64],
               mm: i32, m: &mut i32, work: &mut [c64], lwork: i32, iwork: &mut [i32],
               info: &mut i32) {
 
     unsafe {
         ffi::ztgsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n,
                      a.as_ptr() as *const _, &lda, b.as_ptr() as *const _, &ldb,
-                     &vl as *const _ as *const _, &ldvl, vr.as_ptr() as *const _, &ldvr,
+                     &vl as *const _ as *const _, &ldvl, &vr as *const _ as *const _, &ldvr,
                      s.as_mut_ptr(), dif.as_mut_ptr(), &mm, m, work.as_mut_ptr() as *mut _, &lwork,
                      iwork.as_mut_ptr(), info)
     }
@@ -7948,52 +7938,52 @@ pub fn zheevd(jobz: u8, uplo: u8, n: i32, a: &mut [c64], lda: i32, w: &mut [f64]
 #[inline]
 pub fn ssyevx(jobz: u8, range: u8, uplo: u8, n: i32, a: &mut [f32], lda: i32, vl: f32, vu: f32,
               il: i32, iu: i32, abstol: f32, m: &mut i32, w: &mut [f32], z: &mut [f32], ldz: i32,
-              work: &mut [f32], lwork: i32, iwork: &mut [i32], ifail: &mut [i32], info: &mut i32) {
+              work: &mut [f32], lwork: i32, iwork: &mut [i32], ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::ssyevx_(&(jobz as c_char), &(range as c_char), &(uplo as c_char), &n, a.as_mut_ptr(),
                      &lda, &vl, &vu, &il, &iu, &abstol, m, w.as_mut_ptr(), z.as_mut_ptr(), &ldz,
-                     work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), ifail.as_mut_ptr(), info)
+                     work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), ifail, info)
     }
 }
 
 #[inline]
 pub fn dsyevx(jobz: u8, range: u8, uplo: u8, n: i32, a: &mut [f64], lda: i32, vl: f64, vu: f64,
               il: i32, iu: i32, abstol: f64, m: &mut i32, w: &mut [f64], z: &mut [f64], ldz: i32,
-              work: &mut [f64], lwork: i32, iwork: &mut [i32], ifail: &mut [i32], info: &mut i32) {
+              work: &mut [f64], lwork: i32, iwork: &mut [i32], ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::dsyevx_(&(jobz as c_char), &(range as c_char), &(uplo as c_char), &n, a.as_mut_ptr(),
                      &lda, &vl, &vu, &il, &iu, &abstol, m, w.as_mut_ptr(), z.as_mut_ptr(), &ldz,
-                     work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), ifail.as_mut_ptr(), info)
+                     work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), ifail, info)
     }
 }
 
 #[inline]
 pub fn cheevx(jobz: u8, range: u8, uplo: u8, n: i32, a: &mut [c32], lda: i32, vl: f32, vu: f32,
               il: i32, iu: i32, abstol: f32, m: &mut i32, w: &mut [f32], z: &mut [c32], ldz: i32,
-              work: &mut [c32], lwork: i32, rwork: &mut [f32], iwork: &mut [i32],
-              ifail: &mut [i32], info: &mut i32) {
+              work: &mut [c32], lwork: i32, rwork: &mut [f32], iwork: &mut [i32], ifail: &mut i32,
+              info: &mut i32) {
 
     unsafe {
         ffi::cheevx_(&(jobz as c_char), &(range as c_char), &(uplo as c_char), &n,
                      a.as_mut_ptr() as *mut _, &lda, &vl, &vu, &il, &iu, &abstol, m,
                      w.as_mut_ptr(), z.as_mut_ptr() as *mut _, &ldz, work.as_mut_ptr() as *mut _,
-                     &lwork, rwork.as_mut_ptr(), iwork.as_mut_ptr(), ifail.as_mut_ptr(), info)
+                     &lwork, rwork.as_mut_ptr(), iwork.as_mut_ptr(), ifail, info)
     }
 }
 
 #[inline]
 pub fn zheevx(jobz: u8, range: u8, uplo: u8, n: i32, a: &mut [c64], lda: i32, vl: f64, vu: f64,
               il: i32, iu: i32, abstol: f64, m: &mut i32, w: &mut [f64], z: &mut [c64], ldz: i32,
-              work: &mut [c64], lwork: i32, rwork: &mut [f64], iwork: &mut [i32],
-              ifail: &mut [i32], info: &mut i32) {
+              work: &mut [c64], lwork: i32, rwork: &mut [f64], iwork: &mut [i32], ifail: &mut i32,
+              info: &mut i32) {
 
     unsafe {
         ffi::zheevx_(&(jobz as c_char), &(range as c_char), &(uplo as c_char), &n,
                      a.as_mut_ptr() as *mut _, &lda, &vl, &vu, &il, &iu, &abstol, m,
                      w.as_mut_ptr(), z.as_mut_ptr() as *mut _, &ldz, work.as_mut_ptr() as *mut _,
-                     &lwork, rwork.as_mut_ptr(), iwork.as_mut_ptr(), ifail.as_mut_ptr(), info)
+                     &lwork, rwork.as_mut_ptr(), iwork.as_mut_ptr(), ifail, info)
     }
 }
 
@@ -8146,52 +8136,52 @@ pub fn zhpevd(jobz: u8, uplo: u8, n: i32, ap: &mut [c64], w: &mut [f64], z: &mut
 #[inline]
 pub fn sspevx(jobz: u8, range: u8, uplo: u8, n: i32, ap: &mut [f32], vl: f32, vu: f32, il: i32,
               iu: i32, abstol: f32, m: &mut i32, w: &mut [f32], z: &mut [f32], ldz: i32,
-              work: &mut [f32], iwork: &mut [i32], ifail: &mut [i32], info: &mut i32) {
+              work: &mut [f32], iwork: &mut [i32], ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::sspevx_(&(jobz as c_char), &(range as c_char), &(uplo as c_char), &n, ap.as_mut_ptr(),
                      &vl, &vu, &il, &iu, &abstol, m, w.as_mut_ptr(), z.as_mut_ptr(), &ldz,
-                     work.as_mut_ptr(), iwork.as_mut_ptr(), ifail.as_mut_ptr(), info)
+                     work.as_mut_ptr(), iwork.as_mut_ptr(), ifail, info)
     }
 }
 
 #[inline]
 pub fn dspevx(jobz: u8, range: u8, uplo: u8, n: i32, ap: &mut [f64], vl: f64, vu: f64, il: i32,
               iu: i32, abstol: f64, m: &mut i32, w: &mut [f64], z: &mut [f64], ldz: i32,
-              work: &mut [f64], iwork: &mut [i32], ifail: &mut [i32], info: &mut i32) {
+              work: &mut [f64], iwork: &mut [i32], ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::dspevx_(&(jobz as c_char), &(range as c_char), &(uplo as c_char), &n, ap.as_mut_ptr(),
                      &vl, &vu, &il, &iu, &abstol, m, w.as_mut_ptr(), z.as_mut_ptr(), &ldz,
-                     work.as_mut_ptr(), iwork.as_mut_ptr(), ifail.as_mut_ptr(), info)
+                     work.as_mut_ptr(), iwork.as_mut_ptr(), ifail, info)
     }
 }
 
 #[inline]
 pub fn chpevx(jobz: u8, range: u8, uplo: u8, n: i32, ap: &mut [c32], vl: f32, vu: f32, il: i32,
               iu: i32, abstol: f32, m: &mut i32, w: &mut [f32], z: &mut [c32], ldz: i32,
-              work: &mut [c32], rwork: &mut [f32], iwork: &mut [i32], ifail: &mut [i32],
+              work: &mut [c32], rwork: &mut [f32], iwork: &mut [i32], ifail: &mut i32,
               info: &mut i32) {
 
     unsafe {
         ffi::chpevx_(&(jobz as c_char), &(range as c_char), &(uplo as c_char), &n,
                      ap.as_mut_ptr() as *mut _, &vl, &vu, &il, &iu, &abstol, m, w.as_mut_ptr(),
                      z.as_mut_ptr() as *mut _, &ldz, work.as_mut_ptr() as *mut _,
-                     rwork.as_mut_ptr(), iwork.as_mut_ptr(), ifail.as_mut_ptr(), info)
+                     rwork.as_mut_ptr(), iwork.as_mut_ptr(), ifail, info)
     }
 }
 
 #[inline]
 pub fn zhpevx(jobz: u8, range: u8, uplo: u8, n: i32, ap: &mut [c64], vl: f64, vu: f64, il: i32,
               iu: i32, abstol: f64, m: &mut i32, w: &mut [f64], z: &mut [c64], ldz: i32,
-              work: &mut [c64], rwork: &mut [f64], iwork: &mut [i32], ifail: &mut [i32],
+              work: &mut [c64], rwork: &mut [f64], iwork: &mut [i32], ifail: &mut i32,
               info: &mut i32) {
 
     unsafe {
         ffi::zhpevx_(&(jobz as c_char), &(range as c_char), &(uplo as c_char), &n,
                      ap.as_mut_ptr() as *mut _, &vl, &vu, &il, &iu, &abstol, m, w.as_mut_ptr(),
                      z.as_mut_ptr() as *mut _, &ldz, work.as_mut_ptr() as *mut _,
-                     rwork.as_mut_ptr(), iwork.as_mut_ptr(), ifail.as_mut_ptr(), info)
+                     rwork.as_mut_ptr(), iwork.as_mut_ptr(), ifail, info)
     }
 }
 
@@ -8291,13 +8281,13 @@ pub fn zhbevd(jobz: u8, uplo: u8, n: i32, kd: i32, ab: &mut [c64], ldab: i32, w:
 pub fn ssbevx(jobz: u8, range: u8, uplo: u8, n: i32, kd: i32, ab: &mut [f32], ldab: i32,
               q: &mut f32, ldq: i32, vl: f32, vu: f32, il: i32, iu: i32, abstol: f32, m: &mut i32,
               w: &mut [f32], z: &mut [f32], ldz: i32, work: &mut [f32], iwork: &mut [i32],
-              ifail: &mut [i32], info: &mut i32) {
+              ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::ssbevx_(&(jobz as c_char), &(range as c_char), &(uplo as c_char), &n, &kd,
                      ab.as_mut_ptr(), &ldab, q, &ldq, &vl, &vu, &il, &iu, &abstol, m,
                      w.as_mut_ptr(), z.as_mut_ptr(), &ldz, work.as_mut_ptr(), iwork.as_mut_ptr(),
-                     ifail.as_mut_ptr(), info)
+                     ifail, info)
     }
 }
 
@@ -8305,13 +8295,13 @@ pub fn ssbevx(jobz: u8, range: u8, uplo: u8, n: i32, kd: i32, ab: &mut [f32], ld
 pub fn dsbevx(jobz: u8, range: u8, uplo: u8, n: i32, kd: i32, ab: &mut [f64], ldab: i32,
               q: &mut f64, ldq: i32, vl: f64, vu: f64, il: i32, iu: i32, abstol: f64, m: &mut i32,
               w: &mut [f64], z: &mut [f64], ldz: i32, work: &mut [f64], iwork: &mut [i32],
-              ifail: &mut [i32], info: &mut i32) {
+              ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::dsbevx_(&(jobz as c_char), &(range as c_char), &(uplo as c_char), &n, &kd,
                      ab.as_mut_ptr(), &ldab, q, &ldq, &vl, &vu, &il, &iu, &abstol, m,
                      w.as_mut_ptr(), z.as_mut_ptr(), &ldz, work.as_mut_ptr(), iwork.as_mut_ptr(),
-                     ifail.as_mut_ptr(), info)
+                     ifail, info)
     }
 }
 
@@ -8319,14 +8309,14 @@ pub fn dsbevx(jobz: u8, range: u8, uplo: u8, n: i32, kd: i32, ab: &mut [f64], ld
 pub fn chbevx(jobz: u8, range: u8, uplo: u8, n: i32, kd: i32, ab: &mut [c32], ldab: i32,
               q: &mut c32, ldq: i32, vl: f32, vu: f32, il: i32, iu: i32, abstol: f32, m: &mut i32,
               w: &mut [f32], z: &mut [c32], ldz: i32, work: &mut [c32], rwork: &mut [f32],
-              iwork: &mut [i32], ifail: &mut [i32], info: &mut i32) {
+              iwork: &mut [i32], ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::chbevx_(&(jobz as c_char), &(range as c_char), &(uplo as c_char), &n, &kd,
                      ab.as_mut_ptr() as *mut _, &ldab, q as *mut _ as *mut _, &ldq, &vl, &vu, &il,
                      &iu, &abstol, m, w.as_mut_ptr(), z.as_mut_ptr() as *mut _, &ldz,
-                     work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), iwork.as_mut_ptr(),
-                     ifail.as_mut_ptr(), info)
+                     work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), iwork.as_mut_ptr(), ifail,
+                     info)
     }
 }
 
@@ -8334,14 +8324,14 @@ pub fn chbevx(jobz: u8, range: u8, uplo: u8, n: i32, kd: i32, ab: &mut [c32], ld
 pub fn zhbevx(jobz: u8, range: u8, uplo: u8, n: i32, kd: i32, ab: &mut [c64], ldab: i32,
               q: &mut c64, ldq: i32, vl: f64, vu: f64, il: i32, iu: i32, abstol: f64, m: &mut i32,
               w: &mut [f64], z: &mut [c64], ldz: i32, work: &mut [c64], rwork: &mut [f64],
-              iwork: &mut [i32], ifail: &mut [i32], info: &mut i32) {
+              iwork: &mut [i32], ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::zhbevx_(&(jobz as c_char), &(range as c_char), &(uplo as c_char), &n, &kd,
                      ab.as_mut_ptr() as *mut _, &ldab, q as *mut _ as *mut _, &ldq, &vl, &vu, &il,
                      &iu, &abstol, m, w.as_mut_ptr(), z.as_mut_ptr() as *mut _, &ldz,
-                     work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), iwork.as_mut_ptr(),
-                     ifail.as_mut_ptr(), info)
+                     work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), iwork.as_mut_ptr(), ifail,
+                     info)
     }
 }
 
@@ -8388,24 +8378,24 @@ pub fn dstevd(jobz: u8, n: i32, d: &mut [f64], e: &mut [f64], z: &mut [f64], ldz
 #[inline]
 pub fn sstevx(jobz: u8, range: u8, n: i32, d: &mut [f32], e: &mut [f32], vl: f32, vu: f32, il: i32,
               iu: i32, abstol: f32, m: &mut i32, w: &mut [f32], z: &mut [f32], ldz: i32,
-              work: &mut [f32], iwork: &mut [i32], ifail: &mut [i32], info: &mut i32) {
+              work: &mut [f32], iwork: &mut [i32], ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::sstevx_(&(jobz as c_char), &(range as c_char), &n, d.as_mut_ptr(), e.as_mut_ptr(),
                      &vl, &vu, &il, &iu, &abstol, m, w.as_mut_ptr(), z.as_mut_ptr(), &ldz,
-                     work.as_mut_ptr(), iwork.as_mut_ptr(), ifail.as_mut_ptr(), info)
+                     work.as_mut_ptr(), iwork.as_mut_ptr(), ifail, info)
     }
 }
 
 #[inline]
 pub fn dstevx(jobz: u8, range: u8, n: i32, d: &mut [f64], e: &mut [f64], vl: f64, vu: f64, il: i32,
               iu: i32, abstol: f64, m: &mut i32, w: &mut [f64], z: &mut [f64], ldz: i32,
-              work: &mut [f64], iwork: &mut [i32], ifail: &mut [i32], info: &mut i32) {
+              work: &mut [f64], iwork: &mut [i32], ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::dstevx_(&(jobz as c_char), &(range as c_char), &n, d.as_mut_ptr(), e.as_mut_ptr(),
                      &vl, &vu, &il, &iu, &abstol, m, w.as_mut_ptr(), z.as_mut_ptr(), &ldz,
-                     work.as_mut_ptr(), iwork.as_mut_ptr(), ifail.as_mut_ptr(), info)
+                     work.as_mut_ptr(), iwork.as_mut_ptr(), ifail, info)
     }
 }
 
@@ -8549,57 +8539,57 @@ pub fn zgeesx(jobvs: u8, sort: u8, select: Select1C64, sense: u8, n: i32, a: &mu
 
 #[inline]
 pub fn sgeev(jobvl: u8, jobvr: u8, n: i32, a: &mut [f32], lda: i32, wr: &mut [f32], wi: &mut [f32],
-             vl: &mut f32, ldvl: i32, vr: &mut [f32], ldvr: i32, work: &mut [f32], lwork: i32,
+             vl: &mut f32, ldvl: i32, vr: &mut f32, ldvr: i32, work: &mut [f32], lwork: i32,
              info: &mut i32) {
 
     unsafe {
         ffi::sgeev_(&(jobvl as c_char), &(jobvr as c_char), &n, a.as_mut_ptr(), &lda,
-                    wr.as_mut_ptr(), wi.as_mut_ptr(), vl, &ldvl, vr.as_mut_ptr(), &ldvr,
-                    work.as_mut_ptr(), &lwork, info)
+                    wr.as_mut_ptr(), wi.as_mut_ptr(), vl, &ldvl, vr, &ldvr, work.as_mut_ptr(),
+                    &lwork, info)
     }
 }
 
 #[inline]
 pub fn dgeev(jobvl: u8, jobvr: u8, n: i32, a: &mut [f64], lda: i32, wr: &mut [f64], wi: &mut [f64],
-             vl: &mut f64, ldvl: i32, vr: &mut [f64], ldvr: i32, work: &mut [f64], lwork: i32,
+             vl: &mut f64, ldvl: i32, vr: &mut f64, ldvr: i32, work: &mut [f64], lwork: i32,
              info: &mut i32) {
 
     unsafe {
         ffi::dgeev_(&(jobvl as c_char), &(jobvr as c_char), &n, a.as_mut_ptr(), &lda,
-                    wr.as_mut_ptr(), wi.as_mut_ptr(), vl, &ldvl, vr.as_mut_ptr(), &ldvr,
-                    work.as_mut_ptr(), &lwork, info)
+                    wr.as_mut_ptr(), wi.as_mut_ptr(), vl, &ldvl, vr, &ldvr, work.as_mut_ptr(),
+                    &lwork, info)
     }
 }
 
 #[inline]
 pub fn cgeev(jobvl: u8, jobvr: u8, n: i32, a: &mut [c32], lda: i32, w: &mut [c32], vl: &mut c32,
-             ldvl: i32, vr: &mut [c32], ldvr: i32, work: &mut [c32], lwork: i32, rwork: &mut [f32],
+             ldvl: i32, vr: &mut c32, ldvr: i32, work: &mut [c32], lwork: i32, rwork: &mut [f32],
              info: &mut i32) {
 
     unsafe {
         ffi::cgeev_(&(jobvl as c_char), &(jobvr as c_char), &n, a.as_mut_ptr() as *mut _, &lda,
                     w.as_mut_ptr() as *mut _, vl as *mut _ as *mut _, &ldvl,
-                    vr.as_mut_ptr() as *mut _, &ldvr, work.as_mut_ptr() as *mut _, &lwork,
+                    vr as *mut _ as *mut _, &ldvr, work.as_mut_ptr() as *mut _, &lwork,
                     rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn zgeev(jobvl: u8, jobvr: u8, n: i32, a: &mut [c64], lda: i32, w: &mut [c64], vl: &mut c64,
-             ldvl: i32, vr: &mut [c64], ldvr: i32, work: &mut [c64], lwork: i32, rwork: &mut [f64],
+             ldvl: i32, vr: &mut c64, ldvr: i32, work: &mut [c64], lwork: i32, rwork: &mut [f64],
              info: &mut i32) {
 
     unsafe {
         ffi::zgeev_(&(jobvl as c_char), &(jobvr as c_char), &n, a.as_mut_ptr() as *mut _, &lda,
                     w.as_mut_ptr() as *mut _, vl as *mut _ as *mut _, &ldvl,
-                    vr.as_mut_ptr() as *mut _, &ldvr, work.as_mut_ptr() as *mut _, &lwork,
+                    vr as *mut _ as *mut _, &ldvr, work.as_mut_ptr() as *mut _, &lwork,
                     rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn sgeevx(balanc: u8, jobvl: u8, jobvr: u8, sense: u8, n: i32, a: &mut [f32], lda: i32,
-              wr: &mut [f32], wi: &mut [f32], vl: &mut f32, ldvl: i32, vr: &mut [f32], ldvr: i32,
+              wr: &mut [f32], wi: &mut [f32], vl: &mut f32, ldvl: i32, vr: &mut f32, ldvr: i32,
               ilo: &mut i32, ihi: &mut i32, scale: &mut [f32], abnrm: &mut [f32],
               rconde: &mut [f32], rcondv: &mut [f32], work: &mut [f32], lwork: i32,
               iwork: &mut [i32], info: &mut i32) {
@@ -8607,15 +8597,15 @@ pub fn sgeevx(balanc: u8, jobvl: u8, jobvr: u8, sense: u8, n: i32, a: &mut [f32]
     unsafe {
         ffi::sgeevx_(&(balanc as c_char), &(jobvl as c_char), &(jobvr as c_char),
                      &(sense as c_char), &n, a.as_mut_ptr(), &lda, wr.as_mut_ptr(),
-                     wi.as_mut_ptr(), vl, &ldvl, vr.as_mut_ptr(), &ldvr, ilo, ihi,
-                     scale.as_mut_ptr(), abnrm.as_mut_ptr(), rconde.as_mut_ptr(),
-                     rcondv.as_mut_ptr(), work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), info)
+                     wi.as_mut_ptr(), vl, &ldvl, vr, &ldvr, ilo, ihi, scale.as_mut_ptr(),
+                     abnrm.as_mut_ptr(), rconde.as_mut_ptr(), rcondv.as_mut_ptr(),
+                     work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn dgeevx(balanc: u8, jobvl: u8, jobvr: u8, sense: u8, n: i32, a: &mut [f64], lda: i32,
-              wr: &mut [f64], wi: &mut [f64], vl: &mut f64, ldvl: i32, vr: &mut [f64], ldvr: i32,
+              wr: &mut [f64], wi: &mut [f64], vl: &mut f64, ldvl: i32, vr: &mut f64, ldvr: i32,
               ilo: &mut i32, ihi: &mut i32, scale: &mut [f64], abnrm: &mut [f64],
               rconde: &mut [f64], rcondv: &mut [f64], work: &mut [f64], lwork: i32,
               iwork: &mut [i32], info: &mut i32) {
@@ -8623,15 +8613,15 @@ pub fn dgeevx(balanc: u8, jobvl: u8, jobvr: u8, sense: u8, n: i32, a: &mut [f64]
     unsafe {
         ffi::dgeevx_(&(balanc as c_char), &(jobvl as c_char), &(jobvr as c_char),
                      &(sense as c_char), &n, a.as_mut_ptr(), &lda, wr.as_mut_ptr(),
-                     wi.as_mut_ptr(), vl, &ldvl, vr.as_mut_ptr(), &ldvr, ilo, ihi,
-                     scale.as_mut_ptr(), abnrm.as_mut_ptr(), rconde.as_mut_ptr(),
-                     rcondv.as_mut_ptr(), work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), info)
+                     wi.as_mut_ptr(), vl, &ldvl, vr, &ldvr, ilo, ihi, scale.as_mut_ptr(),
+                     abnrm.as_mut_ptr(), rconde.as_mut_ptr(), rcondv.as_mut_ptr(),
+                     work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn cgeevx(balanc: u8, jobvl: u8, jobvr: u8, sense: u8, n: i32, a: &mut [c32], lda: i32,
-              w: &mut [c32], vl: &mut c32, ldvl: i32, vr: &mut [c32], ldvr: i32, ilo: &mut i32,
+              w: &mut [c32], vl: &mut c32, ldvl: i32, vr: &mut c32, ldvr: i32, ilo: &mut i32,
               ihi: &mut i32, scale: &mut [f32], abnrm: &mut [f32], rconde: &mut [f32],
               rcondv: &mut [f32], work: &mut [c32], lwork: i32, rwork: &mut [f32],
               info: &mut i32) {
@@ -8640,7 +8630,7 @@ pub fn cgeevx(balanc: u8, jobvl: u8, jobvr: u8, sense: u8, n: i32, a: &mut [c32]
         ffi::cgeevx_(&(balanc as c_char), &(jobvl as c_char), &(jobvr as c_char),
                      &(sense as c_char), &n, a.as_mut_ptr() as *mut _, &lda,
                      w.as_mut_ptr() as *mut _, vl as *mut _ as *mut _, &ldvl,
-                     vr.as_mut_ptr() as *mut _, &ldvr, ilo, ihi, scale.as_mut_ptr(),
+                     vr as *mut _ as *mut _, &ldvr, ilo, ihi, scale.as_mut_ptr(),
                      abnrm.as_mut_ptr(), rconde.as_mut_ptr(), rcondv.as_mut_ptr(),
                      work.as_mut_ptr() as *mut _, &lwork, rwork.as_mut_ptr(), info)
     }
@@ -8648,7 +8638,7 @@ pub fn cgeevx(balanc: u8, jobvl: u8, jobvr: u8, sense: u8, n: i32, a: &mut [c32]
 
 #[inline]
 pub fn zgeevx(balanc: u8, jobvl: u8, jobvr: u8, sense: u8, n: i32, a: &mut [c64], lda: i32,
-              w: &mut [c64], vl: &mut c64, ldvl: i32, vr: &mut [c64], ldvr: i32, ilo: &mut i32,
+              w: &mut [c64], vl: &mut c64, ldvl: i32, vr: &mut c64, ldvr: i32, ilo: &mut i32,
               ihi: &mut i32, scale: &mut [f64], abnrm: &mut [f64], rconde: &mut [f64],
               rcondv: &mut [f64], work: &mut [c64], lwork: i32, rwork: &mut [f64],
               info: &mut i32) {
@@ -8657,7 +8647,7 @@ pub fn zgeevx(balanc: u8, jobvl: u8, jobvr: u8, sense: u8, n: i32, a: &mut [c64]
         ffi::zgeevx_(&(balanc as c_char), &(jobvl as c_char), &(jobvr as c_char),
                      &(sense as c_char), &n, a.as_mut_ptr() as *mut _, &lda,
                      w.as_mut_ptr() as *mut _, vl as *mut _ as *mut _, &ldvl,
-                     vr.as_mut_ptr() as *mut _, &ldvr, ilo, ihi, scale.as_mut_ptr(),
+                     vr as *mut _ as *mut _, &ldvr, ilo, ihi, scale.as_mut_ptr(),
                      abnrm.as_mut_ptr(), rconde.as_mut_ptr(), rcondv.as_mut_ptr(),
                      work.as_mut_ptr() as *mut _, &lwork, rwork.as_mut_ptr(), info)
     }
@@ -9139,13 +9129,13 @@ pub fn zhegvd(itype: &[i32], jobz: u8, uplo: u8, n: i32, a: &mut [c64], lda: i32
 pub fn ssygvx(itype: &[i32], jobz: u8, range: u8, uplo: u8, n: i32, a: &mut [f32], lda: i32,
               b: &mut [f32], ldb: i32, vl: f32, vu: f32, il: i32, iu: i32, abstol: f32,
               m: &mut i32, w: &mut [f32], z: &mut [f32], ldz: i32, work: &mut [f32], lwork: i32,
-              iwork: &mut [i32], ifail: &mut [i32], info: &mut i32) {
+              iwork: &mut [i32], ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::ssygvx_(itype.as_ptr(), &(jobz as c_char), &(range as c_char), &(uplo as c_char), &n,
                      a.as_mut_ptr(), &lda, b.as_mut_ptr(), &ldb, &vl, &vu, &il, &iu, &abstol, m,
                      w.as_mut_ptr(), z.as_mut_ptr(), &ldz, work.as_mut_ptr(), &lwork,
-                     iwork.as_mut_ptr(), ifail.as_mut_ptr(), info)
+                     iwork.as_mut_ptr(), ifail, info)
     }
 }
 
@@ -9153,13 +9143,13 @@ pub fn ssygvx(itype: &[i32], jobz: u8, range: u8, uplo: u8, n: i32, a: &mut [f32
 pub fn dsygvx(itype: &[i32], jobz: u8, range: u8, uplo: u8, n: i32, a: &mut [f64], lda: i32,
               b: &mut [f64], ldb: i32, vl: f64, vu: f64, il: i32, iu: i32, abstol: f64,
               m: &mut i32, w: &mut [f64], z: &mut [f64], ldz: i32, work: &mut [f64], lwork: i32,
-              iwork: &mut [i32], ifail: &mut [i32], info: &mut i32) {
+              iwork: &mut [i32], ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::dsygvx_(itype.as_ptr(), &(jobz as c_char), &(range as c_char), &(uplo as c_char), &n,
                      a.as_mut_ptr(), &lda, b.as_mut_ptr(), &ldb, &vl, &vu, &il, &iu, &abstol, m,
                      w.as_mut_ptr(), z.as_mut_ptr(), &ldz, work.as_mut_ptr(), &lwork,
-                     iwork.as_mut_ptr(), ifail.as_mut_ptr(), info)
+                     iwork.as_mut_ptr(), ifail, info)
     }
 }
 
@@ -9167,14 +9157,14 @@ pub fn dsygvx(itype: &[i32], jobz: u8, range: u8, uplo: u8, n: i32, a: &mut [f64
 pub fn chegvx(itype: &[i32], jobz: u8, range: u8, uplo: u8, n: i32, a: &mut [c32], lda: i32,
               b: &mut [c32], ldb: i32, vl: f32, vu: f32, il: i32, iu: i32, abstol: f32,
               m: &mut i32, w: &mut [f32], z: &mut [c32], ldz: i32, work: &mut [c32], lwork: i32,
-              rwork: &mut [f32], iwork: &mut [i32], ifail: &mut [i32], info: &mut i32) {
+              rwork: &mut [f32], iwork: &mut [i32], ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::chegvx_(itype.as_ptr(), &(jobz as c_char), &(range as c_char), &(uplo as c_char), &n,
                      a.as_mut_ptr() as *mut _, &lda, b.as_mut_ptr() as *mut _, &ldb, &vl, &vu, &il,
                      &iu, &abstol, m, w.as_mut_ptr(), z.as_mut_ptr() as *mut _, &ldz,
                      work.as_mut_ptr() as *mut _, &lwork, rwork.as_mut_ptr(), iwork.as_mut_ptr(),
-                     ifail.as_mut_ptr(), info)
+                     ifail, info)
     }
 }
 
@@ -9182,14 +9172,14 @@ pub fn chegvx(itype: &[i32], jobz: u8, range: u8, uplo: u8, n: i32, a: &mut [c32
 pub fn zhegvx(itype: &[i32], jobz: u8, range: u8, uplo: u8, n: i32, a: &mut [c64], lda: i32,
               b: &mut [c64], ldb: i32, vl: f64, vu: f64, il: i32, iu: i32, abstol: f64,
               m: &mut i32, w: &mut [f64], z: &mut [c64], ldz: i32, work: &mut [c64], lwork: i32,
-              rwork: &mut [f64], iwork: &mut [i32], ifail: &mut [i32], info: &mut i32) {
+              rwork: &mut [f64], iwork: &mut [i32], ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::zhegvx_(itype.as_ptr(), &(jobz as c_char), &(range as c_char), &(uplo as c_char), &n,
                      a.as_mut_ptr() as *mut _, &lda, b.as_mut_ptr() as *mut _, &ldb, &vl, &vu, &il,
                      &iu, &abstol, m, w.as_mut_ptr(), z.as_mut_ptr() as *mut _, &ldz,
                      work.as_mut_ptr() as *mut _, &lwork, rwork.as_mut_ptr(), iwork.as_mut_ptr(),
-                     ifail.as_mut_ptr(), info)
+                     ifail, info)
     }
 }
 
@@ -9292,28 +9282,28 @@ pub fn zhpgvd(itype: &[i32], jobz: u8, uplo: u8, n: i32, ap: &mut [c64], bp: &mu
 #[inline]
 pub fn sspgvx(itype: &[i32], jobz: u8, range: u8, uplo: u8, n: i32, ap: &mut [f32], bp: &mut [f32],
               vl: f32, vu: f32, il: i32, iu: i32, abstol: f32, m: &mut i32, w: &mut [f32],
-              z: &mut [f32], ldz: i32, work: &mut [f32], iwork: &mut [i32], ifail: &mut [i32],
+              z: &mut [f32], ldz: i32, work: &mut [f32], iwork: &mut [i32], ifail: &mut i32,
               info: &mut i32) {
 
     unsafe {
         ffi::sspgvx_(itype.as_ptr(), &(jobz as c_char), &(range as c_char), &(uplo as c_char), &n,
                      ap.as_mut_ptr(), bp.as_mut_ptr(), &vl, &vu, &il, &iu, &abstol, m,
                      w.as_mut_ptr(), z.as_mut_ptr(), &ldz, work.as_mut_ptr(), iwork.as_mut_ptr(),
-                     ifail.as_mut_ptr(), info)
+                     ifail, info)
     }
 }
 
 #[inline]
 pub fn dspgvx(itype: &[i32], jobz: u8, range: u8, uplo: u8, n: i32, ap: &mut [f64], bp: &mut [f64],
               vl: f64, vu: f64, il: i32, iu: i32, abstol: f64, m: &mut i32, w: &mut [f64],
-              z: &mut [f64], ldz: i32, work: &mut [f64], iwork: &mut [i32], ifail: &mut [i32],
+              z: &mut [f64], ldz: i32, work: &mut [f64], iwork: &mut [i32], ifail: &mut i32,
               info: &mut i32) {
 
     unsafe {
         ffi::dspgvx_(itype.as_ptr(), &(jobz as c_char), &(range as c_char), &(uplo as c_char), &n,
                      ap.as_mut_ptr(), bp.as_mut_ptr(), &vl, &vu, &il, &iu, &abstol, m,
                      w.as_mut_ptr(), z.as_mut_ptr(), &ldz, work.as_mut_ptr(), iwork.as_mut_ptr(),
-                     ifail.as_mut_ptr(), info)
+                     ifail, info)
     }
 }
 
@@ -9321,14 +9311,14 @@ pub fn dspgvx(itype: &[i32], jobz: u8, range: u8, uplo: u8, n: i32, ap: &mut [f6
 pub fn chpgvx(itype: &[i32], jobz: u8, range: u8, uplo: u8, n: i32, ap: &mut [c32], bp: &mut [c32],
               vl: f32, vu: f32, il: i32, iu: i32, abstol: f32, m: &mut i32, w: &mut [f32],
               z: &mut [c32], ldz: i32, work: &mut [c32], rwork: &mut [f32], iwork: &mut [i32],
-              ifail: &mut [i32], info: &mut i32) {
+              ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::chpgvx_(itype.as_ptr(), &(jobz as c_char), &(range as c_char), &(uplo as c_char), &n,
                      ap.as_mut_ptr() as *mut _, bp.as_mut_ptr() as *mut _, &vl, &vu, &il, &iu,
                      &abstol, m, w.as_mut_ptr(), z.as_mut_ptr() as *mut _, &ldz,
-                     work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), iwork.as_mut_ptr(),
-                     ifail.as_mut_ptr(), info)
+                     work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), iwork.as_mut_ptr(), ifail,
+                     info)
     }
 }
 
@@ -9336,14 +9326,14 @@ pub fn chpgvx(itype: &[i32], jobz: u8, range: u8, uplo: u8, n: i32, ap: &mut [c3
 pub fn zhpgvx(itype: &[i32], jobz: u8, range: u8, uplo: u8, n: i32, ap: &mut [c64], bp: &mut [c64],
               vl: f64, vu: f64, il: i32, iu: i32, abstol: f64, m: &mut i32, w: &mut [f64],
               z: &mut [c64], ldz: i32, work: &mut [c64], rwork: &mut [f64], iwork: &mut [i32],
-              ifail: &mut [i32], info: &mut i32) {
+              ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::zhpgvx_(itype.as_ptr(), &(jobz as c_char), &(range as c_char), &(uplo as c_char), &n,
                      ap.as_mut_ptr() as *mut _, bp.as_mut_ptr() as *mut _, &vl, &vu, &il, &iu,
                      &abstol, m, w.as_mut_ptr(), z.as_mut_ptr() as *mut _, &ldz,
-                     work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), iwork.as_mut_ptr(),
-                     ifail.as_mut_ptr(), info)
+                     work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), iwork.as_mut_ptr(), ifail,
+                     info)
     }
 }
 
@@ -9453,13 +9443,13 @@ pub fn zhbgvd(jobz: u8, uplo: u8, n: i32, ka: i32, kb: i32, ab: &mut [c64], ldab
 pub fn ssbgvx(jobz: u8, range: u8, uplo: u8, n: i32, ka: i32, kb: i32, ab: &mut [f32], ldab: i32,
               bb: &mut [f32], ldbb: i32, q: &mut f32, ldq: i32, vl: f32, vu: f32, il: i32, iu: i32,
               abstol: f32, m: &mut i32, w: &mut [f32], z: &mut [f32], ldz: i32, work: &mut [f32],
-              iwork: &mut [i32], ifail: &mut [i32], info: &mut i32) {
+              iwork: &mut [i32], ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::ssbgvx_(&(jobz as c_char), &(range as c_char), &(uplo as c_char), &n, &ka, &kb,
                      ab.as_mut_ptr(), &ldab, bb.as_mut_ptr(), &ldbb, q, &ldq, &vl, &vu, &il, &iu,
                      &abstol, m, w.as_mut_ptr(), z.as_mut_ptr(), &ldz, work.as_mut_ptr(),
-                     iwork.as_mut_ptr(), ifail.as_mut_ptr(), info)
+                     iwork.as_mut_ptr(), ifail, info)
     }
 }
 
@@ -9467,13 +9457,13 @@ pub fn ssbgvx(jobz: u8, range: u8, uplo: u8, n: i32, ka: i32, kb: i32, ab: &mut 
 pub fn dsbgvx(jobz: u8, range: u8, uplo: u8, n: i32, ka: i32, kb: i32, ab: &mut [f64], ldab: i32,
               bb: &mut [f64], ldbb: i32, q: &mut f64, ldq: i32, vl: f64, vu: f64, il: i32, iu: i32,
               abstol: f64, m: &mut i32, w: &mut [f64], z: &mut [f64], ldz: i32, work: &mut [f64],
-              iwork: &mut [i32], ifail: &mut [i32], info: &mut i32) {
+              iwork: &mut [i32], ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::dsbgvx_(&(jobz as c_char), &(range as c_char), &(uplo as c_char), &n, &ka, &kb,
                      ab.as_mut_ptr(), &ldab, bb.as_mut_ptr(), &ldbb, q, &ldq, &vl, &vu, &il, &iu,
                      &abstol, m, w.as_mut_ptr(), z.as_mut_ptr(), &ldz, work.as_mut_ptr(),
-                     iwork.as_mut_ptr(), ifail.as_mut_ptr(), info)
+                     iwork.as_mut_ptr(), ifail, info)
     }
 }
 
@@ -9481,14 +9471,14 @@ pub fn dsbgvx(jobz: u8, range: u8, uplo: u8, n: i32, ka: i32, kb: i32, ab: &mut 
 pub fn chbgvx(jobz: u8, range: u8, uplo: u8, n: i32, ka: i32, kb: i32, ab: &mut [c32], ldab: i32,
               bb: &mut [c32], ldbb: i32, q: &mut c32, ldq: i32, vl: f32, vu: f32, il: i32, iu: i32,
               abstol: f32, m: &mut i32, w: &mut [f32], z: &mut [c32], ldz: i32, work: &mut [c32],
-              rwork: &mut [f32], iwork: &mut [i32], ifail: &mut [i32], info: &mut i32) {
+              rwork: &mut [f32], iwork: &mut [i32], ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::chbgvx_(&(jobz as c_char), &(range as c_char), &(uplo as c_char), &n, &ka, &kb,
                      ab.as_mut_ptr() as *mut _, &ldab, bb.as_mut_ptr() as *mut _, &ldbb,
                      q as *mut _ as *mut _, &ldq, &vl, &vu, &il, &iu, &abstol, m, w.as_mut_ptr(),
                      z.as_mut_ptr() as *mut _, &ldz, work.as_mut_ptr() as *mut _,
-                     rwork.as_mut_ptr(), iwork.as_mut_ptr(), ifail.as_mut_ptr(), info)
+                     rwork.as_mut_ptr(), iwork.as_mut_ptr(), ifail, info)
     }
 }
 
@@ -9496,14 +9486,14 @@ pub fn chbgvx(jobz: u8, range: u8, uplo: u8, n: i32, ka: i32, kb: i32, ab: &mut 
 pub fn zhbgvx(jobz: u8, range: u8, uplo: u8, n: i32, ka: i32, kb: i32, ab: &mut [c64], ldab: i32,
               bb: &mut [c64], ldbb: i32, q: &mut c64, ldq: i32, vl: f64, vu: f64, il: i32, iu: i32,
               abstol: f64, m: &mut i32, w: &mut [f64], z: &mut [c64], ldz: i32, work: &mut [c64],
-              rwork: &mut [f64], iwork: &mut [i32], ifail: &mut [i32], info: &mut i32) {
+              rwork: &mut [f64], iwork: &mut [i32], ifail: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::zhbgvx_(&(jobz as c_char), &(range as c_char), &(uplo as c_char), &n, &ka, &kb,
                      ab.as_mut_ptr() as *mut _, &ldab, bb.as_mut_ptr() as *mut _, &ldbb,
                      q as *mut _ as *mut _, &ldq, &vl, &vu, &il, &iu, &abstol, m, w.as_mut_ptr(),
                      z.as_mut_ptr() as *mut _, &ldz, work.as_mut_ptr() as *mut _,
-                     rwork.as_mut_ptr(), iwork.as_mut_ptr(), ifail.as_mut_ptr(), info)
+                     rwork.as_mut_ptr(), iwork.as_mut_ptr(), ifail, info)
     }
 }
 
@@ -9702,11 +9692,11 @@ pub fn zggesx(jobvsl: u8, jobvsr: u8, sort: u8, selctg: Select2C64, sense: u8, n
 #[inline]
 pub fn sggev(jobvl: u8, jobvr: u8, n: i32, a: &mut [f32], lda: i32, b: &mut [f32], ldb: i32,
              alphar: &mut f32, alphai: &mut f32, beta: &mut f32, vl: &mut f32, ldvl: i32,
-             vr: &mut [f32], ldvr: i32, work: &mut [f32], lwork: i32, info: &mut i32) {
+             vr: &mut f32, ldvr: i32, work: &mut [f32], lwork: i32, info: &mut i32) {
 
     unsafe {
         ffi::sggev_(&(jobvl as c_char), &(jobvr as c_char), &n, a.as_mut_ptr(), &lda,
-                    b.as_mut_ptr(), &ldb, alphar, alphai, beta, vl, &ldvl, vr.as_mut_ptr(), &ldvr,
+                    b.as_mut_ptr(), &ldb, alphar, alphai, beta, vl, &ldvl, vr, &ldvr,
                     work.as_mut_ptr(), &lwork, info)
     }
 }
@@ -9714,39 +9704,39 @@ pub fn sggev(jobvl: u8, jobvr: u8, n: i32, a: &mut [f32], lda: i32, b: &mut [f32
 #[inline]
 pub fn dggev(jobvl: u8, jobvr: u8, n: i32, a: &mut [f64], lda: i32, b: &mut [f64], ldb: i32,
              alphar: &mut f64, alphai: &mut f64, beta: &mut f64, vl: &mut f64, ldvl: i32,
-             vr: &mut [f64], ldvr: i32, work: &mut [f64], lwork: i32, info: &mut i32) {
+             vr: &mut f64, ldvr: i32, work: &mut [f64], lwork: i32, info: &mut i32) {
 
     unsafe {
         ffi::dggev_(&(jobvl as c_char), &(jobvr as c_char), &n, a.as_mut_ptr(), &lda,
-                    b.as_mut_ptr(), &ldb, alphar, alphai, beta, vl, &ldvl, vr.as_mut_ptr(), &ldvr,
+                    b.as_mut_ptr(), &ldb, alphar, alphai, beta, vl, &ldvl, vr, &ldvr,
                     work.as_mut_ptr(), &lwork, info)
     }
 }
 
 #[inline]
 pub fn cggev(jobvl: u8, jobvr: u8, n: i32, a: &mut [c32], lda: i32, b: &mut [c32], ldb: i32,
-             alpha: &mut c32, beta: &mut c32, vl: &mut c32, ldvl: i32, vr: &mut [c32], ldvr: i32,
+             alpha: &mut c32, beta: &mut c32, vl: &mut c32, ldvl: i32, vr: &mut c32, ldvr: i32,
              work: &mut [c32], lwork: i32, rwork: &mut [f32], info: &mut i32) {
 
     unsafe {
         ffi::cggev_(&(jobvl as c_char), &(jobvr as c_char), &n, a.as_mut_ptr() as *mut _, &lda,
                     b.as_mut_ptr() as *mut _, &ldb, alpha as *mut _ as *mut _,
                     beta as *mut _ as *mut _, vl as *mut _ as *mut _, &ldvl,
-                    vr.as_mut_ptr() as *mut _, &ldvr, work.as_mut_ptr() as *mut _, &lwork,
+                    vr as *mut _ as *mut _, &ldvr, work.as_mut_ptr() as *mut _, &lwork,
                     rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn zggev(jobvl: u8, jobvr: u8, n: i32, a: &mut [c64], lda: i32, b: &mut [c64], ldb: i32,
-             alpha: &mut c64, beta: &mut c64, vl: &mut c64, ldvl: i32, vr: &mut [c64], ldvr: i32,
+             alpha: &mut c64, beta: &mut c64, vl: &mut c64, ldvl: i32, vr: &mut c64, ldvr: i32,
              work: &mut [c64], lwork: i32, rwork: &mut [f64], info: &mut i32) {
 
     unsafe {
         ffi::zggev_(&(jobvl as c_char), &(jobvr as c_char), &n, a.as_mut_ptr() as *mut _, &lda,
                     b.as_mut_ptr() as *mut _, &ldb, alpha as *mut _ as *mut _,
                     beta as *mut _ as *mut _, vl as *mut _ as *mut _, &ldvl,
-                    vr.as_mut_ptr() as *mut _, &ldvr, work.as_mut_ptr() as *mut _, &lwork,
+                    vr as *mut _ as *mut _, &ldvr, work.as_mut_ptr() as *mut _, &lwork,
                     rwork.as_mut_ptr(), info)
     }
 }
@@ -9754,11 +9744,11 @@ pub fn zggev(jobvl: u8, jobvr: u8, n: i32, a: &mut [c64], lda: i32, b: &mut [c64
 #[inline]
 pub fn sggev3(jobvl: u8, jobvr: u8, n: i32, a: &mut [f32], lda: i32, b: &mut [f32], ldb: i32,
               alphar: &mut f32, alphai: &mut f32, beta: &mut f32, vl: &mut f32, ldvl: i32,
-              vr: &mut [f32], ldvr: i32, work: &mut [f32], lwork: i32, info: &mut i32) {
+              vr: &mut f32, ldvr: i32, work: &mut [f32], lwork: i32, info: &mut i32) {
 
     unsafe {
         ffi::sggev3_(&(jobvl as c_char), &(jobvr as c_char), &n, a.as_mut_ptr(), &lda,
-                     b.as_mut_ptr(), &ldb, alphar, alphai, beta, vl, &ldvl, vr.as_mut_ptr(), &ldvr,
+                     b.as_mut_ptr(), &ldb, alphar, alphai, beta, vl, &ldvl, vr, &ldvr,
                      work.as_mut_ptr(), &lwork, info)
     }
 }
@@ -9766,39 +9756,39 @@ pub fn sggev3(jobvl: u8, jobvr: u8, n: i32, a: &mut [f32], lda: i32, b: &mut [f3
 #[inline]
 pub fn dggev3(jobvl: u8, jobvr: u8, n: i32, a: &mut [f64], lda: i32, b: &mut [f64], ldb: i32,
               alphar: &mut f64, alphai: &mut f64, beta: &mut f64, vl: &mut f64, ldvl: i32,
-              vr: &mut [f64], ldvr: i32, work: &mut [f64], lwork: i32, info: &mut i32) {
+              vr: &mut f64, ldvr: i32, work: &mut [f64], lwork: i32, info: &mut i32) {
 
     unsafe {
         ffi::dggev3_(&(jobvl as c_char), &(jobvr as c_char), &n, a.as_mut_ptr(), &lda,
-                     b.as_mut_ptr(), &ldb, alphar, alphai, beta, vl, &ldvl, vr.as_mut_ptr(), &ldvr,
+                     b.as_mut_ptr(), &ldb, alphar, alphai, beta, vl, &ldvl, vr, &ldvr,
                      work.as_mut_ptr(), &lwork, info)
     }
 }
 
 #[inline]
 pub fn cggev3(jobvl: u8, jobvr: u8, n: i32, a: &mut [c32], lda: i32, b: &mut [c32], ldb: i32,
-              alpha: &mut c32, beta: &mut c32, vl: &mut c32, ldvl: i32, vr: &mut [c32], ldvr: i32,
+              alpha: &mut c32, beta: &mut c32, vl: &mut c32, ldvl: i32, vr: &mut c32, ldvr: i32,
               work: &mut [c32], lwork: i32, rwork: &mut [f32], info: &mut i32) {
 
     unsafe {
         ffi::cggev3_(&(jobvl as c_char), &(jobvr as c_char), &n, a.as_mut_ptr() as *mut _, &lda,
                      b.as_mut_ptr() as *mut _, &ldb, alpha as *mut _ as *mut _,
                      beta as *mut _ as *mut _, vl as *mut _ as *mut _, &ldvl,
-                     vr.as_mut_ptr() as *mut _, &ldvr, work.as_mut_ptr() as *mut _, &lwork,
+                     vr as *mut _ as *mut _, &ldvr, work.as_mut_ptr() as *mut _, &lwork,
                      rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn zggev3(jobvl: u8, jobvr: u8, n: i32, a: &mut [c64], lda: i32, b: &mut [c64], ldb: i32,
-              alpha: &mut c64, beta: &mut c64, vl: &mut c64, ldvl: i32, vr: &mut [c64], ldvr: i32,
+              alpha: &mut c64, beta: &mut c64, vl: &mut c64, ldvl: i32, vr: &mut c64, ldvr: i32,
               work: &mut [c64], lwork: i32, rwork: &mut [f64], info: &mut i32) {
 
     unsafe {
         ffi::zggev3_(&(jobvl as c_char), &(jobvr as c_char), &n, a.as_mut_ptr() as *mut _, &lda,
                      b.as_mut_ptr() as *mut _, &ldb, alpha as *mut _ as *mut _,
                      beta as *mut _ as *mut _, vl as *mut _ as *mut _, &ldvl,
-                     vr.as_mut_ptr() as *mut _, &ldvr, work.as_mut_ptr() as *mut _, &lwork,
+                     vr as *mut _ as *mut _, &ldvr, work.as_mut_ptr() as *mut _, &lwork,
                      rwork.as_mut_ptr(), info)
     }
 }
@@ -9806,7 +9796,7 @@ pub fn zggev3(jobvl: u8, jobvr: u8, n: i32, a: &mut [c64], lda: i32, b: &mut [c6
 #[inline]
 pub fn sggevx(balanc: u8, jobvl: u8, jobvr: u8, sense: u8, n: i32, a: &mut [f32], lda: i32,
               b: &mut [f32], ldb: i32, alphar: &mut f32, alphai: &mut f32, beta: &mut f32,
-              vl: &mut f32, ldvl: i32, vr: &mut [f32], ldvr: i32, ilo: &mut i32, ihi: &mut i32,
+              vl: &mut f32, ldvl: i32, vr: &mut f32, ldvr: i32, ilo: &mut i32, ihi: &mut i32,
               lscale: &mut [f32], rscale: &mut [f32], abnrm: &mut [f32], bbnrm: &mut [f32],
               rconde: &mut [f32], rcondv: &mut [f32], work: &mut [f32], lwork: i32,
               iwork: &mut [i32], bwork: &mut [i32], info: &mut i32) {
@@ -9814,17 +9804,17 @@ pub fn sggevx(balanc: u8, jobvl: u8, jobvr: u8, sense: u8, n: i32, a: &mut [f32]
     unsafe {
         ffi::sggevx_(&(balanc as c_char), &(jobvl as c_char), &(jobvr as c_char),
                      &(sense as c_char), &n, a.as_mut_ptr(), &lda, b.as_mut_ptr(), &ldb, alphar,
-                     alphai, beta, vl, &ldvl, vr.as_mut_ptr(), &ldvr, ilo, ihi,
-                     lscale.as_mut_ptr(), rscale.as_mut_ptr(), abnrm.as_mut_ptr(),
-                     bbnrm.as_mut_ptr(), rconde.as_mut_ptr(), rcondv.as_mut_ptr(),
-                     work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), bwork.as_mut_ptr(), info)
+                     alphai, beta, vl, &ldvl, vr, &ldvr, ilo, ihi, lscale.as_mut_ptr(),
+                     rscale.as_mut_ptr(), abnrm.as_mut_ptr(), bbnrm.as_mut_ptr(),
+                     rconde.as_mut_ptr(), rcondv.as_mut_ptr(), work.as_mut_ptr(), &lwork,
+                     iwork.as_mut_ptr(), bwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn dggevx(balanc: u8, jobvl: u8, jobvr: u8, sense: u8, n: i32, a: &mut [f64], lda: i32,
               b: &mut [f64], ldb: i32, alphar: &mut f64, alphai: &mut f64, beta: &mut f64,
-              vl: &mut f64, ldvl: i32, vr: &mut [f64], ldvr: i32, ilo: &mut i32, ihi: &mut i32,
+              vl: &mut f64, ldvl: i32, vr: &mut f64, ldvr: i32, ilo: &mut i32, ihi: &mut i32,
               lscale: &mut [f64], rscale: &mut [f64], abnrm: &mut [f64], bbnrm: &mut [f64],
               rconde: &mut [f64], rcondv: &mut [f64], work: &mut [f64], lwork: i32,
               iwork: &mut [i32], bwork: &mut [i32], info: &mut i32) {
@@ -9832,17 +9822,17 @@ pub fn dggevx(balanc: u8, jobvl: u8, jobvr: u8, sense: u8, n: i32, a: &mut [f64]
     unsafe {
         ffi::dggevx_(&(balanc as c_char), &(jobvl as c_char), &(jobvr as c_char),
                      &(sense as c_char), &n, a.as_mut_ptr(), &lda, b.as_mut_ptr(), &ldb, alphar,
-                     alphai, beta, vl, &ldvl, vr.as_mut_ptr(), &ldvr, ilo, ihi,
-                     lscale.as_mut_ptr(), rscale.as_mut_ptr(), abnrm.as_mut_ptr(),
-                     bbnrm.as_mut_ptr(), rconde.as_mut_ptr(), rcondv.as_mut_ptr(),
-                     work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), bwork.as_mut_ptr(), info)
+                     alphai, beta, vl, &ldvl, vr, &ldvr, ilo, ihi, lscale.as_mut_ptr(),
+                     rscale.as_mut_ptr(), abnrm.as_mut_ptr(), bbnrm.as_mut_ptr(),
+                     rconde.as_mut_ptr(), rcondv.as_mut_ptr(), work.as_mut_ptr(), &lwork,
+                     iwork.as_mut_ptr(), bwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn cggevx(balanc: u8, jobvl: u8, jobvr: u8, sense: u8, n: i32, a: &mut [c32], lda: i32,
               b: &mut [c32], ldb: i32, alpha: &mut c32, beta: &mut c32, vl: &mut c32, ldvl: i32,
-              vr: &mut [c32], ldvr: i32, ilo: &mut i32, ihi: &mut i32, lscale: &mut [f32],
+              vr: &mut c32, ldvr: i32, ilo: &mut i32, ihi: &mut i32, lscale: &mut [f32],
               rscale: &mut [f32], abnrm: &mut [f32], bbnrm: &mut [f32], rconde: &mut [f32],
               rcondv: &mut [f32], work: &mut [c32], lwork: i32, rwork: &mut [f32],
               iwork: &mut [i32], bwork: &mut [i32], info: &mut i32) {
@@ -9852,7 +9842,7 @@ pub fn cggevx(balanc: u8, jobvl: u8, jobvr: u8, sense: u8, n: i32, a: &mut [c32]
                      &(sense as c_char), &n, a.as_mut_ptr() as *mut _, &lda,
                      b.as_mut_ptr() as *mut _, &ldb, alpha as *mut _ as *mut _,
                      beta as *mut _ as *mut _, vl as *mut _ as *mut _, &ldvl,
-                     vr.as_mut_ptr() as *mut _, &ldvr, ilo, ihi, lscale.as_mut_ptr(),
+                     vr as *mut _ as *mut _, &ldvr, ilo, ihi, lscale.as_mut_ptr(),
                      rscale.as_mut_ptr(), abnrm.as_mut_ptr(), bbnrm.as_mut_ptr(),
                      rconde.as_mut_ptr(), rcondv.as_mut_ptr(), work.as_mut_ptr() as *mut _, &lwork,
                      rwork.as_mut_ptr(), iwork.as_mut_ptr(), bwork.as_mut_ptr(), info)
@@ -9862,7 +9852,7 @@ pub fn cggevx(balanc: u8, jobvl: u8, jobvr: u8, sense: u8, n: i32, a: &mut [c32]
 #[inline]
 pub fn zggevx(balanc: u8, jobvl: u8, jobvr: u8, sense: u8, n: i32, a: &mut [c64], lda: i32,
               b: &mut [c64], ldb: i32, alpha: &mut c64, beta: &mut c64, vl: &mut c64, ldvl: i32,
-              vr: &mut [c64], ldvr: i32, ilo: &mut i32, ihi: &mut i32, lscale: &mut [f64],
+              vr: &mut c64, ldvr: i32, ilo: &mut i32, ihi: &mut i32, lscale: &mut [f64],
               rscale: &mut [f64], abnrm: &mut [f64], bbnrm: &mut [f64], rconde: &mut [f64],
               rcondv: &mut [f64], work: &mut [c64], lwork: i32, rwork: &mut [f64],
               iwork: &mut [i32], bwork: &mut [i32], info: &mut i32) {
@@ -9872,7 +9862,7 @@ pub fn zggevx(balanc: u8, jobvl: u8, jobvr: u8, sense: u8, n: i32, a: &mut [c64]
                      &(sense as c_char), &n, a.as_mut_ptr() as *mut _, &lda,
                      b.as_mut_ptr() as *mut _, &ldb, alpha as *mut _ as *mut _,
                      beta as *mut _ as *mut _, vl as *mut _ as *mut _, &ldvl,
-                     vr.as_mut_ptr() as *mut _, &ldvr, ilo, ihi, lscale.as_mut_ptr(),
+                     vr as *mut _ as *mut _, &ldvr, ilo, ihi, lscale.as_mut_ptr(),
                      rscale.as_mut_ptr(), abnrm.as_mut_ptr(), bbnrm.as_mut_ptr(),
                      rconde.as_mut_ptr(), rcondv.as_mut_ptr(), work.as_mut_ptr() as *mut _, &lwork,
                      rwork.as_mut_ptr(), iwork.as_mut_ptr(), bwork.as_mut_ptr(), info)

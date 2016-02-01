@@ -12080,6 +12080,9 @@ def is_scalar(name, cty, f):
     )
 
 def translate_argument(name, cty, f):
+    if name == "matrix_layout":
+        return "Layout"
+
     m = select_re.match(cty)
     if m is not None:
         if m.group(1) == 'S':
@@ -12122,6 +12125,12 @@ def translate_type_base(cty):
     assert False, "cannot translate `{}`".format(cty)
 
 def translate_body_argument(name, rty):
+    if rty.startswith("Select"):
+        return "transmute({})".format(name)
+
+    if rty == "Layout":
+        return "{}.into()".format(name)
+
     if rty == "u8":
         return "{} as c_char".format(name)
     elif rty == "&mut u8":
@@ -12151,9 +12160,6 @@ def translate_body_argument(name, rty):
         return "{}.as_ptr() as *const _".format(name)
     elif rty.startswith("&mut [c"):
         return "{}.as_mut_ptr() as *mut _".format(name)
-
-    if rty.startswith("Select"):
-        return "transmute({})".format(name)
 
     assert False, "cannot translate `{}: {}`".format(name, rty)
 

@@ -13,7 +13,7 @@ let n = 3;
 let mut a = vec![3.0, 1.0, 1.0, 1.0, 3.0, 1.0, 1.0, 1.0, 3.0];
 let mut w = vec![0.0; n as usize];
 
-dsyev(COL_MAJOR, b'V', b'U', n, &mut a, n, &mut w);
+dsyev(Layout::ColumnMajor, b'V', b'U', n, &mut a, n, &mut w);
 
 for (one, another) in w.iter().zip(&[2.0, 2.0, 5.0]) {
     assert!((one - another).abs() < 1e-14);

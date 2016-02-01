@@ -5506,36 +5506,38 @@ def is_mut(name, cty):
 def is_scalar(name, cty):
     return (
         "c_char" in cty or
-        "lapack_int" in cty and (
-            name in [
-                "abstol",
-                "anorm",
-                "il",
-                "info",
-                "iu",
-                "l",
-                "liwork",
-                "lrwork",
-                "lwork",
-                "m",
-                "mm",
-                "n",
-                "nb",
-                "nrhs",
-                "p",
-                "q",
-                "rank",
-                "rcond",
-                "tryrac",
-                "vl",
-                "vu",
-            ] or
-            name.startswith("inc") or
-            name.startswith("k") or
-            name.startswith("ld") or
-            name.startswith("tol") or
-            name.startswith("vers_")
-        )
+        name in [
+            "abstol",
+            "anorm",
+            "ihi",
+            "il",
+            "ilo",
+            "info",
+            "iu",
+            "l",
+            "liwork",
+            "lrwork",
+            "lwork",
+            "m",
+            "mm",
+            "n",
+            "nb",
+            "nrhs",
+            "p",
+            "q",
+            "rank",
+            "rcond",
+            "tryrac",
+            "vl",
+            "vu",
+        ] or
+        name.startswith("alpha") or
+        name.startswith("beta") or
+        name.startswith("inc") or
+        name.startswith("k") or
+        name.startswith("ld") or
+        name.startswith("tol") or
+        name.startswith("vers")
     )
 
 def translate_argument(name, cty, f):

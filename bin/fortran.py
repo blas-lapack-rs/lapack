@@ -5503,7 +5503,7 @@ def is_const(name, cty):
 def is_mut(name, cty):
     return "*mut" in cty
 
-def is_scalar(name, cty):
+def is_scalar(name, cty, f):
     return (
         "c_char" in cty or
         name in [
@@ -5524,14 +5524,18 @@ def is_scalar(name, cty):
             "n_err_bnds",
             "nb",
             "nrhs",
-            "p",
             "q",
             "rank",
             "rcond",
             "tryrac",
+            "vu",
+        ] or
+        not ('tgsna' in f.name or 'trsna' in f.name) and name in [
             "vl",
             "vr",
-            "vu",
+        ] or
+        not ('tgevc' in f.name) and name in [
+            "p",
         ] or
         name.startswith("alpha") or
         name.startswith("beta") or
@@ -5546,13 +5550,13 @@ def is_scalar(name, cty):
 def translate_argument(name, cty, f):
     if is_const(name, cty):
         base = translate_type_base(cty, f)
-        if is_scalar(name, cty):
+        if is_scalar(name, cty, f):
             return base
         else:
             return "&[{}]".format(base)
     elif is_mut(name, cty):
         base = translate_type_base(cty, f)
-        if is_scalar(name, cty):
+        if is_scalar(name, cty, f):
             return "&mut {}".format(base)
         else:
             return "&mut [{}]".format(base)

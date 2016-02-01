@@ -6706,51 +6706,51 @@ pub fn ztrevc(side: u8, howmny: u8, select: &[i32], n: i32, t: &mut [c64], ldt: 
 }
 
 #[inline]
-pub fn strsna(job: u8, howmny: u8, select: &[i32], n: i32, t: &[f32], ldt: i32, vl: f32, ldvl: i32,
-              vr: f32, ldvr: i32, s: &mut [f32], sep: &mut [f32], mm: i32, m: &mut i32,
-              work: &mut [f32], ldwork: i32, iwork: &mut [i32], info: &mut i32) {
+pub fn strsna(job: u8, howmny: u8, select: &[i32], n: i32, t: &[f32], ldt: i32, vl: &[f32],
+              ldvl: i32, vr: &[f32], ldvr: i32, s: &mut [f32], sep: &mut [f32], mm: i32,
+              m: &mut i32, work: &mut [f32], ldwork: i32, iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::strsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n, t.as_ptr(), &ldt,
-                     &vl, &ldvl, &vr, &ldvr, s.as_mut_ptr(), sep.as_mut_ptr(), &mm, m,
-                     work.as_mut_ptr(), &ldwork, iwork.as_mut_ptr(), info)
+                     vl.as_ptr(), &ldvl, vr.as_ptr(), &ldvr, s.as_mut_ptr(), sep.as_mut_ptr(), &mm,
+                     m, work.as_mut_ptr(), &ldwork, iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
-pub fn dtrsna(job: u8, howmny: u8, select: &[i32], n: i32, t: &[f64], ldt: i32, vl: f64, ldvl: i32,
-              vr: f64, ldvr: i32, s: &mut [f64], sep: &mut [f64], mm: i32, m: &mut i32,
-              work: &mut [f64], ldwork: i32, iwork: &mut [i32], info: &mut i32) {
+pub fn dtrsna(job: u8, howmny: u8, select: &[i32], n: i32, t: &[f64], ldt: i32, vl: &[f64],
+              ldvl: i32, vr: &[f64], ldvr: i32, s: &mut [f64], sep: &mut [f64], mm: i32,
+              m: &mut i32, work: &mut [f64], ldwork: i32, iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::dtrsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n, t.as_ptr(), &ldt,
-                     &vl, &ldvl, &vr, &ldvr, s.as_mut_ptr(), sep.as_mut_ptr(), &mm, m,
-                     work.as_mut_ptr(), &ldwork, iwork.as_mut_ptr(), info)
+                     vl.as_ptr(), &ldvl, vr.as_ptr(), &ldvr, s.as_mut_ptr(), sep.as_mut_ptr(), &mm,
+                     m, work.as_mut_ptr(), &ldwork, iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
-pub fn ctrsna(job: u8, howmny: u8, select: &[i32], n: i32, t: &[c32], ldt: i32, vl: c32, ldvl: i32,
-              vr: c32, ldvr: i32, s: &mut [f32], sep: &mut [f32], mm: i32, m: &mut i32,
-              work: &mut [c32], ldwork: i32, rwork: &mut [f32], info: &mut i32) {
+pub fn ctrsna(job: u8, howmny: u8, select: &[i32], n: i32, t: &[c32], ldt: i32, vl: &[c32],
+              ldvl: i32, vr: &[c32], ldvr: i32, s: &mut [f32], sep: &mut [f32], mm: i32,
+              m: &mut i32, work: &mut [c32], ldwork: i32, rwork: &mut [f32], info: &mut i32) {
 
     unsafe {
         ffi::ctrsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n,
-                     t.as_ptr() as *const _, &ldt, &vl as *const _ as *const _, &ldvl,
-                     &vr as *const _ as *const _, &ldvr, s.as_mut_ptr(), sep.as_mut_ptr(), &mm, m,
+                     t.as_ptr() as *const _, &ldt, vl.as_ptr() as *const _, &ldvl,
+                     vr.as_ptr() as *const _, &ldvr, s.as_mut_ptr(), sep.as_mut_ptr(), &mm, m,
                      work.as_mut_ptr() as *mut _, &ldwork, rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
-pub fn ztrsna(job: u8, howmny: u8, select: &[i32], n: i32, t: &[c64], ldt: i32, vl: c64, ldvl: i32,
-              vr: c64, ldvr: i32, s: &mut [f64], sep: &mut [f64], mm: i32, m: &mut i32,
-              work: &mut [c64], ldwork: i32, rwork: &mut [f64], info: &mut i32) {
+pub fn ztrsna(job: u8, howmny: u8, select: &[i32], n: i32, t: &[c64], ldt: i32, vl: &[c64],
+              ldvl: i32, vr: &[c64], ldvr: i32, s: &mut [f64], sep: &mut [f64], mm: i32,
+              m: &mut i32, work: &mut [c64], ldwork: i32, rwork: &mut [f64], info: &mut i32) {
 
     unsafe {
         ffi::ztrsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n,
-                     t.as_ptr() as *const _, &ldt, &vl as *const _ as *const _, &ldvl,
-                     &vr as *const _ as *const _, &ldvr, s.as_mut_ptr(), sep.as_mut_ptr(), &mm, m,
+                     t.as_ptr() as *const _, &ldt, vl.as_ptr() as *const _, &ldvl,
+                     vr.as_ptr() as *const _, &ldvr, s.as_mut_ptr(), sep.as_mut_ptr(), &mm, m,
                      work.as_mut_ptr() as *mut _, &ldwork, rwork.as_mut_ptr(), info)
     }
 }
@@ -7130,48 +7130,48 @@ pub fn zhgeqz(job: u8, compq: u8, compz: u8, n: i32, ilo: i32, ihi: i32, h: &mut
 }
 
 #[inline]
-pub fn stgevc(side: u8, howmny: u8, select: &[i32], n: i32, s: &[f32], lds: i32, p: f32, ldp: i32,
-              vl: &mut f32, ldvl: i32, vr: &mut f32, ldvr: i32, mm: i32, m: &mut i32,
+pub fn stgevc(side: u8, howmny: u8, select: &[i32], n: i32, s: &[f32], lds: i32, p: &[f32],
+              ldp: i32, vl: &mut f32, ldvl: i32, vr: &mut f32, ldvr: i32, mm: i32, m: &mut i32,
               work: &mut [f32], info: &mut i32) {
 
     unsafe {
         ffi::stgevc_(&(side as c_char), &(howmny as c_char), select.as_ptr(), &n, s.as_ptr(), &lds,
-                     &p, &ldp, vl, &ldvl, vr, &ldvr, &mm, m, work.as_mut_ptr(), info)
+                     p.as_ptr(), &ldp, vl, &ldvl, vr, &ldvr, &mm, m, work.as_mut_ptr(), info)
     }
 }
 
 #[inline]
-pub fn dtgevc(side: u8, howmny: u8, select: &[i32], n: i32, s: &[f64], lds: i32, p: f64, ldp: i32,
-              vl: &mut f64, ldvl: i32, vr: &mut f64, ldvr: i32, mm: i32, m: &mut i32,
+pub fn dtgevc(side: u8, howmny: u8, select: &[i32], n: i32, s: &[f64], lds: i32, p: &[f64],
+              ldp: i32, vl: &mut f64, ldvl: i32, vr: &mut f64, ldvr: i32, mm: i32, m: &mut i32,
               work: &mut [f64], info: &mut i32) {
 
     unsafe {
         ffi::dtgevc_(&(side as c_char), &(howmny as c_char), select.as_ptr(), &n, s.as_ptr(), &lds,
-                     &p, &ldp, vl, &ldvl, vr, &ldvr, &mm, m, work.as_mut_ptr(), info)
+                     p.as_ptr(), &ldp, vl, &ldvl, vr, &ldvr, &mm, m, work.as_mut_ptr(), info)
     }
 }
 
 #[inline]
-pub fn ctgevc(side: u8, howmny: u8, select: &[i32], n: i32, s: &[c32], lds: i32, p: c32, ldp: i32,
-              vl: &mut c32, ldvl: i32, vr: &mut c32, ldvr: i32, mm: i32, m: &mut i32,
+pub fn ctgevc(side: u8, howmny: u8, select: &[i32], n: i32, s: &[c32], lds: i32, p: &[c32],
+              ldp: i32, vl: &mut c32, ldvl: i32, vr: &mut c32, ldvr: i32, mm: i32, m: &mut i32,
               work: &mut [c32], rwork: &mut [f32], info: &mut i32) {
 
     unsafe {
         ffi::ctgevc_(&(side as c_char), &(howmny as c_char), select.as_ptr(), &n,
-                     s.as_ptr() as *const _, &lds, &p as *const _ as *const _, &ldp,
+                     s.as_ptr() as *const _, &lds, p.as_ptr() as *const _, &ldp,
                      vl as *mut _ as *mut _, &ldvl, vr as *mut _ as *mut _, &ldvr, &mm, m,
                      work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
-pub fn ztgevc(side: u8, howmny: u8, select: &[i32], n: i32, s: &[c64], lds: i32, p: c64, ldp: i32,
-              vl: &mut c64, ldvl: i32, vr: &mut c64, ldvr: i32, mm: i32, m: &mut i32,
+pub fn ztgevc(side: u8, howmny: u8, select: &[i32], n: i32, s: &[c64], lds: i32, p: &[c64],
+              ldp: i32, vl: &mut c64, ldvl: i32, vr: &mut c64, ldvr: i32, mm: i32, m: &mut i32,
               work: &mut [c64], rwork: &mut [f64], info: &mut i32) {
 
     unsafe {
         ffi::ztgevc_(&(side as c_char), &(howmny as c_char), select.as_ptr(), &n,
-                     s.as_ptr() as *const _, &lds, &p as *const _ as *const _, &ldp,
+                     s.as_ptr() as *const _, &lds, p.as_ptr() as *const _, &ldp,
                      vl as *mut _ as *mut _, &ldvl, vr as *mut _ as *mut _, &ldvr, &mm, m,
                      work.as_mut_ptr() as *mut _, rwork.as_mut_ptr(), info)
     }
@@ -7349,40 +7349,40 @@ pub fn ztgsyl(trans: u8, ijob: &[i32], m: i32, n: i32, a: &[c64], lda: i32, b: &
 
 #[inline]
 pub fn stgsna(job: u8, howmny: u8, select: &[i32], n: i32, a: &[f32], lda: i32, b: &[f32],
-              ldb: i32, vl: f32, ldvl: i32, vr: f32, ldvr: i32, s: &mut [f32], dif: &mut [f32],
-              mm: i32, m: &mut i32, work: &mut [f32], lwork: i32, iwork: &mut [i32],
-              info: &mut i32) {
+              ldb: i32, vl: &[f32], ldvl: i32, vr: &[f32], ldvr: i32, s: &mut [f32],
+              dif: &mut [f32], mm: i32, m: &mut i32, work: &mut [f32], lwork: i32,
+              iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::stgsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n, a.as_ptr(), &lda,
-                     b.as_ptr(), &ldb, &vl, &ldvl, &vr, &ldvr, s.as_mut_ptr(), dif.as_mut_ptr(),
-                     &mm, m, work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), info)
+                     b.as_ptr(), &ldb, vl.as_ptr(), &ldvl, vr.as_ptr(), &ldvr, s.as_mut_ptr(),
+                     dif.as_mut_ptr(), &mm, m, work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn dtgsna(job: u8, howmny: u8, select: &[i32], n: i32, a: &[f64], lda: i32, b: &[f64],
-              ldb: i32, vl: f64, ldvl: i32, vr: f64, ldvr: i32, s: &mut [f64], dif: &mut [f64],
-              mm: i32, m: &mut i32, work: &mut [f64], lwork: i32, iwork: &mut [i32],
-              info: &mut i32) {
+              ldb: i32, vl: &[f64], ldvl: i32, vr: &[f64], ldvr: i32, s: &mut [f64],
+              dif: &mut [f64], mm: i32, m: &mut i32, work: &mut [f64], lwork: i32,
+              iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::dtgsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n, a.as_ptr(), &lda,
-                     b.as_ptr(), &ldb, &vl, &ldvl, &vr, &ldvr, s.as_mut_ptr(), dif.as_mut_ptr(),
-                     &mm, m, work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), info)
+                     b.as_ptr(), &ldb, vl.as_ptr(), &ldvl, vr.as_ptr(), &ldvr, s.as_mut_ptr(),
+                     dif.as_mut_ptr(), &mm, m, work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn ctgsna(job: u8, howmny: u8, select: &[i32], n: i32, a: &[c32], lda: i32, b: &[c32],
-              ldb: i32, vl: c32, ldvl: i32, vr: c32, ldvr: i32, s: &mut [f32], dif: &mut [f32],
-              mm: i32, m: &mut i32, work: &mut [c32], lwork: i32, iwork: &mut [i32],
-              info: &mut i32) {
+              ldb: i32, vl: &[c32], ldvl: i32, vr: &[c32], ldvr: i32, s: &mut [f32],
+              dif: &mut [f32], mm: i32, m: &mut i32, work: &mut [c32], lwork: i32,
+              iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::ctgsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n,
                      a.as_ptr() as *const _, &lda, b.as_ptr() as *const _, &ldb,
-                     &vl as *const _ as *const _, &ldvl, &vr as *const _ as *const _, &ldvr,
+                     vl.as_ptr() as *const _, &ldvl, vr.as_ptr() as *const _, &ldvr,
                      s.as_mut_ptr(), dif.as_mut_ptr(), &mm, m, work.as_mut_ptr() as *mut _, &lwork,
                      iwork.as_mut_ptr(), info)
     }
@@ -7390,14 +7390,14 @@ pub fn ctgsna(job: u8, howmny: u8, select: &[i32], n: i32, a: &[c32], lda: i32, 
 
 #[inline]
 pub fn ztgsna(job: u8, howmny: u8, select: &[i32], n: i32, a: &[c64], lda: i32, b: &[c64],
-              ldb: i32, vl: c64, ldvl: i32, vr: c64, ldvr: i32, s: &mut [f64], dif: &mut [f64],
-              mm: i32, m: &mut i32, work: &mut [c64], lwork: i32, iwork: &mut [i32],
-              info: &mut i32) {
+              ldb: i32, vl: &[c64], ldvl: i32, vr: &[c64], ldvr: i32, s: &mut [f64],
+              dif: &mut [f64], mm: i32, m: &mut i32, work: &mut [c64], lwork: i32,
+              iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::ztgsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n,
                      a.as_ptr() as *const _, &lda, b.as_ptr() as *const _, &ldb,
-                     &vl as *const _ as *const _, &ldvl, &vr as *const _ as *const _, &ldvr,
+                     vl.as_ptr() as *const _, &ldvl, vr.as_ptr() as *const _, &ldvr,
                      s.as_mut_ptr(), dif.as_mut_ptr(), &mm, m, work.as_mut_ptr() as *mut _, &lwork,
                      iwork.as_mut_ptr(), info)
     }

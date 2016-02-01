@@ -5562,7 +5562,7 @@ pub fn dbdsdc(uplo: u8, compq: u8, n: i32, d: &mut [f64], e: &mut [f64], u: &mut
 }
 
 #[inline]
-pub fn sbdsvdx(uplo: u8, jobz: u8, range: u8, n: i32, d: &[f32], e: &[f32], vl: f32, vu: i32,
+pub fn sbdsvdx(uplo: u8, jobz: u8, range: u8, n: i32, d: &[f32], e: &[f32], vl: f32, vu: f32,
                il: i32, iu: i32, ns: &mut [i32], s: &mut [f32], z: &mut [f32], ldz: i32,
                work: &mut [f32], iwork: &mut [i32], info: &mut i32) {
 
@@ -5574,7 +5574,7 @@ pub fn sbdsvdx(uplo: u8, jobz: u8, range: u8, n: i32, d: &[f32], e: &[f32], vl: 
 }
 
 #[inline]
-pub fn dbdsvdx(uplo: u8, jobz: u8, range: u8, n: i32, d: &[f64], e: &[f64], vl: f64, vu: i32,
+pub fn dbdsvdx(uplo: u8, jobz: u8, range: u8, n: i32, d: &[f64], e: &[f64], vl: f64, vu: f64,
                il: i32, iu: i32, ns: &mut [i32], s: &mut [f64], z: &mut [f64], ldz: i32,
                work: &mut [f64], iwork: &mut [i32], info: &mut i32) {
 

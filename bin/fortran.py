@@ -2383,12 +2383,12 @@ functions = """
 
     pub fn sbdsvdx_(uplo: *const c_char, jobz: *const c_char, range: *const c_char,
                     n: *const lapack_int, d: *const c_float, e: *const c_float, vl: *const c_float,
-                    vu: *const lapack_int, il: *const lapack_int, iu: *const lapack_int,
+                    vu: *const c_float, il: *const lapack_int, iu: *const lapack_int,
                     ns: *mut lapack_int, s: *mut c_float, z: *mut c_float, ldz: *const lapack_int,
                     work: *mut c_float, iwork: *mut lapack_int, info: *mut lapack_int);
     pub fn dbdsvdx_(uplo: *const c_char, jobz: *const c_char, range: *const c_char,
                     n: *const lapack_int, d: *const c_double, e: *const c_double,
-                    vl: *const c_double, vu: *const lapack_int, il: *const lapack_int,
+                    vl: *const c_double, vu: *const c_double, il: *const lapack_int,
                     iu: *const lapack_int, ns: *mut lapack_int, s: *mut c_double, z: *mut c_double,
                     ldz: *const lapack_int, work: *mut c_double, iwork: *mut lapack_int,
                     info: *mut lapack_int);

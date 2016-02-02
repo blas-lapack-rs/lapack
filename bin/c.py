@@ -12197,14 +12197,13 @@ def format_header(f):
     return "\n".join(s)
 
 def format_body(f):
-    a = format_body_arguments(f)
-    tail = "{})".format(a)
-
     s = []
     s.append(" " * 4)
     s.append("unsafe {\n")
     s.append(" " * 8)
     s.append("ffi::LAPACKE_{}(".format(f.name))
+
+    tail = "{})".format(format_body_arguments(f))
 
     indent = 8 + 13 + len(f.name) + 1
     while len(tail) > 0:

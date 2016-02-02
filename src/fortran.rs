@@ -10402,30 +10402,28 @@ pub fn zlaswp(n: i32, a: &mut [c64], lda: i32, k1: i32, k2: i32, ipiv: &[i32], i
 #[inline]
 pub fn slange(norm: u8, m: i32, n: i32, a: &[f32], lda: i32, work: &mut [f32]) -> f32 {
     unsafe {
-        ffi::slange_(&(norm as c_char), &m, &n, a.as_ptr(), &lda, work.as_mut_ptr()) as f32
+        ffi::slange_(&(norm as c_char), &m, &n, a.as_ptr(), &lda, work.as_mut_ptr())
     }
 }
 
 #[inline]
 pub fn dlange(norm: u8, m: i32, n: i32, a: &[f64], lda: i32, work: &mut [f64]) -> f64 {
     unsafe {
-        ffi::dlange_(&(norm as c_char), &m, &n, a.as_ptr(), &lda, work.as_mut_ptr()) as f64
+        ffi::dlange_(&(norm as c_char), &m, &n, a.as_ptr(), &lda, work.as_mut_ptr())
     }
 }
 
 #[inline]
 pub fn clange(norm: u8, m: i32, n: i32, a: &[c32], lda: i32, work: &mut [f32]) -> f32 {
     unsafe {
-        ffi::clange_(&(norm as c_char), &m, &n, a.as_ptr() as *const _, &lda,
-                     work.as_mut_ptr()) as f32
+        ffi::clange_(&(norm as c_char), &m, &n, a.as_ptr() as *const _, &lda, work.as_mut_ptr())
     }
 }
 
 #[inline]
 pub fn zlange(norm: u8, m: i32, n: i32, a: &[c64], lda: i32, work: &mut [f64]) -> f64 {
     unsafe {
-        ffi::zlange_(&(norm as c_char), &m, &n, a.as_ptr() as *const _, &lda,
-                     work.as_mut_ptr()) as f64
+        ffi::zlange_(&(norm as c_char), &m, &n, a.as_ptr() as *const _, &lda, work.as_mut_ptr())
     }
 }
 
@@ -10433,7 +10431,7 @@ pub fn zlange(norm: u8, m: i32, n: i32, a: &[c64], lda: i32, work: &mut [f64]) -
 pub fn clanhe(norm: u8, uplo: u8, n: i32, a: &[c32], lda: i32, work: &mut [f32]) -> f32 {
     unsafe {
         ffi::clanhe_(&(norm as c_char), &(uplo as c_char), &n, a.as_ptr() as *const _, &lda,
-                     work.as_mut_ptr()) as f32
+                     work.as_mut_ptr())
     }
 }
 
@@ -10441,23 +10439,21 @@ pub fn clanhe(norm: u8, uplo: u8, n: i32, a: &[c32], lda: i32, work: &mut [f32])
 pub fn zlanhe(norm: u8, uplo: u8, n: i32, a: &[c64], lda: i32, work: &mut [f64]) -> f64 {
     unsafe {
         ffi::zlanhe_(&(norm as c_char), &(uplo as c_char), &n, a.as_ptr() as *const _, &lda,
-                     work.as_mut_ptr()) as f64
+                     work.as_mut_ptr())
     }
 }
 
 #[inline]
 pub fn slansy(norm: u8, uplo: u8, n: i32, a: &[f32], lda: i32, work: &mut [f32]) -> f32 {
     unsafe {
-        ffi::slansy_(&(norm as c_char), &(uplo as c_char), &n, a.as_ptr(), &lda,
-                     work.as_mut_ptr()) as f32
+        ffi::slansy_(&(norm as c_char), &(uplo as c_char), &n, a.as_ptr(), &lda, work.as_mut_ptr())
     }
 }
 
 #[inline]
 pub fn dlansy(norm: u8, uplo: u8, n: i32, a: &[f64], lda: i32, work: &mut [f64]) -> f64 {
     unsafe {
-        ffi::dlansy_(&(norm as c_char), &(uplo as c_char), &n, a.as_ptr(), &lda,
-                     work.as_mut_ptr()) as f64
+        ffi::dlansy_(&(norm as c_char), &(uplo as c_char), &n, a.as_ptr(), &lda, work.as_mut_ptr())
     }
 }
 
@@ -10465,7 +10461,7 @@ pub fn dlansy(norm: u8, uplo: u8, n: i32, a: &[f64], lda: i32, work: &mut [f64])
 pub fn clansy(norm: u8, uplo: u8, n: i32, a: &[c32], lda: i32, work: &mut [f32]) -> f32 {
     unsafe {
         ffi::clansy_(&(norm as c_char), &(uplo as c_char), &n, a.as_ptr() as *const _, &lda,
-                     work.as_mut_ptr()) as f32
+                     work.as_mut_ptr())
     }
 }
 
@@ -10473,7 +10469,7 @@ pub fn clansy(norm: u8, uplo: u8, n: i32, a: &[c32], lda: i32, work: &mut [f32])
 pub fn zlansy(norm: u8, uplo: u8, n: i32, a: &[c64], lda: i32, work: &mut [f64]) -> f64 {
     unsafe {
         ffi::zlansy_(&(norm as c_char), &(uplo as c_char), &n, a.as_ptr() as *const _, &lda,
-                     work.as_mut_ptr()) as f64
+                     work.as_mut_ptr())
     }
 }
 
@@ -10483,7 +10479,7 @@ pub fn slantr(norm: u8, uplo: u8, diag: u8, m: i32, n: i32, a: &[f32], lda: i32,
 
     unsafe {
         ffi::slantr_(&(norm as c_char), &(uplo as c_char), &(diag as c_char), &m, &n, a.as_ptr(),
-                     &lda, work.as_mut_ptr()) as f32
+                     &lda, work.as_mut_ptr())
     }
 }
 
@@ -10493,7 +10489,7 @@ pub fn dlantr(norm: u8, uplo: u8, diag: u8, m: i32, n: i32, a: &[f64], lda: i32,
 
     unsafe {
         ffi::dlantr_(&(norm as c_char), &(uplo as c_char), &(diag as c_char), &m, &n, a.as_ptr(),
-                     &lda, work.as_mut_ptr()) as f64
+                     &lda, work.as_mut_ptr())
     }
 }
 
@@ -10503,7 +10499,7 @@ pub fn clantr(norm: u8, uplo: u8, diag: u8, m: i32, n: i32, a: &[c32], lda: i32,
 
     unsafe {
         ffi::clantr_(&(norm as c_char), &(uplo as c_char), &(diag as c_char), &m, &n,
-                     a.as_ptr() as *const _, &lda, work.as_mut_ptr()) as f32
+                     a.as_ptr() as *const _, &lda, work.as_mut_ptr())
     }
 }
 
@@ -10513,21 +10509,21 @@ pub fn zlantr(norm: u8, uplo: u8, diag: u8, m: i32, n: i32, a: &[c64], lda: i32,
 
     unsafe {
         ffi::zlantr_(&(norm as c_char), &(uplo as c_char), &(diag as c_char), &m, &n,
-                     a.as_ptr() as *const _, &lda, work.as_mut_ptr()) as f64
+                     a.as_ptr() as *const _, &lda, work.as_mut_ptr())
     }
 }
 
 #[inline]
 pub fn slamch(cmach: u8) -> f32 {
     unsafe {
-        ffi::slamch_(&(cmach as c_char)) as f32
+        ffi::slamch_(&(cmach as c_char))
     }
 }
 
 #[inline]
 pub fn dlamch(cmach: u8) -> f64 {
     unsafe {
-        ffi::dlamch_(&(cmach as c_char)) as f64
+        ffi::dlamch_(&(cmach as c_char))
     }
 }
 
@@ -11078,28 +11074,28 @@ pub fn zlapmt(forwrd: &[i32], m: i32, n: i32, x: &mut [c64], ldx: i32, k: &mut i
 #[inline]
 pub fn slapy2(x: &[f32], y: &[f32]) -> f32 {
     unsafe {
-        ffi::slapy2_(x.as_ptr(), y.as_ptr()) as f32
+        ffi::slapy2_(x.as_ptr(), y.as_ptr())
     }
 }
 
 #[inline]
 pub fn dlapy2(x: &[f64], y: &[f64]) -> f64 {
     unsafe {
-        ffi::dlapy2_(x.as_ptr(), y.as_ptr()) as f64
+        ffi::dlapy2_(x.as_ptr(), y.as_ptr())
     }
 }
 
 #[inline]
 pub fn slapy3(x: &[f32], y: &[f32], z: &[f32]) -> f32 {
     unsafe {
-        ffi::slapy3_(x.as_ptr(), y.as_ptr(), z.as_ptr()) as f32
+        ffi::slapy3_(x.as_ptr(), y.as_ptr(), z.as_ptr())
     }
 }
 
 #[inline]
 pub fn dlapy3(x: &[f64], y: &[f64], z: &[f64]) -> f64 {
     unsafe {
-        ffi::dlapy3_(x.as_ptr(), y.as_ptr(), z.as_ptr()) as f64
+        ffi::dlapy3_(x.as_ptr(), y.as_ptr(), z.as_ptr())
     }
 }
 

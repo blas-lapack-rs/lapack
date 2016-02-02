@@ -5660,36 +5660,31 @@ def format_header(f):
     return "\n".join(s)
 
 def format_body(f):
-    a = format_body_arguments(f)
-    if f.ret is None:
-        a = "{})".format(a)
-    if f.ret is not None:
-        a = "{}) as {}".format(a, translate_return_type(f.ret))
-
     s = []
     s.append(" " * 4)
     s.append("unsafe {\n")
     s.append(" " * 8)
     s.append("ffi::{}_(".format(f.name))
 
-    a = "".join(a)
+    tail = "{})".format(format_body_arguments(f))
+
     indent = 8 + 5 + len(f.name) + 2
-    while len(a) > 0:
-        if len(a) + indent > 99:
-            k = a.find(",")
+    while len(tail) > 0:
+        if len(tail) + indent > 99:
+            k = tail.find(",")
             if k < 0 or k > 98:
                 assert False, "cannot format `{}`".format(f.name)
             while True:
-                l = a.find(",", k + 1)
+                l = tail.find(",", k + 1)
                 if l < 0 or l + indent > 98: break
                 k = l
-            s.append(a[0:k+1])
+            s.append(tail[0:k+1])
             s.append("\n")
             s.append(" " * indent)
-            a = a[k+2:]
+            tail = tail[k+2:]
         else:
-            s.append(a)
-            a = ""
+            s.append(tail)
+            tail = ""
 
     s.append("\n")
     s.append(" " * 4)

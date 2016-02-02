@@ -23,6 +23,7 @@ include!("common.rs");
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
 #[repr(C)]
 pub enum Error {
+    None = 0,
     WorkMemory = -1010,
     TransposeMemory = -1011,
 }
@@ -34,12 +35,26 @@ pub enum Layout {
     ColumnMajor = 102,
 }
 
+impl PartialEq<i32> for Error {
+    #[inline(always)]
+    fn eq(&self, other: &i32) -> bool {
+        i32::from(*self) == *other
+    }
+}
+
+impl PartialEq<Error> for i32 {
+    #[inline(always)]
+    fn eq(&self, other: &Error) -> bool {
+        other == self
+    }
+}
+
 macro_rules! convert {
     ($($from:ident => $into:ident,)*) => (
         $(
-            impl From<$from> for ffi::$into {
+            impl From<$from> for $into {
                 #[inline(always)]
-                fn from(value: $from) -> ffi::$into {
+                fn from(value: $from) -> $into {
                     unsafe { ::std::mem::transmute(value) }
                 }
             }
@@ -48,8 +63,8 @@ macro_rules! convert {
 }
 
 convert! {
-    Error => lapack_int,
-    Layout => lapack_int,
+    Error => i32,
+    Layout => i32,
 }
 
 #[inline]

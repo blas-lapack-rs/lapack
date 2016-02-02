@@ -12028,6 +12028,8 @@ class Func(object):
             arg, aty, line = pull_argument(line)
             if arg is None:
                 break
+            if arg == "matrix_layout":
+                arg = "layout"
             args.append((arg, aty))
             line = line.strip()
 
@@ -12080,7 +12082,7 @@ def is_scalar(name, cty, f):
     )
 
 def translate_argument(name, cty, f):
-    if name == "matrix_layout":
+    if name == "layout":
         return "Layout"
 
     m = select_re.match(cty)

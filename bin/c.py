@@ -12041,8 +12041,12 @@ def is_scalar(name, cty, f):
     return (
         "c_char" in cty or
         name in [
+            "abnrm",
             "abstol",
+            "amax",
             "anorm",
+            "bbnrm",
+            "colcnd",
             "ihi",
             "il",
             "ilo",
@@ -12061,6 +12065,9 @@ def is_scalar(name, cty, f):
             "q",
             "rank",
             "rcond",
+            "rowcnd",
+            "rpvgrw",
+            "sdim",
             "tryrac",
             "vu",
         ] or

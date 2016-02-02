@@ -14,5 +14,7 @@ pub type c32 = num::Complex<f32>;
 #[allow(non_camel_case_types)]
 pub type c64 = num::Complex<f64>;
 
+#[cfg(not(feature = "accelerate"))]
 pub mod c;
+
 pub mod fortran;

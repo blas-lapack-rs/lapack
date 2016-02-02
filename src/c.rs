@@ -1,4 +1,4 @@
-//! The C interface (CBLAS).
+//! The C interface (LAPACKE).
 //!
 //! ## Example
 //!

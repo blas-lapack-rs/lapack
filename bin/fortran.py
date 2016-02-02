@@ -5513,6 +5513,7 @@ def is_scalar(name, cty, f):
             "anorm",
             "bbnrm",
             "colcnd",
+            "dif",
             "ihi",
             "il",
             "ilo",

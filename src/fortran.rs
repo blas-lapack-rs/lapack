@@ -7212,13 +7212,13 @@ pub fn ztgexc(wantq: &[i32], wantz: &[i32], n: i32, a: &mut [c64], lda: i32, b: 
 pub fn stgsen(ijob: &[i32], wantq: &[i32], wantz: &[i32], select: &[i32], n: i32, a: &mut [f32],
               lda: i32, b: &mut [f32], ldb: i32, alphar: &mut f32, alphai: &mut f32,
               beta: &mut f32, q: &mut f32, ldq: i32, z: &mut [f32], ldz: i32, m: &mut i32,
-              pl: &mut [f32], pr: &mut [f32], dif: &mut [f32], work: &mut [f32], lwork: i32,
+              pl: &mut [f32], pr: &mut [f32], dif: &mut f32, work: &mut [f32], lwork: i32,
               iwork: &mut [i32], liwork: i32, info: &mut i32) {
 
     unsafe {
         ffi::stgsen_(ijob.as_ptr(), wantq.as_ptr(), wantz.as_ptr(), select.as_ptr(), &n,
                      a.as_mut_ptr(), &lda, b.as_mut_ptr(), &ldb, alphar, alphai, beta, q, &ldq,
-                     z.as_mut_ptr(), &ldz, m, pl.as_mut_ptr(), pr.as_mut_ptr(), dif.as_mut_ptr(),
+                     z.as_mut_ptr(), &ldz, m, pl.as_mut_ptr(), pr.as_mut_ptr(), dif,
                      work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), &liwork, info)
     }
 }
@@ -7227,13 +7227,13 @@ pub fn stgsen(ijob: &[i32], wantq: &[i32], wantz: &[i32], select: &[i32], n: i32
 pub fn dtgsen(ijob: &[i32], wantq: &[i32], wantz: &[i32], select: &[i32], n: i32, a: &mut [f64],
               lda: i32, b: &mut [f64], ldb: i32, alphar: &mut f64, alphai: &mut f64,
               beta: &mut f64, q: &mut f64, ldq: i32, z: &mut [f64], ldz: i32, m: &mut i32,
-              pl: &mut [f64], pr: &mut [f64], dif: &mut [f64], work: &mut [f64], lwork: i32,
+              pl: &mut [f64], pr: &mut [f64], dif: &mut f64, work: &mut [f64], lwork: i32,
               iwork: &mut [i32], liwork: i32, info: &mut i32) {
 
     unsafe {
         ffi::dtgsen_(ijob.as_ptr(), wantq.as_ptr(), wantz.as_ptr(), select.as_ptr(), &n,
                      a.as_mut_ptr(), &lda, b.as_mut_ptr(), &ldb, alphar, alphai, beta, q, &ldq,
-                     z.as_mut_ptr(), &ldz, m, pl.as_mut_ptr(), pr.as_mut_ptr(), dif.as_mut_ptr(),
+                     z.as_mut_ptr(), &ldz, m, pl.as_mut_ptr(), pr.as_mut_ptr(), dif,
                      work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), &liwork, info)
     }
 }
@@ -7242,7 +7242,7 @@ pub fn dtgsen(ijob: &[i32], wantq: &[i32], wantz: &[i32], select: &[i32], n: i32
 pub fn ctgsen(ijob: &[i32], wantq: &[i32], wantz: &[i32], select: &[i32], n: i32, a: &mut [c32],
               lda: i32, b: &mut [c32], ldb: i32, alpha: &mut c32, beta: &mut c32, q: &mut c32,
               ldq: i32, z: &mut [c32], ldz: i32, m: &mut i32, pl: &mut [f32], pr: &mut [f32],
-              dif: &mut [f32], work: &mut [c32], lwork: i32, iwork: &mut [i32], liwork: i32,
+              dif: &mut f32, work: &mut [c32], lwork: i32, iwork: &mut [i32], liwork: i32,
               info: &mut i32) {
 
     unsafe {
@@ -7250,8 +7250,7 @@ pub fn ctgsen(ijob: &[i32], wantq: &[i32], wantz: &[i32], select: &[i32], n: i32
                      a.as_mut_ptr() as *mut _, &lda, b.as_mut_ptr() as *mut _, &ldb,
                      alpha as *mut _ as *mut _, beta as *mut _ as *mut _, q as *mut _ as *mut _,
                      &ldq, z.as_mut_ptr() as *mut _, &ldz, m, pl.as_mut_ptr(), pr.as_mut_ptr(),
-                     dif.as_mut_ptr(), work.as_mut_ptr() as *mut _, &lwork, iwork.as_mut_ptr(),
-                     &liwork, info)
+                     dif, work.as_mut_ptr() as *mut _, &lwork, iwork.as_mut_ptr(), &liwork, info)
     }
 }
 
@@ -7259,7 +7258,7 @@ pub fn ctgsen(ijob: &[i32], wantq: &[i32], wantz: &[i32], select: &[i32], n: i32
 pub fn ztgsen(ijob: &[i32], wantq: &[i32], wantz: &[i32], select: &[i32], n: i32, a: &mut [c64],
               lda: i32, b: &mut [c64], ldb: i32, alpha: &mut c64, beta: &mut c64, q: &mut c64,
               ldq: i32, z: &mut [c64], ldz: i32, m: &mut i32, pl: &mut [f64], pr: &mut [f64],
-              dif: &mut [f64], work: &mut [c64], lwork: i32, iwork: &mut [i32], liwork: i32,
+              dif: &mut f64, work: &mut [c64], lwork: i32, iwork: &mut [i32], liwork: i32,
               info: &mut i32) {
 
     unsafe {
@@ -7267,50 +7266,49 @@ pub fn ztgsen(ijob: &[i32], wantq: &[i32], wantz: &[i32], select: &[i32], n: i32
                      a.as_mut_ptr() as *mut _, &lda, b.as_mut_ptr() as *mut _, &ldb,
                      alpha as *mut _ as *mut _, beta as *mut _ as *mut _, q as *mut _ as *mut _,
                      &ldq, z.as_mut_ptr() as *mut _, &ldz, m, pl.as_mut_ptr(), pr.as_mut_ptr(),
-                     dif.as_mut_ptr(), work.as_mut_ptr() as *mut _, &lwork, iwork.as_mut_ptr(),
-                     &liwork, info)
+                     dif, work.as_mut_ptr() as *mut _, &lwork, iwork.as_mut_ptr(), &liwork, info)
     }
 }
 
 #[inline]
 pub fn stgsyl(trans: u8, ijob: &[i32], m: i32, n: i32, a: &[f32], lda: i32, b: &[f32], ldb: i32,
               c: &mut [f32], ldc: i32, d: &[f32], ldd: i32, e: &[f32], lde: i32, f: &mut [f32],
-              ldf: i32, scale: &mut [f32], dif: &mut [f32], work: &mut [f32], lwork: i32,
+              ldf: i32, scale: &mut [f32], dif: &mut f32, work: &mut [f32], lwork: i32,
               iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::stgsyl_(&(trans as c_char), ijob.as_ptr(), &m, &n, a.as_ptr(), &lda, b.as_ptr(), &ldb,
                      c.as_mut_ptr(), &ldc, d.as_ptr(), &ldd, e.as_ptr(), &lde, f.as_mut_ptr(),
-                     &ldf, scale.as_mut_ptr(), dif.as_mut_ptr(), work.as_mut_ptr(), &lwork,
-                     iwork.as_mut_ptr(), info)
+                     &ldf, scale.as_mut_ptr(), dif, work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(),
+                     info)
     }
 }
 
 #[inline]
 pub fn dtgsyl(trans: u8, ijob: &[i32], m: i32, n: i32, a: &[f64], lda: i32, b: &[f64], ldb: i32,
               c: &mut [f64], ldc: i32, d: &[f64], ldd: i32, e: &[f64], lde: i32, f: &mut [f64],
-              ldf: i32, scale: &mut [f64], dif: &mut [f64], work: &mut [f64], lwork: i32,
+              ldf: i32, scale: &mut [f64], dif: &mut f64, work: &mut [f64], lwork: i32,
               iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::dtgsyl_(&(trans as c_char), ijob.as_ptr(), &m, &n, a.as_ptr(), &lda, b.as_ptr(), &ldb,
                      c.as_mut_ptr(), &ldc, d.as_ptr(), &ldd, e.as_ptr(), &lde, f.as_mut_ptr(),
-                     &ldf, scale.as_mut_ptr(), dif.as_mut_ptr(), work.as_mut_ptr(), &lwork,
-                     iwork.as_mut_ptr(), info)
+                     &ldf, scale.as_mut_ptr(), dif, work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(),
+                     info)
     }
 }
 
 #[inline]
 pub fn ctgsyl(trans: u8, ijob: &[i32], m: i32, n: i32, a: &[c32], lda: i32, b: &[c32], ldb: i32,
               c: &mut [c32], ldc: i32, d: &[c32], ldd: i32, e: &[c32], lde: i32, f: &mut [c32],
-              ldf: i32, scale: &mut [f32], dif: &mut [f32], work: &mut [c32], lwork: i32,
+              ldf: i32, scale: &mut [f32], dif: &mut f32, work: &mut [c32], lwork: i32,
               iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::ctgsyl_(&(trans as c_char), ijob.as_ptr(), &m, &n, a.as_ptr() as *const _, &lda,
                      b.as_ptr() as *const _, &ldb, c.as_mut_ptr() as *mut _, &ldc,
                      d.as_ptr() as *const _, &ldd, e.as_ptr() as *const _, &lde,
-                     f.as_mut_ptr() as *mut _, &ldf, scale.as_mut_ptr(), dif.as_mut_ptr(),
+                     f.as_mut_ptr() as *mut _, &ldf, scale.as_mut_ptr(), dif,
                      work.as_mut_ptr() as *mut _, &lwork, iwork.as_mut_ptr(), info)
     }
 }
@@ -7318,70 +7316,70 @@ pub fn ctgsyl(trans: u8, ijob: &[i32], m: i32, n: i32, a: &[c32], lda: i32, b: &
 #[inline]
 pub fn ztgsyl(trans: u8, ijob: &[i32], m: i32, n: i32, a: &[c64], lda: i32, b: &[c64], ldb: i32,
               c: &mut [c64], ldc: i32, d: &[c64], ldd: i32, e: &[c64], lde: i32, f: &mut [c64],
-              ldf: i32, scale: &mut [f64], dif: &mut [f64], work: &mut [c64], lwork: i32,
+              ldf: i32, scale: &mut [f64], dif: &mut f64, work: &mut [c64], lwork: i32,
               iwork: &mut [i32], info: &mut i32) {
 
     unsafe {
         ffi::ztgsyl_(&(trans as c_char), ijob.as_ptr(), &m, &n, a.as_ptr() as *const _, &lda,
                      b.as_ptr() as *const _, &ldb, c.as_mut_ptr() as *mut _, &ldc,
                      d.as_ptr() as *const _, &ldd, e.as_ptr() as *const _, &lde,
-                     f.as_mut_ptr() as *mut _, &ldf, scale.as_mut_ptr(), dif.as_mut_ptr(),
+                     f.as_mut_ptr() as *mut _, &ldf, scale.as_mut_ptr(), dif,
                      work.as_mut_ptr() as *mut _, &lwork, iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn stgsna(job: u8, howmny: u8, select: &[i32], n: i32, a: &[f32], lda: i32, b: &[f32],
-              ldb: i32, vl: &[f32], ldvl: i32, vr: &[f32], ldvr: i32, s: &mut [f32],
-              dif: &mut [f32], mm: i32, m: &mut i32, work: &mut [f32], lwork: i32,
-              iwork: &mut [i32], info: &mut i32) {
+              ldb: i32, vl: &[f32], ldvl: i32, vr: &[f32], ldvr: i32, s: &mut [f32], dif: &mut f32,
+              mm: i32, m: &mut i32, work: &mut [f32], lwork: i32, iwork: &mut [i32],
+              info: &mut i32) {
 
     unsafe {
         ffi::stgsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n, a.as_ptr(), &lda,
-                     b.as_ptr(), &ldb, vl.as_ptr(), &ldvl, vr.as_ptr(), &ldvr, s.as_mut_ptr(),
-                     dif.as_mut_ptr(), &mm, m, work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), info)
+                     b.as_ptr(), &ldb, vl.as_ptr(), &ldvl, vr.as_ptr(), &ldvr, s.as_mut_ptr(), dif,
+                     &mm, m, work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn dtgsna(job: u8, howmny: u8, select: &[i32], n: i32, a: &[f64], lda: i32, b: &[f64],
-              ldb: i32, vl: &[f64], ldvl: i32, vr: &[f64], ldvr: i32, s: &mut [f64],
-              dif: &mut [f64], mm: i32, m: &mut i32, work: &mut [f64], lwork: i32,
-              iwork: &mut [i32], info: &mut i32) {
+              ldb: i32, vl: &[f64], ldvl: i32, vr: &[f64], ldvr: i32, s: &mut [f64], dif: &mut f64,
+              mm: i32, m: &mut i32, work: &mut [f64], lwork: i32, iwork: &mut [i32],
+              info: &mut i32) {
 
     unsafe {
         ffi::dtgsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n, a.as_ptr(), &lda,
-                     b.as_ptr(), &ldb, vl.as_ptr(), &ldvl, vr.as_ptr(), &ldvr, s.as_mut_ptr(),
-                     dif.as_mut_ptr(), &mm, m, work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), info)
+                     b.as_ptr(), &ldb, vl.as_ptr(), &ldvl, vr.as_ptr(), &ldvr, s.as_mut_ptr(), dif,
+                     &mm, m, work.as_mut_ptr(), &lwork, iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn ctgsna(job: u8, howmny: u8, select: &[i32], n: i32, a: &[c32], lda: i32, b: &[c32],
-              ldb: i32, vl: &[c32], ldvl: i32, vr: &[c32], ldvr: i32, s: &mut [f32],
-              dif: &mut [f32], mm: i32, m: &mut i32, work: &mut [c32], lwork: i32,
-              iwork: &mut [i32], info: &mut i32) {
+              ldb: i32, vl: &[c32], ldvl: i32, vr: &[c32], ldvr: i32, s: &mut [f32], dif: &mut f32,
+              mm: i32, m: &mut i32, work: &mut [c32], lwork: i32, iwork: &mut [i32],
+              info: &mut i32) {
 
     unsafe {
         ffi::ctgsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n,
                      a.as_ptr() as *const _, &lda, b.as_ptr() as *const _, &ldb,
                      vl.as_ptr() as *const _, &ldvl, vr.as_ptr() as *const _, &ldvr,
-                     s.as_mut_ptr(), dif.as_mut_ptr(), &mm, m, work.as_mut_ptr() as *mut _, &lwork,
+                     s.as_mut_ptr(), dif, &mm, m, work.as_mut_ptr() as *mut _, &lwork,
                      iwork.as_mut_ptr(), info)
     }
 }
 
 #[inline]
 pub fn ztgsna(job: u8, howmny: u8, select: &[i32], n: i32, a: &[c64], lda: i32, b: &[c64],
-              ldb: i32, vl: &[c64], ldvl: i32, vr: &[c64], ldvr: i32, s: &mut [f64],
-              dif: &mut [f64], mm: i32, m: &mut i32, work: &mut [c64], lwork: i32,
-              iwork: &mut [i32], info: &mut i32) {
+              ldb: i32, vl: &[c64], ldvl: i32, vr: &[c64], ldvr: i32, s: &mut [f64], dif: &mut f64,
+              mm: i32, m: &mut i32, work: &mut [c64], lwork: i32, iwork: &mut [i32],
+              info: &mut i32) {
 
     unsafe {
         ffi::ztgsna_(&(job as c_char), &(howmny as c_char), select.as_ptr(), &n,
                      a.as_ptr() as *const _, &lda, b.as_ptr() as *const _, &ldb,
                      vl.as_ptr() as *const _, &ldvl, vr.as_ptr() as *const _, &ldvr,
-                     s.as_mut_ptr(), dif.as_mut_ptr(), &mm, m, work.as_mut_ptr() as *mut _, &lwork,
+                     s.as_mut_ptr(), dif, &mm, m, work.as_mut_ptr() as *mut _, &lwork,
                      iwork.as_mut_ptr(), info)
     }
 }

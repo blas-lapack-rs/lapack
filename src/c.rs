@@ -9244,12 +9244,12 @@ pub fn ztgexc(layout: Layout, wantq: i32, wantz: i32, n: i32, a: &mut [c64], lda
 pub fn stgsen(layout: Layout, ijob: i32, wantq: i32, wantz: i32, select: &[i32], n: i32,
               a: &mut [f32], lda: i32, b: &mut [f32], ldb: i32, alphar: &mut f32, alphai: &mut f32,
               beta: &mut f32, q: &mut f32, ldq: i32, z: &mut [f32], ldz: i32, m: &mut i32,
-              pl: &mut [f32], pr: &mut [f32], dif: &mut [f32]) -> i32 {
+              pl: &mut [f32], pr: &mut [f32], dif: &mut f32) -> i32 {
 
     unsafe {
         ffi::LAPACKE_stgsen(layout.into(), ijob, wantq, wantz, select.as_ptr(), n, a.as_mut_ptr(),
                             lda, b.as_mut_ptr(), ldb, alphar, alphai, beta, q, ldq, z.as_mut_ptr(),
-                            ldz, m, pl.as_mut_ptr(), pr.as_mut_ptr(), dif.as_mut_ptr())
+                            ldz, m, pl.as_mut_ptr(), pr.as_mut_ptr(), dif)
     }
 }
 
@@ -9257,12 +9257,12 @@ pub fn stgsen(layout: Layout, ijob: i32, wantq: i32, wantz: i32, select: &[i32],
 pub fn dtgsen(layout: Layout, ijob: i32, wantq: i32, wantz: i32, select: &[i32], n: i32,
               a: &mut [f64], lda: i32, b: &mut [f64], ldb: i32, alphar: &mut f64, alphai: &mut f64,
               beta: &mut f64, q: &mut f64, ldq: i32, z: &mut [f64], ldz: i32, m: &mut i32,
-              pl: &mut [f64], pr: &mut [f64], dif: &mut [f64]) -> i32 {
+              pl: &mut [f64], pr: &mut [f64], dif: &mut f64) -> i32 {
 
     unsafe {
         ffi::LAPACKE_dtgsen(layout.into(), ijob, wantq, wantz, select.as_ptr(), n, a.as_mut_ptr(),
                             lda, b.as_mut_ptr(), ldb, alphar, alphai, beta, q, ldq, z.as_mut_ptr(),
-                            ldz, m, pl.as_mut_ptr(), pr.as_mut_ptr(), dif.as_mut_ptr())
+                            ldz, m, pl.as_mut_ptr(), pr.as_mut_ptr(), dif)
     }
 }
 
@@ -9270,14 +9270,14 @@ pub fn dtgsen(layout: Layout, ijob: i32, wantq: i32, wantz: i32, select: &[i32],
 pub fn ctgsen(layout: Layout, ijob: i32, wantq: i32, wantz: i32, select: &[i32], n: i32,
               a: &mut [c32], lda: i32, b: &mut [c32], ldb: i32, alpha: &mut c32, beta: &mut c32,
               q: &mut c32, ldq: i32, z: &mut [c32], ldz: i32, m: &mut i32, pl: &mut [f32],
-              pr: &mut [f32], dif: &mut [f32]) -> i32 {
+              pr: &mut [f32], dif: &mut f32) -> i32 {
 
     unsafe {
         ffi::LAPACKE_ctgsen(layout.into(), ijob, wantq, wantz, select.as_ptr(), n,
                             a.as_mut_ptr() as *mut _, lda, b.as_mut_ptr() as *mut _, ldb,
                             alpha as *mut _ as *mut _, beta as *mut _ as *mut _,
                             q as *mut _ as *mut _, ldq, z.as_mut_ptr() as *mut _, ldz, m,
-                            pl.as_mut_ptr(), pr.as_mut_ptr(), dif.as_mut_ptr())
+                            pl.as_mut_ptr(), pr.as_mut_ptr(), dif)
     }
 }
 
@@ -9285,14 +9285,14 @@ pub fn ctgsen(layout: Layout, ijob: i32, wantq: i32, wantz: i32, select: &[i32],
 pub fn ztgsen(layout: Layout, ijob: i32, wantq: i32, wantz: i32, select: &[i32], n: i32,
               a: &mut [c64], lda: i32, b: &mut [c64], ldb: i32, alpha: &mut c64, beta: &mut c64,
               q: &mut c64, ldq: i32, z: &mut [c64], ldz: i32, m: &mut i32, pl: &mut [f64],
-              pr: &mut [f64], dif: &mut [f64]) -> i32 {
+              pr: &mut [f64], dif: &mut f64) -> i32 {
 
     unsafe {
         ffi::LAPACKE_ztgsen(layout.into(), ijob, wantq, wantz, select.as_ptr(), n,
                             a.as_mut_ptr() as *mut _, lda, b.as_mut_ptr() as *mut _, ldb,
                             alpha as *mut _ as *mut _, beta as *mut _ as *mut _,
                             q as *mut _ as *mut _, ldq, z.as_mut_ptr() as *mut _, ldz, m,
-                            pl.as_mut_ptr(), pr.as_mut_ptr(), dif.as_mut_ptr())
+                            pl.as_mut_ptr(), pr.as_mut_ptr(), dif)
     }
 }
 
@@ -9357,100 +9357,100 @@ pub fn ztgsja(layout: Layout, jobu: u8, jobv: u8, jobq: u8, m: i32, p: i32, n: i
 #[inline]
 pub fn stgsna(layout: Layout, job: u8, howmny: u8, select: &[i32], n: i32, a: &[f32], lda: i32,
               b: &[f32], ldb: i32, vl: &[f32], ldvl: i32, vr: &[f32], ldvr: i32, s: &mut [f32],
-              dif: &mut [f32], mm: i32, m: &mut i32) -> i32 {
+              dif: &mut f32, mm: i32, m: &mut i32) -> i32 {
 
     unsafe {
         ffi::LAPACKE_stgsna(layout.into(), job as c_char, howmny as c_char, select.as_ptr(), n,
                             a.as_ptr(), lda, b.as_ptr(), ldb, vl.as_ptr(), ldvl, vr.as_ptr(), ldvr,
-                            s.as_mut_ptr(), dif.as_mut_ptr(), mm, m)
+                            s.as_mut_ptr(), dif, mm, m)
     }
 }
 
 #[inline]
 pub fn dtgsna(layout: Layout, job: u8, howmny: u8, select: &[i32], n: i32, a: &[f64], lda: i32,
               b: &[f64], ldb: i32, vl: &[f64], ldvl: i32, vr: &[f64], ldvr: i32, s: &mut [f64],
-              dif: &mut [f64], mm: i32, m: &mut i32) -> i32 {
+              dif: &mut f64, mm: i32, m: &mut i32) -> i32 {
 
     unsafe {
         ffi::LAPACKE_dtgsna(layout.into(), job as c_char, howmny as c_char, select.as_ptr(), n,
                             a.as_ptr(), lda, b.as_ptr(), ldb, vl.as_ptr(), ldvl, vr.as_ptr(), ldvr,
-                            s.as_mut_ptr(), dif.as_mut_ptr(), mm, m)
+                            s.as_mut_ptr(), dif, mm, m)
     }
 }
 
 #[inline]
 pub fn ctgsna(layout: Layout, job: u8, howmny: u8, select: &[i32], n: i32, a: &[c32], lda: i32,
               b: &[c32], ldb: i32, vl: &[c32], ldvl: i32, vr: &[c32], ldvr: i32, s: &mut [f32],
-              dif: &mut [f32], mm: i32, m: &mut i32) -> i32 {
+              dif: &mut f32, mm: i32, m: &mut i32) -> i32 {
 
     unsafe {
         ffi::LAPACKE_ctgsna(layout.into(), job as c_char, howmny as c_char, select.as_ptr(), n,
                             a.as_ptr() as *const _, lda, b.as_ptr() as *const _, ldb,
                             vl.as_ptr() as *const _, ldvl, vr.as_ptr() as *const _, ldvr,
-                            s.as_mut_ptr(), dif.as_mut_ptr(), mm, m)
+                            s.as_mut_ptr(), dif, mm, m)
     }
 }
 
 #[inline]
 pub fn ztgsna(layout: Layout, job: u8, howmny: u8, select: &[i32], n: i32, a: &[c64], lda: i32,
               b: &[c64], ldb: i32, vl: &[c64], ldvl: i32, vr: &[c64], ldvr: i32, s: &mut [f64],
-              dif: &mut [f64], mm: i32, m: &mut i32) -> i32 {
+              dif: &mut f64, mm: i32, m: &mut i32) -> i32 {
 
     unsafe {
         ffi::LAPACKE_ztgsna(layout.into(), job as c_char, howmny as c_char, select.as_ptr(), n,
                             a.as_ptr() as *const _, lda, b.as_ptr() as *const _, ldb,
                             vl.as_ptr() as *const _, ldvl, vr.as_ptr() as *const _, ldvr,
-                            s.as_mut_ptr(), dif.as_mut_ptr(), mm, m)
+                            s.as_mut_ptr(), dif, mm, m)
     }
 }
 
 #[inline]
 pub fn stgsyl(layout: Layout, trans: u8, ijob: i32, m: i32, n: i32, a: &[f32], lda: i32, b: &[f32],
               ldb: i32, c: &mut [f32], ldc: i32, d: &[f32], ldd: i32, e: &[f32], lde: i32,
-              f: &mut [f32], ldf: i32, scale: &mut [f32], dif: &mut [f32]) -> i32 {
+              f: &mut [f32], ldf: i32, scale: &mut [f32], dif: &mut f32) -> i32 {
 
     unsafe {
         ffi::LAPACKE_stgsyl(layout.into(), trans as c_char, ijob, m, n, a.as_ptr(), lda,
                             b.as_ptr(), ldb, c.as_mut_ptr(), ldc, d.as_ptr(), ldd, e.as_ptr(), lde,
-                            f.as_mut_ptr(), ldf, scale.as_mut_ptr(), dif.as_mut_ptr())
+                            f.as_mut_ptr(), ldf, scale.as_mut_ptr(), dif)
     }
 }
 
 #[inline]
 pub fn dtgsyl(layout: Layout, trans: u8, ijob: i32, m: i32, n: i32, a: &[f64], lda: i32, b: &[f64],
               ldb: i32, c: &mut [f64], ldc: i32, d: &[f64], ldd: i32, e: &[f64], lde: i32,
-              f: &mut [f64], ldf: i32, scale: &mut [f64], dif: &mut [f64]) -> i32 {
+              f: &mut [f64], ldf: i32, scale: &mut [f64], dif: &mut f64) -> i32 {
 
     unsafe {
         ffi::LAPACKE_dtgsyl(layout.into(), trans as c_char, ijob, m, n, a.as_ptr(), lda,
                             b.as_ptr(), ldb, c.as_mut_ptr(), ldc, d.as_ptr(), ldd, e.as_ptr(), lde,
-                            f.as_mut_ptr(), ldf, scale.as_mut_ptr(), dif.as_mut_ptr())
+                            f.as_mut_ptr(), ldf, scale.as_mut_ptr(), dif)
     }
 }
 
 #[inline]
 pub fn ctgsyl(layout: Layout, trans: u8, ijob: i32, m: i32, n: i32, a: &[c32], lda: i32, b: &[c32],
               ldb: i32, c: &mut [c32], ldc: i32, d: &[c32], ldd: i32, e: &[c32], lde: i32,
-              f: &mut [c32], ldf: i32, scale: &mut [f32], dif: &mut [f32]) -> i32 {
+              f: &mut [c32], ldf: i32, scale: &mut [f32], dif: &mut f32) -> i32 {
 
     unsafe {
         ffi::LAPACKE_ctgsyl(layout.into(), trans as c_char, ijob, m, n, a.as_ptr() as *const _,
                             lda, b.as_ptr() as *const _, ldb, c.as_mut_ptr() as *mut _, ldc,
                             d.as_ptr() as *const _, ldd, e.as_ptr() as *const _, lde,
-                            f.as_mut_ptr() as *mut _, ldf, scale.as_mut_ptr(), dif.as_mut_ptr())
+                            f.as_mut_ptr() as *mut _, ldf, scale.as_mut_ptr(), dif)
     }
 }
 
 #[inline]
 pub fn ztgsyl(layout: Layout, trans: u8, ijob: i32, m: i32, n: i32, a: &[c64], lda: i32, b: &[c64],
               ldb: i32, c: &mut [c64], ldc: i32, d: &[c64], ldd: i32, e: &[c64], lde: i32,
-              f: &mut [c64], ldf: i32, scale: &mut [f64], dif: &mut [f64]) -> i32 {
+              f: &mut [c64], ldf: i32, scale: &mut [f64], dif: &mut f64) -> i32 {
 
     unsafe {
         ffi::LAPACKE_ztgsyl(layout.into(), trans as c_char, ijob, m, n, a.as_ptr() as *const _,
                             lda, b.as_ptr() as *const _, ldb, c.as_mut_ptr() as *mut _, ldc,
                             d.as_ptr() as *const _, ldd, e.as_ptr() as *const _, lde,
-                            f.as_mut_ptr() as *mut _, ldf, scale.as_mut_ptr(), dif.as_mut_ptr())
+                            f.as_mut_ptr() as *mut _, ldf, scale.as_mut_ptr(), dif)
     }
 }
 
@@ -20925,15 +20925,14 @@ pub fn ztgexc_work(layout: Layout, wantq: i32, wantz: i32, n: i32, a: &mut [c64]
 pub fn stgsen_work(layout: Layout, ijob: i32, wantq: i32, wantz: i32, select: &[i32], n: i32,
                    a: &mut [f32], lda: i32, b: &mut [f32], ldb: i32, alphar: &mut f32,
                    alphai: &mut f32, beta: &mut f32, q: &mut f32, ldq: i32, z: &mut [f32],
-                   ldz: i32, m: &mut i32, pl: &mut [f32], pr: &mut [f32], dif: &mut [f32],
+                   ldz: i32, m: &mut i32, pl: &mut [f32], pr: &mut [f32], dif: &mut f32,
                    work: &mut [f32], lwork: i32, iwork: &mut [i32], liwork: i32) -> i32 {
 
     unsafe {
         ffi::LAPACKE_stgsen_work(layout.into(), ijob, wantq, wantz, select.as_ptr(), n,
                                  a.as_mut_ptr(), lda, b.as_mut_ptr(), ldb, alphar, alphai, beta, q,
                                  ldq, z.as_mut_ptr(), ldz, m, pl.as_mut_ptr(), pr.as_mut_ptr(),
-                                 dif.as_mut_ptr(), work.as_mut_ptr(), lwork, iwork.as_mut_ptr(),
-                                 liwork)
+                                 dif, work.as_mut_ptr(), lwork, iwork.as_mut_ptr(), liwork)
     }
 }
 
@@ -20941,15 +20940,14 @@ pub fn stgsen_work(layout: Layout, ijob: i32, wantq: i32, wantz: i32, select: &[
 pub fn dtgsen_work(layout: Layout, ijob: i32, wantq: i32, wantz: i32, select: &[i32], n: i32,
                    a: &mut [f64], lda: i32, b: &mut [f64], ldb: i32, alphar: &mut f64,
                    alphai: &mut f64, beta: &mut f64, q: &mut f64, ldq: i32, z: &mut [f64],
-                   ldz: i32, m: &mut i32, pl: &mut [f64], pr: &mut [f64], dif: &mut [f64],
+                   ldz: i32, m: &mut i32, pl: &mut [f64], pr: &mut [f64], dif: &mut f64,
                    work: &mut [f64], lwork: i32, iwork: &mut [i32], liwork: i32) -> i32 {
 
     unsafe {
         ffi::LAPACKE_dtgsen_work(layout.into(), ijob, wantq, wantz, select.as_ptr(), n,
                                  a.as_mut_ptr(), lda, b.as_mut_ptr(), ldb, alphar, alphai, beta, q,
                                  ldq, z.as_mut_ptr(), ldz, m, pl.as_mut_ptr(), pr.as_mut_ptr(),
-                                 dif.as_mut_ptr(), work.as_mut_ptr(), lwork, iwork.as_mut_ptr(),
-                                 liwork)
+                                 dif, work.as_mut_ptr(), lwork, iwork.as_mut_ptr(), liwork)
     }
 }
 
@@ -20957,7 +20955,7 @@ pub fn dtgsen_work(layout: Layout, ijob: i32, wantq: i32, wantz: i32, select: &[
 pub fn ctgsen_work(layout: Layout, ijob: i32, wantq: i32, wantz: i32, select: &[i32], n: i32,
                    a: &mut [c32], lda: i32, b: &mut [c32], ldb: i32, alpha: &mut c32,
                    beta: &mut c32, q: &mut c32, ldq: i32, z: &mut [c32], ldz: i32, m: &mut i32,
-                   pl: &mut [f32], pr: &mut [f32], dif: &mut [f32], work: &mut [c32], lwork: i32,
+                   pl: &mut [f32], pr: &mut [f32], dif: &mut f32, work: &mut [c32], lwork: i32,
                    iwork: &mut [i32], liwork: i32) -> i32 {
 
     unsafe {
@@ -20965,7 +20963,7 @@ pub fn ctgsen_work(layout: Layout, ijob: i32, wantq: i32, wantz: i32, select: &[
                                  a.as_mut_ptr() as *mut _, lda, b.as_mut_ptr() as *mut _, ldb,
                                  alpha as *mut _ as *mut _, beta as *mut _ as *mut _,
                                  q as *mut _ as *mut _, ldq, z.as_mut_ptr() as *mut _, ldz, m,
-                                 pl.as_mut_ptr(), pr.as_mut_ptr(), dif.as_mut_ptr(),
+                                 pl.as_mut_ptr(), pr.as_mut_ptr(), dif,
                                  work.as_mut_ptr() as *mut _, lwork, iwork.as_mut_ptr(), liwork)
     }
 }
@@ -20974,7 +20972,7 @@ pub fn ctgsen_work(layout: Layout, ijob: i32, wantq: i32, wantz: i32, select: &[
 pub fn ztgsen_work(layout: Layout, ijob: i32, wantq: i32, wantz: i32, select: &[i32], n: i32,
                    a: &mut [c64], lda: i32, b: &mut [c64], ldb: i32, alpha: &mut c64,
                    beta: &mut c64, q: &mut c64, ldq: i32, z: &mut [c64], ldz: i32, m: &mut i32,
-                   pl: &mut [f64], pr: &mut [f64], dif: &mut [f64], work: &mut [c64], lwork: i32,
+                   pl: &mut [f64], pr: &mut [f64], dif: &mut f64, work: &mut [c64], lwork: i32,
                    iwork: &mut [i32], liwork: i32) -> i32 {
 
     unsafe {
@@ -20982,7 +20980,7 @@ pub fn ztgsen_work(layout: Layout, ijob: i32, wantq: i32, wantz: i32, select: &[
                                  a.as_mut_ptr() as *mut _, lda, b.as_mut_ptr() as *mut _, ldb,
                                  alpha as *mut _ as *mut _, beta as *mut _ as *mut _,
                                  q as *mut _ as *mut _, ldq, z.as_mut_ptr() as *mut _, ldz, m,
-                                 pl.as_mut_ptr(), pr.as_mut_ptr(), dif.as_mut_ptr(),
+                                 pl.as_mut_ptr(), pr.as_mut_ptr(), dif,
                                  work.as_mut_ptr() as *mut _, lwork, iwork.as_mut_ptr(), liwork)
     }
 }
@@ -21050,71 +21048,71 @@ pub fn ztgsja_work(layout: Layout, jobu: u8, jobv: u8, jobq: u8, m: i32, p: i32,
 #[inline]
 pub fn stgsna_work(layout: Layout, job: u8, howmny: u8, select: &[i32], n: i32, a: &[f32],
                    lda: i32, b: &[f32], ldb: i32, vl: &[f32], ldvl: i32, vr: &[f32], ldvr: i32,
-                   s: &mut [f32], dif: &mut [f32], mm: i32, m: &mut i32, work: &mut [f32],
+                   s: &mut [f32], dif: &mut f32, mm: i32, m: &mut i32, work: &mut [f32],
                    lwork: i32, iwork: &mut [i32]) -> i32 {
 
     unsafe {
         ffi::LAPACKE_stgsna_work(layout.into(), job as c_char, howmny as c_char, select.as_ptr(),
                                  n, a.as_ptr(), lda, b.as_ptr(), ldb, vl.as_ptr(), ldvl,
-                                 vr.as_ptr(), ldvr, s.as_mut_ptr(), dif.as_mut_ptr(), mm, m,
-                                 work.as_mut_ptr(), lwork, iwork.as_mut_ptr())
+                                 vr.as_ptr(), ldvr, s.as_mut_ptr(), dif, mm, m, work.as_mut_ptr(),
+                                 lwork, iwork.as_mut_ptr())
     }
 }
 
 #[inline]
 pub fn dtgsna_work(layout: Layout, job: u8, howmny: u8, select: &[i32], n: i32, a: &[f64],
                    lda: i32, b: &[f64], ldb: i32, vl: &[f64], ldvl: i32, vr: &[f64], ldvr: i32,
-                   s: &mut [f64], dif: &mut [f64], mm: i32, m: &mut i32, work: &mut [f64],
+                   s: &mut [f64], dif: &mut f64, mm: i32, m: &mut i32, work: &mut [f64],
                    lwork: i32, iwork: &mut [i32]) -> i32 {
 
     unsafe {
         ffi::LAPACKE_dtgsna_work(layout.into(), job as c_char, howmny as c_char, select.as_ptr(),
                                  n, a.as_ptr(), lda, b.as_ptr(), ldb, vl.as_ptr(), ldvl,
-                                 vr.as_ptr(), ldvr, s.as_mut_ptr(), dif.as_mut_ptr(), mm, m,
-                                 work.as_mut_ptr(), lwork, iwork.as_mut_ptr())
+                                 vr.as_ptr(), ldvr, s.as_mut_ptr(), dif, mm, m, work.as_mut_ptr(),
+                                 lwork, iwork.as_mut_ptr())
     }
 }
 
 #[inline]
 pub fn ctgsna_work(layout: Layout, job: u8, howmny: u8, select: &[i32], n: i32, a: &[c32],
                    lda: i32, b: &[c32], ldb: i32, vl: &[c32], ldvl: i32, vr: &[c32], ldvr: i32,
-                   s: &mut [f32], dif: &mut [f32], mm: i32, m: &mut i32, work: &mut [c32],
+                   s: &mut [f32], dif: &mut f32, mm: i32, m: &mut i32, work: &mut [c32],
                    lwork: i32, iwork: &mut [i32]) -> i32 {
 
     unsafe {
         ffi::LAPACKE_ctgsna_work(layout.into(), job as c_char, howmny as c_char, select.as_ptr(),
                                  n, a.as_ptr() as *const _, lda, b.as_ptr() as *const _, ldb,
                                  vl.as_ptr() as *const _, ldvl, vr.as_ptr() as *const _, ldvr,
-                                 s.as_mut_ptr(), dif.as_mut_ptr(), mm, m,
-                                 work.as_mut_ptr() as *mut _, lwork, iwork.as_mut_ptr())
+                                 s.as_mut_ptr(), dif, mm, m, work.as_mut_ptr() as *mut _, lwork,
+                                 iwork.as_mut_ptr())
     }
 }
 
 #[inline]
 pub fn ztgsna_work(layout: Layout, job: u8, howmny: u8, select: &[i32], n: i32, a: &[c64],
                    lda: i32, b: &[c64], ldb: i32, vl: &[c64], ldvl: i32, vr: &[c64], ldvr: i32,
-                   s: &mut [f64], dif: &mut [f64], mm: i32, m: &mut i32, work: &mut [c64],
+                   s: &mut [f64], dif: &mut f64, mm: i32, m: &mut i32, work: &mut [c64],
                    lwork: i32, iwork: &mut [i32]) -> i32 {
 
     unsafe {
         ffi::LAPACKE_ztgsna_work(layout.into(), job as c_char, howmny as c_char, select.as_ptr(),
                                  n, a.as_ptr() as *const _, lda, b.as_ptr() as *const _, ldb,
                                  vl.as_ptr() as *const _, ldvl, vr.as_ptr() as *const _, ldvr,
-                                 s.as_mut_ptr(), dif.as_mut_ptr(), mm, m,
-                                 work.as_mut_ptr() as *mut _, lwork, iwork.as_mut_ptr())
+                                 s.as_mut_ptr(), dif, mm, m, work.as_mut_ptr() as *mut _, lwork,
+                                 iwork.as_mut_ptr())
     }
 }
 
 #[inline]
 pub fn stgsyl_work(layout: Layout, trans: u8, ijob: i32, m: i32, n: i32, a: &[f32], lda: i32,
                    b: &[f32], ldb: i32, c: &mut [f32], ldc: i32, d: &[f32], ldd: i32, e: &[f32],
-                   lde: i32, f: &mut [f32], ldf: i32, scale: &mut [f32], dif: &mut [f32],
+                   lde: i32, f: &mut [f32], ldf: i32, scale: &mut [f32], dif: &mut f32,
                    work: &mut [f32], lwork: i32, iwork: &mut [i32]) -> i32 {
 
     unsafe {
         ffi::LAPACKE_stgsyl_work(layout.into(), trans as c_char, ijob, m, n, a.as_ptr(), lda,
                                  b.as_ptr(), ldb, c.as_mut_ptr(), ldc, d.as_ptr(), ldd, e.as_ptr(),
-                                 lde, f.as_mut_ptr(), ldf, scale.as_mut_ptr(), dif.as_mut_ptr(),
+                                 lde, f.as_mut_ptr(), ldf, scale.as_mut_ptr(), dif,
                                  work.as_mut_ptr(), lwork, iwork.as_mut_ptr())
     }
 }
@@ -21122,13 +21120,13 @@ pub fn stgsyl_work(layout: Layout, trans: u8, ijob: i32, m: i32, n: i32, a: &[f3
 #[inline]
 pub fn dtgsyl_work(layout: Layout, trans: u8, ijob: i32, m: i32, n: i32, a: &[f64], lda: i32,
                    b: &[f64], ldb: i32, c: &mut [f64], ldc: i32, d: &[f64], ldd: i32, e: &[f64],
-                   lde: i32, f: &mut [f64], ldf: i32, scale: &mut [f64], dif: &mut [f64],
+                   lde: i32, f: &mut [f64], ldf: i32, scale: &mut [f64], dif: &mut f64,
                    work: &mut [f64], lwork: i32, iwork: &mut [i32]) -> i32 {
 
     unsafe {
         ffi::LAPACKE_dtgsyl_work(layout.into(), trans as c_char, ijob, m, n, a.as_ptr(), lda,
                                  b.as_ptr(), ldb, c.as_mut_ptr(), ldc, d.as_ptr(), ldd, e.as_ptr(),
-                                 lde, f.as_mut_ptr(), ldf, scale.as_mut_ptr(), dif.as_mut_ptr(),
+                                 lde, f.as_mut_ptr(), ldf, scale.as_mut_ptr(), dif,
                                  work.as_mut_ptr(), lwork, iwork.as_mut_ptr())
     }
 }
@@ -21136,7 +21134,7 @@ pub fn dtgsyl_work(layout: Layout, trans: u8, ijob: i32, m: i32, n: i32, a: &[f6
 #[inline]
 pub fn ctgsyl_work(layout: Layout, trans: u8, ijob: i32, m: i32, n: i32, a: &[c32], lda: i32,
                    b: &[c32], ldb: i32, c: &mut [c32], ldc: i32, d: &[c32], ldd: i32, e: &[c32],
-                   lde: i32, f: &mut [c32], ldf: i32, scale: &mut [f32], dif: &mut [f32],
+                   lde: i32, f: &mut [c32], ldf: i32, scale: &mut [f32], dif: &mut f32,
                    work: &mut [c32], lwork: i32, iwork: &mut [i32]) -> i32 {
 
     unsafe {
@@ -21144,15 +21142,15 @@ pub fn ctgsyl_work(layout: Layout, trans: u8, ijob: i32, m: i32, n: i32, a: &[c3
                                  a.as_ptr() as *const _, lda, b.as_ptr() as *const _, ldb,
                                  c.as_mut_ptr() as *mut _, ldc, d.as_ptr() as *const _, ldd,
                                  e.as_ptr() as *const _, lde, f.as_mut_ptr() as *mut _, ldf,
-                                 scale.as_mut_ptr(), dif.as_mut_ptr(), work.as_mut_ptr() as *mut _,
-                                 lwork, iwork.as_mut_ptr())
+                                 scale.as_mut_ptr(), dif, work.as_mut_ptr() as *mut _, lwork,
+                                 iwork.as_mut_ptr())
     }
 }
 
 #[inline]
 pub fn ztgsyl_work(layout: Layout, trans: u8, ijob: i32, m: i32, n: i32, a: &[c64], lda: i32,
                    b: &[c64], ldb: i32, c: &mut [c64], ldc: i32, d: &[c64], ldd: i32, e: &[c64],
-                   lde: i32, f: &mut [c64], ldf: i32, scale: &mut [f64], dif: &mut [f64],
+                   lde: i32, f: &mut [c64], ldf: i32, scale: &mut [f64], dif: &mut f64,
                    work: &mut [c64], lwork: i32, iwork: &mut [i32]) -> i32 {
 
     unsafe {
@@ -21160,8 +21158,8 @@ pub fn ztgsyl_work(layout: Layout, trans: u8, ijob: i32, m: i32, n: i32, a: &[c6
                                  a.as_ptr() as *const _, lda, b.as_ptr() as *const _, ldb,
                                  c.as_mut_ptr() as *mut _, ldc, d.as_ptr() as *const _, ldd,
                                  e.as_ptr() as *const _, lde, f.as_mut_ptr() as *mut _, ldf,
-                                 scale.as_mut_ptr(), dif.as_mut_ptr(), work.as_mut_ptr() as *mut _,
-                                 lwork, iwork.as_mut_ptr())
+                                 scale.as_mut_ptr(), dif, work.as_mut_ptr() as *mut _, lwork,
+                                 iwork.as_mut_ptr())
     }
 }
 

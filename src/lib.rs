@@ -4,7 +4,7 @@
 
 extern crate lapack_sys;
 extern crate libc;
-extern crate num;
+extern crate num_complex as num;
 
 /// A complex number with 32-bit parts.
 #[allow(non_camel_case_types)]

@@ -25,14 +25,14 @@ matrix:
       env: FEATURE=accelerate
 
 before_install:
-  - curl https://stainless-steel.github.io/travis/install_gfortran.sh | bash
+  - curl https://stainless-steel.github.io/travis/gfortran.sh | bash
 
 script:
   - cargo test --no-default-features --features=$FEATURE --verbose
 
 after_success:
-  - if [ "$TRAVIS_OS_NAME" == "osx" ] && [ "$TRAVIS_RUST_VERSION" == "nightly" ] && [ "$FEATURE" == "openblas" ]; then
-      curl https://stainless-steel.github.io/travis/update_documentation.sh | bash;
+  - if [ "$TRAVIS_OS_NAME" == "osx" ] && [ "$FEATURE" == "openblas" ]; then
+      curl https://stainless-steel.github.io/travis/documentation.sh | bash;
     fi
 
 notifications:

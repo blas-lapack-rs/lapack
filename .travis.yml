@@ -5,12 +5,11 @@ os:
   - linux
   - osx
 
+cache: cargo
 rust:
   - stable
   - beta
   - nightly
-
-cache: cargo
 
 env:
   matrix:
@@ -37,9 +36,6 @@ after_success:
       curl https://stainless-steel.github.io/travis/documentation.sh | bash;
     fi
 
-notifications:
-  email: false
-
 addons:
   apt:
     sources:
@@ -48,3 +44,6 @@ addons:
     packages:
       - cmake
       - gfortran
+
+notifications:
+  email: false

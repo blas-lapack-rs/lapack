@@ -12072,7 +12072,11 @@ def is_scalar(name, cty, f):
             "tryrac",
             "vu",
         ] or
-        not ('tgsna' in f.name or 'trsna' in f.name) and name in [
+        not (
+            'geev' in f.name or
+            'tgsna' in f.name or
+            'trsna' in f.name
+        ) and name in [
             "vl",
             "vr",
         ] or

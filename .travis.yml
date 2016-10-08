@@ -1,5 +1,5 @@
 language: rust
-sudo: false
+sudo: required
 
 os:
   - linux
@@ -26,7 +26,7 @@ matrix:
       env: FEATURE=accelerate
 
 before_install:
-  - curl https://stainless-steel.github.io/travis/gfortran.sh | bash
+  - curl https://stainless-steel.github.io/travis/fortran.sh | bash
 
 script:
   - cargo test --no-default-features --features=$FEATURE --verbose

@@ -29,7 +29,7 @@ before_install:
   - curl https://stainless-steel.github.io/travis/fortran.sh | bash
 
 script:
-  - cargo test --no-default-features --features=$FEATURE --verbose
+  - cargo test -vv --no-default-features --features=$FEATURE
 
 after_success:
   - if [ "$TRAVIS_OS_NAME" == "osx" ] && [ "$FEATURE" == "openblas" ]; then

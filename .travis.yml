@@ -17,9 +17,6 @@ env:
     - FEATURE=netlib
     - FEATURE=openblas
 
-  global:
-    - secure: EMVyll81L6XVqiD7LgCu80Xob5U3scenro7ZXpB9TziuLzPhfWMx43x1ue84isqDixLjyQZETwjO+fwFt94qv696wGYOth/xQTsVgu4MHUK8mkt6Bf3bsTORQ2f67y6f6vuvvziASiD2bWHcmsyrvzUxgRdwZ/VtodeCMDVeYrM=
-
 matrix:
   exclude:
     - os: linux
@@ -30,11 +27,6 @@ before_install:
 
 script:
   - cargo test -vv --no-default-features --features=$FEATURE
-
-after_success:
-  - if [ "$TRAVIS_OS_NAME" == "osx" ] && [ "$FEATURE" == "openblas" ]; then
-      curl https://stainless-steel.github.io/travis/documentation.sh | bash;
-    fi
 
 addons:
   apt:

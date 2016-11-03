@@ -1,13 +1,13 @@
 [package]
 name = "lapack"
-version = "0.11.0"
+version = "0.11.1"
 license = "Apache-2.0/MIT"
 authors = [
   "Andrew Straw <strawman@astraw.com>",
   "Ivan Ukhov <ivan.ukhov@gmail.com>",
 ]
 description = "The package provides an interface to the Linear Algebra PACKage."
-documentation = "https://stainless-steel.github.io/lapack"
+documentation = "https://docs.rs/lapack"
 homepage = "https://github.com/stainless-steel/lapack"
 repository = "https://github.com/stainless-steel/lapack"
 

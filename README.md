@@ -2,7 +2,7 @@
 
 The package provides an interface to the [Linear Algebra PACKage][1].
 
-## [Documentation][doc]
+## [Documentation][documentation]
 
 ## Example (C)
 
@@ -49,7 +49,7 @@ will be licensed according to the terms given in [LICENSE.md](LICENSE.md).
 
 [1]: http://en.wikipedia.org/wiki/LAPACK
 
-[doc]: https://stainless-steel.github.io/lapack
+[documentation]: https://docs.rs/lapack
 [status-img]: https://travis-ci.org/stainless-steel/lapack.svg?branch=master
 [status-url]: https://travis-ci.org/stainless-steel/lapack
 [version-img]: https://img.shields.io/crates/v/lapack.svg

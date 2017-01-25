@@ -1,6 +1,6 @@
 [package]
 name = "lapack"
-version = "0.11.1"
+version = "0.11.2"
 license = "Apache-2.0/MIT"
 authors = [
     "Andrew Straw <strawman@astraw.com>",
@@ -10,6 +10,8 @@ description = "The package provides an interface to the Linear Algebra PACKage."
 documentation = "https://docs.rs/lapack"
 homepage = "https://github.com/stainless-steel/lapack"
 repository = "https://github.com/stainless-steel/lapack"
+categories = ["api-bindings", "science"]
+keywords = ["linear-algebra"]
 
 [features]
 default = ["openblas"]

@@ -1,4 +1,4 @@
-//! Interface to the [Linear Algebra PACKage][1].
+//! Interface to the [Linear Algebra PACKage][lapack].
 //!
 //! ## Configuration
 //!

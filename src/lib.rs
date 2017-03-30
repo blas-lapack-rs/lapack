@@ -1,6 +1,32 @@
 //! Interface to the [Linear Algebra PACKage][1].
 //!
-//! [1]: http://en.wikipedia.org/wiki/LAPACK
+//! ## Configuration
+//!
+//! The underlying implementation of LAPACK to compile, if needed, and link to
+//! can be chosen among the following options:
+//!
+//! * Apple’s [Accelerate framework][accelerate] (macOS only),
+//! * Netlib’s [reference implementation][netlib], and
+//! * [OpenBLAS][openblas] (default).
+//!
+//! An implementation can be chosen using the package’s features as follows:
+//!
+//! ```toml
+//! [dependencies]
+//! # Apple’s Accelerate framework
+//! lapack = { version = "0.11", default-features = false, features = ["accelerate"] }
+//! # Netlib’s reference implementation
+//! lapack = { version = "0.11", default-features = false, features = ["netlib"] }
+//! # OpenBLAS
+//! lapack = { version = "0.11", default-features = false, features = ["openblas"] }
+//! # OpenBLAS
+//! lapack = { version = "0.11" }
+//! ```
+//!
+//! [accelerate]: https://developer.apple.com/reference/accelerate
+//! [lapack]: https://en.wikipedia.org/wiki/LAPACK
+//! [netlib]: http://www.netlib.org/lapack
+//! [openblas]: http://www.openblas.net
 
 extern crate lapack_sys;
 extern crate libc;

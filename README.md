@@ -1,8 +1,31 @@
 # LAPACK [![Version][version-img]][version-url] [![Status][status-img]][status-url]
 
-The package provides an interface to the [Linear Algebra PACKage][1].
+The package provides an interface to the [Linear Algebra PACKage][lapack].
 
 ## [Documentation][documentation]
+
+## Configuration
+
+The underlying implementation of LAPACK to compile, if needed, and link to can
+be chosen among the following options:
+
+* Apple’s [Accelerate framework][accelerate] (macOS only),
+* Netlib’s [reference implementation][netlib], and
+* [OpenBLAS][openblas] (default).
+
+An implementation can be chosen using the package’s features as follows:
+
+```toml
+[dependencies]
+# Apple’s Accelerate framework
+lapack = { version = "0.11", default-features = false, features = ["accelerate"] }
+# Netlib’s reference implementation
+lapack = { version = "0.11", default-features = false, features = ["netlib"] }
+# OpenBLAS
+lapack = { version = "0.11", default-features = false, features = ["openblas"] }
+# OpenBLAS
+lapack = { version = "0.11" }
+```
 
 ## Example (C)
 
@@ -47,7 +70,10 @@ Your contribution is highly appreciated. Do not hesitate to open an issue or a
 pull request. Note that any contribution submitted for inclusion in the project
 will be licensed according to the terms given in [LICENSE.md](LICENSE.md).
 
-[1]: http://en.wikipedia.org/wiki/LAPACK
+[accelerate]: https://developer.apple.com/reference/accelerate
+[lapack]: https://en.wikipedia.org/wiki/LAPACK
+[netlib]: http://www.netlib.org/lapack
+[openblas]: http://www.openblas.net
 
 [documentation]: https://docs.rs/lapack
 [status-img]: https://travis-ci.org/stainless-steel/lapack.svg?branch=master

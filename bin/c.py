@@ -12141,12 +12141,12 @@ def translate_return_type(cty):
 def format_header(f):
     args = format_header_arguments(f)
     if f.ret is None:
-        return "pub fn {}({})".format(f.name, args)
+        return "pub unsafe fn {}({})".format(f.name, args)
     else:
-        return "pub fn {}({}) -> {}".format(f.name, args, translate_return_type(f.ret))
+        return "pub unsafe fn {}({}) -> {}".format(f.name, args, translate_return_type(f.ret))
 
 def format_body(f):
-    return "unsafe {{ ffi::LAPACKE_{}({}) }}".format(f.name, format_body_arguments(f))
+    return "ffi::LAPACKE_{}({})".format(f.name, format_body_arguments(f))
 
 def format_header_arguments(f):
     s = []

@@ -52,14 +52,12 @@ impl PartialEq<Error> for i32 {
 
 macro_rules! convert {
     ($($from:ident => $into:ident,)*) => (
-        $(
-            impl From<$from> for $into {
-                #[inline(always)]
-                fn from(value: $from) -> $into {
-                    unsafe { ::std::mem::transmute(value) }
-                }
+        $(impl From<$from> for $into {
+            #[inline(always)]
+            fn from(value: $from) -> $into {
+                unsafe { ::std::mem::transmute(value) }
             }
-        )*
+        })*
     );
 }
 

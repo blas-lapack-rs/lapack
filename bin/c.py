@@ -12190,59 +12190,13 @@ def translate_return_type(cty):
 
 def format_header(f):
     args = format_header_arguments(f)
-    ret = "" if f.ret is None else " -> {}".format(translate_return_type(f.ret))
-    header = "pub fn {}({}){} {{".format(f.name, args, ret)
-
-    s = []
-    indent = 7 + len(f.name) + 1
-    while True:
-        if len(header) <= 99:
-            s.append(header)
-            break
-        i = 98 - header[98::-1].index(',')
-        if i < 0:
-            s.append(header)
-            break
-        s.append(header[:i+1])
-        header = "{}{}".format(" " * indent, header[i+2:])
-
-    if len(s) > 1:
-        s.append("")
-
-    return "\n".join(s)
+    if f.ret is None:
+        return "pub fn {}({})".format(f.name, args)
+    else:
+        return "pub fn {}({}) -> {}".format(f.name, args, translate_return_type(f.ret))
 
 def format_body(f):
-    s = []
-    s.append(" " * 4)
-    s.append("unsafe {\n")
-    s.append(" " * 8)
-    s.append("ffi::LAPACKE_{}(".format(f.name))
-
-    tail = "{})".format(format_body_arguments(f))
-
-    indent = 8 + 13 + len(f.name) + 1
-    while len(tail) > 0:
-        if len(tail) + indent > 99:
-            i = tail.find(",")
-            if i < 0 or i > 98:
-                assert False, "cannot format `{}`".format(f.name)
-            while True:
-                l = tail.find(",", i + 1)
-                if l < 0 or l + indent > 98: break
-                i = l
-            s.append(tail[0:i+1])
-            s.append("\n")
-            s.append(" " * indent)
-            tail = tail[i+2:]
-        else:
-            s.append(tail)
-            tail = ""
-
-    s.append("\n")
-    s.append(" " * 4)
-    s.append("}")
-
-    return "".join(s)
+    return "unsafe {{ ffi::LAPACKE_{}({}) }}".format(f.name, format_body_arguments(f))
 
 def format_header_arguments(f):
     s = []
@@ -12263,11 +12217,10 @@ def prepare(code):
     lines = filter(lambda line: not re.match(r'^\s*$', line), lines)
     return [Func.parse(line) for line in lines]
 
-def do(funcs):
-    for f in funcs:
-        print("#[inline]")
-        print(format_header(f))
-        print(format_body(f))
-        print("}\n")
+def do(functions):
+    for f in functions:
+        print("\n#[inline]")
+        print(format_header(f) + " {")
+        print("    " + format_body(f) + "\n}")
 
 do(prepare(functions))

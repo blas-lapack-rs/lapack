@@ -3242,26 +3242,25 @@ pub fn zgesv(n: i32, nrhs: i32, a: &mut [c64], lda: i32, ipiv: &mut [i32], b: &m
 
 #[inline]
 pub fn dsgesv(n: i32, nrhs: i32, a: &mut [f64], lda: i32, ipiv: &mut [i32], b: &[f64], ldb: i32,
-              x: &mut [f64], ldx: i32, work: &mut [f64], swork: &mut [f32], iter: &mut [i32],
+              x: &mut [f64], ldx: i32, work: &mut [f64], swork: &mut [f32], iter: &mut i32,
               info: &mut i32) {
 
     unsafe {
         ffi::dsgesv_(&n, &nrhs, a.as_mut_ptr(), &lda, ipiv.as_mut_ptr(), b.as_ptr(), &ldb,
-                     x.as_mut_ptr(), &ldx, work.as_mut_ptr(), swork.as_mut_ptr(),
-                     iter.as_mut_ptr(), info)
+                     x.as_mut_ptr(), &ldx, work.as_mut_ptr(), swork.as_mut_ptr(), iter, info)
     }
 }
 
 #[inline]
 pub fn zcgesv(n: i32, nrhs: i32, a: &mut [c64], lda: i32, ipiv: &mut [i32], b: &[c64], ldb: i32,
               x: &mut [c64], ldx: i32, work: &mut [c64], swork: &mut [c32], rwork: &mut [f64],
-              iter: &mut [i32], info: &mut i32) {
+              iter: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::zcgesv_(&n, &nrhs, a.as_mut_ptr() as *mut _, &lda, ipiv.as_mut_ptr(),
                      b.as_ptr() as *const _, &ldb, x.as_mut_ptr() as *mut _, &ldx,
                      work.as_mut_ptr() as *mut _, swork.as_mut_ptr() as *mut _, rwork.as_mut_ptr(),
-                     iter.as_mut_ptr(), info)
+                     iter, info)
     }
 }
 
@@ -3723,26 +3722,25 @@ pub fn zposv(uplo: u8, n: i32, nrhs: i32, a: &mut [c64], lda: i32, b: &mut [c64]
 
 #[inline]
 pub fn dsposv(uplo: u8, n: i32, nrhs: i32, a: &mut [f64], lda: i32, b: &[f64], ldb: i32,
-              x: &mut [f64], ldx: i32, work: &mut [f64], swork: &mut [f32], iter: &mut [i32],
+              x: &mut [f64], ldx: i32, work: &mut [f64], swork: &mut [f32], iter: &mut i32,
               info: &mut i32) {
 
     unsafe {
         ffi::dsposv_(&(uplo as c_char), &n, &nrhs, a.as_mut_ptr(), &lda, b.as_ptr(), &ldb,
-                     x.as_mut_ptr(), &ldx, work.as_mut_ptr(), swork.as_mut_ptr(),
-                     iter.as_mut_ptr(), info)
+                     x.as_mut_ptr(), &ldx, work.as_mut_ptr(), swork.as_mut_ptr(), iter, info)
     }
 }
 
 #[inline]
 pub fn zcposv(uplo: u8, n: i32, nrhs: i32, a: &mut [c64], lda: i32, b: &[c64], ldb: i32,
               x: &mut [c64], ldx: i32, work: &mut [c64], swork: &mut [c32], rwork: &mut [f64],
-              iter: &mut [i32], info: &mut i32) {
+              iter: &mut i32, info: &mut i32) {
 
     unsafe {
         ffi::zcposv_(&(uplo as c_char), &n, &nrhs, a.as_mut_ptr() as *mut _, &lda,
                      b.as_ptr() as *const _, &ldb, x.as_mut_ptr() as *mut _, &ldx,
                      work.as_mut_ptr() as *mut _, swork.as_mut_ptr() as *mut _, rwork.as_mut_ptr(),
-                     iter.as_mut_ptr(), info)
+                     iter, info)
     }
 }
 

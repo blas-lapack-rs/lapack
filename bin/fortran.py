@@ -5518,6 +5518,7 @@ def is_scalar(name, cty, f):
             "il",
             "ilo",
             "info",
+            "iter",
             "iu",
             "l",
             "liwork",

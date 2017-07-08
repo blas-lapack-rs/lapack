@@ -12,8 +12,10 @@
 //! let lwork = 4 * n;
 //! let mut info = 0;
 //!
-//! dsyev(b'V', b'U', n, &mut a, n, &mut w, &mut work, lwork, &mut info);
-//! assert_eq!(info, 0);
+//! unsafe {
+//!     dsyev(b'V', b'U', n, &mut a, n, &mut w, &mut work, lwork, &mut info);
+//!     assert_eq!(info, 0);
+//! }
 //!
 //! for (one, another) in w.iter().zip(&[2.0, 2.0, 5.0]) {
 //!     assert!((one - another).abs() < 1e-14);

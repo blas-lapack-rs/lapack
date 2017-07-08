@@ -12,6 +12,7 @@ homepage = "https://github.com/stainless-steel/lapack"
 repository = "https://github.com/stainless-steel/lapack"
 categories = ["api-bindings", "science"]
 keywords = ["linear-algebra"]
+exclude = ["bin/*"]
 
 [features]
 default = ["openblas"]

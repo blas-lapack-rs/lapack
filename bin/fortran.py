@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+from common import Function
 import re
 
 functions = """
@@ -5446,56 +5447,7 @@ functions = """
                    vers_patch: *mut lapack_int);
 """
 
-name_re = re.compile("\s*pub fn (\w+)_")
-argument_re = re.compile("(\w+): ([^,]*)(,|\))")
-return_re = re.compile("(?:\s*->\s*([^;]+))?");
 select_re = re.compile("LAPACK_(\w)_SELECT(\d)")
-
-def pull_name(s):
-    m = name_re.match(s)
-    assert(m is not None)
-    return m.group(1), s[m.end(1)+1:]
-
-def pull_argument(s):
-    m = argument_re.match(s)
-    if m is None:
-        return None, None, s
-    return m.group(1), m.group(2), s[m.end(3):]
-
-def pull_return(s):
-    m = return_re.match(s)
-    if m is None:
-        return None, s
-    return m.group(1), s[m.end(1):]
-
-def chew(s, c):
-    assert(s[0] == c)
-    return s[1:]
-
-class Func(object):
-    def __init__(self, name, args, ret):
-        self.name = name
-        self.args = args
-        self.ret = ret
-
-    @staticmethod
-    def parse(line):
-        name, line = pull_name(line)
-        if name is None:
-            return None
-
-        line = chew(line, '(')
-        args = []
-        while True:
-            arg, aty, line = pull_argument(line)
-            if arg is None:
-                break
-            args.append((arg, aty))
-            line = line.strip()
-
-        ret, line = pull_return(line)
-
-        return Func(name, args, ret)
 
 def is_const(name, cty):
     return "*const" in cty
@@ -5676,7 +5628,7 @@ def prepare(code):
     lines = filter(lambda line: not re.match(r'^\s*//.*', line), code.split('\n'))
     lines = re.sub(r'\s+', ' ', "".join(lines)).strip().split(';')
     lines = filter(lambda line: not re.match(r'^\s*$', line), lines)
-    return [Func.parse(line) for line in lines]
+    return [Function.parse(line) for line in lines]
 
 def do(functions):
     for f in functions:

@@ -18,13 +18,13 @@ An implementation can be chosen using the package’s features as follows:
 ```toml
 [dependencies]
 # Apple’s Accelerate framework
-lapack = { version = "0.11", default-features = false, features = ["accelerate"] }
+lapack = { version = "0.12", default-features = false, features = ["accelerate"] }
 # Netlib’s reference implementation
-lapack = { version = "0.11", default-features = false, features = ["netlib"] }
+lapack = { version = "0.12", default-features = false, features = ["netlib"] }
 # OpenBLAS
-lapack = { version = "0.11", default-features = false, features = ["openblas"] }
+lapack = { version = "0.12", default-features = false, features = ["openblas"] }
 # OpenBLAS
-lapack = { version = "0.11" }
+lapack = { version = "0.12" }
 ```
 
 ## Example (C)

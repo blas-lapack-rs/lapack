@@ -1,8 +1,6 @@
-# LAPACK [![Version][version-img]][version-url] [![Status][status-img]][status-url]
+# LAPACK [![Package][package-img]][package-url] [![Documentation][documentation-img]][documentation-url] [![Build][build-img]][build-url]
 
 The package provides an interface to the [Linear Algebra PACKage][lapack].
-
-## [Documentation][documentation]
 
 ## Configuration
 
@@ -75,13 +73,14 @@ Your contribution is highly appreciated. Do not hesitate to open an issue or a
 pull request. Note that any contribution submitted for inclusion in the project
 will be licensed according to the terms given in [LICENSE.md](LICENSE.md).
 
+[build-img]: https://travis-ci.org/stainless-steel/lapack.svg?branch=master
+[build-url]: https://travis-ci.org/stainless-steel/lapack
+[documentation-img]: https://docs.rs/lapack/badge.svg
+[documentation-url]: https://docs.rs/lapack
+[package-img]: https://img.shields.io/crates/v/lapack.svg
+[package-url]: https://crates.io/crates/lapack
+
 [accelerate]: https://developer.apple.com/reference/accelerate
 [lapack]: https://en.wikipedia.org/wiki/LAPACK
 [netlib]: http://www.netlib.org/lapack
 [openblas]: http://www.openblas.net
-
-[documentation]: https://docs.rs/lapack
-[status-img]: https://travis-ci.org/stainless-steel/lapack.svg?branch=master
-[status-url]: https://travis-ci.org/stainless-steel/lapack
-[version-img]: https://img.shields.io/crates/v/lapack.svg
-[version-url]: https://crates.io/crates/lapack

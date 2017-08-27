@@ -73,14 +73,14 @@ Your contribution is highly appreciated. Do not hesitate to open an issue or a
 pull request. Note that any contribution submitted for inclusion in the project
 will be licensed according to the terms given in [LICENSE.md](LICENSE.md).
 
+[accelerate]: https://developer.apple.com/reference/accelerate
+[lapack]: https://en.wikipedia.org/wiki/LAPACK
+[netlib]: http://www.netlib.org/lapack
+[openblas]: http://www.openblas.net
+
 [build-img]: https://travis-ci.org/stainless-steel/lapack.svg?branch=master
 [build-url]: https://travis-ci.org/stainless-steel/lapack
 [documentation-img]: https://docs.rs/lapack/badge.svg
 [documentation-url]: https://docs.rs/lapack
 [package-img]: https://img.shields.io/crates/v/lapack.svg
 [package-url]: https://crates.io/crates/lapack
-
-[accelerate]: https://developer.apple.com/reference/accelerate
-[lapack]: https://en.wikipedia.org/wiki/LAPACK
-[netlib]: http://www.netlib.org/lapack
-[openblas]: http://www.openblas.net

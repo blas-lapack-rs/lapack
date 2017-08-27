@@ -10,6 +10,7 @@ description = "The package provides an interface to the Linear Algebra PACKage."
 documentation = "https://docs.rs/lapack"
 homepage = "https://github.com/stainless-steel/lapack"
 repository = "https://github.com/stainless-steel/lapack"
+readme = "README.md"
 categories = ["api-bindings", "science"]
 keywords = ["linear-algebra"]
 exclude = ["bin/*"]

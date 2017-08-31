@@ -29,8 +29,8 @@ functions = """
                    ku: *const lapack_int, ab: *mut c_double, ldab: *const lapack_int,
                    ipiv: *mut lapack_int, info: *mut lapack_int);
     pub fn cgbtrf_(m: *const lapack_int, n: *const lapack_int, kl: *const lapack_int,
-                   ku: *const lapack_int, ab: *mut lapack_complex_float, ldab: *const lapack_int,
-                   ipiv: *mut lapack_int, info: *mut lapack_int);
+                   ku: *const lapack_int, ab: *mut lapack_complex_float,
+                   ldab: *const lapack_int, ipiv: *mut lapack_int, info: *mut lapack_int);
     pub fn zgbtrf_(m: *const lapack_int, n: *const lapack_int, kl: *const lapack_int,
                    ku: *const lapack_int, ab: *mut lapack_complex_double,
                    ldab: *const lapack_int, ipiv: *mut lapack_int, info: *mut lapack_int);
@@ -102,7 +102,8 @@ functions = """
     pub fn cpbtrf_(uplo: *const c_char, n: *const lapack_int, kd: *const lapack_int,
                    ab: *mut lapack_complex_float, ldab: *const lapack_int, info: *mut lapack_int);
     pub fn zpbtrf_(uplo: *const c_char, n: *const lapack_int, kd: *const lapack_int,
-                   ab: *mut lapack_complex_double, ldab: *const lapack_int, info: *mut lapack_int);
+                   ab: *mut lapack_complex_double, ldab: *const lapack_int,
+                   info: *mut lapack_int);
 
     pub fn spttrf_(n: *const lapack_int, d: *mut c_float, e: *mut c_float, info: *mut lapack_int);
     pub fn dpttrf_(n: *const lapack_int, d: *mut c_double, e: *mut c_double,
@@ -158,8 +159,8 @@ functions = """
                    b: *mut c_double, ldb: *const lapack_int, info: *mut lapack_int);
     pub fn cgetrs_(trans: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                    a: *const lapack_complex_float, lda: *const lapack_int,
-                   ipiv: *const lapack_int, b: *mut lapack_complex_float, ldb: *const lapack_int,
-                   info: *mut lapack_int);
+                   ipiv: *const lapack_int, b: *mut lapack_complex_float,
+                   ldb: *const lapack_int, info: *mut lapack_int);
     pub fn zgetrs_(trans: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                    a: *const lapack_complex_double, lda: *const lapack_int,
                    ipiv: *const lapack_int, b: *mut lapack_complex_double,
@@ -176,8 +177,8 @@ functions = """
     pub fn cgbtrs_(trans: *const c_char, n: *const lapack_int, kl: *const lapack_int,
                    ku: *const lapack_int, nrhs: *const lapack_int,
                    ab: *const lapack_complex_float, ldab: *const lapack_int,
-                   ipiv: *const lapack_int, b: *mut lapack_complex_float, ldb: *const lapack_int,
-                   info: *mut lapack_int);
+                   ipiv: *const lapack_int, b: *mut lapack_complex_float,
+                   ldb: *const lapack_int, info: *mut lapack_int);
     pub fn zgbtrs_(trans: *const c_char, n: *const lapack_int, kl: *const lapack_int,
                    ku: *const lapack_int, nrhs: *const lapack_int,
                    ab: *const lapack_complex_double, ldab: *const lapack_int,
@@ -195,8 +196,8 @@ functions = """
     pub fn cgttrs_(trans: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                    dl: *const lapack_complex_float, d: *const lapack_complex_float,
                    du: *const lapack_complex_float, du2: *const lapack_complex_float,
-                   ipiv: *const lapack_int, b: *mut lapack_complex_float, ldb: *const lapack_int,
-                   info: *mut lapack_int);
+                   ipiv: *const lapack_int, b: *mut lapack_complex_float,
+                   ldb: *const lapack_int, info: *mut lapack_int);
     pub fn zgttrs_(trans: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                    dl: *const lapack_complex_double, d: *const lapack_complex_double,
                    du: *const lapack_complex_double, du2: *const lapack_complex_double,
@@ -250,8 +251,8 @@ functions = """
                    b: *mut c_double, ldb: *const lapack_int, info: *mut lapack_int);
     pub fn cpbtrs_(uplo: *const c_char, n: *const lapack_int, kd: *const lapack_int,
                    nrhs: *const lapack_int, ab: *const lapack_complex_float,
-                   ldab: *const lapack_int, b: *mut lapack_complex_float, ldb: *const lapack_int,
-                   info: *mut lapack_int);
+                   ldab: *const lapack_int, b: *mut lapack_complex_float,
+                   ldb: *const lapack_int, info: *mut lapack_int);
     pub fn zpbtrs_(uplo: *const c_char, n: *const lapack_int, kd: *const lapack_int,
                    nrhs: *const lapack_int, ab: *const lapack_complex_double,
                    ldab: *const lapack_int, b: *mut lapack_complex_double,
@@ -278,8 +279,8 @@ functions = """
                    b: *mut c_double, ldb: *const lapack_int, info: *mut lapack_int);
     pub fn csytrs_(uplo: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                    a: *const lapack_complex_float, lda: *const lapack_int,
-                   ipiv: *const lapack_int, b: *mut lapack_complex_float, ldb: *const lapack_int,
-                   info: *mut lapack_int);
+                   ipiv: *const lapack_int, b: *mut lapack_complex_float,
+                   ldb: *const lapack_int, info: *mut lapack_int);
     pub fn zsytrs_(uplo: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                    a: *const lapack_complex_double, lda: *const lapack_int,
                    ipiv: *const lapack_int, b: *mut lapack_complex_double,
@@ -287,8 +288,8 @@ functions = """
 
     pub fn chetrs_(uplo: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                    a: *const lapack_complex_float, lda: *const lapack_int,
-                   ipiv: *const lapack_int, b: *mut lapack_complex_float, ldb: *const lapack_int,
-                   info: *mut lapack_int);
+                   ipiv: *const lapack_int, b: *mut lapack_complex_float,
+                   ldb: *const lapack_int, info: *mut lapack_int);
     pub fn zhetrs_(uplo: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                    a: *const lapack_complex_double, lda: *const lapack_int,
                    ipiv: *const lapack_int, b: *mut lapack_complex_double,
@@ -323,9 +324,9 @@ functions = """
                    lda: *const lapack_int, b: *mut c_double, ldb: *const lapack_int,
                    info: *mut lapack_int);
     pub fn ctrtrs_(uplo: *const c_char, trans: *const c_char, diag: *const c_char,
-                   n: *const lapack_int, nrhs: *const lapack_int, a: *const lapack_complex_float,
-                   lda: *const lapack_int, b: *mut lapack_complex_float, ldb: *const lapack_int,
-                   info: *mut lapack_int);
+                   n: *const lapack_int, nrhs: *const lapack_int,
+                   a: *const lapack_complex_float, lda: *const lapack_int,
+                   b: *mut lapack_complex_float, ldb: *const lapack_int, info: *mut lapack_int);
     pub fn ztrtrs_(uplo: *const c_char, trans: *const c_char, diag: *const c_char,
                    n: *const lapack_int, nrhs: *const lapack_int,
                    a: *const lapack_complex_double, lda: *const lapack_int,
@@ -525,9 +526,9 @@ functions = """
                    rcond: *mut c_float, work: *mut lapack_complex_float, rwork: *mut c_float,
                    info: *mut lapack_int);
     pub fn ztrcon_(norm: *const c_char, uplo: *const c_char, diag: *const c_char,
-                   n: *const lapack_int, a: *const lapack_complex_double, lda: *const lapack_int,
-                   rcond: *mut c_double, work: *mut lapack_complex_double, rwork: *mut c_double,
-                   info: *mut lapack_int);
+                   n: *const lapack_int, a: *const lapack_complex_double,
+                   lda: *const lapack_int, rcond: *mut c_double,
+                   work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
 
     pub fn stpcon_(norm: *const c_char, uplo: *const c_char, diag: *const c_char,
                    n: *const lapack_int, ap: *const c_float, rcond: *mut c_float,
@@ -552,12 +553,13 @@ functions = """
                    iwork: *mut lapack_int, info: *mut lapack_int);
     pub fn ctbcon_(norm: *const c_char, uplo: *const c_char, diag: *const c_char,
                    n: *const lapack_int, kd: *const lapack_int, ab: *const lapack_complex_float,
-                   ldab: *const lapack_int, rcond: *mut c_float, work: *mut lapack_complex_float,
-                   rwork: *mut c_float, info: *mut lapack_int);
+                   ldab: *const lapack_int, rcond: *mut c_float,
+                   work: *mut lapack_complex_float, rwork: *mut c_float, info: *mut lapack_int);
     pub fn ztbcon_(norm: *const c_char, uplo: *const c_char, diag: *const c_char,
-                   n: *const lapack_int, kd: *const lapack_int, ab: *const lapack_complex_double,
-                   ldab: *const lapack_int, rcond: *mut c_double,
-                   work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
+                   n: *const lapack_int, kd: *const lapack_int,
+                   ab: *const lapack_complex_double, ldab: *const lapack_int,
+                   rcond: *mut c_double, work: *mut lapack_complex_double, rwork: *mut c_double,
+                   info: *mut lapack_int);
 
     pub fn sgerfs_(trans: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                    a: *const c_float, lda: *const lapack_int, af: *const c_float,
@@ -582,9 +584,9 @@ functions = """
                    a: *const lapack_complex_double, lda: *const lapack_int,
                    af: *const lapack_complex_double, ldaf: *const lapack_int,
                    ipiv: *const lapack_int, b: *const lapack_complex_double,
-                   ldb: *const lapack_int, x: *mut lapack_complex_double, ldx: *const lapack_int,
-                   ferr: *mut c_double, berr: *mut c_double, work: *mut lapack_complex_double,
-                   rwork: *mut c_double, info: *mut lapack_int);
+                   ldb: *const lapack_int, x: *mut lapack_complex_double,
+                   ldx: *const lapack_int, ferr: *mut c_double, berr: *mut c_double,
+                   work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
 
     pub fn dgerfsx_(trans: *const c_char, equed: *const c_char, n: *const lapack_int,
                     nrhs: *const lapack_int, a: *const c_double, lda: *const lapack_int,
@@ -613,7 +615,8 @@ functions = """
                     berr: *mut c_double, n_err_bnds: *const lapack_int,
                     err_bnds_norm: *mut c_double, err_bnds_comp: *mut c_double,
                     nparams: *const lapack_int, params: *mut c_double,
-                    work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
+                    work: *mut lapack_complex_double, rwork: *mut c_double,
+                    info: *mut lapack_int);
     pub fn cgerfsx_(trans: *const c_char, equed: *const c_char, n: *const lapack_int,
                     nrhs: *const lapack_int, a: *const lapack_complex_float,
                     lda: *const lapack_int, af: *const lapack_complex_float,
@@ -652,9 +655,9 @@ functions = """
                    ab: *const lapack_complex_double, ldab: *const lapack_int,
                    afb: *const lapack_complex_double, ldafb: *const lapack_int,
                    ipiv: *const lapack_int, b: *const lapack_complex_double,
-                   ldb: *const lapack_int, x: *mut lapack_complex_double, ldx: *const lapack_int,
-                   ferr: *mut c_double, berr: *mut c_double, work: *mut lapack_complex_double,
-                   rwork: *mut c_double, info: *mut lapack_int);
+                   ldb: *const lapack_int, x: *mut lapack_complex_double,
+                   ldx: *const lapack_int, ferr: *mut c_double, berr: *mut c_double,
+                   work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
 
     pub fn dgbrfsx_(trans: *const c_char, equed: *const c_char, n: *const lapack_int,
                     kl: *const lapack_int, ku: *const lapack_int, nrhs: *const lapack_int,
@@ -686,7 +689,8 @@ functions = """
                     berr: *mut c_double, n_err_bnds: *const lapack_int,
                     err_bnds_norm: *mut c_double, err_bnds_comp: *mut c_double,
                     nparams: *const lapack_int, params: *mut c_double,
-                    work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
+                    work: *mut lapack_complex_double, rwork: *mut c_double,
+                    info: *mut lapack_int);
     pub fn cgbrfsx_(trans: *const c_char, equed: *const c_char, n: *const lapack_int,
                     kl: *const lapack_int, ku: *const lapack_int, nrhs: *const lapack_int,
                     ab: *const lapack_complex_float, ldab: *const lapack_int,
@@ -780,22 +784,24 @@ functions = """
     pub fn zporfsx_(uplo: *const c_char, equed: *const c_char, n: *const lapack_int,
                     nrhs: *const lapack_int, a: *const lapack_complex_double,
                     lda: *const lapack_int, af: *const lapack_complex_double,
-                    ldaf: *const lapack_int, s: *const c_double, b: *const lapack_complex_double,
-                    ldb: *const lapack_int, x: *mut lapack_complex_double,
-                    ldx: *const lapack_int, rcond: *mut c_double, berr: *mut c_double,
-                    n_err_bnds: *const lapack_int, err_bnds_norm: *mut c_double,
-                    err_bnds_comp: *mut c_double, nparams: *const lapack_int,
-                    params: *mut c_double, work: *mut lapack_complex_double,
-                    rwork: *mut c_double, info: *mut lapack_int);
+                    ldaf: *const lapack_int, s: *const c_double,
+                    b: *const lapack_complex_double, ldb: *const lapack_int,
+                    x: *mut lapack_complex_double, ldx: *const lapack_int, rcond: *mut c_double,
+                    berr: *mut c_double, n_err_bnds: *const lapack_int,
+                    err_bnds_norm: *mut c_double, err_bnds_comp: *mut c_double,
+                    nparams: *const lapack_int, params: *mut c_double,
+                    work: *mut lapack_complex_double, rwork: *mut c_double,
+                    info: *mut lapack_int);
     pub fn cporfsx_(uplo: *const c_char, equed: *const c_char, n: *const lapack_int,
                     nrhs: *const lapack_int, a: *const lapack_complex_float,
                     lda: *const lapack_int, af: *const lapack_complex_float,
                     ldaf: *const lapack_int, s: *const c_float, b: *const lapack_complex_float,
-                    ldb: *const lapack_int, x: *mut lapack_complex_float, ldx: *const lapack_int,
-                    rcond: *mut c_float, berr: *mut c_float, n_err_bnds: *const lapack_int,
-                    err_bnds_norm: *mut c_float, err_bnds_comp: *mut c_float,
-                    nparams: *const lapack_int, params: *mut c_float,
-                    work: *mut lapack_complex_float, rwork: *mut c_float, info: *mut lapack_int);
+                    ldb: *const lapack_int, x: *mut lapack_complex_float,
+                    ldx: *const lapack_int, rcond: *mut c_float, berr: *mut c_float,
+                    n_err_bnds: *const lapack_int, err_bnds_norm: *mut c_float,
+                    err_bnds_comp: *mut c_float, nparams: *const lapack_int,
+                    params: *mut c_float, work: *mut lapack_complex_float, rwork: *mut c_float,
+                    info: *mut lapack_int);
 
     pub fn spprfs_(uplo: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                    ap: *const c_float, afp: *const c_float, b: *const c_float,
@@ -843,9 +849,9 @@ functions = """
                    nrhs: *const lapack_int, ab: *const lapack_complex_double,
                    ldab: *const lapack_int, afb: *const lapack_complex_double,
                    ldafb: *const lapack_int, b: *const lapack_complex_double,
-                   ldb: *const lapack_int, x: *mut lapack_complex_double, ldx: *const lapack_int,
-                   ferr: *mut c_double, berr: *mut c_double, work: *mut lapack_complex_double,
-                   rwork: *mut c_double, info: *mut lapack_int);
+                   ldb: *const lapack_int, x: *mut lapack_complex_double,
+                   ldx: *const lapack_int, ferr: *mut c_double, berr: *mut c_double,
+                   work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
 
     pub fn sptrfs_(n: *const lapack_int, nrhs: *const lapack_int, d: *const c_float,
                    e: *const c_float, df: *const c_float, ef: *const c_float, b: *const c_float,
@@ -866,9 +872,9 @@ functions = """
     pub fn zptrfs_(uplo: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                    d: *const c_double, e: *const lapack_complex_double, df: *const c_double,
                    ef: *const lapack_complex_double, b: *const lapack_complex_double,
-                   ldb: *const lapack_int, x: *mut lapack_complex_double, ldx: *const lapack_int,
-                   ferr: *mut c_double, berr: *mut c_double, work: *mut lapack_complex_double,
-                   rwork: *mut c_double, info: *mut lapack_int);
+                   ldb: *const lapack_int, x: *mut lapack_complex_double,
+                   ldx: *const lapack_int, ferr: *mut c_double, berr: *mut c_double,
+                   work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
 
     pub fn ssyrfs_(uplo: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                    a: *const c_float, lda: *const lapack_int, af: *const c_float,
@@ -893,9 +899,9 @@ functions = """
                    a: *const lapack_complex_double, lda: *const lapack_int,
                    af: *const lapack_complex_double, ldaf: *const lapack_int,
                    ipiv: *const lapack_int, b: *const lapack_complex_double,
-                   ldb: *const lapack_int, x: *mut lapack_complex_double, ldx: *const lapack_int,
-                   ferr: *mut c_double, berr: *mut c_double, work: *mut lapack_complex_double,
-                   rwork: *mut c_double, info: *mut lapack_int);
+                   ldb: *const lapack_int, x: *mut lapack_complex_double,
+                   ldx: *const lapack_int, ferr: *mut c_double, berr: *mut c_double,
+                   work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
 
     pub fn dsyrfsx_(uplo: *const c_char, equed: *const c_char, n: *const lapack_int,
                     nrhs: *const lapack_int, a: *const c_double, lda: *const lapack_int,
@@ -924,7 +930,8 @@ functions = """
                     berr: *mut c_double, n_err_bnds: *const lapack_int,
                     err_bnds_norm: *mut c_double, err_bnds_comp: *mut c_double,
                     nparams: *const lapack_int, params: *mut c_double,
-                    work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
+                    work: *mut lapack_complex_double, rwork: *mut c_double,
+                    info: *mut lapack_int);
     pub fn csyrfsx_(uplo: *const c_char, equed: *const c_char, n: *const lapack_int,
                     nrhs: *const lapack_int, a: *const lapack_complex_float,
                     lda: *const lapack_int, af: *const lapack_complex_float,
@@ -947,9 +954,9 @@ functions = """
                    a: *const lapack_complex_double, lda: *const lapack_int,
                    af: *const lapack_complex_double, ldaf: *const lapack_int,
                    ipiv: *const lapack_int, b: *const lapack_complex_double,
-                   ldb: *const lapack_int, x: *mut lapack_complex_double, ldx: *const lapack_int,
-                   ferr: *mut c_double, berr: *mut c_double, work: *mut lapack_complex_double,
-                   rwork: *mut c_double, info: *mut lapack_int);
+                   ldb: *const lapack_int, x: *mut lapack_complex_double,
+                   ldx: *const lapack_int, ferr: *mut c_double, berr: *mut c_double,
+                   work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
 
     pub fn zherfsx_(uplo: *const c_char, equed: *const c_char, n: *const lapack_int,
                     nrhs: *const lapack_int, a: *const lapack_complex_double,
@@ -960,7 +967,8 @@ functions = """
                     berr: *mut c_double, n_err_bnds: *const lapack_int,
                     err_bnds_norm: *mut c_double, err_bnds_comp: *mut c_double,
                     nparams: *const lapack_int, params: *mut c_double,
-                    work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
+                    work: *mut lapack_complex_double, rwork: *mut c_double,
+                    info: *mut lapack_int);
     pub fn cherfsx_(uplo: *const c_char, equed: *const c_char, n: *const lapack_int,
                     nrhs: *const lapack_int, a: *const lapack_complex_float,
                     lda: *const lapack_int, af: *const lapack_complex_float,
@@ -991,9 +999,9 @@ functions = """
     pub fn zsprfs_(uplo: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                    ap: *const lapack_complex_double, afp: *const lapack_complex_double,
                    ipiv: *const lapack_int, b: *const lapack_complex_double,
-                   ldb: *const lapack_int, x: *mut lapack_complex_double, ldx: *const lapack_int,
-                   ferr: *mut c_double, berr: *mut c_double, work: *mut lapack_complex_double,
-                   rwork: *mut c_double, info: *mut lapack_int);
+                   ldb: *const lapack_int, x: *mut lapack_complex_double,
+                   ldx: *const lapack_int, ferr: *mut c_double, berr: *mut c_double,
+                   work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
 
     pub fn chprfs_(uplo: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                    ap: *const lapack_complex_float, afp: *const lapack_complex_float,
@@ -1004,9 +1012,9 @@ functions = """
     pub fn zhprfs_(uplo: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                    ap: *const lapack_complex_double, afp: *const lapack_complex_double,
                    ipiv: *const lapack_int, b: *const lapack_complex_double,
-                   ldb: *const lapack_int, x: *mut lapack_complex_double, ldx: *const lapack_int,
-                   ferr: *mut c_double, berr: *mut c_double, work: *mut lapack_complex_double,
-                   rwork: *mut c_double, info: *mut lapack_int);
+                   ldb: *const lapack_int, x: *mut lapack_complex_double,
+                   ldx: *const lapack_int, ferr: *mut c_double, berr: *mut c_double,
+                   work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
 
     pub fn strrfs_(uplo: *const c_char, trans: *const c_char, diag: *const c_char,
                    n: *const lapack_int, nrhs: *const lapack_int, a: *const c_float,
@@ -1021,11 +1029,12 @@ functions = """
                    berr: *mut c_double, work: *mut c_double, iwork: *mut lapack_int,
                    info: *mut lapack_int);
     pub fn ctrrfs_(uplo: *const c_char, trans: *const c_char, diag: *const c_char,
-                   n: *const lapack_int, nrhs: *const lapack_int, a: *const lapack_complex_float,
-                   lda: *const lapack_int, b: *const lapack_complex_float,
-                   ldb: *const lapack_int, x: *const lapack_complex_float,
-                   ldx: *const lapack_int, ferr: *mut c_float, berr: *mut c_float,
-                   work: *mut lapack_complex_float, rwork: *mut c_float, info: *mut lapack_int);
+                   n: *const lapack_int, nrhs: *const lapack_int,
+                   a: *const lapack_complex_float, lda: *const lapack_int,
+                   b: *const lapack_complex_float, ldb: *const lapack_int,
+                   x: *const lapack_complex_float, ldx: *const lapack_int, ferr: *mut c_float,
+                   berr: *mut c_float, work: *mut lapack_complex_float, rwork: *mut c_float,
+                   info: *mut lapack_int);
     pub fn ztrrfs_(uplo: *const c_char, trans: *const c_char, diag: *const c_char,
                    n: *const lapack_int, nrhs: *const lapack_int,
                    a: *const lapack_complex_double, lda: *const lapack_int,
@@ -1248,8 +1257,8 @@ functions = """
                     colcnd: *mut c_double, amax: *mut c_double, info: *mut lapack_int);
     pub fn sgbequb_(m: *const lapack_int, n: *const lapack_int, kl: *const lapack_int,
                     ku: *const lapack_int, ab: *const c_float, ldab: *const lapack_int,
-                    r: *mut c_float, c: *mut c_float, rowcnd: *mut c_float, colcnd: *mut c_float,
-                    amax: *mut c_float, info: *mut lapack_int);
+                    r: *mut c_float, c: *mut c_float, rowcnd: *mut c_float,
+                    colcnd: *mut c_float, amax: *mut c_float, info: *mut lapack_int);
     pub fn zgbequb_(m: *const lapack_int, n: *const lapack_int, kl: *const lapack_int,
                     ku: *const lapack_int, ab: *const lapack_complex_double,
                     ldab: *const lapack_int, r: *mut c_double, c: *mut c_double,
@@ -1270,9 +1279,9 @@ functions = """
     pub fn cpoequ_(n: *const lapack_int, a: *const lapack_complex_float, lda: *const lapack_int,
                    s: *mut c_float, scond: *mut c_float, amax: *mut c_float,
                    info: *mut lapack_int);
-    pub fn zpoequ_(n: *const lapack_int, a: *const lapack_complex_double, lda: *const lapack_int,
-                   s: *mut c_double, scond: *mut c_double, amax: *mut c_double,
-                   info: *mut lapack_int);
+    pub fn zpoequ_(n: *const lapack_int, a: *const lapack_complex_double,
+                   lda: *const lapack_int, s: *mut c_double, scond: *mut c_double,
+                   amax: *mut c_double, info: *mut lapack_int);
 
     pub fn dpoequb_(n: *const lapack_int, a: *const c_double, lda: *const lapack_int,
                     s: *mut c_double, scond: *mut c_double, amax: *mut c_double,
@@ -1283,9 +1292,9 @@ functions = """
     pub fn zpoequb_(n: *const lapack_int, a: *const lapack_complex_double,
                     lda: *const lapack_int, s: *mut c_double, scond: *mut c_double,
                     amax: *mut c_double, info: *mut lapack_int);
-    pub fn cpoequb_(n: *const lapack_int, a: *const lapack_complex_float, lda: *const lapack_int,
-                    s: *mut c_float, scond: *mut c_float, amax: *mut c_float,
-                    info: *mut lapack_int);
+    pub fn cpoequb_(n: *const lapack_int, a: *const lapack_complex_float,
+                    lda: *const lapack_int, s: *mut c_float, scond: *mut c_float,
+                    amax: *mut c_float, info: *mut lapack_int);
 
     pub fn sppequ_(uplo: *const c_char, n: *const lapack_int, ap: *const c_float,
                    s: *mut c_float, scond: *mut c_float, amax: *mut c_float,
@@ -1373,21 +1382,22 @@ functions = """
                    rcond: *mut c_double, ferr: *mut c_double, berr: *mut c_double,
                    work: *mut c_double, iwork: *mut lapack_int, info: *mut lapack_int);
     pub fn cgesvx_(fact: *const c_char, trans: *const c_char, n: *const lapack_int,
-                   nrhs: *const lapack_int, a: *mut lapack_complex_float, lda: *const lapack_int,
-                   af: *mut lapack_complex_float, ldaf: *const lapack_int, ipiv: *mut lapack_int,
-                   equed: *mut c_char, r: *mut c_float, c: *mut c_float,
-                   b: *mut lapack_complex_float, ldb: *const lapack_int,
-                   x: *mut lapack_complex_float, ldx: *const lapack_int, rcond: *mut c_float,
-                   ferr: *mut c_float, berr: *mut c_float, work: *mut lapack_complex_float,
-                   rwork: *mut c_float, info: *mut lapack_int);
+                   nrhs: *const lapack_int, a: *mut lapack_complex_float,
+                   lda: *const lapack_int, af: *mut lapack_complex_float,
+                   ldaf: *const lapack_int, ipiv: *mut lapack_int, equed: *mut c_char,
+                   r: *mut c_float, c: *mut c_float, b: *mut lapack_complex_float,
+                   ldb: *const lapack_int, x: *mut lapack_complex_float, ldx: *const lapack_int,
+                   rcond: *mut c_float, ferr: *mut c_float, berr: *mut c_float,
+                   work: *mut lapack_complex_float, rwork: *mut c_float, info: *mut lapack_int);
     pub fn zgesvx_(fact: *const c_char, trans: *const c_char, n: *const lapack_int,
                    nrhs: *const lapack_int, a: *mut lapack_complex_double,
                    lda: *const lapack_int, af: *mut lapack_complex_double,
                    ldaf: *const lapack_int, ipiv: *mut lapack_int, equed: *mut c_char,
                    r: *mut c_double, c: *mut c_double, b: *mut lapack_complex_double,
-                   ldb: *const lapack_int, x: *mut lapack_complex_double, ldx: *const lapack_int,
-                   rcond: *mut c_double, ferr: *mut c_double, berr: *mut c_double,
-                   work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
+                   ldb: *const lapack_int, x: *mut lapack_complex_double,
+                   ldx: *const lapack_int, rcond: *mut c_double, ferr: *mut c_double,
+                   berr: *mut c_double, work: *mut lapack_complex_double, rwork: *mut c_double,
+                   info: *mut lapack_int);
 
     pub fn dgesvxx_(fact: *const c_char, trans: *const c_char, n: *const lapack_int,
                     nrhs: *const lapack_int, a: *mut c_double, lda: *const lapack_int,
@@ -1419,18 +1429,19 @@ functions = """
                     berr: *mut c_double, n_err_bnds: *const lapack_int,
                     err_bnds_norm: *mut c_double, err_bnds_comp: *mut c_double,
                     nparams: *const lapack_int, params: *mut c_double,
-                    work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
+                    work: *mut lapack_complex_double, rwork: *mut c_double,
+                    info: *mut lapack_int);
     pub fn cgesvxx_(fact: *const c_char, trans: *const c_char, n: *const lapack_int,
                     nrhs: *const lapack_int, a: *mut lapack_complex_float,
                     lda: *const lapack_int, af: *mut lapack_complex_float,
                     ldaf: *const lapack_int, ipiv: *mut lapack_int, equed: *mut c_char,
                     r: *mut c_float, c: *mut c_float, b: *mut lapack_complex_float,
-                    ldb: *const lapack_int, x: *mut lapack_complex_float, ldx: *const lapack_int,
-                    rcond: *mut c_float, rpvgrw: *mut c_float, berr: *mut c_float,
-                    n_err_bnds: *const lapack_int, err_bnds_norm: *mut c_float,
-                    err_bnds_comp: *mut c_float, nparams: *const lapack_int,
-                    params: *mut c_float, work: *mut lapack_complex_float, rwork: *mut c_float,
-                    info: *mut lapack_int);
+                    ldb: *const lapack_int, x: *mut lapack_complex_float,
+                    ldx: *const lapack_int, rcond: *mut c_float, rpvgrw: *mut c_float,
+                    berr: *mut c_float, n_err_bnds: *const lapack_int,
+                    err_bnds_norm: *mut c_float, err_bnds_comp: *mut c_float,
+                    nparams: *const lapack_int, params: *mut c_float,
+                    work: *mut lapack_complex_float, rwork: *mut c_float, info: *mut lapack_int);
 
     pub fn sgbsv_(n: *const lapack_int, kl: *const lapack_int, ku: *const lapack_int,
                   nrhs: *const lapack_int, ab: *mut c_float, ldab: *const lapack_int,
@@ -1478,8 +1489,8 @@ functions = """
                    kl: *const lapack_int, ku: *const lapack_int, nrhs: *const lapack_int,
                    ab: *mut lapack_complex_double, ldab: *const lapack_int,
                    afb: *mut lapack_complex_double, ldafb: *const lapack_int,
-                   ipiv: *mut lapack_int, equed: *mut c_char, r: *mut c_double, c: *mut c_double,
-                   b: *mut lapack_complex_double, ldb: *const lapack_int,
+                   ipiv: *mut lapack_int, equed: *mut c_char, r: *mut c_double,
+                   c: *mut c_double, b: *mut lapack_complex_double, ldb: *const lapack_int,
                    x: *mut lapack_complex_double, ldx: *const lapack_int, rcond: *mut c_double,
                    ferr: *mut c_double, berr: *mut c_double, work: *mut lapack_complex_double,
                    rwork: *mut c_double, info: *mut lapack_int);
@@ -1488,12 +1499,13 @@ functions = """
                     kl: *const lapack_int, ku: *const lapack_int, nrhs: *const lapack_int,
                     ab: *mut c_double, ldab: *const lapack_int, afb: *mut c_double,
                     ldafb: *const lapack_int, ipiv: *mut lapack_int, equed: *mut c_char,
-                    r: *mut c_double, c: *mut c_double, b: *mut c_double, ldb: *const lapack_int,
-                    x: *mut c_double, ldx: *const lapack_int, rcond: *mut c_double,
-                    rpvgrw: *mut c_double, berr: *mut c_double, n_err_bnds: *const lapack_int,
-                    err_bnds_norm: *mut c_double, err_bnds_comp: *mut c_double,
-                    nparams: *const lapack_int, params: *mut c_double, work: *mut c_double,
-                    iwork: *mut lapack_int, info: *mut lapack_int);
+                    r: *mut c_double, c: *mut c_double, b: *mut c_double,
+                    ldb: *const lapack_int, x: *mut c_double, ldx: *const lapack_int,
+                    rcond: *mut c_double, rpvgrw: *mut c_double, berr: *mut c_double,
+                    n_err_bnds: *const lapack_int, err_bnds_norm: *mut c_double,
+                    err_bnds_comp: *mut c_double, nparams: *const lapack_int,
+                    params: *mut c_double, work: *mut c_double, iwork: *mut lapack_int,
+                    info: *mut lapack_int);
     pub fn sgbsvxx_(fact: *const c_char, trans: *const c_char, n: *const lapack_int,
                     kl: *const lapack_int, ku: *const lapack_int, nrhs: *const lapack_int,
                     ab: *mut c_float, ldab: *const lapack_int, afb: *mut c_float,
@@ -1514,7 +1526,8 @@ functions = """
                     rpvgrw: *mut c_double, berr: *mut c_double, n_err_bnds: *const lapack_int,
                     err_bnds_norm: *mut c_double, err_bnds_comp: *mut c_double,
                     nparams: *const lapack_int, params: *mut c_double,
-                    work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
+                    work: *mut lapack_complex_double, rwork: *mut c_double,
+                    info: *mut lapack_int);
     pub fn cgbsvxx_(fact: *const c_char, trans: *const c_char, n: *const lapack_int,
                     kl: *const lapack_int, ku: *const lapack_int, nrhs: *const lapack_int,
                     ab: *mut lapack_complex_float, ldab: *const lapack_int,
@@ -1560,19 +1573,20 @@ functions = """
                    d: *const lapack_complex_float, du: *const lapack_complex_float,
                    dlf: *mut lapack_complex_float, df: *mut lapack_complex_float,
                    duf: *mut lapack_complex_float, du2: *mut lapack_complex_float,
-                   ipiv: *mut lapack_int, b: *const lapack_complex_float, ldb: *const lapack_int,
-                   x: *mut lapack_complex_float, ldx: *const lapack_int, rcond: *mut c_float,
-                   ferr: *mut c_float, berr: *mut c_float, work: *mut lapack_complex_float,
-                   rwork: *mut c_float, info: *mut lapack_int);
+                   ipiv: *mut lapack_int, b: *const lapack_complex_float,
+                   ldb: *const lapack_int, x: *mut lapack_complex_float, ldx: *const lapack_int,
+                   rcond: *mut c_float, ferr: *mut c_float, berr: *mut c_float,
+                   work: *mut lapack_complex_float, rwork: *mut c_float, info: *mut lapack_int);
     pub fn zgtsvx_(fact: *const c_char, trans: *const c_char, n: *const lapack_int,
                    nrhs: *const lapack_int, dl: *const lapack_complex_double,
                    d: *const lapack_complex_double, du: *const lapack_complex_double,
                    dlf: *mut lapack_complex_double, df: *mut lapack_complex_double,
                    duf: *mut lapack_complex_double, du2: *mut lapack_complex_double,
                    ipiv: *mut lapack_int, b: *const lapack_complex_double,
-                   ldb: *const lapack_int, x: *mut lapack_complex_double, ldx: *const lapack_int,
-                   rcond: *mut c_double, ferr: *mut c_double, berr: *mut c_double,
-                   work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
+                   ldb: *const lapack_int, x: *mut lapack_complex_double,
+                   ldx: *const lapack_int, rcond: *mut c_double, ferr: *mut c_double,
+                   berr: *mut c_double, work: *mut lapack_complex_double, rwork: *mut c_double,
+                   info: *mut lapack_int);
 
     pub fn sposv_(uplo: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                   a: *mut c_float, lda: *const lapack_int, b: *mut c_float,
@@ -1614,9 +1628,10 @@ functions = """
                    berr: *mut c_double, work: *mut c_double, iwork: *mut lapack_int,
                    info: *mut lapack_int);
     pub fn cposvx_(fact: *const c_char, uplo: *const c_char, n: *const lapack_int,
-                   nrhs: *const lapack_int, a: *mut lapack_complex_float, lda: *const lapack_int,
-                   af: *mut lapack_complex_float, ldaf: *const lapack_int, equed: *mut c_char,
-                   s: *mut c_float, b: *mut lapack_complex_float, ldb: *const lapack_int,
+                   nrhs: *const lapack_int, a: *mut lapack_complex_float,
+                   lda: *const lapack_int, af: *mut lapack_complex_float,
+                   ldaf: *const lapack_int, equed: *mut c_char, s: *mut c_float,
+                   b: *mut lapack_complex_float, ldb: *const lapack_int,
                    x: *mut lapack_complex_float, ldx: *const lapack_int, rcond: *mut c_float,
                    ferr: *mut c_float, berr: *mut c_float, work: *mut lapack_complex_float,
                    rwork: *mut c_float, info: *mut lapack_int);
@@ -1632,9 +1647,9 @@ functions = """
     pub fn dposvxx_(fact: *const c_char, uplo: *const c_char, n: *const lapack_int,
                     nrhs: *const lapack_int, a: *mut c_double, lda: *const lapack_int,
                     af: *mut c_double, ldaf: *const lapack_int, equed: *mut c_char,
-                    s: *mut c_double, b: *mut c_double, ldb: *const lapack_int, x: *mut c_double,
-                    ldx: *const lapack_int, rcond: *mut c_double, rpvgrw: *mut c_double,
-                    berr: *mut c_double, n_err_bnds: *const lapack_int,
+                    s: *mut c_double, b: *mut c_double, ldb: *const lapack_int,
+                    x: *mut c_double, ldx: *const lapack_int, rcond: *mut c_double,
+                    rpvgrw: *mut c_double, berr: *mut c_double, n_err_bnds: *const lapack_int,
                     err_bnds_norm: *mut c_double, err_bnds_comp: *mut c_double,
                     nparams: *const lapack_int, params: *mut c_double, work: *mut c_double,
                     iwork: *mut lapack_int, info: *mut lapack_int);
@@ -1656,7 +1671,8 @@ functions = """
                     rpvgrw: *mut c_double, berr: *mut c_double, n_err_bnds: *const lapack_int,
                     err_bnds_norm: *mut c_double, err_bnds_comp: *mut c_double,
                     nparams: *const lapack_int, params: *mut c_double,
-                    work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
+                    work: *mut lapack_complex_double, rwork: *mut c_double,
+                    info: *mut lapack_int);
     pub fn cposvxx_(fact: *const c_char, uplo: *const c_char, n: *const lapack_int,
                     nrhs: *const lapack_int, a: *mut lapack_complex_float,
                     lda: *const lapack_int, af: *mut lapack_complex_float,
@@ -1720,8 +1736,8 @@ functions = """
                   info: *mut lapack_int);
     pub fn zpbsv_(uplo: *const c_char, n: *const lapack_int, kd: *const lapack_int,
                   nrhs: *const lapack_int, ab: *mut lapack_complex_double,
-                  ldab: *const lapack_int, b: *mut lapack_complex_double, ldb: *const lapack_int,
-                  info: *mut lapack_int);
+                  ldab: *const lapack_int, b: *mut lapack_complex_double,
+                  ldb: *const lapack_int, info: *mut lapack_int);
 
     pub fn spbsvx_(fact: *const c_char, uplo: *const c_char, n: *const lapack_int,
                    kd: *const lapack_int, nrhs: *const lapack_int, ab: *mut c_float,
@@ -1738,24 +1754,26 @@ functions = """
                    rcond: *mut c_double, ferr: *mut c_double, berr: *mut c_double,
                    work: *mut c_double, iwork: *mut lapack_int, info: *mut lapack_int);
     pub fn cpbsvx_(fact: *const c_char, uplo: *const c_char, n: *const lapack_int,
-                   kd: *const lapack_int, nrhs: *const lapack_int, ab: *mut lapack_complex_float,
-                   ldab: *const lapack_int, afb: *mut lapack_complex_float,
-                   ldafb: *const lapack_int, equed: *mut c_char, s: *mut c_float,
-                   b: *mut lapack_complex_float, ldb: *const lapack_int,
+                   kd: *const lapack_int, nrhs: *const lapack_int,
+                   ab: *mut lapack_complex_float, ldab: *const lapack_int,
+                   afb: *mut lapack_complex_float, ldafb: *const lapack_int, equed: *mut c_char,
+                   s: *mut c_float, b: *mut lapack_complex_float, ldb: *const lapack_int,
                    x: *mut lapack_complex_float, ldx: *const lapack_int, rcond: *mut c_float,
                    ferr: *mut c_float, berr: *mut c_float, work: *mut lapack_complex_float,
                    rwork: *mut c_float, info: *mut lapack_int);
     pub fn zpbsvx_(fact: *const c_char, uplo: *const c_char, n: *const lapack_int,
                    kd: *const lapack_int, nrhs: *const lapack_int,
                    ab: *mut lapack_complex_double, ldab: *const lapack_int,
-                   afb: *mut lapack_complex_double, ldafb: *const lapack_int, equed: *mut c_char,
-                   s: *mut c_double, b: *mut lapack_complex_double, ldb: *const lapack_int,
-                   x: *mut lapack_complex_double, ldx: *const lapack_int, rcond: *mut c_double,
-                   ferr: *mut c_double, berr: *mut c_double, work: *mut lapack_complex_double,
-                   rwork: *mut c_double, info: *mut lapack_int);
+                   afb: *mut lapack_complex_double, ldafb: *const lapack_int,
+                   equed: *mut c_char, s: *mut c_double, b: *mut lapack_complex_double,
+                   ldb: *const lapack_int, x: *mut lapack_complex_double,
+                   ldx: *const lapack_int, rcond: *mut c_double, ferr: *mut c_double,
+                   berr: *mut c_double, work: *mut lapack_complex_double, rwork: *mut c_double,
+                   info: *mut lapack_int);
 
     pub fn sptsv_(n: *const lapack_int, nrhs: *const lapack_int, d: *mut c_float,
-                  e: *mut c_float, b: *mut c_float, ldb: *const lapack_int, info: *mut lapack_int);
+                  e: *mut c_float, b: *mut c_float, ldb: *const lapack_int,
+                  info: *mut lapack_int);
     pub fn dptsv_(n: *const lapack_int, nrhs: *const lapack_int, d: *mut c_double,
                   e: *mut c_double, b: *mut c_double, ldb: *const lapack_int,
                   info: *mut lapack_int);
@@ -1785,9 +1803,10 @@ functions = """
     pub fn zptsvx_(fact: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                    d: *const c_double, e: *const lapack_complex_double, df: *mut c_double,
                    ef: *mut lapack_complex_double, b: *const lapack_complex_double,
-                   ldb: *const lapack_int, x: *mut lapack_complex_double, ldx: *const lapack_int,
-                   rcond: *mut c_double, ferr: *mut c_double, berr: *mut c_double,
-                   work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
+                   ldb: *const lapack_int, x: *mut lapack_complex_double,
+                   ldx: *const lapack_int, rcond: *mut c_double, ferr: *mut c_double,
+                   berr: *mut c_double, work: *mut lapack_complex_double, rwork: *mut c_double,
+                   info: *mut lapack_int);
 
     pub fn ssysv_(uplo: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                   a: *mut c_float, lda: *const lapack_int, ipiv: *mut lapack_int,
@@ -1852,12 +1871,13 @@ functions = """
     pub fn ssysvxx_(fact: *const c_char, uplo: *const c_char, n: *const lapack_int,
                     nrhs: *const lapack_int, a: *mut c_float, lda: *const lapack_int,
                     af: *mut c_float, ldaf: *const lapack_int, ipiv: *mut lapack_int,
-                    equed: *mut c_char, s: *mut c_float, b: *mut c_float, ldb: *const lapack_int,
-                    x: *mut c_float, ldx: *const lapack_int, rcond: *mut c_float,
-                    rpvgrw: *mut c_float, berr: *mut c_float, n_err_bnds: *const lapack_int,
-                    err_bnds_norm: *mut c_float, err_bnds_comp: *mut c_float,
-                    nparams: *const lapack_int, params: *mut c_float, work: *mut c_float,
-                    iwork: *mut lapack_int, info: *mut lapack_int);
+                    equed: *mut c_char, s: *mut c_float, b: *mut c_float,
+                    ldb: *const lapack_int, x: *mut c_float, ldx: *const lapack_int,
+                    rcond: *mut c_float, rpvgrw: *mut c_float, berr: *mut c_float,
+                    n_err_bnds: *const lapack_int, err_bnds_norm: *mut c_float,
+                    err_bnds_comp: *mut c_float, nparams: *const lapack_int,
+                    params: *mut c_float, work: *mut c_float, iwork: *mut lapack_int,
+                    info: *mut lapack_int);
     pub fn zsysvxx_(fact: *const c_char, uplo: *const c_char, n: *const lapack_int,
                     nrhs: *const lapack_int, a: *mut lapack_complex_double,
                     lda: *const lapack_int, af: *mut lapack_complex_double,
@@ -1867,7 +1887,8 @@ functions = """
                     rpvgrw: *mut c_double, berr: *mut c_double, n_err_bnds: *const lapack_int,
                     err_bnds_norm: *mut c_double, err_bnds_comp: *mut c_double,
                     nparams: *const lapack_int, params: *mut c_double,
-                    work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
+                    work: *mut lapack_complex_double, rwork: *mut c_double,
+                    info: *mut lapack_int);
     pub fn csysvxx_(fact: *const c_char, uplo: *const c_char, n: *const lapack_int,
                     nrhs: *const lapack_int, a: *mut lapack_complex_float,
                     lda: *const lapack_int, af: *mut lapack_complex_float,
@@ -1916,7 +1937,8 @@ functions = """
                     rpvgrw: *mut c_double, berr: *mut c_double, n_err_bnds: *const lapack_int,
                     err_bnds_norm: *mut c_double, err_bnds_comp: *mut c_double,
                     nparams: *const lapack_int, params: *mut c_double,
-                    work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
+                    work: *mut lapack_complex_double, rwork: *mut c_double,
+                    info: *mut lapack_int);
     pub fn chesvxx_(fact: *const c_char, uplo: *const c_char, n: *const lapack_int,
                     nrhs: *const lapack_int, a: *mut lapack_complex_float,
                     lda: *const lapack_int, af: *mut lapack_complex_float,
@@ -2012,8 +2034,9 @@ functions = """
                    lda: *const lapack_int, jpvt: *mut lapack_int, tau: *mut c_double,
                    work: *mut c_double, info: *mut lapack_int);
     pub fn cgeqpf_(m: *const lapack_int, n: *const lapack_int, a: *mut lapack_complex_float,
-                   lda: *const lapack_int, jpvt: *mut lapack_int, tau: *mut lapack_complex_float,
-                   work: *mut lapack_complex_float, rwork: *mut c_float, info: *mut lapack_int);
+                   lda: *const lapack_int, jpvt: *mut lapack_int,
+                   tau: *mut lapack_complex_float, work: *mut lapack_complex_float,
+                   rwork: *mut c_float, info: *mut lapack_int);
     pub fn zgeqpf_(m: *const lapack_int, n: *const lapack_int, a: *mut lapack_complex_double,
                    lda: *const lapack_int, jpvt: *mut lapack_int,
                    tau: *mut lapack_complex_double, work: *mut lapack_complex_double,
@@ -2026,9 +2049,9 @@ functions = """
                    lda: *const lapack_int, jpvt: *mut lapack_int, tau: *mut c_double,
                    work: *mut c_double, lwork: *const lapack_int, info: *mut lapack_int);
     pub fn cgeqp3_(m: *const lapack_int, n: *const lapack_int, a: *mut lapack_complex_float,
-                   lda: *const lapack_int, jpvt: *mut lapack_int, tau: *mut lapack_complex_float,
-                   work: *mut lapack_complex_float, lwork: *const lapack_int,
-                   rwork: *mut c_float, info: *mut lapack_int);
+                   lda: *const lapack_int, jpvt: *mut lapack_int,
+                   tau: *mut lapack_complex_float, work: *mut lapack_complex_float,
+                   lwork: *const lapack_int, rwork: *mut c_float, info: *mut lapack_int);
     pub fn zgeqp3_(m: *const lapack_int, n: *const lapack_int, a: *mut lapack_complex_double,
                    lda: *const lapack_int, jpvt: *mut lapack_int,
                    tau: *mut lapack_complex_double, work: *mut lapack_complex_double,
@@ -2339,9 +2362,9 @@ functions = """
     pub fn dgbbrd_(vect: *const c_char, m: *const lapack_int, n: *const lapack_int,
                    ncc: *const lapack_int, kl: *const lapack_int, ku: *const lapack_int,
                    ab: *mut c_double, ldab: *const lapack_int, d: *mut c_double,
-                   e: *mut c_double, q: *mut c_double, ldq: *const lapack_int, pt: *mut c_double,
-                   ldpt: *const lapack_int, c: *mut c_double, ldc: *const lapack_int,
-                   work: *mut c_double, info: *mut lapack_int);
+                   e: *mut c_double, q: *mut c_double, ldq: *const lapack_int,
+                   pt: *mut c_double, ldpt: *const lapack_int, c: *mut c_double,
+                   ldc: *const lapack_int, work: *mut c_double, info: *mut lapack_int);
     pub fn cgbbrd_(vect: *const c_char, m: *const lapack_int, n: *const lapack_int,
                    ncc: *const lapack_int, kl: *const lapack_int, ku: *const lapack_int,
                    ab: *mut lapack_complex_float, ldab: *const lapack_int, d: *mut c_float,
@@ -2434,9 +2457,9 @@ functions = """
     pub fn sbdsvdx_(uplo: *const c_char, jobz: *const c_char, range: *const c_char,
                     n: *const lapack_int, d: *const c_float, e: *const c_float,
                     vl: *const c_float, vu: *const c_float, il: *const lapack_int,
-                    iu: *const lapack_int, ns: *mut lapack_int, s: *mut c_float, z: *mut c_float,
-                    ldz: *const lapack_int, work: *mut c_float, iwork: *mut lapack_int,
-                    info: *mut lapack_int);
+                    iu: *const lapack_int, ns: *mut lapack_int, s: *mut c_float,
+                    z: *mut c_float, ldz: *const lapack_int, work: *mut c_float,
+                    iwork: *mut lapack_int, info: *mut lapack_int);
     pub fn dbdsvdx_(uplo: *const c_char, jobz: *const c_char, range: *const c_char,
                     n: *const lapack_int, d: *const c_double, e: *const c_double,
                     vl: *const c_double, vu: *const c_double, il: *const lapack_int,
@@ -2531,7 +2554,8 @@ functions = """
 
     pub fn cupgtr_(uplo: *const c_char, n: *const lapack_int, ap: *const lapack_complex_float,
                    tau: *const lapack_complex_float, q: *mut lapack_complex_float,
-                   ldq: *const lapack_int, work: *mut lapack_complex_float, info: *mut lapack_int);
+                   ldq: *const lapack_int, work: *mut lapack_complex_float,
+                   info: *mut lapack_int);
     pub fn zupgtr_(uplo: *const c_char, n: *const lapack_int, ap: *const lapack_complex_double,
                    tau: *const lapack_complex_double, q: *mut lapack_complex_double,
                    ldq: *const lapack_int, work: *mut lapack_complex_double,
@@ -2540,7 +2564,8 @@ functions = """
     pub fn cupmtr_(side: *const c_char, uplo: *const c_char, trans: *const c_char,
                    m: *const lapack_int, n: *const lapack_int, ap: *const lapack_complex_float,
                    tau: *const lapack_complex_float, c: *mut lapack_complex_float,
-                   ldc: *const lapack_int, work: *mut lapack_complex_float, info: *mut lapack_int);
+                   ldc: *const lapack_int, work: *mut lapack_complex_float,
+                   info: *mut lapack_int);
     pub fn zupmtr_(side: *const c_char, uplo: *const c_char, trans: *const c_char,
                    m: *const lapack_int, n: *const lapack_int, ap: *const lapack_complex_double,
                    tau: *const lapack_complex_double, c: *mut lapack_complex_double,
@@ -2556,9 +2581,10 @@ functions = """
                    d: *mut c_double, e: *mut c_double, q: *mut c_double, ldq: *const lapack_int,
                    work: *mut c_double, info: *mut lapack_int);
     pub fn chbtrd_(vect: *const c_char, uplo: *const c_char, n: *const lapack_int,
-                   kd: *const lapack_int, ab: *mut lapack_complex_float, ldab: *const lapack_int,
-                   d: *mut c_float, e: *mut c_float, q: *mut lapack_complex_float,
-                   ldq: *const lapack_int, work: *mut lapack_complex_float, info: *mut lapack_int);
+                   kd: *const lapack_int, ab: *mut lapack_complex_float,
+                   ldab: *const lapack_int, d: *mut c_float, e: *mut c_float,
+                   q: *mut lapack_complex_float, ldq: *const lapack_int,
+                   work: *mut lapack_complex_float, info: *mut lapack_int);
     pub fn zhbtrd_(vect: *const c_char, uplo: *const c_char, n: *const lapack_int,
                    kd: *const lapack_int, ab: *mut lapack_complex_double,
                    ldab: *const lapack_int, d: *mut c_double, e: *mut c_double,
@@ -2720,7 +2746,8 @@ functions = """
                    b: *const lapack_complex_float, ldb: *const lapack_int, info: *mut lapack_int);
     pub fn zhegst_(itype: *const lapack_int, uplo: *const c_char, n: *const lapack_int,
                    a: *mut lapack_complex_double, lda: *const lapack_int,
-                   b: *const lapack_complex_double, ldb: *const lapack_int, info: *mut lapack_int);
+                   b: *const lapack_complex_double, ldb: *const lapack_int,
+                   info: *mut lapack_int);
 
     pub fn sspgst_(itype: *const lapack_int, uplo: *const c_char, n: *const lapack_int,
                    ap: *mut c_float, bp: *const c_float, info: *mut lapack_int);
@@ -2746,8 +2773,9 @@ functions = """
     pub fn chbgst_(vect: *const c_char, uplo: *const c_char, n: *const lapack_int,
                    ka: *const lapack_int, kb: *const lapack_int, ab: *mut lapack_complex_float,
                    ldab: *const lapack_int, bb: *const lapack_complex_float,
-                   ldbb: *const lapack_int, x: *mut lapack_complex_float, ldx: *const lapack_int,
-                   work: *mut lapack_complex_float, rwork: *mut c_float, info: *mut lapack_int);
+                   ldbb: *const lapack_int, x: *mut lapack_complex_float,
+                   ldx: *const lapack_int, work: *mut lapack_complex_float, rwork: *mut c_float,
+                   info: *mut lapack_int);
     pub fn zhbgst_(vect: *const c_char, uplo: *const c_char, n: *const lapack_int,
                    ka: *const lapack_int, kb: *const lapack_int, ab: *mut lapack_complex_double,
                    ldab: *const lapack_int, bb: *const lapack_complex_double,
@@ -2762,7 +2790,8 @@ functions = """
     pub fn cpbstf_(uplo: *const c_char, n: *const lapack_int, kd: *const lapack_int,
                    ab: *mut lapack_complex_float, ldab: *const lapack_int, info: *mut lapack_int);
     pub fn zpbstf_(uplo: *const c_char, n: *const lapack_int, kd: *const lapack_int,
-                   ab: *mut lapack_complex_double, ldab: *const lapack_int, info: *mut lapack_int);
+                   ab: *mut lapack_complex_double, ldab: *const lapack_int,
+                   info: *mut lapack_int);
 
     pub fn sgehrd_(n: *const lapack_int, ilo: *const lapack_int, ihi: *const lapack_int,
                    a: *mut c_float, lda: *const lapack_int, tau: *mut c_float,
@@ -2866,11 +2895,11 @@ functions = """
                    work: *mut lapack_complex_float, lwork: *const lapack_int,
                    info: *mut lapack_int);
     pub fn zhseqr_(job: *const c_char, compz: *const c_char, n: *const lapack_int,
-                   ilo: *const lapack_int, ihi: *const lapack_int, h: *mut lapack_complex_double,
-                   ldh: *const lapack_int, w: *mut lapack_complex_double,
-                   z: *mut lapack_complex_double, ldz: *const lapack_int,
-                   work: *mut lapack_complex_double, lwork: *const lapack_int,
-                   info: *mut lapack_int);
+                   ilo: *const lapack_int, ihi: *const lapack_int,
+                   h: *mut lapack_complex_double, ldh: *const lapack_int,
+                   w: *mut lapack_complex_double, z: *mut lapack_complex_double,
+                   ldz: *const lapack_int, work: *mut lapack_complex_double,
+                   lwork: *const lapack_int, info: *mut lapack_int);
 
     pub fn shsein_(job: *const c_char, eigsrc: *const c_char, initv: *const c_char,
                    select: *mut lapack_logical, n: *const lapack_int, h: *const c_float,
@@ -2892,8 +2921,8 @@ functions = """
                    w: *mut lapack_complex_float, vl: *mut lapack_complex_float,
                    ldvl: *const lapack_int, vr: *mut lapack_complex_float,
                    ldvr: *const lapack_int, mm: *const lapack_int, m: *mut lapack_int,
-                   work: *mut lapack_complex_float, rwork: *mut c_float, ifaill: *mut lapack_int,
-                   ifailr: *mut lapack_int, info: *mut lapack_int);
+                   work: *mut lapack_complex_float, rwork: *mut c_float,
+                   ifaill: *mut lapack_int, ifailr: *mut lapack_int, info: *mut lapack_int);
     pub fn zhsein_(job: *const c_char, eigsrc: *const c_char, initv: *const c_char,
                    select: *const lapack_logical, n: *const lapack_int,
                    h: *const lapack_complex_double, ldh: *const lapack_int,
@@ -2916,9 +2945,9 @@ functions = """
     pub fn ctrevc_(side: *const c_char, howmny: *const c_char, select: *const lapack_logical,
                    n: *const lapack_int, t: *mut lapack_complex_float, ldt: *const lapack_int,
                    vl: *mut lapack_complex_float, ldvl: *const lapack_int,
-                   vr: *mut lapack_complex_float, ldvr: *const lapack_int, mm: *const lapack_int,
-                   m: *mut lapack_int, work: *mut lapack_complex_float, rwork: *mut c_float,
-                   info: *mut lapack_int);
+                   vr: *mut lapack_complex_float, ldvr: *const lapack_int,
+                   mm: *const lapack_int, m: *mut lapack_int, work: *mut lapack_complex_float,
+                   rwork: *mut c_float, info: *mut lapack_int);
     pub fn ztrevc_(side: *const c_char, howmny: *const c_char, select: *const lapack_logical,
                    n: *const lapack_int, t: *mut lapack_complex_double, ldt: *const lapack_int,
                    vl: *mut lapack_complex_double, ldvl: *const lapack_int,
@@ -2946,12 +2975,12 @@ functions = """
                    work: *mut lapack_complex_float, ldwork: *const lapack_int,
                    rwork: *mut c_float, info: *mut lapack_int);
     pub fn ztrsna_(job: *const c_char, howmny: *const c_char, select: *const lapack_logical,
-                   n: *const lapack_int, t: *const lapack_complex_double, ldt: *const lapack_int,
-                   vl: *const lapack_complex_double, ldvl: *const lapack_int,
-                   vr: *const lapack_complex_double, ldvr: *const lapack_int, s: *mut c_double,
-                   sep: *mut c_double, mm: *const lapack_int, m: *mut lapack_int,
-                   work: *mut lapack_complex_double, ldwork: *const lapack_int,
-                   rwork: *mut c_double, info: *mut lapack_int);
+                   n: *const lapack_int, t: *const lapack_complex_double,
+                   ldt: *const lapack_int, vl: *const lapack_complex_double,
+                   ldvl: *const lapack_int, vr: *const lapack_complex_double,
+                   ldvr: *const lapack_int, s: *mut c_double, sep: *mut c_double,
+                   mm: *const lapack_int, m: *mut lapack_int, work: *mut lapack_complex_double,
+                   ldwork: *const lapack_int, rwork: *mut c_double, info: *mut lapack_int);
 
     pub fn strexc_(compq: *const c_char, n: *const lapack_int, t: *mut c_float,
                    ldt: *const lapack_int, q: *mut c_float, ldq: *const lapack_int,
@@ -2965,8 +2994,9 @@ functions = """
                    ldt: *const lapack_int, q: *mut lapack_complex_float, ldq: *const lapack_int,
                    ifst: *const lapack_int, ilst: *const lapack_int, info: *const lapack_int);
     pub fn ztrexc_(compq: *const c_char, n: *const lapack_int, t: *mut lapack_complex_double,
-                   ldt: *const lapack_int, q: *mut lapack_complex_double, ldq: *const lapack_int,
-                   ifst: *const lapack_int, ilst: *const lapack_int, info: *const lapack_int);
+                   ldt: *const lapack_int, q: *mut lapack_complex_double,
+                   ldq: *const lapack_int, ifst: *const lapack_int, ilst: *const lapack_int,
+                   info: *const lapack_int);
 
     pub fn strsen_(job: *const c_char, compq: *const c_char, select: *const lapack_logical,
                    n: *const lapack_int, t: *mut c_float, ldt: *const lapack_int,
@@ -3011,8 +3041,8 @@ functions = """
     pub fn ztrsyl_(trana: *const c_char, tranb: *const c_char, isgn: *const lapack_int,
                    m: *const lapack_int, n: *const lapack_int, a: *const lapack_complex_double,
                    lda: *const lapack_int, b: *const lapack_complex_double,
-                   ldb: *const lapack_int, c: *mut lapack_complex_double, ldc: *const lapack_int,
-                   scale: *mut c_double, info: *mut lapack_int);
+                   ldb: *const lapack_int, c: *mut lapack_complex_double,
+                   ldc: *const lapack_int, scale: *mut c_double, info: *mut lapack_int);
 
     pub fn sgghrd_(compq: *const c_char, compz: *const c_char, n: *const lapack_int,
                    ilo: *const lapack_int, ihi: *const lapack_int, a: *mut c_float,
@@ -3030,8 +3060,9 @@ functions = """
                    q: *mut lapack_complex_float, ldq: *const lapack_int,
                    z: *mut lapack_complex_float, ldz: *const lapack_int, info: *mut lapack_int);
     pub fn zgghrd_(compq: *const c_char, compz: *const c_char, n: *const lapack_int,
-                   ilo: *const lapack_int, ihi: *const lapack_int, a: *mut lapack_complex_double,
-                   lda: *const lapack_int, b: *mut lapack_complex_double, ldb: *const lapack_int,
+                   ilo: *const lapack_int, ihi: *const lapack_int,
+                   a: *mut lapack_complex_double, lda: *const lapack_int,
+                   b: *mut lapack_complex_double, ldb: *const lapack_int,
                    q: *mut lapack_complex_double, ldq: *const lapack_int,
                    z: *mut lapack_complex_double, ldz: *const lapack_int, info: *mut lapack_int);
 
@@ -3055,8 +3086,9 @@ functions = """
                    work: *mut lapack_complex_float, lwork: *const lapack_int,
                    info: *mut lapack_int);
     pub fn zgghd3_(compq: *const c_char, compz: *const c_char, n: *const lapack_int,
-                   ilo: *const lapack_int, ihi: *const lapack_int, a: *mut lapack_complex_double,
-                   lda: *const lapack_int, b: *mut lapack_complex_double, ldb: *const lapack_int,
+                   ilo: *const lapack_int, ihi: *const lapack_int,
+                   a: *mut lapack_complex_double, lda: *const lapack_int,
+                   b: *mut lapack_complex_double, ldb: *const lapack_int,
                    q: *mut lapack_complex_double, ldq: *const lapack_int,
                    z: *mut lapack_complex_double, ldz: *const lapack_int,
                    work: *mut lapack_complex_double, lwork: *const lapack_int,
@@ -3075,9 +3107,10 @@ functions = """
                    ilo: *mut lapack_int, ihi: *mut lapack_int, lscale: *mut c_float,
                    rscale: *mut c_float, work: *mut c_float, info: *mut lapack_int);
     pub fn zggbal_(job: *const c_char, n: *const lapack_int, a: *mut lapack_complex_double,
-                   lda: *const lapack_int, b: *mut lapack_complex_double, ldb: *const lapack_int,
-                   ilo: *mut lapack_int, ihi: *mut lapack_int, lscale: *mut c_double,
-                   rscale: *mut c_double, work: *mut c_double, info: *mut lapack_int);
+                   lda: *const lapack_int, b: *mut lapack_complex_double,
+                   ldb: *const lapack_int, ilo: *mut lapack_int, ihi: *mut lapack_int,
+                   lscale: *mut c_double, rscale: *mut c_double, work: *mut c_double,
+                   info: *mut lapack_int);
 
     pub fn sggbak_(job: *const c_char, side: *const c_char, n: *const lapack_int,
                    ilo: *const lapack_int, ihi: *const lapack_int, lscale: *const c_float,
@@ -3145,16 +3178,16 @@ functions = """
                    n: *const lapack_int, s: *const lapack_complex_float, lds: *const lapack_int,
                    p: *const lapack_complex_float, ldp: *const lapack_int,
                    vl: *mut lapack_complex_float, ldvl: *const lapack_int,
-                   vr: *mut lapack_complex_float, ldvr: *const lapack_int, mm: *const lapack_int,
-                   m: *mut lapack_int, work: *mut lapack_complex_float, rwork: *mut c_float,
-                   info: *mut lapack_int);
+                   vr: *mut lapack_complex_float, ldvr: *const lapack_int,
+                   mm: *const lapack_int, m: *mut lapack_int, work: *mut lapack_complex_float,
+                   rwork: *mut c_float, info: *mut lapack_int);
     pub fn ztgevc_(side: *const c_char, howmny: *const c_char, select: *const lapack_logical,
-                   n: *const lapack_int, s: *const lapack_complex_double, lds: *const lapack_int,
-                   p: *const lapack_complex_double, ldp: *const lapack_int,
-                   vl: *mut lapack_complex_double, ldvl: *const lapack_int,
-                   vr: *mut lapack_complex_double, ldvr: *const lapack_int,
-                   mm: *const lapack_int, m: *mut lapack_int, work: *mut lapack_complex_double,
-                   rwork: *mut c_double, info: *mut lapack_int);
+                   n: *const lapack_int, s: *const lapack_complex_double,
+                   lds: *const lapack_int, p: *const lapack_complex_double,
+                   ldp: *const lapack_int, vl: *mut lapack_complex_double,
+                   ldvl: *const lapack_int, vr: *mut lapack_complex_double,
+                   ldvr: *const lapack_int, mm: *const lapack_int, m: *mut lapack_int,
+                   work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
 
     pub fn stgexc_(wantq: *const lapack_logical, wantz: *const lapack_logical,
                    n: *const lapack_int, a: *mut c_float, lda: *const lapack_int,
@@ -3172,8 +3205,8 @@ functions = """
                    n: *const lapack_int, a: *mut lapack_complex_float, lda: *const lapack_int,
                    b: *mut lapack_complex_float, ldb: *const lapack_int,
                    q: *mut lapack_complex_float, ldq: *const lapack_int,
-                   z: *mut lapack_complex_float, ldz: *const lapack_int, ifst: *const lapack_int,
-                   ilst: *mut lapack_int, info: *mut lapack_int);
+                   z: *mut lapack_complex_float, ldz: *const lapack_int,
+                   ifst: *const lapack_int, ilst: *mut lapack_int, info: *mut lapack_int);
     pub fn ztgexc_(wantq: *const lapack_logical, wantz: *const lapack_logical,
                    n: *const lapack_int, a: *mut lapack_complex_double, lda: *const lapack_int,
                    b: *mut lapack_complex_double, ldb: *const lapack_int,
@@ -3246,22 +3279,23 @@ functions = """
                    dif: *mut c_float, work: *mut lapack_complex_float, lwork: *const lapack_int,
                    iwork: *mut lapack_int, info: *mut lapack_int);
     pub fn ztgsyl_(trans: *const c_char, ijob: *const lapack_int, m: *const lapack_int,
-                   n: *const lapack_int, a: *const lapack_complex_double, lda: *const lapack_int,
-                   b: *const lapack_complex_double, ldb: *const lapack_int,
-                   c: *mut lapack_complex_double, ldc: *const lapack_int,
-                   d: *const lapack_complex_double, ldd: *const lapack_int,
-                   e: *const lapack_complex_double, lde: *const lapack_int,
-                   f: *mut lapack_complex_double, ldf: *const lapack_int, scale: *mut c_double,
-                   dif: *mut c_double, work: *mut lapack_complex_double,
-                   lwork: *const lapack_int, iwork: *mut lapack_int, info: *mut lapack_int);
+                   n: *const lapack_int, a: *const lapack_complex_double,
+                   lda: *const lapack_int, b: *const lapack_complex_double,
+                   ldb: *const lapack_int, c: *mut lapack_complex_double,
+                   ldc: *const lapack_int, d: *const lapack_complex_double,
+                   ldd: *const lapack_int, e: *const lapack_complex_double,
+                   lde: *const lapack_int, f: *mut lapack_complex_double,
+                   ldf: *const lapack_int, scale: *mut c_double, dif: *mut c_double,
+                   work: *mut lapack_complex_double, lwork: *const lapack_int,
+                   iwork: *mut lapack_int, info: *mut lapack_int);
 
     pub fn stgsna_(job: *const c_char, howmny: *const c_char, select: *const lapack_logical,
                    n: *const lapack_int, a: *const c_float, lda: *const lapack_int,
                    b: *const c_float, ldb: *const lapack_int, vl: *const c_float,
                    ldvl: *const lapack_int, vr: *const c_float, ldvr: *const lapack_int,
-                   s: *mut c_float, dif: *mut c_float, mm: *const lapack_int, m: *mut lapack_int,
-                   work: *mut c_float, lwork: *const lapack_int, iwork: *mut lapack_int,
-                   info: *mut lapack_int);
+                   s: *mut c_float, dif: *mut c_float, mm: *const lapack_int,
+                   m: *mut lapack_int, work: *mut c_float, lwork: *const lapack_int,
+                   iwork: *mut lapack_int, info: *mut lapack_int);
     pub fn dtgsna_(job: *const c_char, howmny: *const c_char, select: *const lapack_logical,
                    n: *const lapack_int, a: *const c_double, lda: *const lapack_int,
                    b: *const c_double, ldb: *const lapack_int, vl: *const c_double,
@@ -3278,13 +3312,13 @@ functions = """
                    work: *mut lapack_complex_float, lwork: *const lapack_int,
                    iwork: *mut lapack_int, info: *mut lapack_int);
     pub fn ztgsna_(job: *const c_char, howmny: *const c_char, select: *const lapack_logical,
-                   n: *const lapack_int, a: *const lapack_complex_double, lda: *const lapack_int,
-                   b: *const lapack_complex_double, ldb: *const lapack_int,
-                   vl: *const lapack_complex_double, ldvl: *const lapack_int,
-                   vr: *const lapack_complex_double, ldvr: *const lapack_int, s: *mut c_double,
-                   dif: *mut c_double, mm: *const lapack_int, m: *mut lapack_int,
-                   work: *mut lapack_complex_double, lwork: *const lapack_int,
-                   iwork: *mut lapack_int, info: *mut lapack_int);
+                   n: *const lapack_int, a: *const lapack_complex_double,
+                   lda: *const lapack_int, b: *const lapack_complex_double,
+                   ldb: *const lapack_int, vl: *const lapack_complex_double,
+                   ldvl: *const lapack_int, vr: *const lapack_complex_double,
+                   ldvr: *const lapack_int, s: *mut c_double, dif: *mut c_double,
+                   mm: *const lapack_int, m: *mut lapack_int, work: *mut lapack_complex_double,
+                   lwork: *const lapack_int, iwork: *mut lapack_int, info: *mut lapack_int);
 
     pub fn sggsvp_(jobu: *const c_char, jobv: *const c_char, jobq: *const c_char,
                    m: *const lapack_int, p: *const lapack_int, n: *const lapack_int,
@@ -3319,9 +3353,10 @@ functions = """
                    tolb: *const c_double, k: *mut lapack_int, l: *mut lapack_int,
                    u: *mut lapack_complex_double, ldu: *const lapack_int,
                    v: *mut lapack_complex_double, ldv: *const lapack_int,
-                   q: *mut lapack_complex_double, ldq: *const lapack_int, iwork: *mut lapack_int,
-                   rwork: *mut c_double, tau: *mut lapack_complex_double,
-                   work: *mut lapack_complex_double, info: *mut lapack_int);
+                   q: *mut lapack_complex_double, ldq: *const lapack_int,
+                   iwork: *mut lapack_int, rwork: *mut c_double,
+                   tau: *mut lapack_complex_double, work: *mut lapack_complex_double,
+                   info: *mut lapack_int);
 
     pub fn sggsvp3_(jobu: *const c_char, jobv: *const c_char, jobq: *const c_char,
                     m: *const lapack_int, p: *const lapack_int, n: *const lapack_int,
@@ -3348,16 +3383,16 @@ functions = """
                     tolb: *const c_float, k: *mut lapack_int, l: *mut lapack_int,
                     u: *mut lapack_complex_float, ldu: *const lapack_int,
                     v: *mut lapack_complex_float, ldv: *const lapack_int,
-                    q: *mut lapack_complex_float, ldq: *const lapack_int, iwork: *mut lapack_int,
-                    rwork: *mut c_float, tau: *mut lapack_complex_float,
+                    q: *mut lapack_complex_float, ldq: *const lapack_int,
+                    iwork: *mut lapack_int, rwork: *mut c_float, tau: *mut lapack_complex_float,
                     work: *mut lapack_complex_float, lwork: *const lapack_int,
                     info: *mut lapack_int);
     pub fn zggsvp3_(jobu: *const c_char, jobv: *const c_char, jobq: *const c_char,
                     m: *const lapack_int, p: *const lapack_int, n: *const lapack_int,
                     a: *mut lapack_complex_double, lda: *const lapack_int,
-                    b: *mut lapack_complex_double, ldb: *const lapack_int, tola: *const c_double,
-                    tolb: *const c_double, k: *mut lapack_int, l: *mut lapack_int,
-                    u: *mut lapack_complex_double, ldu: *const lapack_int,
+                    b: *mut lapack_complex_double, ldb: *const lapack_int,
+                    tola: *const c_double, tolb: *const c_double, k: *mut lapack_int,
+                    l: *mut lapack_int, u: *mut lapack_complex_double, ldu: *const lapack_int,
                     v: *mut lapack_complex_double, ldv: *const lapack_int,
                     q: *mut lapack_complex_double, ldq: *const lapack_int,
                     iwork: *mut lapack_int, rwork: *mut c_double,
@@ -3394,13 +3429,13 @@ functions = """
     pub fn ztgsja_(jobu: *const c_char, jobv: *const c_char, jobq: *const c_char,
                    m: *const lapack_int, p: *const lapack_int, n: *const lapack_int,
                    k: *const lapack_int, l: *const lapack_int, a: *mut lapack_complex_double,
-                   lda: *const lapack_int, b: *mut lapack_complex_double, ldb: *const lapack_int,
-                   tola: *const c_double, tolb: *const c_double, alpha: *mut c_double,
-                   beta: *mut c_double, u: *mut lapack_complex_double, ldu: *const lapack_int,
-                   v: *mut lapack_complex_double, ldv: *const lapack_int,
-                   q: *mut lapack_complex_double, ldq: *const lapack_int,
-                   work: *mut lapack_complex_double, ncycle: *mut lapack_int,
-                   info: *mut lapack_int);
+                   lda: *const lapack_int, b: *mut lapack_complex_double,
+                   ldb: *const lapack_int, tola: *const c_double, tolb: *const c_double,
+                   alpha: *mut c_double, beta: *mut c_double, u: *mut lapack_complex_double,
+                   ldu: *const lapack_int, v: *mut lapack_complex_double,
+                   ldv: *const lapack_int, q: *mut lapack_complex_double,
+                   ldq: *const lapack_int, work: *mut lapack_complex_double,
+                   ncycle: *mut lapack_int, info: *mut lapack_int);
 
     pub fn sgels_(trans: *const c_char, m: *const lapack_int, n: *const lapack_int,
                   nrhs: *const lapack_int, a: *mut c_float, lda: *const lapack_int,
@@ -3416,8 +3451,8 @@ functions = """
                   work: *mut lapack_complex_float, lwork: *const lapack_int,
                   info: *mut lapack_int);
     pub fn zgels_(trans: *const c_char, m: *const lapack_int, n: *const lapack_int,
-                  nrhs: *const lapack_int, a: *mut lapack_complex_double, lda: *const lapack_int,
-                  b: *mut lapack_complex_double, ldb: *const lapack_int,
+                  nrhs: *const lapack_int, a: *mut lapack_complex_double,
+                  lda: *const lapack_int, b: *mut lapack_complex_double, ldb: *const lapack_int,
                   work: *mut lapack_complex_double, lwork: *const lapack_int,
                   info: *mut lapack_int);
 
@@ -3434,8 +3469,9 @@ functions = """
     pub fn cgelsy_(m: *const lapack_int, n: *const lapack_int, nrhs: *const lapack_int,
                    a: *mut lapack_complex_float, lda: *const lapack_int,
                    b: *mut lapack_complex_float, ldb: *const lapack_int, jpvt: *mut lapack_int,
-                   rcond: *const c_float, rank: *mut lapack_int, work: *mut lapack_complex_float,
-                   lwork: *const lapack_int, rwork: *mut c_float, info: *mut lapack_int);
+                   rcond: *const c_float, rank: *mut lapack_int,
+                   work: *mut lapack_complex_float, lwork: *const lapack_int,
+                   rwork: *mut c_float, info: *mut lapack_int);
     pub fn zgelsy_(m: *const lapack_int, n: *const lapack_int, nrhs: *const lapack_int,
                    a: *mut lapack_complex_double, lda: *const lapack_int,
                    b: *mut lapack_complex_double, ldb: *const lapack_int, jpvt: *mut lapack_int,
@@ -3456,8 +3492,9 @@ functions = """
     pub fn cgelss_(m: *const lapack_int, n: *const lapack_int, nrhs: *const lapack_int,
                    a: *mut lapack_complex_float, lda: *const lapack_int,
                    b: *mut lapack_complex_float, ldb: *const lapack_int, s: *mut c_float,
-                   rcond: *const c_float, rank: *mut lapack_int, work: *mut lapack_complex_float,
-                   lwork: *const lapack_int, rwork: *mut c_float, info: *mut lapack_int);
+                   rcond: *const c_float, rank: *mut lapack_int,
+                   work: *mut lapack_complex_float, lwork: *const lapack_int,
+                   rwork: *mut c_float, info: *mut lapack_int);
     pub fn zgelss_(m: *const lapack_int, n: *const lapack_int, nrhs: *const lapack_int,
                    a: *mut lapack_complex_double, lda: *const lapack_int,
                    b: *mut lapack_complex_double, ldb: *const lapack_int, s: *mut c_double,
@@ -3478,9 +3515,9 @@ functions = """
     pub fn cgelsd_(m: *const lapack_int, n: *const lapack_int, nrhs: *const lapack_int,
                    a: *const lapack_complex_float, lda: *const lapack_int,
                    b: *mut lapack_complex_float, ldb: *const lapack_int, s: *mut c_float,
-                   rcond: *const c_float, rank: *mut lapack_int, work: *mut lapack_complex_float,
-                   lwork: *const lapack_int, rwork: *mut c_float, iwork: *mut lapack_int,
-                   info: *mut lapack_int);
+                   rcond: *const c_float, rank: *mut lapack_int,
+                   work: *mut lapack_complex_float, lwork: *const lapack_int,
+                   rwork: *mut c_float, iwork: *mut lapack_int, info: *mut lapack_int);
     pub fn zgelsd_(m: *const lapack_int, n: *const lapack_int, nrhs: *const lapack_int,
                    a: *const lapack_complex_double, lda: *const lapack_int,
                    b: *mut lapack_complex_double, ldb: *const lapack_int, s: *mut c_double,
@@ -3538,8 +3575,8 @@ functions = """
                   work: *mut c_double, lwork: *const lapack_int, info: *mut lapack_int);
     pub fn cheev_(jobz: *const c_char, uplo: *const c_char, n: *const lapack_int,
                   a: *mut lapack_complex_float, lda: *const lapack_int, w: *mut c_float,
-                  work: *mut lapack_complex_float, lwork: *const lapack_int, rwork: *mut c_float,
-                  info: *mut lapack_int);
+                  work: *mut lapack_complex_float, lwork: *const lapack_int,
+                  rwork: *mut c_float, info: *mut lapack_int);
     pub fn zheev_(jobz: *const c_char, uplo: *const c_char, n: *const lapack_int,
                   a: *mut lapack_complex_double, lda: *const lapack_int, w: *mut c_double,
                   work: *mut lapack_complex_double, lwork: *const lapack_int,
@@ -3646,9 +3683,9 @@ functions = """
                    work: *mut c_float, lwork: *const lapack_int, iwork: *mut lapack_int,
                    liwork: *const lapack_int, info: *mut lapack_int);
     pub fn dspevd_(jobz: *const c_char, uplo: *const c_char, n: *const lapack_int,
-                   ap: *mut c_double, w: *mut c_double, z: *mut c_double, ldz: *const lapack_int,
-                   work: *mut c_double, lwork: *const lapack_int, iwork: *mut lapack_int,
-                   liwork: *const lapack_int, info: *mut lapack_int);
+                   ap: *mut c_double, w: *mut c_double, z: *mut c_double,
+                   ldz: *const lapack_int, work: *mut c_double, lwork: *const lapack_int,
+                   iwork: *mut lapack_int, liwork: *const lapack_int, info: *mut lapack_int);
     pub fn chpevd_(jobz: *const c_char, uplo: *const c_char, n: *const lapack_int,
                    ap: *mut lapack_complex_float, w: *mut c_float, z: *mut lapack_complex_float,
                    ldz: *const lapack_int, work: *mut lapack_complex_float,
@@ -3701,9 +3738,10 @@ functions = """
                   w: *mut c_float, z: *mut lapack_complex_float, ldz: *const lapack_int,
                   work: *mut lapack_complex_float, rwork: *mut c_float, info: *mut lapack_int);
     pub fn zhbev_(jobz: *const c_char, uplo: *const c_char, n: *const lapack_int,
-                  kd: *const lapack_int, ab: *mut lapack_complex_double, ldab: *const lapack_int,
-                  w: *mut c_double, z: *mut lapack_complex_double, ldz: *const lapack_int,
-                  work: *mut lapack_complex_double, rwork: *mut c_double, info: *mut lapack_int);
+                  kd: *const lapack_int, ab: *mut lapack_complex_double,
+                  ldab: *const lapack_int, w: *mut c_double, z: *mut lapack_complex_double,
+                  ldz: *const lapack_int, work: *mut lapack_complex_double,
+                  rwork: *mut c_double, info: *mut lapack_int);
 
     pub fn ssbevd_(jobz: *const c_char, uplo: *const c_char, n: *const lapack_int,
                    kd: *const lapack_int, ab: *mut c_float, ldab: *const lapack_int,
@@ -3716,11 +3754,11 @@ functions = """
                    work: *mut c_double, lwork: *const lapack_int, iwork: *mut lapack_int,
                    liwork: *const lapack_int, info: *mut lapack_int);
     pub fn chbevd_(jobz: *const c_char, uplo: *const c_char, n: *const lapack_int,
-                   kd: *const lapack_int, ab: *mut lapack_complex_float, ldab: *const lapack_int,
-                   w: *mut c_float, z: *mut lapack_complex_float, ldz: *const lapack_int,
-                   work: *mut lapack_complex_float, lwork: *const lapack_int,
-                   rwork: *mut c_float, lrwork: *const lapack_int, iwork: *mut lapack_int,
-                   liwork: *const lapack_int, info: *mut lapack_int);
+                   kd: *const lapack_int, ab: *mut lapack_complex_float,
+                   ldab: *const lapack_int, w: *mut c_float, z: *mut lapack_complex_float,
+                   ldz: *const lapack_int, work: *mut lapack_complex_float,
+                   lwork: *const lapack_int, rwork: *mut c_float, lrwork: *const lapack_int,
+                   iwork: *mut lapack_int, liwork: *const lapack_int, info: *mut lapack_int);
     pub fn zhbevd_(jobz: *const c_char, uplo: *const c_char, n: *const lapack_int,
                    kd: *const lapack_int, ab: *mut lapack_complex_double,
                    ldab: *const lapack_int, w: *mut c_double, z: *mut lapack_complex_double,
@@ -3745,12 +3783,12 @@ functions = """
                    info: *mut lapack_int);
     pub fn chbevx_(jobz: *const c_char, range: *const c_char, uplo: *const c_char,
                    n: *const lapack_int, kd: *const lapack_int, ab: *mut lapack_complex_float,
-                   ldab: *const lapack_int, q: *mut lapack_complex_float, ldq: *const lapack_int,
-                   vl: *const c_float, vu: *const c_float, il: *const lapack_int,
-                   iu: *const lapack_int, abstol: *const c_float, m: *mut lapack_int,
-                   w: *mut c_float, z: *mut lapack_complex_float, ldz: *const lapack_int,
-                   work: *mut lapack_complex_float, rwork: *mut c_float, iwork: *mut lapack_int,
-                   ifail: *mut lapack_int, info: *mut lapack_int);
+                   ldab: *const lapack_int, q: *mut lapack_complex_float,
+                   ldq: *const lapack_int, vl: *const c_float, vu: *const c_float,
+                   il: *const lapack_int, iu: *const lapack_int, abstol: *const c_float,
+                   m: *mut lapack_int, w: *mut c_float, z: *mut lapack_complex_float,
+                   ldz: *const lapack_int, work: *mut lapack_complex_float, rwork: *mut c_float,
+                   iwork: *mut lapack_int, ifail: *mut lapack_int, info: *mut lapack_int);
     pub fn zhbevx_(jobz: *const c_char, range: *const c_char, uplo: *const c_char,
                    n: *const lapack_int, kd: *const lapack_int, ab: *mut lapack_complex_double,
                    ldab: *const lapack_int, q: *mut lapack_complex_double,
@@ -3772,10 +3810,10 @@ functions = """
                    z: *mut c_float, ldz: *const lapack_int, work: *mut c_float,
                    lwork: *const lapack_int, iwork: *mut lapack_int, liwork: *const lapack_int,
                    info: *mut lapack_int);
-    pub fn dstevd_(jobz: *const c_char, n: *const lapack_int, d: *mut c_double, e: *mut c_double,
-                   z: *mut c_double, ldz: *const lapack_int, work: *mut c_double,
-                   lwork: *const lapack_int, iwork: *mut lapack_int, liwork: *const lapack_int,
-                   info: *mut lapack_int);
+    pub fn dstevd_(jobz: *const c_char, n: *const lapack_int, d: *mut c_double,
+                   e: *mut c_double, z: *mut c_double, ldz: *const lapack_int,
+                   work: *mut c_double, lwork: *const lapack_int, iwork: *mut lapack_int,
+                   liwork: *const lapack_int, info: *mut lapack_int);
 
     pub fn sstevx_(jobz: *const c_char, range: *const c_char, n: *const lapack_int,
                    d: *mut c_float, e: *mut c_float, vl: *const c_float, vu: *const c_float,
@@ -3811,15 +3849,15 @@ functions = """
                   bwork: *mut lapack_logical, info: *mut lapack_int);
     pub fn dgees_(jobvs: *const c_char, sort: *const c_char, select: LAPACK_D_SELECT2,
                   n: *const lapack_int, a: *mut c_double, lda: *const lapack_int,
-                  sdim: *mut lapack_int, wr: *mut c_double, wi: *mut c_double, vs: *mut c_double,
-                  ldvs: *const lapack_int, work: *mut c_double, lwork: *const lapack_int,
-                  bwork: *mut lapack_logical, info: *mut lapack_int);
+                  sdim: *mut lapack_int, wr: *mut c_double, wi: *mut c_double,
+                  vs: *mut c_double, ldvs: *const lapack_int, work: *mut c_double,
+                  lwork: *const lapack_int, bwork: *mut lapack_logical, info: *mut lapack_int);
     pub fn cgees_(jobvs: *const c_char, sort: *const c_char, select: LAPACK_C_SELECT1,
                   n: *const lapack_int, a: *mut lapack_complex_float, lda: *const lapack_int,
                   sdim: *mut lapack_int, w: *mut lapack_complex_float,
                   vs: *mut lapack_complex_float, ldvs: *const lapack_int,
-                  work: *mut lapack_complex_float, lwork: *const lapack_int, rwork: *mut c_float,
-                  bwork: *mut lapack_logical, info: *mut lapack_int);
+                  work: *mut lapack_complex_float, lwork: *const lapack_int,
+                  rwork: *mut c_float, bwork: *mut lapack_logical, info: *mut lapack_int);
     pub fn zgees_(jobvs: *const c_char, sort: *const c_char, select: LAPACK_Z_SELECT1,
                   n: *const lapack_int, a: *mut lapack_complex_double, lda: *const lapack_int,
                   sdim: *mut lapack_int, w: *mut lapack_complex_double,
@@ -3862,10 +3900,10 @@ functions = """
                   ldvr: *const lapack_int, work: *mut c_float, lwork: *const lapack_int,
                   info: *mut lapack_int);
     pub fn dgeev_(jobvl: *const c_char, jobvr: *const c_char, n: *const lapack_int,
-                  a: *mut c_double, lda: *const lapack_int, wr: *mut c_double, wi: *mut c_double,
-                  vl: *mut c_double, ldvl: *const lapack_int, vr: *mut c_double,
-                  ldvr: *const lapack_int, work: *mut c_double, lwork: *const lapack_int,
-                  info: *mut lapack_int);
+                  a: *mut c_double, lda: *const lapack_int, wr: *mut c_double,
+                  wi: *mut c_double, vl: *mut c_double, ldvl: *const lapack_int,
+                  vr: *mut c_double, ldvr: *const lapack_int, work: *mut c_double,
+                  lwork: *const lapack_int, info: *mut lapack_int);
     pub fn cgeev_(jobvl: *const c_char, jobvr: *const c_char, n: *const lapack_int,
                   a: *mut lapack_complex_float, lda: *const lapack_int,
                   w: *mut lapack_complex_float, vl: *mut lapack_complex_float,
@@ -3907,9 +3945,9 @@ functions = """
                    sense: *const c_char, n: *const lapack_int, a: *mut lapack_complex_double,
                    lda: *const lapack_int, w: *mut lapack_complex_double,
                    vl: *mut lapack_complex_double, ldvl: *const lapack_int,
-                   vr: *mut lapack_complex_double, ldvr: *const lapack_int, ilo: *mut lapack_int,
-                   ihi: *mut lapack_int, scale: *mut c_double, abnrm: *mut c_double,
-                   rconde: *mut c_double, rcondv: *mut c_double,
+                   vr: *mut lapack_complex_double, ldvr: *const lapack_int,
+                   ilo: *mut lapack_int, ihi: *mut lapack_int, scale: *mut c_double,
+                   abnrm: *mut c_double, rconde: *mut c_double, rcondv: *mut c_double,
                    work: *mut lapack_complex_double, lwork: *const lapack_int,
                    rwork: *mut c_double, info: *mut lapack_int);
 
@@ -3920,9 +3958,9 @@ functions = """
                    info: *mut lapack_int);
     pub fn dgesvd_(jobu: *const c_char, jobvt: *const c_char, m: *const lapack_int,
                    n: *const lapack_int, a: *mut c_double, lda: *const lapack_int,
-                   s: *mut c_double, u: *mut c_double, ldu: *const lapack_int, vt: *mut c_double,
-                   ldvt: *const lapack_int, work: *mut c_double, lwork: *const lapack_int,
-                   info: *mut lapack_int);
+                   s: *mut c_double, u: *mut c_double, ldu: *const lapack_int,
+                   vt: *mut c_double, ldvt: *const lapack_int, work: *mut c_double,
+                   lwork: *const lapack_int, info: *mut lapack_int);
     pub fn cgesvd_(jobu: *const c_char, jobvt: *const c_char, m: *const lapack_int,
                    n: *const lapack_int, a: *mut lapack_complex_float, lda: *const lapack_int,
                    s: *mut c_float, u: *mut lapack_complex_float, ldu: *const lapack_int,
@@ -4016,10 +4054,10 @@ functions = """
                    jobr: *const c_char, jobt: *const c_char, jobp: *const c_char,
                    m: *const lapack_int, n: *const lapack_int, a: *mut lapack_complex_double,
                    lda: *const lapack_int, sva: *mut c_double, u: *mut lapack_complex_double,
-                   ldu: *const lapack_int, v: *mut lapack_complex_double, ldv: *const lapack_int,
-                   cwork: *mut lapack_complex_double, lwork: *const lapack_int,
-                   work: *mut c_double, lrwork: *const lapack_int, iwork: *mut lapack_int,
-                   info: *mut lapack_int);
+                   ldu: *const lapack_int, v: *mut lapack_complex_double,
+                   ldv: *const lapack_int, cwork: *mut lapack_complex_double,
+                   lwork: *const lapack_int, work: *mut c_double, lrwork: *const lapack_int,
+                   iwork: *mut lapack_int, info: *mut lapack_int);
 
     pub fn dgesvj_(joba: *const c_char, jobu: *const c_char, jobv: *const c_char,
                    m: *const lapack_int, n: *const lapack_int, a: *mut c_double,
@@ -4072,9 +4110,10 @@ functions = """
     pub fn zggsvd_(jobu: *const c_char, jobv: *const c_char, jobq: *const c_char,
                    m: *const lapack_int, n: *const lapack_int, p: *const lapack_int,
                    k: *mut lapack_int, l: *mut lapack_int, a: *mut lapack_complex_double,
-                   lda: *const lapack_int, b: *mut lapack_complex_double, ldb: *const lapack_int,
-                   alpha: *mut c_double, beta: *mut c_double, u: *mut lapack_complex_double,
-                   ldu: *const lapack_int, v: *mut lapack_complex_double, ldv: *const lapack_int,
+                   lda: *const lapack_int, b: *mut lapack_complex_double,
+                   ldb: *const lapack_int, alpha: *mut c_double, beta: *mut c_double,
+                   u: *mut lapack_complex_double, ldu: *const lapack_int,
+                   v: *mut lapack_complex_double, ldv: *const lapack_int,
                    q: *mut lapack_complex_double, ldq: *const lapack_int,
                    work: *mut lapack_complex_double, rwork: *mut c_double,
                    iwork: *mut lapack_int, info: *mut lapack_int);
@@ -4098,9 +4137,10 @@ functions = """
     pub fn cggsvd3_(jobu: *const c_char, jobv: *const c_char, jobq: *const c_char,
                     m: *const lapack_int, n: *const lapack_int, p: *const lapack_int,
                     k: *mut lapack_int, l: *mut lapack_int, a: *mut lapack_complex_float,
-                    lda: *const lapack_int, b: *mut lapack_complex_float, ldb: *const lapack_int,
-                    alpha: *mut c_float, beta: *mut c_float, u: *mut lapack_complex_float,
-                    ldu: *const lapack_int, v: *mut lapack_complex_float, ldv: *const lapack_int,
+                    lda: *const lapack_int, b: *mut lapack_complex_float,
+                    ldb: *const lapack_int, alpha: *mut c_float, beta: *mut c_float,
+                    u: *mut lapack_complex_float, ldu: *const lapack_int,
+                    v: *mut lapack_complex_float, ldv: *const lapack_int,
                     q: *mut lapack_complex_float, ldq: *const lapack_int,
                     work: *mut lapack_complex_float, lwork: *const lapack_int,
                     rwork: *mut c_float, iwork: *mut lapack_int, info: *mut lapack_int);
@@ -4116,8 +4156,8 @@ functions = """
                     rwork: *mut c_double, iwork: *mut lapack_int, info: *mut lapack_int);
 
     pub fn ssygv_(itype: *const lapack_int, jobz: *const c_char, uplo: *const c_char,
-                  n: *const lapack_int, a: *mut c_float, lda: *const lapack_int, b: *mut c_float,
-                  ldb: *const lapack_int, w: *mut c_float, work: *mut c_float,
+                  n: *const lapack_int, a: *mut c_float, lda: *const lapack_int,
+                  b: *mut c_float, ldb: *const lapack_int, w: *mut c_float, work: *mut c_float,
                   lwork: *const lapack_int, info: *mut lapack_int);
     pub fn dsygv_(itype: *const lapack_int, jobz: *const c_char, uplo: *const c_char,
                   n: *const lapack_int, a: *mut c_double, lda: *const lapack_int,
@@ -4126,8 +4166,8 @@ functions = """
     pub fn chegv_(itype: *const lapack_int, jobz: *const c_char, uplo: *const c_char,
                   n: *const lapack_int, a: *mut lapack_complex_float, lda: *const lapack_int,
                   b: *mut lapack_complex_float, ldb: *const lapack_int, w: *mut c_float,
-                  work: *mut lapack_complex_float, lwork: *const lapack_int, rwork: *mut c_float,
-                  info: *mut lapack_int);
+                  work: *mut lapack_complex_float, lwork: *const lapack_int,
+                  rwork: *mut c_float, info: *mut lapack_int);
     pub fn zhegv_(itype: *const lapack_int, jobz: *const c_char, uplo: *const c_char,
                   n: *const lapack_int, a: *mut lapack_complex_double, lda: *const lapack_int,
                   b: *mut lapack_complex_double, ldb: *const lapack_int, w: *mut c_double,
@@ -4184,13 +4224,13 @@ functions = """
                    info: *mut lapack_int);
     pub fn zhegvx_(itype: *const lapack_int, jobz: *const c_char, range: *const c_char,
                    uplo: *const c_char, n: *const lapack_int, a: *mut lapack_complex_double,
-                   lda: *const lapack_int, b: *mut lapack_complex_double, ldb: *const lapack_int,
-                   vl: *const c_double, vu: *const c_double, il: *const lapack_int,
-                   iu: *const lapack_int, abstol: *const c_double, m: *mut lapack_int,
-                   w: *mut c_double, z: *mut lapack_complex_double, ldz: *const lapack_int,
-                   work: *mut lapack_complex_double, lwork: *const lapack_int,
-                   rwork: *mut c_double, iwork: *mut lapack_int, ifail: *mut lapack_int,
-                   info: *mut lapack_int);
+                   lda: *const lapack_int, b: *mut lapack_complex_double,
+                   ldb: *const lapack_int, vl: *const c_double, vu: *const c_double,
+                   il: *const lapack_int, iu: *const lapack_int, abstol: *const c_double,
+                   m: *mut lapack_int, w: *mut c_double, z: *mut lapack_complex_double,
+                   ldz: *const lapack_int, work: *mut lapack_complex_double,
+                   lwork: *const lapack_int, rwork: *mut c_double, iwork: *mut lapack_int,
+                   ifail: *mut lapack_int, info: *mut lapack_int);
 
     pub fn sspgv_(itype: *const lapack_int, jobz: *const c_char, uplo: *const c_char,
                   n: *const lapack_int, ap: *mut c_float, bp: *mut c_float, w: *mut c_float,
@@ -4236,11 +4276,12 @@ functions = """
                    liwork: *const lapack_int, info: *mut lapack_int);
 
     pub fn sspgvx_(itype: *const lapack_int, jobz: *const c_char, range: *const c_char,
-                   uplo: *const c_char, n: *const lapack_int, ap: *mut c_float, bp: *mut c_float,
-                   vl: *const c_float, vu: *const c_float, il: *const lapack_int,
-                   iu: *const lapack_int, abstol: *const c_float, m: *mut lapack_int,
-                   w: *mut c_float, z: *mut c_float, ldz: *const lapack_int, work: *mut c_float,
-                   iwork: *mut lapack_int, ifail: *mut lapack_int, info: *mut lapack_int);
+                   uplo: *const c_char, n: *const lapack_int, ap: *mut c_float,
+                   bp: *mut c_float, vl: *const c_float, vu: *const c_float,
+                   il: *const lapack_int, iu: *const lapack_int, abstol: *const c_float,
+                   m: *mut lapack_int, w: *mut c_float, z: *mut c_float, ldz: *const lapack_int,
+                   work: *mut c_float, iwork: *mut lapack_int, ifail: *mut lapack_int,
+                   info: *mut lapack_int);
     pub fn dspgvx_(itype: *const lapack_int, jobz: *const c_char, range: *const c_char,
                    uplo: *const c_char, n: *const lapack_int, ap: *mut c_double,
                    bp: *mut c_double, vl: *const c_double, vu: *const c_double,
@@ -4284,8 +4325,8 @@ functions = """
                   ka: *const lapack_int, kb: *const lapack_int, ab: *mut lapack_complex_double,
                   ldab: *const lapack_int, bb: *mut lapack_complex_double,
                   ldbb: *const lapack_int, w: *mut c_double, z: *mut lapack_complex_double,
-                  ldz: *const lapack_int, work: *mut lapack_complex_double, rwork: *mut c_double,
-                  info: *mut lapack_int);
+                  ldz: *const lapack_int, work: *mut lapack_complex_double,
+                  rwork: *mut c_double, info: *mut lapack_int);
 
     pub fn ssbgvd_(jobz: *const c_char, uplo: *const c_char, n: *const lapack_int,
                    ka: *const lapack_int, kb: *const lapack_int, ab: *mut c_float,
@@ -4409,14 +4450,14 @@ functions = """
                    lwork: *const lapack_int, rwork: *mut c_float, bwork: *mut lapack_logical,
                    info: *mut lapack_int);
     pub fn zgges3_(jobvsl: *const c_char, jobvsr: *const c_char, sort: *const c_char,
-                   selctg: LAPACK_Z_SELECT2, n: *const lapack_int, a: *mut lapack_complex_double,
-                   lda: *const lapack_int, b: *mut lapack_complex_double, ldb: *const lapack_int,
-                   sdim: *mut lapack_int, alpha: *mut lapack_complex_double,
-                   beta: *mut lapack_complex_double, vsl: *mut lapack_complex_double,
-                   ldvsl: *const lapack_int, vsr: *mut lapack_complex_double,
-                   ldvsr: *const lapack_int, work: *mut lapack_complex_double,
-                   lwork: *const lapack_int, rwork: *mut c_double, bwork: *mut lapack_logical,
-                   info: *mut lapack_int);
+                   selctg: LAPACK_Z_SELECT2, n: *const lapack_int,
+                   a: *mut lapack_complex_double, lda: *const lapack_int,
+                   b: *mut lapack_complex_double, ldb: *const lapack_int, sdim: *mut lapack_int,
+                   alpha: *mut lapack_complex_double, beta: *mut lapack_complex_double,
+                   vsl: *mut lapack_complex_double, ldvsl: *const lapack_int,
+                   vsr: *mut lapack_complex_double, ldvsr: *const lapack_int,
+                   work: *mut lapack_complex_double, lwork: *const lapack_int,
+                   rwork: *mut c_double, bwork: *mut lapack_logical, info: *mut lapack_int);
 
     pub fn sggesx_(jobvsl: *const c_char, jobvsr: *const c_char, sort: *const c_char,
                    selctg: LAPACK_S_SELECT3, sense: *const c_char, n: *const lapack_int,
@@ -4476,8 +4517,8 @@ functions = """
                   alpha: *mut lapack_complex_float, beta: *mut lapack_complex_float,
                   vl: *mut lapack_complex_float, ldvl: *const lapack_int,
                   vr: *mut lapack_complex_float, ldvr: *const lapack_int,
-                  work: *mut lapack_complex_float, lwork: *const lapack_int, rwork: *mut c_float,
-                  info: *mut lapack_int);
+                  work: *mut lapack_complex_float, lwork: *const lapack_int,
+                  rwork: *mut c_float, info: *mut lapack_int);
     pub fn zggev_(jobvl: *const c_char, jobvr: *const c_char, n: *const lapack_int,
                   a: *mut lapack_complex_double, lda: *const lapack_int,
                   b: *mut lapack_complex_double, ldb: *const lapack_int,
@@ -4549,15 +4590,16 @@ functions = """
                    bwork: *mut lapack_logical, info: *mut lapack_int);
     pub fn zggevx_(balanc: *const c_char, jobvl: *const c_char, jobvr: *const c_char,
                    sense: *const c_char, n: *const lapack_int, a: *mut lapack_complex_double,
-                   lda: *const lapack_int, b: *mut lapack_complex_double, ldb: *const lapack_int,
-                   alpha: *mut lapack_complex_double, beta: *mut lapack_complex_double,
-                   vl: *mut lapack_complex_double, ldvl: *const lapack_int,
-                   vr: *mut lapack_complex_double, ldvr: *const lapack_int, ilo: *mut lapack_int,
-                   ihi: *mut lapack_int, lscale: *mut c_double, rscale: *mut c_double,
-                   abnrm: *mut c_double, bbnrm: *mut c_double, rconde: *mut c_double,
-                   rcondv: *mut c_double, work: *mut lapack_complex_double,
-                   lwork: *const lapack_int, rwork: *mut c_double, iwork: *mut lapack_int,
-                   bwork: *mut lapack_logical, info: *mut lapack_int);
+                   lda: *const lapack_int, b: *mut lapack_complex_double,
+                   ldb: *const lapack_int, alpha: *mut lapack_complex_double,
+                   beta: *mut lapack_complex_double, vl: *mut lapack_complex_double,
+                   ldvl: *const lapack_int, vr: *mut lapack_complex_double,
+                   ldvr: *const lapack_int, ilo: *mut lapack_int, ihi: *mut lapack_int,
+                   lscale: *mut c_double, rscale: *mut c_double, abnrm: *mut c_double,
+                   bbnrm: *mut c_double, rconde: *mut c_double, rcondv: *mut c_double,
+                   work: *mut lapack_complex_double, lwork: *const lapack_int,
+                   rwork: *mut c_double, iwork: *mut lapack_int, bwork: *mut lapack_logical,
+                   info: *mut lapack_int);
 
     pub fn dsfrk_(transr: *const c_char, uplo: *const c_char, trans: *const c_char,
                   n: *const lapack_int, k: *const lapack_int, alpha: *const c_double,
@@ -4569,8 +4611,8 @@ functions = """
                   c: *mut c_float);
     pub fn zhfrk_(transr: *const c_char, uplo: *const c_char, trans: *const c_char,
                   n: *const lapack_int, k: *const lapack_int, alpha: *const c_double,
-                  a: *const lapack_complex_double, lda: *const lapack_int, beta: *const c_double,
-                  c: *mut lapack_complex_double);
+                  a: *const lapack_complex_double, lda: *const lapack_int,
+                  beta: *const c_double, c: *mut lapack_complex_double);
     pub fn chfrk_(transr: *const c_char, uplo: *const c_char, trans: *const c_char,
                   n: *const lapack_int, k: *const lapack_int, alpha: *const c_float,
                   a: *const lapack_complex_float, lda: *const lapack_int, beta: *const c_float,
@@ -4701,8 +4743,9 @@ functions = """
                    lda: *const lapack_int, tau: *mut lapack_complex_double,
                    work: *mut lapack_complex_double, info: *mut lapack_int);
 
-    pub fn slacn2_(n: *const lapack_int, v: *mut c_float, x: *mut c_float, isgn: *mut lapack_int,
-                   est: *mut c_float, kase: *mut lapack_int, isave: *mut lapack_int);
+    pub fn slacn2_(n: *const lapack_int, v: *mut c_float, x: *mut c_float,
+                   isgn: *mut lapack_int, est: *mut c_float, kase: *mut lapack_int,
+                   isave: *mut lapack_int);
     pub fn dlacn2_(n: *const lapack_int, v: *mut c_double, x: *mut c_double,
                    isgn: *mut lapack_int, est: *mut c_double, kase: *mut lapack_int,
                    isave: *mut lapack_int);
@@ -4839,10 +4882,11 @@ functions = """
                    work: *mut lapack_complex_float, ldwork: *const lapack_int);
     pub fn zlarfb_(side: *const c_char, trans: *const c_char, direct: *const c_char,
                    storev: *const c_char, m: *const lapack_int, n: *const lapack_int,
-                   k: *const lapack_int, v: *const lapack_complex_double, ldv: *const lapack_int,
-                   t: *const lapack_complex_double, ldt: *const lapack_int,
-                   c: *mut lapack_complex_double, ldc: *const lapack_int,
-                   work: *mut lapack_complex_double, ldwork: *const lapack_int);
+                   k: *const lapack_int, v: *const lapack_complex_double,
+                   ldv: *const lapack_int, t: *const lapack_complex_double,
+                   ldt: *const lapack_int, c: *mut lapack_complex_double,
+                   ldc: *const lapack_int, work: *mut lapack_complex_double,
+                   ldwork: *const lapack_int);
 
     pub fn slarfg_(n: *const lapack_int, alpha: *mut c_float, x: *mut c_float,
                    incx: *const lapack_int, tau: *mut c_float);
@@ -4866,9 +4910,9 @@ functions = """
                    tau: *const lapack_complex_float, t: *mut lapack_complex_float,
                    ldt: *const lapack_int);
     pub fn zlarft_(direct: *const c_char, storev: *const c_char, n: *const lapack_int,
-                   k: *const lapack_int, v: *const lapack_complex_double, ldv: *const lapack_int,
-                   tau: *const lapack_complex_double, t: *mut lapack_complex_double,
-                   ldt: *const lapack_int);
+                   k: *const lapack_int, v: *const lapack_complex_double,
+                   ldv: *const lapack_int, tau: *const lapack_complex_double,
+                   t: *mut lapack_complex_double, ldt: *const lapack_int);
 
     pub fn slarfx_(side: *const c_char, m: *const lapack_int, n: *const lapack_int,
                    v: *const c_float, tau: *const c_float, c: *mut c_float,
@@ -4988,8 +5032,9 @@ functions = """
                    a: *mut lapack_complex_float, lda: *const lapack_int, iseed: *mut lapack_int,
                    work: *mut lapack_complex_float, info: *mut lapack_int);
     pub fn zlaghe_(n: *const lapack_int, k: *const lapack_int, d: *const c_double,
-                   a: *mut lapack_complex_double, lda: *const lapack_int, iseed: *mut lapack_int,
-                   work: *mut lapack_complex_double, info: *mut lapack_int);
+                   a: *mut lapack_complex_double, lda: *const lapack_int,
+                   iseed: *mut lapack_int, work: *mut lapack_complex_double,
+                   info: *mut lapack_int);
 
     pub fn slagsy_(n: *const lapack_int, k: *const lapack_int, d: *const c_float,
                    a: *mut c_float, lda: *const lapack_int, iseed: *mut lapack_int,
@@ -5001,8 +5046,9 @@ functions = """
                    a: *mut lapack_complex_float, lda: *const lapack_int, iseed: *mut lapack_int,
                    work: *mut lapack_complex_float, info: *mut lapack_int);
     pub fn zlagsy_(n: *const lapack_int, k: *const lapack_int, d: *const c_double,
-                   a: *mut lapack_complex_double, lda: *const lapack_int, iseed: *mut lapack_int,
-                   work: *mut lapack_complex_double, info: *mut lapack_int);
+                   a: *mut lapack_complex_double, lda: *const lapack_int,
+                   iseed: *mut lapack_int, work: *mut lapack_complex_double,
+                   info: *mut lapack_int);
 
     pub fn slapmr_(forwrd: *const lapack_logical, m: *const lapack_int, n: *const lapack_int,
                    x: *mut c_float, ldx: *const lapack_int, k: *mut lapack_int);
@@ -5030,8 +5076,8 @@ functions = """
 
     pub fn slartgp_(f: *const c_float, g: *const c_float, cs: *mut c_float, sn: *mut c_float,
                     r: *mut c_float);
-    pub fn dlartgp_(f: *const c_double, g: *const c_double, cs: *mut c_double, sn: *mut c_double,
-                    r: *mut c_double);
+    pub fn dlartgp_(f: *const c_double, g: *const c_double, cs: *mut c_double,
+                    sn: *mut c_double, r: *mut c_double);
 
     pub fn slartgs_(x: *const c_float, y: *const c_float, sigma: *const c_float,
                     cs: *mut c_float, sn: *mut c_float);
@@ -5100,8 +5146,8 @@ functions = """
                    x11: *mut lapack_complex_float, ldx11: *const lapack_int,
                    x12: *mut lapack_complex_float, ldx12: *const lapack_int,
                    x21: *mut lapack_complex_float, ldx21: *const lapack_int,
-                   x22: *mut lapack_complex_float, ldx22: *const lapack_int, theta: *mut c_float,
-                   u1: *mut lapack_complex_float, ldu1: *const lapack_int,
+                   x22: *mut lapack_complex_float, ldx22: *const lapack_int,
+                   theta: *mut c_float, u1: *mut lapack_complex_float, ldu1: *const lapack_int,
                    u2: *mut lapack_complex_float, ldu2: *const lapack_int,
                    v1t: *mut lapack_complex_float, ldv1t: *const lapack_int,
                    v2t: *mut lapack_complex_float, ldv2t: *const lapack_int,
@@ -5282,13 +5328,13 @@ functions = """
                    x12: *mut lapack_complex_double, ldx12: *const lapack_int,
                    x21: *mut lapack_complex_double, ldx21: *const lapack_int,
                    x22: *mut lapack_complex_double, ldx22: *const lapack_int,
-                   theta: *mut c_double, u1: *mut lapack_complex_double, ldu1: *const lapack_int,
-                   u2: *mut lapack_complex_double, ldu2: *const lapack_int,
-                   v1t: *mut lapack_complex_double, ldv1t: *const lapack_int,
-                   v2t: *mut lapack_complex_double, ldv2t: *const lapack_int,
-                   work: *mut lapack_complex_double, lwork: *const lapack_int,
-                   rwork: *mut c_double, lrwork: *const lapack_int, iwork: *mut lapack_int,
-                   info: *mut lapack_int);
+                   theta: *mut c_double, u1: *mut lapack_complex_double,
+                   ldu1: *const lapack_int, u2: *mut lapack_complex_double,
+                   ldu2: *const lapack_int, v1t: *mut lapack_complex_double,
+                   ldv1t: *const lapack_int, v2t: *mut lapack_complex_double,
+                   ldv2t: *const lapack_int, work: *mut lapack_complex_double,
+                   lwork: *const lapack_int, rwork: *mut c_double, lrwork: *const lapack_int,
+                   iwork: *mut lapack_int, info: *mut lapack_int);
     pub fn zuncsd2by1_(jobu1: *const c_char, jobu2: *const c_char, jobv1t: *const c_char,
                        m: *const lapack_int, p: *const lapack_int, q: *const lapack_int,
                        x11: *mut lapack_complex_double, ldx11: *const lapack_int,
@@ -5297,8 +5343,8 @@ functions = """
                        ldu1: *const lapack_int, u2: *mut lapack_complex_double,
                        ldu2: *const lapack_int, v1t: *mut lapack_complex_double,
                        ldv1t: *const lapack_int, work: *mut lapack_complex_double,
-                       lwork: *const lapack_int, rwork: *mut c_double, lrwork: *const lapack_int,
-                       iwork: *mut lapack_int, info: *mut lapack_int);
+                       lwork: *const lapack_int, rwork: *mut c_double,
+                       lrwork: *const lapack_int, iwork: *mut lapack_int, info: *mut lapack_int);
 
     // Version 3.4.0
     pub fn sgemqrt_(side: *const c_char, trans: *const c_char, m: *const lapack_int,
@@ -5346,8 +5392,8 @@ functions = """
                     lda: *const lapack_int, t: *mut c_double, ldt: *const lapack_int,
                     info: *mut lapack_int);
     pub fn cgeqrt2_(m: *const lapack_int, n: *const lapack_int, a: *mut lapack_complex_float,
-                    lda: *const lapack_int, t: *mut lapack_complex_float, ldt: *const lapack_int,
-                    info: *mut lapack_int);
+                    lda: *const lapack_int, t: *mut lapack_complex_float,
+                    ldt: *const lapack_int, info: *mut lapack_int);
     pub fn zgeqrt2_(m: *const lapack_int, n: *const lapack_int, a: *mut lapack_complex_double,
                     lda: *const lapack_int, t: *mut lapack_complex_double,
                     ldt: *const lapack_int, info: *mut lapack_int);
@@ -5359,8 +5405,8 @@ functions = """
                     lda: *const lapack_int, t: *mut c_double, ldt: *const lapack_int,
                     info: *mut lapack_int);
     pub fn cgeqrt3_(m: *const lapack_int, n: *const lapack_int, a: *mut lapack_complex_float,
-                    lda: *const lapack_int, t: *mut lapack_complex_float, ldt: *const lapack_int,
-                    info: *mut lapack_int);
+                    lda: *const lapack_int, t: *mut lapack_complex_float,
+                    ldt: *const lapack_int, info: *mut lapack_int);
     pub fn zgeqrt3_(m: *const lapack_int, n: *const lapack_int, a: *mut lapack_complex_double,
                     lda: *const lapack_int, t: *mut lapack_complex_double,
                     ldt: *const lapack_int, info: *mut lapack_int);
@@ -5381,9 +5427,10 @@ functions = """
                     n: *const lapack_int, k: *const lapack_int, l: *const lapack_int,
                     nb: *const lapack_int, v: *const lapack_complex_float,
                     ldv: *const lapack_int, t: *const lapack_complex_float,
-                    ldt: *const lapack_int, a: *mut lapack_complex_float, lda: *const lapack_int,
-                    b: *mut lapack_complex_float, ldb: *const lapack_int,
-                    work: *mut lapack_complex_float, info: *mut lapack_int);
+                    ldt: *const lapack_int, a: *mut lapack_complex_float,
+                    lda: *const lapack_int, b: *mut lapack_complex_float,
+                    ldb: *const lapack_int, work: *mut lapack_complex_float,
+                    info: *mut lapack_int);
     pub fn ztpmqrt_(side: *const c_char, trans: *const c_char, m: *const lapack_int,
                     n: *const lapack_int, k: *const lapack_int, l: *const lapack_int,
                     nb: *const lapack_int, v: *const lapack_complex_double,
@@ -5452,9 +5499,10 @@ functions = """
                    storev: *const c_char, m: *const lapack_int, n: *const lapack_int,
                    k: *const lapack_int, l: *const lapack_int, v: *const lapack_complex_double,
                    ldv: *const lapack_int, t: *const lapack_complex_double,
-                   ldt: *const lapack_int, a: *mut lapack_complex_double, lda: *const lapack_int,
-                   b: *mut lapack_complex_double, ldb: *const lapack_int,
-                   work: *mut lapack_complex_double, ldwork: *const lapack_int);
+                   ldt: *const lapack_int, a: *mut lapack_complex_double,
+                   lda: *const lapack_int, b: *mut lapack_complex_double,
+                   ldb: *const lapack_int, work: *mut lapack_complex_double,
+                   ldwork: *const lapack_int);
 
     // Version 3.5.0
     pub fn ssysv_rook_(uplo: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
@@ -5486,10 +5534,10 @@ functions = """
                         lda: *const lapack_int, ipiv: *mut lapack_int,
                         work: *mut lapack_complex_float, lwork: *const lapack_int,
                         info: *mut lapack_int);
-    pub fn zsytrf_rook_(uplo: *const c_char, n: *const lapack_int, a: *mut lapack_complex_double,
-                        lda: *const lapack_int, ipiv: *mut lapack_int,
-                        work: *mut lapack_complex_double, lwork: *const lapack_int,
-                        info: *mut lapack_int);
+    pub fn zsytrf_rook_(uplo: *const c_char, n: *const lapack_int,
+                        a: *mut lapack_complex_double, lda: *const lapack_int,
+                        ipiv: *mut lapack_int, work: *mut lapack_complex_double,
+                        lwork: *const lapack_int, info: *mut lapack_int);
 
     pub fn ssytrs_rook_(uplo: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                         a: *const c_float, lda: *const lapack_int, ipiv: *const lapack_int,
@@ -5510,10 +5558,10 @@ functions = """
                         lda: *const lapack_int, ipiv: *mut lapack_int,
                         work: *mut lapack_complex_float, lwork: *const lapack_int,
                         info: *mut lapack_int);
-    pub fn zhetrf_rook_(uplo: *const c_char, n: *const lapack_int, a: *mut lapack_complex_double,
-                        lda: *const lapack_int, ipiv: *mut lapack_int,
-                        work: *mut lapack_complex_double, lwork: *const lapack_int,
-                        info: *mut lapack_int);
+    pub fn zhetrf_rook_(uplo: *const c_char, n: *const lapack_int,
+                        a: *mut lapack_complex_double, lda: *const lapack_int,
+                        ipiv: *mut lapack_int, work: *mut lapack_complex_double,
+                        lwork: *const lapack_int, info: *mut lapack_int);
 
     pub fn chetrs_rook_(uplo: *const c_char, n: *const lapack_int, nrhs: *const lapack_int,
                         a: *const lapack_complex_float, lda: *const lapack_int,

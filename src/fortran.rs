@@ -16507,7 +16507,7 @@ pub unsafe fn sstein(
     ldz: i32,
     work: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::sstein_(
@@ -16522,7 +16522,7 @@ pub unsafe fn sstein(
         &ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -16540,7 +16540,7 @@ pub unsafe fn dstein(
     ldz: i32,
     work: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::dstein_(
@@ -16555,7 +16555,7 @@ pub unsafe fn dstein(
         &ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -16573,7 +16573,7 @@ pub unsafe fn cstein(
     ldz: i32,
     work: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::cstein_(
@@ -16588,7 +16588,7 @@ pub unsafe fn cstein(
         &ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -16606,7 +16606,7 @@ pub unsafe fn zstein(
     ldz: i32,
     work: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::zstein_(
@@ -16621,7 +16621,7 @@ pub unsafe fn zstein(
         &ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -17640,8 +17640,8 @@ pub unsafe fn shsein(
     mm: i32,
     m: &mut i32,
     work: &mut [f32],
-    ifaill: &mut i32,
-    ifailr: &mut i32,
+    ifaill: &mut [i32],
+    ifailr: &mut [i32],
     info: &mut i32,
 ) {
     ffi::shsein_(
@@ -17661,8 +17661,8 @@ pub unsafe fn shsein(
         &mm,
         m,
         work.as_mut_ptr(),
-        ifaill,
-        ifailr,
+        ifaill.as_mut_ptr(),
+        ifailr.as_mut_ptr(),
         info,
     )
 }
@@ -17685,8 +17685,8 @@ pub unsafe fn dhsein(
     mm: i32,
     m: &mut i32,
     work: &mut [f64],
-    ifaill: &mut i32,
-    ifailr: &mut i32,
+    ifaill: &mut [i32],
+    ifailr: &mut [i32],
     info: &mut i32,
 ) {
     ffi::dhsein_(
@@ -17706,8 +17706,8 @@ pub unsafe fn dhsein(
         &mm,
         m,
         work.as_mut_ptr(),
-        ifaill,
-        ifailr,
+        ifaill.as_mut_ptr(),
+        ifailr.as_mut_ptr(),
         info,
     )
 }
@@ -17730,8 +17730,8 @@ pub unsafe fn chsein(
     m: &mut i32,
     work: &mut [c32],
     rwork: &mut [f32],
-    ifaill: &mut i32,
-    ifailr: &mut i32,
+    ifaill: &mut [i32],
+    ifailr: &mut [i32],
     info: &mut i32,
 ) {
     ffi::chsein_(
@@ -17751,8 +17751,8 @@ pub unsafe fn chsein(
         m,
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
-        ifaill,
-        ifailr,
+        ifaill.as_mut_ptr(),
+        ifailr.as_mut_ptr(),
         info,
     )
 }
@@ -17775,8 +17775,8 @@ pub unsafe fn zhsein(
     m: &mut i32,
     work: &mut [c64],
     rwork: &mut [f64],
-    ifaill: &mut i32,
-    ifailr: &mut i32,
+    ifaill: &mut [i32],
+    ifailr: &mut [i32],
     info: &mut i32,
 ) {
     ffi::zhsein_(
@@ -17796,8 +17796,8 @@ pub unsafe fn zhsein(
         m,
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
-        ifaill,
-        ifailr,
+        ifaill.as_mut_ptr(),
+        ifailr.as_mut_ptr(),
         info,
     )
 }
@@ -21890,7 +21890,7 @@ pub unsafe fn ssyevx(
     work: &mut [f32],
     lwork: i32,
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::ssyevx_(
@@ -21912,7 +21912,7 @@ pub unsafe fn ssyevx(
         work.as_mut_ptr(),
         &lwork,
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -21937,7 +21937,7 @@ pub unsafe fn dsyevx(
     work: &mut [f64],
     lwork: i32,
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::dsyevx_(
@@ -21959,7 +21959,7 @@ pub unsafe fn dsyevx(
         work.as_mut_ptr(),
         &lwork,
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -21985,7 +21985,7 @@ pub unsafe fn cheevx(
     lwork: i32,
     rwork: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::cheevx_(
@@ -22008,7 +22008,7 @@ pub unsafe fn cheevx(
         &lwork,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -22034,7 +22034,7 @@ pub unsafe fn zheevx(
     lwork: i32,
     rwork: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::zheevx_(
@@ -22057,7 +22057,7 @@ pub unsafe fn zheevx(
         &lwork,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -22520,7 +22520,7 @@ pub unsafe fn sspevx(
     ldz: i32,
     work: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::sspevx_(
@@ -22540,7 +22540,7 @@ pub unsafe fn sspevx(
         &ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -22563,7 +22563,7 @@ pub unsafe fn dspevx(
     ldz: i32,
     work: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::dspevx_(
@@ -22583,7 +22583,7 @@ pub unsafe fn dspevx(
         &ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -22607,7 +22607,7 @@ pub unsafe fn chpevx(
     work: &mut [c32],
     rwork: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::chpevx_(
@@ -22628,7 +22628,7 @@ pub unsafe fn chpevx(
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -22652,7 +22652,7 @@ pub unsafe fn zhpevx(
     work: &mut [c64],
     rwork: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::zhpevx_(
@@ -22673,7 +22673,7 @@ pub unsafe fn zhpevx(
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -22968,7 +22968,7 @@ pub unsafe fn ssbevx(
     ldz: i32,
     work: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::ssbevx_(
@@ -22992,7 +22992,7 @@ pub unsafe fn ssbevx(
         &ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -23019,7 +23019,7 @@ pub unsafe fn dsbevx(
     ldz: i32,
     work: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::dsbevx_(
@@ -23043,7 +23043,7 @@ pub unsafe fn dsbevx(
         &ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -23071,7 +23071,7 @@ pub unsafe fn chbevx(
     work: &mut [c32],
     rwork: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::chbevx_(
@@ -23096,7 +23096,7 @@ pub unsafe fn chbevx(
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -23124,7 +23124,7 @@ pub unsafe fn zhbevx(
     work: &mut [c64],
     rwork: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::zhbevx_(
@@ -23149,7 +23149,7 @@ pub unsafe fn zhbevx(
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -23276,7 +23276,7 @@ pub unsafe fn sstevx(
     ldz: i32,
     work: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::sstevx_(
@@ -23296,7 +23296,7 @@ pub unsafe fn sstevx(
         &ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -23319,7 +23319,7 @@ pub unsafe fn dstevx(
     ldz: i32,
     work: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::dstevx_(
@@ -23339,7 +23339,7 @@ pub unsafe fn dstevx(
         &ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -25677,7 +25677,7 @@ pub unsafe fn ssygvx(
     work: &mut [f32],
     lwork: i32,
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::ssygvx_(
@@ -25702,7 +25702,7 @@ pub unsafe fn ssygvx(
         work.as_mut_ptr(),
         &lwork,
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -25730,7 +25730,7 @@ pub unsafe fn dsygvx(
     work: &mut [f64],
     lwork: i32,
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::dsygvx_(
@@ -25755,7 +25755,7 @@ pub unsafe fn dsygvx(
         work.as_mut_ptr(),
         &lwork,
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -25784,7 +25784,7 @@ pub unsafe fn chegvx(
     lwork: i32,
     rwork: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::chegvx_(
@@ -25810,7 +25810,7 @@ pub unsafe fn chegvx(
         &lwork,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -25839,7 +25839,7 @@ pub unsafe fn zhegvx(
     lwork: i32,
     rwork: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::zhegvx_(
@@ -25865,7 +25865,7 @@ pub unsafe fn zhegvx(
         &lwork,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -26158,7 +26158,7 @@ pub unsafe fn sspgvx(
     ldz: i32,
     work: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::sspgvx_(
@@ -26180,7 +26180,7 @@ pub unsafe fn sspgvx(
         &ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -26205,7 +26205,7 @@ pub unsafe fn dspgvx(
     ldz: i32,
     work: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::dspgvx_(
@@ -26227,7 +26227,7 @@ pub unsafe fn dspgvx(
         &ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -26253,7 +26253,7 @@ pub unsafe fn chpgvx(
     work: &mut [c32],
     rwork: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::chpgvx_(
@@ -26276,7 +26276,7 @@ pub unsafe fn chpgvx(
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -26302,7 +26302,7 @@ pub unsafe fn zhpgvx(
     work: &mut [c64],
     rwork: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::zhpgvx_(
@@ -26325,7 +26325,7 @@ pub unsafe fn zhpgvx(
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -26671,7 +26671,7 @@ pub unsafe fn ssbgvx(
     ldz: i32,
     work: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::ssbgvx_(
@@ -26698,7 +26698,7 @@ pub unsafe fn ssbgvx(
         &ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -26728,7 +26728,7 @@ pub unsafe fn dsbgvx(
     ldz: i32,
     work: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::dsbgvx_(
@@ -26755,7 +26755,7 @@ pub unsafe fn dsbgvx(
         &ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -26786,7 +26786,7 @@ pub unsafe fn chbgvx(
     work: &mut [c32],
     rwork: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::chbgvx_(
@@ -26814,7 +26814,7 @@ pub unsafe fn chbgvx(
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }
@@ -26845,7 +26845,7 @@ pub unsafe fn zhbgvx(
     work: &mut [c64],
     rwork: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
     info: &mut i32,
 ) {
     ffi::zhbgvx_(
@@ -26873,7 +26873,7 @@ pub unsafe fn zhbgvx(
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
         info,
     )
 }

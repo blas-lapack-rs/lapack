@@ -10002,7 +10002,7 @@ pub unsafe fn chbevx(
     w: &mut [f32],
     z: &mut [c32],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_chbevx(
         layout.into(),
@@ -10024,7 +10024,7 @@ pub unsafe fn chbevx(
         w.as_mut_ptr(),
         z.as_mut_ptr() as *mut _,
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -10049,7 +10049,7 @@ pub unsafe fn zhbevx(
     w: &mut [f64],
     z: &mut [c64],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_zhbevx(
         layout.into(),
@@ -10071,7 +10071,7 @@ pub unsafe fn zhbevx(
         w.as_mut_ptr(),
         z.as_mut_ptr() as *mut _,
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -10293,7 +10293,7 @@ pub unsafe fn chbgvx(
     w: &mut [f32],
     z: &mut [c32],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_chbgvx(
         layout.into(),
@@ -10318,7 +10318,7 @@ pub unsafe fn chbgvx(
         w.as_mut_ptr(),
         z.as_mut_ptr() as *mut _,
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -10346,7 +10346,7 @@ pub unsafe fn zhbgvx(
     w: &mut [f64],
     z: &mut [c64],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_zhbgvx(
         layout.into(),
@@ -10371,7 +10371,7 @@ pub unsafe fn zhbgvx(
         w.as_mut_ptr(),
         z.as_mut_ptr() as *mut _,
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -10709,7 +10709,7 @@ pub unsafe fn cheevx(
     w: &mut [f32],
     z: &mut [c32],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_cheevx(
         layout.into(),
@@ -10728,7 +10728,7 @@ pub unsafe fn cheevx(
         w.as_mut_ptr(),
         z.as_mut_ptr() as *mut _,
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -10750,7 +10750,7 @@ pub unsafe fn zheevx(
     w: &mut [f64],
     z: &mut [c64],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_zheevx(
         layout.into(),
@@ -10769,7 +10769,7 @@ pub unsafe fn zheevx(
         w.as_mut_ptr(),
         z.as_mut_ptr() as *mut _,
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -10948,7 +10948,7 @@ pub unsafe fn chegvx(
     w: &mut [f32],
     z: &mut [c32],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_chegvx(
         layout.into(),
@@ -10970,7 +10970,7 @@ pub unsafe fn chegvx(
         w.as_mut_ptr(),
         z.as_mut_ptr() as *mut _,
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -10995,7 +10995,7 @@ pub unsafe fn zhegvx(
     w: &mut [f64],
     z: &mut [c64],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_zhegvx(
         layout.into(),
@@ -11017,7 +11017,7 @@ pub unsafe fn zhegvx(
         w.as_mut_ptr(),
         z.as_mut_ptr() as *mut _,
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -11988,7 +11988,7 @@ pub unsafe fn chpevx(
     w: &mut [f32],
     z: &mut [c32],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_chpevx(
         layout.into(),
@@ -12006,7 +12006,7 @@ pub unsafe fn chpevx(
         w.as_mut_ptr(),
         z.as_mut_ptr() as *mut _,
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -12027,7 +12027,7 @@ pub unsafe fn zhpevx(
     w: &mut [f64],
     z: &mut [c64],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_zhpevx(
         layout.into(),
@@ -12045,7 +12045,7 @@ pub unsafe fn zhpevx(
         w.as_mut_ptr(),
         z.as_mut_ptr() as *mut _,
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -12214,7 +12214,7 @@ pub unsafe fn chpgvx(
     w: &mut [f32],
     z: &mut [c32],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_chpgvx(
         layout.into(),
@@ -12234,7 +12234,7 @@ pub unsafe fn chpgvx(
         w.as_mut_ptr(),
         z.as_mut_ptr() as *mut _,
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -12257,7 +12257,7 @@ pub unsafe fn zhpgvx(
     w: &mut [f64],
     z: &mut [c64],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_zhpgvx(
         layout.into(),
@@ -12277,7 +12277,7 @@ pub unsafe fn zhpgvx(
         w.as_mut_ptr(),
         z.as_mut_ptr() as *mut _,
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -12617,8 +12617,8 @@ pub unsafe fn shsein(
     ldvr: i32,
     mm: i32,
     m: &mut i32,
-    ifaill: &mut i32,
-    ifailr: &mut i32,
+    ifaill: &mut [i32],
+    ifailr: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_shsein(
         layout.into(),
@@ -12637,8 +12637,8 @@ pub unsafe fn shsein(
         ldvr,
         mm,
         m,
-        ifaill,
-        ifailr,
+        ifaill.as_mut_ptr(),
+        ifailr.as_mut_ptr(),
     )
 }
 
@@ -12660,8 +12660,8 @@ pub unsafe fn dhsein(
     ldvr: i32,
     mm: i32,
     m: &mut i32,
-    ifaill: &mut i32,
-    ifailr: &mut i32,
+    ifaill: &mut [i32],
+    ifailr: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_dhsein(
         layout.into(),
@@ -12680,8 +12680,8 @@ pub unsafe fn dhsein(
         ldvr,
         mm,
         m,
-        ifaill,
-        ifailr,
+        ifaill.as_mut_ptr(),
+        ifailr.as_mut_ptr(),
     )
 }
 
@@ -12702,8 +12702,8 @@ pub unsafe fn chsein(
     ldvr: i32,
     mm: i32,
     m: &mut i32,
-    ifaill: &mut i32,
-    ifailr: &mut i32,
+    ifaill: &mut [i32],
+    ifailr: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_chsein(
         layout.into(),
@@ -12721,8 +12721,8 @@ pub unsafe fn chsein(
         ldvr,
         mm,
         m,
-        ifaill,
-        ifailr,
+        ifaill.as_mut_ptr(),
+        ifailr.as_mut_ptr(),
     )
 }
 
@@ -12743,8 +12743,8 @@ pub unsafe fn zhsein(
     ldvr: i32,
     mm: i32,
     m: &mut i32,
-    ifaill: &mut i32,
-    ifailr: &mut i32,
+    ifaill: &mut [i32],
+    ifailr: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_zhsein(
         layout.into(),
@@ -12762,8 +12762,8 @@ pub unsafe fn zhsein(
         ldvr,
         mm,
         m,
-        ifaill,
-        ifailr,
+        ifaill.as_mut_ptr(),
+        ifailr.as_mut_ptr(),
     )
 }
 
@@ -18888,7 +18888,7 @@ pub unsafe fn ssbevx(
     w: &mut [f32],
     z: &mut [f32],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_ssbevx(
         layout.into(),
@@ -18910,7 +18910,7 @@ pub unsafe fn ssbevx(
         w.as_mut_ptr(),
         z.as_mut_ptr(),
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -18935,7 +18935,7 @@ pub unsafe fn dsbevx(
     w: &mut [f64],
     z: &mut [f64],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_dsbevx(
         layout.into(),
@@ -18957,7 +18957,7 @@ pub unsafe fn dsbevx(
         w.as_mut_ptr(),
         z.as_mut_ptr(),
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -19179,7 +19179,7 @@ pub unsafe fn ssbgvx(
     w: &mut [f32],
     z: &mut [f32],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_ssbgvx(
         layout.into(),
@@ -19204,7 +19204,7 @@ pub unsafe fn ssbgvx(
         w.as_mut_ptr(),
         z.as_mut_ptr(),
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -19232,7 +19232,7 @@ pub unsafe fn dsbgvx(
     w: &mut [f64],
     z: &mut [f64],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_dsbgvx(
         layout.into(),
@@ -19257,7 +19257,7 @@ pub unsafe fn dsbgvx(
         w.as_mut_ptr(),
         z.as_mut_ptr(),
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -19570,7 +19570,7 @@ pub unsafe fn sspevx(
     w: &mut [f32],
     z: &mut [f32],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_sspevx(
         layout.into(),
@@ -19588,7 +19588,7 @@ pub unsafe fn sspevx(
         w.as_mut_ptr(),
         z.as_mut_ptr(),
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -19609,7 +19609,7 @@ pub unsafe fn dspevx(
     w: &mut [f64],
     z: &mut [f64],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_dspevx(
         layout.into(),
@@ -19627,7 +19627,7 @@ pub unsafe fn dspevx(
         w.as_mut_ptr(),
         z.as_mut_ptr(),
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -19796,7 +19796,7 @@ pub unsafe fn sspgvx(
     w: &mut [f32],
     z: &mut [f32],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_sspgvx(
         layout.into(),
@@ -19816,7 +19816,7 @@ pub unsafe fn sspgvx(
         w.as_mut_ptr(),
         z.as_mut_ptr(),
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -19839,7 +19839,7 @@ pub unsafe fn dspgvx(
     w: &mut [f64],
     z: &mut [f64],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_dspgvx(
         layout.into(),
@@ -19859,7 +19859,7 @@ pub unsafe fn dspgvx(
         w.as_mut_ptr(),
         z.as_mut_ptr(),
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -20783,7 +20783,7 @@ pub unsafe fn sstein(
     isplit: &[i32],
     z: &mut [f32],
     ldz: i32,
-    ifailv: &mut i32,
+    ifailv: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_sstein(
         layout.into(),
@@ -20796,7 +20796,7 @@ pub unsafe fn sstein(
         isplit.as_ptr(),
         z.as_mut_ptr(),
         ldz,
-        ifailv,
+        ifailv.as_mut_ptr(),
     )
 }
 
@@ -20812,7 +20812,7 @@ pub unsafe fn dstein(
     isplit: &[i32],
     z: &mut [f64],
     ldz: i32,
-    ifailv: &mut i32,
+    ifailv: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_dstein(
         layout.into(),
@@ -20825,7 +20825,7 @@ pub unsafe fn dstein(
         isplit.as_ptr(),
         z.as_mut_ptr(),
         ldz,
-        ifailv,
+        ifailv.as_mut_ptr(),
     )
 }
 
@@ -20841,7 +20841,7 @@ pub unsafe fn cstein(
     isplit: &[i32],
     z: &mut [c32],
     ldz: i32,
-    ifailv: &mut i32,
+    ifailv: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_cstein(
         layout.into(),
@@ -20854,7 +20854,7 @@ pub unsafe fn cstein(
         isplit.as_ptr(),
         z.as_mut_ptr() as *mut _,
         ldz,
-        ifailv,
+        ifailv.as_mut_ptr(),
     )
 }
 
@@ -20870,7 +20870,7 @@ pub unsafe fn zstein(
     isplit: &[i32],
     z: &mut [c64],
     ldz: i32,
-    ifailv: &mut i32,
+    ifailv: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_zstein(
         layout.into(),
@@ -20883,7 +20883,7 @@ pub unsafe fn zstein(
         isplit.as_ptr(),
         z.as_mut_ptr() as *mut _,
         ldz,
-        ifailv,
+        ifailv.as_mut_ptr(),
     )
 }
 
@@ -21324,7 +21324,7 @@ pub unsafe fn sstevx(
     w: &mut [f32],
     z: &mut [f32],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_sstevx(
         layout.into(),
@@ -21342,7 +21342,7 @@ pub unsafe fn sstevx(
         w.as_mut_ptr(),
         z.as_mut_ptr(),
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -21363,7 +21363,7 @@ pub unsafe fn dstevx(
     w: &mut [f64],
     z: &mut [f64],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_dstevx(
         layout.into(),
@@ -21381,7 +21381,7 @@ pub unsafe fn dstevx(
         w.as_mut_ptr(),
         z.as_mut_ptr(),
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -21753,7 +21753,7 @@ pub unsafe fn ssyevx(
     w: &mut [f32],
     z: &mut [f32],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_ssyevx(
         layout.into(),
@@ -21772,7 +21772,7 @@ pub unsafe fn ssyevx(
         w.as_mut_ptr(),
         z.as_mut_ptr(),
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -21794,7 +21794,7 @@ pub unsafe fn dsyevx(
     w: &mut [f64],
     z: &mut [f64],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_dsyevx(
         layout.into(),
@@ -21813,7 +21813,7 @@ pub unsafe fn dsyevx(
         w.as_mut_ptr(),
         z.as_mut_ptr(),
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -21992,7 +21992,7 @@ pub unsafe fn ssygvx(
     w: &mut [f32],
     z: &mut [f32],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_ssygvx(
         layout.into(),
@@ -22014,7 +22014,7 @@ pub unsafe fn ssygvx(
         w.as_mut_ptr(),
         z.as_mut_ptr(),
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -22039,7 +22039,7 @@ pub unsafe fn dsygvx(
     w: &mut [f64],
     z: &mut [f64],
     ldz: i32,
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_dsygvx(
         layout.into(),
@@ -22061,7 +22061,7 @@ pub unsafe fn dsygvx(
         w.as_mut_ptr(),
         z.as_mut_ptr(),
         ldz,
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -38671,7 +38671,7 @@ pub unsafe fn chbevx_work(
     work: &mut [c32],
     rwork: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_chbevx_work(
         layout.into(),
@@ -38696,7 +38696,7 @@ pub unsafe fn chbevx_work(
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -38724,7 +38724,7 @@ pub unsafe fn zhbevx_work(
     work: &mut [c64],
     rwork: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_zhbevx_work(
         layout.into(),
@@ -38749,7 +38749,7 @@ pub unsafe fn zhbevx_work(
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -39014,7 +39014,7 @@ pub unsafe fn chbgvx_work(
     work: &mut [c32],
     rwork: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_chbgvx_work(
         layout.into(),
@@ -39042,7 +39042,7 @@ pub unsafe fn chbgvx_work(
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -39073,7 +39073,7 @@ pub unsafe fn zhbgvx_work(
     work: &mut [c64],
     rwork: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_zhbgvx_work(
         layout.into(),
@@ -39101,7 +39101,7 @@ pub unsafe fn zhbgvx_work(
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -39515,7 +39515,7 @@ pub unsafe fn cheevx_work(
     lwork: i32,
     rwork: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_cheevx_work(
         layout.into(),
@@ -39538,7 +39538,7 @@ pub unsafe fn cheevx_work(
         lwork,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -39564,7 +39564,7 @@ pub unsafe fn zheevx_work(
     lwork: i32,
     rwork: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_zheevx_work(
         layout.into(),
@@ -39587,7 +39587,7 @@ pub unsafe fn zheevx_work(
         lwork,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -39806,7 +39806,7 @@ pub unsafe fn chegvx_work(
     lwork: i32,
     rwork: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_chegvx_work(
         layout.into(),
@@ -39832,7 +39832,7 @@ pub unsafe fn chegvx_work(
         lwork,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -39861,7 +39861,7 @@ pub unsafe fn zhegvx_work(
     lwork: i32,
     rwork: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_zhegvx_work(
         layout.into(),
@@ -39887,7 +39887,7 @@ pub unsafe fn zhegvx_work(
         lwork,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -40981,7 +40981,7 @@ pub unsafe fn chpevx_work(
     work: &mut [c32],
     rwork: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_chpevx_work(
         layout.into(),
@@ -41002,7 +41002,7 @@ pub unsafe fn chpevx_work(
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -41026,7 +41026,7 @@ pub unsafe fn zhpevx_work(
     work: &mut [c64],
     rwork: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_zhpevx_work(
         layout.into(),
@@ -41047,7 +41047,7 @@ pub unsafe fn zhpevx_work(
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -41251,7 +41251,7 @@ pub unsafe fn chpgvx_work(
     work: &mut [c32],
     rwork: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_chpgvx_work(
         layout.into(),
@@ -41274,7 +41274,7 @@ pub unsafe fn chpgvx_work(
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -41300,7 +41300,7 @@ pub unsafe fn zhpgvx_work(
     work: &mut [c64],
     rwork: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_zhpgvx_work(
         layout.into(),
@@ -41323,7 +41323,7 @@ pub unsafe fn zhpgvx_work(
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -41708,8 +41708,8 @@ pub unsafe fn shsein_work(
     mm: i32,
     m: &mut i32,
     work: &mut [f32],
-    ifaill: &mut i32,
-    ifailr: &mut i32,
+    ifaill: &mut [i32],
+    ifailr: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_shsein_work(
         layout.into(),
@@ -41729,8 +41729,8 @@ pub unsafe fn shsein_work(
         mm,
         m,
         work.as_mut_ptr(),
-        ifaill,
-        ifailr,
+        ifaill.as_mut_ptr(),
+        ifailr.as_mut_ptr(),
     )
 }
 
@@ -41753,8 +41753,8 @@ pub unsafe fn dhsein_work(
     mm: i32,
     m: &mut i32,
     work: &mut [f64],
-    ifaill: &mut i32,
-    ifailr: &mut i32,
+    ifaill: &mut [i32],
+    ifailr: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_dhsein_work(
         layout.into(),
@@ -41774,8 +41774,8 @@ pub unsafe fn dhsein_work(
         mm,
         m,
         work.as_mut_ptr(),
-        ifaill,
-        ifailr,
+        ifaill.as_mut_ptr(),
+        ifailr.as_mut_ptr(),
     )
 }
 
@@ -41798,8 +41798,8 @@ pub unsafe fn chsein_work(
     m: &mut i32,
     work: &mut [c32],
     rwork: &mut [f32],
-    ifaill: &mut i32,
-    ifailr: &mut i32,
+    ifaill: &mut [i32],
+    ifailr: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_chsein_work(
         layout.into(),
@@ -41819,8 +41819,8 @@ pub unsafe fn chsein_work(
         m,
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
-        ifaill,
-        ifailr,
+        ifaill.as_mut_ptr(),
+        ifailr.as_mut_ptr(),
     )
 }
 
@@ -41843,8 +41843,8 @@ pub unsafe fn zhsein_work(
     m: &mut i32,
     work: &mut [c64],
     rwork: &mut [f64],
-    ifaill: &mut i32,
-    ifailr: &mut i32,
+    ifaill: &mut [i32],
+    ifailr: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_zhsein_work(
         layout.into(),
@@ -41864,8 +41864,8 @@ pub unsafe fn zhsein_work(
         m,
         work.as_mut_ptr() as *mut _,
         rwork.as_mut_ptr(),
-        ifaill,
-        ifailr,
+        ifaill.as_mut_ptr(),
+        ifailr.as_mut_ptr(),
     )
 }
 
@@ -49040,7 +49040,7 @@ pub unsafe fn ssbevx_work(
     ldz: i32,
     work: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_ssbevx_work(
         layout.into(),
@@ -49064,7 +49064,7 @@ pub unsafe fn ssbevx_work(
         ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -49091,7 +49091,7 @@ pub unsafe fn dsbevx_work(
     ldz: i32,
     work: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_dsbevx_work(
         layout.into(),
@@ -49115,7 +49115,7 @@ pub unsafe fn dsbevx_work(
         ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -49363,7 +49363,7 @@ pub unsafe fn ssbgvx_work(
     ldz: i32,
     work: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_ssbgvx_work(
         layout.into(),
@@ -49390,7 +49390,7 @@ pub unsafe fn ssbgvx_work(
         ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -49420,7 +49420,7 @@ pub unsafe fn dsbgvx_work(
     ldz: i32,
     work: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_dsbgvx_work(
         layout.into(),
@@ -49447,7 +49447,7 @@ pub unsafe fn dsbgvx_work(
         ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -49798,7 +49798,7 @@ pub unsafe fn sspevx_work(
     ldz: i32,
     work: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_sspevx_work(
         layout.into(),
@@ -49818,7 +49818,7 @@ pub unsafe fn sspevx_work(
         ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -49841,7 +49841,7 @@ pub unsafe fn dspevx_work(
     ldz: i32,
     work: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_dspevx_work(
         layout.into(),
@@ -49861,7 +49861,7 @@ pub unsafe fn dspevx_work(
         ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -50052,7 +50052,7 @@ pub unsafe fn sspgvx_work(
     ldz: i32,
     work: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_sspgvx_work(
         layout.into(),
@@ -50074,7 +50074,7 @@ pub unsafe fn sspgvx_work(
         ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -50099,7 +50099,7 @@ pub unsafe fn dspgvx_work(
     ldz: i32,
     work: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_dspgvx_work(
         layout.into(),
@@ -50121,7 +50121,7 @@ pub unsafe fn dspgvx_work(
         ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -51215,7 +51215,7 @@ pub unsafe fn sstein_work(
     ldz: i32,
     work: &mut [f32],
     iwork: &mut [i32],
-    ifailv: &mut i32,
+    ifailv: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_sstein_work(
         layout.into(),
@@ -51230,7 +51230,7 @@ pub unsafe fn sstein_work(
         ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifailv,
+        ifailv.as_mut_ptr(),
     )
 }
 
@@ -51248,7 +51248,7 @@ pub unsafe fn dstein_work(
     ldz: i32,
     work: &mut [f64],
     iwork: &mut [i32],
-    ifailv: &mut i32,
+    ifailv: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_dstein_work(
         layout.into(),
@@ -51263,7 +51263,7 @@ pub unsafe fn dstein_work(
         ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifailv,
+        ifailv.as_mut_ptr(),
     )
 }
 
@@ -51281,7 +51281,7 @@ pub unsafe fn cstein_work(
     ldz: i32,
     work: &mut [f32],
     iwork: &mut [i32],
-    ifailv: &mut i32,
+    ifailv: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_cstein_work(
         layout.into(),
@@ -51296,7 +51296,7 @@ pub unsafe fn cstein_work(
         ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifailv,
+        ifailv.as_mut_ptr(),
     )
 }
 
@@ -51314,7 +51314,7 @@ pub unsafe fn zstein_work(
     ldz: i32,
     work: &mut [f64],
     iwork: &mut [i32],
-    ifailv: &mut i32,
+    ifailv: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_zstein_work(
         layout.into(),
@@ -51329,7 +51329,7 @@ pub unsafe fn zstein_work(
         ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifailv,
+        ifailv.as_mut_ptr(),
     )
 }
 
@@ -51848,7 +51848,7 @@ pub unsafe fn sstevx_work(
     ldz: i32,
     work: &mut [f32],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_sstevx_work(
         layout.into(),
@@ -51868,7 +51868,7 @@ pub unsafe fn sstevx_work(
         ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -51891,7 +51891,7 @@ pub unsafe fn dstevx_work(
     ldz: i32,
     work: &mut [f64],
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_dstevx_work(
         layout.into(),
@@ -51911,7 +51911,7 @@ pub unsafe fn dstevx_work(
         ldz,
         work.as_mut_ptr(),
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -52346,7 +52346,7 @@ pub unsafe fn ssyevx_work(
     work: &mut [f32],
     lwork: i32,
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_ssyevx_work(
         layout.into(),
@@ -52368,7 +52368,7 @@ pub unsafe fn ssyevx_work(
         work.as_mut_ptr(),
         lwork,
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -52393,7 +52393,7 @@ pub unsafe fn dsyevx_work(
     work: &mut [f64],
     lwork: i32,
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_dsyevx_work(
         layout.into(),
@@ -52415,7 +52415,7 @@ pub unsafe fn dsyevx_work(
         work.as_mut_ptr(),
         lwork,
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -52621,7 +52621,7 @@ pub unsafe fn ssygvx_work(
     work: &mut [f32],
     lwork: i32,
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_ssygvx_work(
         layout.into(),
@@ -52646,7 +52646,7 @@ pub unsafe fn ssygvx_work(
         work.as_mut_ptr(),
         lwork,
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 
@@ -52674,7 +52674,7 @@ pub unsafe fn dsygvx_work(
     work: &mut [f64],
     lwork: i32,
     iwork: &mut [i32],
-    ifail: &mut i32,
+    ifail: &mut [i32],
 ) -> i32 {
     ffi::LAPACKE_dsygvx_work(
         layout.into(),
@@ -52699,7 +52699,7 @@ pub unsafe fn dsygvx_work(
         work.as_mut_ptr(),
         lwork,
         iwork.as_mut_ptr(),
-        ifail,
+        ifail.as_mut_ptr(),
     )
 }
 

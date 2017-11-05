@@ -4,6 +4,7 @@ version = "0.13.2"
 license = "Apache-2.0/MIT"
 authors = [
     "Andrew Straw <strawman@astraw.com>",
+    "David Greenberg <dsg123456789@gmail.com>",
     "Ivan Ukhov <ivan.ukhov@gmail.com>",
 ]
 description = "The package provides an interface to the Linear Algebra PACKage."

@@ -14,13 +14,13 @@
 //! ```toml
 //! [dependencies]
 //! # Apple’s Accelerate framework
-//! lapack = { version = "0.13", default-features = false, features = ["accelerate"] }
+//! lapack = { version = "0.14", default-features = false, features = ["accelerate"] }
 //! # Netlib’s reference implementation
-//! lapack = { version = "0.13", default-features = false, features = ["netlib"] }
+//! lapack = { version = "0.14", default-features = false, features = ["netlib"] }
 //! # OpenBLAS
-//! lapack = { version = "0.13", default-features = false, features = ["openblas"] }
+//! lapack = { version = "0.14", default-features = false, features = ["openblas"] }
 //! # OpenBLAS
-//! lapack = { version = "0.13" }
+//! lapack = { version = "0.14" }
 //! ```
 //!
 //! [accelerate]: https://developer.apple.com/reference/accelerate

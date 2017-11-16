@@ -1,6 +1,6 @@
 [package]
 name = "lapack"
-version = "0.14.1"
+version = "0.15.0"
 license = "Apache-2.0/MIT"
 authors = [
     "Andrew Straw <strawman@astraw.com>",
@@ -15,13 +15,6 @@ readme = "README.md"
 categories = ["api-bindings", "science"]
 keywords = ["linear-algebra"]
 exclude = ["bin/*"]
-
-[features]
-default = ["openblas"]
-
-accelerate = ["lapack-sys/accelerate"]
-netlib = ["lapack-sys/netlib"]
-openblas = ["lapack-sys/openblas"]
 
 [dependencies]
 libc = "0.2"

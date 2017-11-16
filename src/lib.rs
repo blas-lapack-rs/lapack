@@ -1,4 +1,4 @@
-//! Wrappers for [LAPACK]
+//! Wrappers for [LAPACK] \(Fortran)
 //!
 //! [lapack]: https://en.wikipedia.org/wiki/LAPACK
 

@@ -7,10 +7,10 @@ authors = [
     "David Greenberg <dsg123456789@gmail.com>",
     "Ivan Ukhov <ivan.ukhov@gmail.com>",
 ]
-description = "The package provides an interface to the Linear Algebra PACKage."
+description = "The package provides wrappers for LAPACK (Fortran)."
 documentation = "https://docs.rs/lapack"
-homepage = "https://github.com/stainless-steel/lapack"
-repository = "https://github.com/stainless-steel/lapack"
+homepage = "https://github.com/blas-lapack-rs/lapack"
+repository = "https://github.com/blas-lapack-rs/lapack"
 readme = "README.md"
 categories = ["api-bindings", "science"]
 keywords = ["linear-algebra"]

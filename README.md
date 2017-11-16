@@ -1,6 +1,6 @@
 # LAPACK [![Package][package-img]][package-url] [![Documentation][documentation-img]][documentation-url] [![Build][build-img]][build-url]
 
-The package provides an interface to the [Linear Algebra PACKage][lapack].
+The package provides wrappers for [LAPACK] (Fortran).
 
 ## Example (C)
 
@@ -52,8 +52,8 @@ will be licensed according to the terms given in [LICENSE.md](LICENSE.md).
 
 [lapack]: https://en.wikipedia.org/wiki/LAPACK
 
-[build-img]: https://travis-ci.org/stainless-steel/lapack.svg?branch=master
-[build-url]: https://travis-ci.org/stainless-steel/lapack
+[build-img]: https://travis-ci.org/blas-lapack-rs/lapack.svg?branch=master
+[build-url]: https://travis-ci.org/blas-lapack-rs/lapack
 [documentation-img]: https://docs.rs/lapack/badge.svg
 [documentation-url]: https://docs.rs/lapack
 [package-img]: https://img.shields.io/crates/v/lapack.svg

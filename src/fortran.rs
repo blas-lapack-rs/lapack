@@ -2,7 +2,7 @@
 //!
 //! ## Example
 //!
-//! ```
+//! ```no_run
 //! use lapack::fortran::*;
 //!
 //! let n = 3;

@@ -1,39 +1,13 @@
 language: rust
 
-dist: trusty
-sudo: false
-
 os:
   - linux
   - osx
 
-cache: cargo
 rust:
   - stable
   - beta
   - nightly
-
-env:
-  matrix:
-    - FEATURE=accelerate
-    - FEATURE=netlib
-    - FEATURE=openblas
-
-matrix:
-  exclude:
-    - os: linux
-      env: FEATURE=accelerate
-
-before_install:
-  - curl https://stainless-steel.github.io/travis/fortran.sh | bash
-
-script:
-  - cargo test -vv --no-default-features --features=$FEATURE
-
-addons:
-  apt:
-    packages:
-      - gfortran
 
 notifications:
   email: false

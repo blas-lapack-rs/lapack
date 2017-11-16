@@ -2,7 +2,7 @@
 //!
 //! ## Example
 //!
-//! ```
+//! ```no_run
 //! use lapack::c::*;
 //!
 //! let n = 3;

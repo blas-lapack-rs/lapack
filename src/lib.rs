@@ -1,4 +1,4 @@
-//! Wrappers for [LAPACK] \(Fortran)
+//! Wrappers for [LAPACK] \(Fortran).
 //!
 //! The usage of the package is explained [here][usage].
 //!

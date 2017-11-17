@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-from common import Function, read_functions
+from function import Function, read_functions
 import argparse
 import os
 import re
@@ -197,5 +197,5 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--sys', required=True)
     arguments = parser.parse_args()
-    path = os.path.join(arguments.sys, 'src', 'fortran.rs')
+    path = os.path.join(arguments.sys, 'src', 'lib.rs')
     do(prepare(read_functions(path)))

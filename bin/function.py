@@ -1,8 +1,8 @@
 import re
 
-argument_re = re.compile("\s*(\w+): ([^,\)]+)([,\)\s]*)")
-name_re = re.compile("\s*pub fn (?:LAPACKE_)?(\w+[a-z0-9])(_?)")
-return_re = re.compile("(?:\s*->\s*([^;]+))?")
+argument_re = re.compile('\s*(\w+): ([^,\)]+)([,\)\s]*)')
+name_re = re.compile('\s*pub fn (?:LAPACKE_)?(\w+[a-z0-9])(_?)')
+return_re = re.compile('(?:\s*->\s*([^;]+))?')
 
 class Function(object):
     def __init__(self, name, args, ret):
@@ -23,8 +23,8 @@ class Function(object):
             arg, aty, line = pull_argument(line)
             if arg is None:
                 break
-            if arg == "matrix_layout":
-                arg = "layout"
+            if arg == 'matrix_layout':
+                arg = 'layout'
             args.append((arg, aty))
             line = line.strip()
 

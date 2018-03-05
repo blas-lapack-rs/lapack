@@ -40,7 +40,6 @@ def is_scalar(name, cty, f):
             "n_err_bnds",
             "nb",
             "nrhs",
-            "q",
             "rank",
             "rcond",
             "rowcnd",
@@ -49,6 +48,7 @@ def is_scalar(name, cty, f):
             "tryrac",
             "vu",
         ] or
+        name == "q" and 'lapack_int' in cty or
         not (
             'geev' in f.name or
             'tgsna' in f.name or

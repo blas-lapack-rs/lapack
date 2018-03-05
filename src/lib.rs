@@ -54,7 +54,8 @@ pub type Select2C32 = Option<extern "C" fn(*const c32, *const c32) -> i32>;
 pub type Select1C64 = Option<extern "C" fn(*const c64) -> i32>;
 pub type Select2C64 = Option<extern "C" fn(*const c64, *const c64) -> i32>;
 
-// The rest of this file is generated using `bin/generate.py` and formatted using `rustfmt`.
+// The rest is generated using `bin/generate.py` and formatted using `rustfmt`.
+// Therefore, all the changes should be made in `bin/generate.py`.
 
 #[inline]
 pub unsafe fn sgetrf(m: i32, n: i32, a: &mut [f32], lda: i32, ipiv: &mut [i32], info: &mut i32) {

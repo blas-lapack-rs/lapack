@@ -1,6 +1,6 @@
 //! Wrappers for [LAPACK] \(Fortran).
 //!
-//! The usage of the package is explained [here][usage].
+//! ## [Architecture]
 //!
 //! ## Example
 //!
@@ -24,8 +24,8 @@
 //! }
 //! ```
 //!
+//! [architecture]: https://blas-lapack-rs.github.io/architecture
 //! [lapack]: https://en.wikipedia.org/wiki/LAPACK
-//! [usage]: https://blas-lapack-rs.github.io/usage
 
 extern crate lapack_sys as ffi;
 extern crate libc;

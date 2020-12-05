@@ -2,7 +2,7 @@
 
 The package provides wrappers for [LAPACK] (Fortran).
 
-The usage of the package is explained [here][usage].
+## [Architecture]
 
 ## Example
 
@@ -32,8 +32,8 @@ Your contribution is highly appreciated. Do not hesitate to open an issue or a
 pull request. Note that any contribution submitted for inclusion in the project
 will be licensed according to the terms given in [LICENSE.md](LICENSE.md).
 
+[architecture]: https://blas-lapack-rs.github.io/architecture
 [lapack]: https://en.wikipedia.org/wiki/LAPACK
-[usage]: https://blas-lapack-rs.github.io/usage
 
 [build-img]: https://travis-ci.org/blas-lapack-rs/lapack.svg?branch=master
 [build-url]: https://travis-ci.org/blas-lapack-rs/lapack

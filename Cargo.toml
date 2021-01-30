@@ -20,7 +20,7 @@ keywords = ["linear-algebra"]
 libc = "0.2"
 
 [dependencies.num-complex]
-version = "0.2"
+version = "0.3"
 default-features = false
 
 [dependencies.lapack-sys]

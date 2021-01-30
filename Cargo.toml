@@ -4,6 +4,7 @@ version = "0.16.0"
 license = "Apache-2.0/MIT"
 authors = [
     "Andrew Straw <strawman@astraw.com>",
+    "Crozet Sébastien <developer@crozet.re>",
     "David Greenberg <dsg123456789@gmail.com>",
     "Ivan Ukhov <ivan.ukhov@gmail.com>",
     "Pavel Potocek <pavelpotocek@gmail.com>",

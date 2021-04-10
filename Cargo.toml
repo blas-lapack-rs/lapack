@@ -8,6 +8,7 @@ authors = [
     "David Greenberg <dsg123456789@gmail.com>",
     "Ivan Ukhov <ivan.ukhov@gmail.com>",
     "Pavel Potocek <pavelpotocek@gmail.com>",
+    "Toshiki Teramura <toshiki.teramura@gmail.com>",
 ]
 description = "The package provides wrappers for LAPACK (Fortran)."
 documentation = "https://docs.rs/lapack"

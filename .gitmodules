@@ -1,0 +1,3 @@
+[submodule "lapack-sys"]
+	path = lapack-sys
+	url = https://github.com/blas-lapack-rs/lapack-sys.git

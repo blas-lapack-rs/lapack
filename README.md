@@ -26,6 +26,16 @@ for (one, another) in w.iter().zip(&[2.0, 2.0, 5.0]) {
 }
 ```
 
+## Development
+
+The code is generated via a Python script based on the content the `lapack-sys`
+submodule. To re-generate, run the following commands:
+
+```sh
+./bin/generate.py > src/lapack-sys.rs
+rustfmt src/lapack-sys.rs
+```
+
 ## Contribution
 
 Your contribution is highly appreciated. Do not hesitate to open an issue or a

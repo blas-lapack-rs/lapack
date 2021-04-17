@@ -44,21 +44,27 @@ def is_scalar(name, cty, f):
             'sdim',
             'tryrac',
             'vu',
-        ] or
+        ] or 
         name == 'q' and 'lapack_int' in cty or
+        name in [
+            'alpha',
+        ] and (
+            'larfg' in f.name
+        ) or
         not (
             'geev' in f.name or
+            'ggev' in f.name or
             'tgsna' in f.name or
             'trsna' in f.name
-        ) and name in [
+        ) 
+        and name in [
             'vl',
             'vr',
-        ] or
+        ] 
+        or
         not ('tgevc' in f.name) and name in [
             'p',
         ] or
-        name.startswith('alpha') or
-        name.startswith('beta') or
         name.startswith('inc') or
         name.startswith('k') or
         name.startswith('ld') or
@@ -118,7 +124,7 @@ def translate_type_base(cty):
     assert False, 'cannot translate `{}`'.format(cty)
 
 
-def translate_body_argument(name, rty):
+def translate_body_argument(name, rty, f):
     if rty.startswith('Select'):
         return 'transmute({})'.format(name)
 
@@ -128,7 +134,12 @@ def translate_body_argument(name, rty):
         return '{} as *mut _ as *mut _'.format(name)
 
     elif rty == 'i32':
-        return '&{}'.format(name)
+        if f.name=='lsame':
+            return '{}'.format(name)
+        else:
+            return '&{}'.format(name)
+    elif rty == 'i32':
+        return '{}'.format(name)
     elif rty == '&mut i32':
         return name
     elif rty == '&[i32]':
@@ -155,7 +166,7 @@ def translate_body_argument(name, rty):
         return '{}.as_mut_ptr() as *mut _'.format(name)
 
     elif rty.startswith('libc::'):
-        return '&{}'.format(name)
+        return '{}'.format(name)
 
     assert False, 'cannot translate `{}: {}`'.format(name, rty)
 
@@ -190,7 +201,7 @@ def format_body(f):
 def format_header_arguments(f):
     s = []
     for arg in f.args:
-        s.append('{}: {}'.format(arg[0], translate_argument(*arg, f=f)))
+        s.append('{}: {}'.format(arg[0].lower(), translate_argument(*arg, f=f)))
     return ', '.join(s)
 
 
@@ -198,7 +209,7 @@ def format_body_arguments(f):
     s = []
     for arg in f.args:
         rty = translate_argument(*arg, f=f)
-        s.append(translate_body_argument(arg[0], rty))
+        s.append(translate_body_argument(arg[0].lower(), rty, f))
     return ', '.join(s)
 
 

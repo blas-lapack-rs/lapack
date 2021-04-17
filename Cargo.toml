@@ -1,6 +1,6 @@
 [package]
 name = "lapack"
-version = "0.18.0"
+version = "0.18.1"
 license = "Apache-2.0/MIT"
 authors = [
     "Andrew Straw <strawman@astraw.com>",
@@ -8,6 +8,7 @@ authors = [
     "David Greenberg <dsg123456789@gmail.com>",
     "Ivan Ukhov <ivan.ukhov@gmail.com>",
     "Pavel Potocek <pavelpotocek@gmail.com>",
+    "Selvavignesh Vedamanickam <selvavm@hotmail.com>",
     "Toshiki Teramura <toshiki.teramura@gmail.com>",
 ]
 description = "The package provides wrappers for LAPACK (Fortran)."
@@ -26,5 +27,5 @@ version = "0.4"
 default-features = false
 
 [dependencies.lapack-sys]
-version = "0.12"
+version = "0.13"
 default-features = false

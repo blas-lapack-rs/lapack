@@ -66,7 +66,10 @@ def is_scalar(name, cty, f):
         ] and not (
             'geev' in f.name or
             'ggev' in f.name or
+            'hsein' in f.name or
+            'tgevc' in f.name or
             'tgsna' in f.name or
+            'trevc' in f.name or
             'trsna' in f.name
         ) or
         name.startswith('inc') or

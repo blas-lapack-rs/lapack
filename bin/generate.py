@@ -129,7 +129,7 @@ def translate_type_base(cty):
     assert False, 'cannot translate `{}`'.format(cty)
 
 
-def translate_body_argument(name, rty, f):
+def translate_body_argument(name, rty):
     if rty.startswith('Select'):
         return 'transmute({})'.format(name)
 
@@ -139,10 +139,7 @@ def translate_body_argument(name, rty, f):
         return '{} as *mut _ as *mut _'.format(name)
 
     elif rty == 'i32':
-        if f.name == 'lsame':
-            return name
-        else:
-            return '&{}'.format(name)
+        return '&{}'.format(name)
     elif rty == 'i32':
         return name
     elif rty == '&mut i32':
@@ -214,7 +211,7 @@ def format_body_arguments(f):
     s = []
     for arg in f.args:
         rty = translate_argument(*arg, f=f)
-        s.append(translate_body_argument(arg[0].lower(), rty, f))
+        s.append(translate_body_argument(arg[0].lower(), rty))
     return ', '.join(s)
 
 
@@ -228,6 +225,8 @@ def prepare(code):
 
 def do(functions):
     for f in functions:
+        if f.name in ['lsame']:
+            continue
         print('\n#[inline]')
         print(format_header(f) + ' {')
         print('    ' + format_body(f) + '\n}')

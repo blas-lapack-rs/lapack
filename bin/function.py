@@ -1,7 +1,7 @@
 import re
 
 argument_re = re.compile('\s*(\w+): ([^,\)]+)([,\)\s]*)')
-name_re = re.compile('\s*pub fn (?:LAPACKE_)?(\w+[a-z0-9])(_?)')
+name_re = re.compile('\s*pub fn (\w+[a-z0-9])(_?)')
 return_re = re.compile('(?:\s*->\s*([^;]+))?')
 
 

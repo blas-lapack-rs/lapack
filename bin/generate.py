@@ -140,8 +140,6 @@ def translate_body_argument(name, rty):
 
     elif rty == 'i32':
         return '&{}'.format(name)
-    elif rty == 'i32':
-        return name
     elif rty == '&mut i32':
         return name
     elif rty == '&[i32]':

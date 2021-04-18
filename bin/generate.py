@@ -124,7 +124,7 @@ def translate_type_base(cty):
     elif 'lapack_complex_double' in cty:
         return 'c64'
     elif 'size_t' in cty:
-        return 'libc::c_ulong'
+        return 'size_t'
 
     assert False, 'cannot translate `{}`'.format(cty)
 
@@ -165,7 +165,7 @@ def translate_body_argument(name, rty):
     elif rty.startswith('&mut [c'):
         return '{}.as_mut_ptr() as *mut _'.format(name)
 
-    elif rty.startswith('libc::'):
+    elif rty == 'size_t':
         return name
 
     assert False, 'cannot translate `{}: {}`'.format(name, rty)

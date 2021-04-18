@@ -31,8 +31,9 @@ extern crate lapack_sys as ffi;
 extern crate libc;
 extern crate num_complex as num;
 
-use libc::c_char;
 use std::mem::transmute;
+
+use libc::{c_char, size_t};
 
 /// A complex number with 32-bit parts
 #[allow(non_camel_case_types)]

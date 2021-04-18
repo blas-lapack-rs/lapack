@@ -20,7 +20,6 @@ def is_scalar(name, cty, f):
             'anorm',
             'bbnrm',
             'colcnd',
-            'dif',
             'ihi',
             'il',
             'ilo',
@@ -49,6 +48,12 @@ def is_scalar(name, cty, f):
             'alpha',
         ] and (
             'larfg' in f.name
+        ) or
+        name in [
+            'dif',
+        ] and not (
+            'tgsen' in f.name or
+            'tgsna' in f.name
         ) or
         name in [
             'p',

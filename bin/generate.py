@@ -60,16 +60,15 @@ def is_scalar(name, cty, f):
         ] and (
             'lapack_int' in cty
         ) or
-        not (
+        name in [
+            'vl',
+            'vr',
+        ] and not (
             'geev' in f.name or
             'ggev' in f.name or
             'tgsna' in f.name or
             'trsna' in f.name
-        )
-        and name in [
-            'vl',
-            'vr',
-        ] or
+        ) or
         name.startswith('inc') or
         name.startswith('k') or
         name.startswith('ld') or

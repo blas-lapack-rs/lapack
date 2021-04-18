@@ -139,12 +139,12 @@ def translate_body_argument(name, rty, f):
         return '{} as *mut _ as *mut _'.format(name)
 
     elif rty == 'i32':
-        if f.name=='lsame':
-            return '{}'.format(name)
+        if f.name == 'lsame':
+            return name
         else:
             return '&{}'.format(name)
     elif rty == 'i32':
-        return '{}'.format(name)
+        return name
     elif rty == '&mut i32':
         return name
     elif rty == '&[i32]':
@@ -171,7 +171,7 @@ def translate_body_argument(name, rty, f):
         return '{}.as_mut_ptr() as *mut _'.format(name)
 
     elif rty.startswith('libc::'):
-        return '{}'.format(name)
+        return name
 
     assert False, 'cannot translate `{}: {}`'.format(name, rty)
 

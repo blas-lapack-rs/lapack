@@ -44,26 +44,31 @@ def is_scalar(name, cty, f):
             'sdim',
             'tryrac',
             'vu',
-        ] or 
-        name == 'q' and 'lapack_int' in cty or
+        ] or
         name in [
             'alpha',
         ] and (
             'larfg' in f.name
+        ) or
+        name in [
+            'p',
+        ] and not (
+            'tgevc' in f.name
+        ) or
+        name in [
+            'q'
+        ] and (
+            'lapack_int' in cty
         ) or
         not (
             'geev' in f.name or
             'ggev' in f.name or
             'tgsna' in f.name or
             'trsna' in f.name
-        ) 
+        )
         and name in [
             'vl',
             'vr',
-        ] 
-        or
-        not ('tgevc' in f.name) and name in [
-            'p',
         ] or
         name.startswith('inc') or
         name.startswith('k') or

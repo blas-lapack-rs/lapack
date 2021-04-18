@@ -72,8 +72,11 @@ def is_scalar(name, cty, f):
             'trevc' in f.name or
             'trsna' in f.name
         ) or
+        name.startswith('k') and not (
+            'lapmr' in f.name or
+            'lapmt' in f.name
+        ) or
         name.startswith('inc') or
-        name.startswith('k') or
         name.startswith('ld') or
         name.startswith('tol') or
         name.startswith('vers')

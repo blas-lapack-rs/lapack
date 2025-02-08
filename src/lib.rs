@@ -27,8 +27,13 @@
 //! [architecture]: https://blas-lapack-rs.github.io/architecture
 //! [lapack]: https://en.wikipedia.org/wiki/LAPACK
 
+#![allow(
+    clippy::missing_safety_doc,
+    clippy::missing_transmute_annotations,
+    clippy::too_many_arguments
+)]
+
 extern crate lapack_sys as ffi;
-extern crate libc;
 extern crate num_complex as num;
 
 use std::mem::transmute;

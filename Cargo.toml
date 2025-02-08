@@ -1,7 +1,8 @@
 [package]
 name = "lapack"
-version = "0.19.0"
-license = "Apache-2.0/MIT"
+version = "0.20.0"
+edition = "2021"
+license = "Apache-2.0 OR MIT"
 authors = [
     "Andrew Straw <strawman@astraw.com>",
     "Crozet Sébastien <developer@crozet.re>",
@@ -27,5 +28,5 @@ version = "0.4"
 default-features = false
 
 [dependencies.lapack-sys]
-version = "0.14"
+version = "0.15"
 default-features = false
